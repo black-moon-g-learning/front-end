@@ -1,8 +1,13 @@
+import {API_URL} from '@env';
 import React from 'react';
-import Navigation from './src/navigators/index';
+import {Text, View} from 'react-native';
 
 const App = () => {
-  return <Navigation />;
+  return (
+    <View>
+      <Text>{API_URL}</Text>
+    </View>
+  );
 };
 
 export default App;
