@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import * as React from 'react';
 import {Text, View} from 'react-native';
+import Icons from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -58,27 +59,30 @@ function MyTabs() {
       <Tab.Screen
         name="Game"
         component={Game}
-        // options={{
-        //   tabBarLabel: 'Revenue',
-        //   tabBarIcon: () => <Icon name="tag" size={20} color="black" />,
-        // }}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => (
+            <Icons name="game-controller" size={20} color="black" />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Countribuid"
+        component={Countribuid}
+        options={{
+          tabBarLabel: 'Management',
+          headerShown: false,
+          tabBarIcon: () => <Icons name="message" size={20} color="black" />,
+        }}
       />
       <Tab.Screen
         name="Information"
         component={Information}
-        // options={{
-        //   headerShown: false,
-        //   tabBarLabel: 'Updates',
-        //   tabBarIcon: () => <Icon name="coffee" size={20} color="black" />,
-        // }}
-      />
-      <Tab.Screen
-        name="Countribuid"
-        component={Countribuid}
-        // options={{
-        //   tabBarLabel: 'Management',
-        //   tabBarIcon: () => <Icon name="list" size={20} color="black" />,
-        // }}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => <Icon name="user" size={20} color="black" />,
+        }}
       />
       {/* <Tab.Screen
         name="Loading"
