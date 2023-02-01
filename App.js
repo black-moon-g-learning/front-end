@@ -1,12 +1,14 @@
-import {API_URL} from '@env';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import React from 'react';
-import {Text, View} from 'react-native';
+import Navigation from './src/navigators';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <View>
-      <Text>{API_URL}</Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <Navigation />
+    </QueryClientProvider>
   );
 };
 
