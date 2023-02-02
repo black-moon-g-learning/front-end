@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import Home from '../screens/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

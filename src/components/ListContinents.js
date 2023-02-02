@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   ContinentsName: {
     fontSize: 20,
     color: '#323643',
-    // fontWeight: 500,
   },
   ContinentsDetail: {
     fontSize: 13,
