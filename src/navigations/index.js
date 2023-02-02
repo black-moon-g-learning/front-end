@@ -4,16 +4,10 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
-
+import Home from '../screens/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-function Home() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home</Text>
-    </View>
-  );
-}
+
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

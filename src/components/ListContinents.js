@@ -3,12 +3,12 @@ import React from 'react';
 
 const ListContinents = ({item}) => {
   return (
-    <TouchableOpacity style={styles.item}>
-      <Image style={styles.img} source={{uri: item.img}} />
+    <TouchableOpacity style={styles.item} key={item}>
+      <Image style={styles.img} source={{uri: item.image}} />
       <View>
-        <Text style={styles.ContinentsName}>{item.continents_name}</Text>
+        <Text style={styles.ContinentsName}>{item.name}</Text>
         <Text style={styles.ContinentsDetail}>
-          {item.numberOfCountry} countries and {item.regions} regions
+          {item.countries} countries and {item.regions} regions
         </Text>
       </View>
     </TouchableOpacity>

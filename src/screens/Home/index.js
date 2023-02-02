@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import EarthGifImage from '../../components/Earthgif';
 import ListContinents from '../../components/ListContinents';
 const Home = () => {
-  const {data, isLoading, isSuccess} = UseContinents();
+  const {data, isLoading, isSuccess} = UseContinents([]);
 
   const renderEmpty = () => {
     return (
@@ -28,7 +28,7 @@ const Home = () => {
             style={styles.flatlist}
             ListEmptyComponent={renderEmpty}
             keyExtractor={item => item.id}
-            data={data}
+            data={data.data}
             renderItem={({item}) => {
               return <ListContinents item={item} />;
             }}
