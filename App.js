@@ -1,13 +1,13 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import React from 'react';
-import Navigation from './src/navigators';
+import ShowCountries from './src/screens/ShowCountries';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Navigation />
+      <ShowCountries />
     </QueryClientProvider>
   );
 };
