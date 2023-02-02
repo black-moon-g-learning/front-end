@@ -1,6 +1,6 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import UseContinents from '../../hook/UseContinents';
+import UseContinents from '../../hooks/UseContinents';
 import Header from '../../components/Header';
 import EarthGifImage from '../../components/Earthgif';
 import ListContinents from '../../components/ListContinents';
