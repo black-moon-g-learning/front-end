@@ -1,12 +1,12 @@
-import {API_URL} from '@env';
+import {QueryClient, QueryClientProvider} from 'react-query';
 import React from 'react';
-import {Text, View} from 'react-native';
-
+import DetailCountryPage from './src/screens/DetailCountryPage';
+const queryClient = new QueryClient();
 const App = () => {
   return (
-    <View>
-      <Text>{API_URL}</Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <DetailCountryPage />
+    </QueryClientProvider>
   );
 };
 
