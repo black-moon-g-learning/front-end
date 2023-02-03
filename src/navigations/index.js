@@ -100,11 +100,16 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Tab"
+        initialRouteName="Loading"
         screenOptions={{
-          headerShown: false,
+          tabBarActiveTintColor: '#e91e63',
+          tabBarShowLabel: false,
         }}>
-        <Stack.Screen name="Tab" component={MyTabs} />
+        <Stack.Screen
+          name="Tab"
+          component={MyTabs}
+          options={{headerShown: false}}
+        />
         {/* <Stack.Screen name="Detail" component={Details} />
         <Stack.Screen name="addNew" component={CreateProduct} />
         <Stack.Screen name="Login" component={Login} /> */}

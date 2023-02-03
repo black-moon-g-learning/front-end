@@ -4,7 +4,7 @@ import UseContinents from '../../hooks/UseContinents';
 import Header from '../../components/Header';
 import EarthGifImage from '../../components/Earthgif';
 import ListContinents from '../../components/ListContinents';
-const Home = () => {
+const Home = ({navigation}) => {
   const {data, isLoading, isSuccess} = UseContinents([]);
 
   const renderEmpty = () => {
@@ -30,7 +30,7 @@ const Home = () => {
             keyExtractor={item => item.id}
             data={data.data}
             renderItem={({item}) => {
-              return <ListContinents item={item} />;
+              return <ListContinents item={item} navigation={navigation} />;
             }}
           />
         </>
