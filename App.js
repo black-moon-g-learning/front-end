@@ -1,6 +1,6 @@
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import React from 'react';
-import ShowCountries from './src/screens/ShowCountries';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import ShowCountries from './src/screens/Countries';
 
 const queryClient = new QueryClient();
 
