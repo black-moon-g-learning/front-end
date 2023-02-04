@@ -6,6 +6,7 @@ import {Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
 import Countries from '../screens/Countries';
+import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
 
 function Game() {
@@ -59,7 +60,6 @@ function MyTabs() {
           ),
         }}
       />
-
       <Tab.Screen
         name="Countribuid"
         component={Countribuid}
@@ -85,6 +85,14 @@ function MyTabs() {
           tabBarButton: props => null, //like this
         }}
       />
+      {/* <Tab.Screen
+        name="TopicCountry"
+        component={DetailCountryPage}
+        options={{
+          headerShown: false,
+          tabBarButton: props => null, //like this
+        }}
+      /> */}
     </Tab.Navigator>
   );
 }
@@ -100,6 +108,7 @@ export default function Navigation() {
         }}>
         <Stack.Screen name="Tab" component={MyTabs} />
         <Stack.Screen name="Country" component={Countries} />
+        <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
