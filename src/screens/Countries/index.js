@@ -24,7 +24,7 @@ const Countries = ({navigation, route}) => {
   });
 
   useEffect(function () {
-    axios.get(`${Continents_URL}/${item.id}`).then(dataContry =>
+    axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
         isLoaded: true,
         dataContry: dataContry.data.data,
@@ -38,8 +38,9 @@ const Countries = ({navigation, route}) => {
         <>
           <View style={styles.header}>
             <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
-            <Header />
+            <Text style={styles.title}>{item.name}</Text>
           </View>
+          <Header />
           <Text style={styles.title}>Popular</Text>
           {!dataContry.isLoaded ? (
             <ActivityIndicator color="#00ff00" size="large" />

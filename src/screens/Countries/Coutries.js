@@ -4,13 +4,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from 'react-native';
 
 export const ItemPopular = ({navigation, item}) => {
   return (
     <ScrollView style={styles.itempopular_container}>
-      <TouchableOpacity style={styles.itempoopular_item}>
+      <TouchableOpacity
+        style={styles.itempoopular_item}
+        onPress={() => navigation.navigate('TopicCountry', {item})}>
         <Image style={styles.itempopular_image} source={{uri: item.image}} />
         <Text style={styles.itempopular_country}>{item.name}</Text>
       </TouchableOpacity>
@@ -18,13 +19,15 @@ export const ItemPopular = ({navigation, item}) => {
   );
 };
 
-export const ItemCountries = ({item}) => {
+export const ItemCountries = ({navigation, item}) => {
   return (
     <ScrollView style={styles.itempopular_container}>
-      <View style={styles.itemcountries_item}>
+      <TouchableOpacity
+        style={styles.itemcountries_item}
+        onPress={() => navigation.navigate('TopicCountry', {item})}>
         <Image style={styles.itemcountries_image} source={{uri: item.image}} />
         <Text style={styles.itemcountries_country}>{item.name}</Text>
-      </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
