@@ -1,19 +1,13 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
+import Countries from '../screens/Countries';
+import Home from '../screens/Home';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-function Home() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home</Text>
-    </View>
-  );
-}
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -52,7 +46,6 @@ function MyTabs() {
         component={Home}
         options={{
           headerShown: false,
-
           tabBarIcon: () => <Icon name="home" size={20} color="black" />,
         }}
       />
@@ -84,20 +77,14 @@ function MyTabs() {
           tabBarIcon: () => <Icon name="user" size={20} color="black" />,
         }}
       />
-      {/* <Tab.Screen
-        name="Loading"
-        component={Loading}
+      <Tab.Screen
+        name="Country"
+        component={Countries}
         options={{
+          headerShown: false,
           tabBarButton: props => null, //like this
         }}
-      /> */}
-      {/* <Tab.Screen
-        name="SignUp"
-        component={SignUp}
-        options={{
-          tabBarButton: props => null, //like this
-        }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 }
@@ -112,9 +99,7 @@ export default function Navigation() {
           headerShown: false,
         }}>
         <Stack.Screen name="Tab" component={MyTabs} />
-        {/* <Stack.Screen name="Detail" component={Details} />
-        <Stack.Screen name="addNew" component={CreateProduct} />
-        <Stack.Screen name="Login" component={Login} /> */}
+        <Stack.Screen name="Country" component={Countries} />
       </Stack.Navigator>
     </NavigationContainer>
   );
