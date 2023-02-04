@@ -55,5 +55,4 @@ const styles = StyleSheet.create({
   emptyMessageStyle: {
     textAlign: 'center',
   },
-
 });
