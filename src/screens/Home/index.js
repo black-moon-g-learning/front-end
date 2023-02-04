@@ -1,23 +1,23 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
-import UseContinents from '../../hook/UseContinents';
-import Header from '../../components/Header';
+import React from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import EarthGifImage from '../../components/Earthgif';
+import {ErrorMessage} from '../../components/ErrorMessage';
+import Header from '../../components/Header';
 import ListContinents from '../../components/ListContinents';
-const Home = () => {
-  const {data, isLoading, isSuccess} = UseContinents();
+import UseContinents from '../../hooks/UseContinents';
 
-  const renderEmpty = () => {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text style={styles.emptyMessageStyle}>Empty</Text>
-      </View>
-    );
-  };
+const Home = ({navigation}) => {
+  const {data, isLoading, isSuccess} = UseContinents([]);
 
   return (
     <View style={styles.container}>
-      {isLoading && <Text>Loading...</Text>}
+      {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
 
       {isSuccess && (
         <>
@@ -26,11 +26,11 @@ const Home = () => {
           <Text style={styles.titlePage}>Continents</Text>
           <FlatList
             style={styles.flatlist}
-            ListEmptyComponent={renderEmpty}
+            ListEmptyComponent={ErrorMessage}
             keyExtractor={item => item.id}
-            data={data}
+            data={data.data}
             renderItem={({item}) => {
-              return <ListContinents item={item} />;
+              return <ListContinents navigation={navigation} item={item} />;
             }}
           />
         </>

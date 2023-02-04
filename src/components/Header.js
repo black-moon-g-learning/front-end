@@ -6,7 +6,6 @@ import {
   TextInput,
 } from 'react-native';
 import React from 'react';
-// const imageUrl = 'https://media.giphy.com/media/xT0xeCCINrlk96yc0w/giphy.gif';
 const Header = () => {
   return (
     <View style={styles.container_header}>

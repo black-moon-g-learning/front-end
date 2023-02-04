@@ -1,14 +1,16 @@
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const ListContinents = ({item}) => {
+const ListContinents = ({navigation, item}) => {
   return (
-    <TouchableOpacity style={styles.item}>
-      <Image style={styles.img} source={{uri: item.img}} />
+    <TouchableOpacity
+      style={styles.item}
+      key={item}
+      onPress={() => navigation.navigate('Country', {item})}>
+      <Image style={styles.img} source={{uri: item.image}} />
       <View>
-        <Text style={styles.ContinentsName}>{item.continents_name}</Text>
+        <Text style={styles.ContinentsName}>{item.name}</Text>
         <Text style={styles.ContinentsDetail}>
-          {item.numberOfCountry} countries and {item.regions} regions
+          {item.countries} countries and {item.regions} regions
         </Text>
       </View>
     </TouchableOpacity>
@@ -16,7 +18,6 @@ const ListContinents = ({item}) => {
 };
 
 export default ListContinents;
-
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'white',
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
   ContinentsName: {
     fontSize: 20,
     color: '#323643',
-    // fontWeight: 500,
   },
   ContinentsDetail: {
     fontSize: 13,

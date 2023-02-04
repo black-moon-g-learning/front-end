@@ -1,13 +1,13 @@
 import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import ShowCountries from './src/screens/Countries';
+import Navigation from './src/navigations';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ShowCountries />
+      <Navigation />
     </QueryClientProvider>
   );
 };

@@ -1,83 +1,67 @@
-import React from 'react';
+import {Continents_URL} from '@env';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {
-  Dimensions,
+  ActivityIndicator,
   FlatList,
-  Image,
-  ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import {Loading} from '../../components/Loading';
-import UseContinents from '../../hook/UseContinents';
+import UseContinents from '../../hooks/UseContinents';
+import {ItemCountries, ItemPopular} from './Coutries';
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const ShowCountries = () => {
-  const {data, isLoading, isSuccess} = UseContinents();
+const Countries = ({navigation, route}) => {
+  const {item} = route.params;
+  const {isSuccess} = UseContinents([]);
 
-  const ItemPopular = () => {
-    return (
-      <ScrollView style={styles.itempopular_container}>
-        <View style={styles.itempoopular_item}>
-          <Image
-            style={styles.itempopular_image}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
-          />
-          <Text style={styles.itempopular_country}>name</Text>
-        </View>
-      </ScrollView>
+  const [dataContry, setDataCountry] = useState({
+    isLoaded: false,
+    dataContry: [],
+  });
+
+  useEffect(function () {
+    axios.get(`${Continents_URL}/${item.id}`).then(dataContry =>
+      setDataCountry({
+        isLoaded: true,
+        dataContry: dataContry.data.data,
+      }),
     );
-  };
-
-  const ItemCountries = () => {
-    return (
-      <View style={styles.itemcountries_container}>
-        <Image
-          style={styles.itemcountries_image}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
-        />
-        <Text style={styles.itemcountries_country}>name</Text>
-      </View>
-    );
-  };
+  }, []);
 
   return (
     <View style={styles.container}>
-      {isLoading && <Loading />}
-
       {isSuccess && (
         <>
           <View style={styles.header}>
-            <Icon
-              name="arrow-left"
-              size={30}
-              color="black"
-              style={{paddingTop: 5}}
-            />
+            <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
             <Header />
           </View>
           <Text style={styles.title}>Popular</Text>
-          <FlatList
-            data={data}
-            horizontal={true}
-            renderItem={({itempopular}) => {
-              return <ItemPopular itempopular={itempopular} />;
-            }}
-          />
+          {!dataContry.isLoaded ? (
+            <ActivityIndicator color="#00ff00" size="large" />
+          ) : (
+            <FlatList
+              data={dataContry.dataContry.popular}
+              horizontal={true}
+              ListEmptyComponent={ErrorMessage}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => {
+                return <ItemPopular navigation={navigation} item={item} />;
+              }}
+            />
+          )}
           <Text style={styles.title}>Countries</Text>
           <FlatList
-            data={data}
-            // keyExtractor={id}
+            data={dataContry.dataContry.countries}
             numColumns={2}
-            renderItem={({itemcountries}) => {
-              return <ItemCountries itemcountries={itemcountries} />;
+            ListEmptyComponent={ErrorMessage}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => {
+              return <ItemCountries navigation={navigation} item={item} />;
             }}
           />
         </>
@@ -86,8 +70,7 @@ const ShowCountries = () => {
   );
 };
 
-export default ShowCountries;
-
+export default Countries;
 const styles = StyleSheet.create({
   container: {
     margin: 10,
@@ -99,15 +82,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    paddingTop: 10,
     color: '#000009',
   },
   itempopular_container: {
     width: 200,
-    height: '100%',
+    height: 200,
   },
   itempoopular_item: {
-    flex: 1,
+    paddingTop: 5,
     textAlign: 'center',
     alignContent: 'center',
     justifyContent: 'center',
@@ -115,7 +97,7 @@ const styles = StyleSheet.create({
   },
   itempopular_image: {
     width: 170,
-    height: 100,
+    height: 110,
     borderRadius: 10,
   },
   itempopular_country: {
@@ -124,7 +106,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  itemcountries_container: {
-    width: 200,
+  itemcountries_item: {
+    width: '90%',
+    height: 150,
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green',
+    borderRadius: 10,
+    margin: 10,
+  },
+  itemcountries_image: {
+    width: '90%',
+    height: 100,
+    borderRadius: 10,
+  },
+  itemcountries_country: {
+    fontSize: 20,
+    color: 'black',
+    fontWeight: '400',
   },
 });
