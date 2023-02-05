@@ -9,7 +9,8 @@ import {
   Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MapArea from '../../components/DetailContryPage/MapArea';
+// import MapArea from '../../components/DetailContryPage/MapArea';
+import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
 import {ErrorMessage} from '../../components/ErrorMessage';
@@ -59,7 +60,7 @@ const DetailCountryPage = ({navigation, route}) => {
             }}
           />
         )}
-        <MapArea />
+        <Map />
       </View>
     </View>
   );
@@ -71,7 +72,12 @@ const styles = StyleSheet.create({
   container: {
     fontSize: 18,
   },
-  flatlist: {paddingLeft: 10, paddingRight: 10},
+  flatlist: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    // display: 'flex',
+    // flexDirection: 'column',
+  },
   topicsheader: {
     width: '100%',
     height: 120,
