@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
+import Videos from '../screens/Videos';
 
 function Game() {
   return (
@@ -109,6 +110,7 @@ export default function Navigation() {
         <Stack.Screen name="Tab" component={MyTabs} />
         <Stack.Screen name="Country" component={Countries} />
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
+        <Stack.Screen name="videos" component={Videos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

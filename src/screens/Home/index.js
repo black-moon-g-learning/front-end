@@ -6,10 +6,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import EarthGifImage from '../../components/Earthgif';
+import EarthGifImage from '../../components/Home/Earthgif';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import ListContinents from '../../components/ListContinents';
+import ListContinents from '../../components/Home/ListContinents';
 import UseContinents from '../../hooks/UseContinents';
 
 const Home = ({navigation}) => {
