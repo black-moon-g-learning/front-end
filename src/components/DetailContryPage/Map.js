@@ -1,24 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Header from '../Header';
-const MapArea = () => {
+import Mapitem from './MapItem';
+const Map = () => {
   return (
     <View style={styles.maparea}>
-      <View>
+      <View style={styles.mapcontainer}>
         <Text style={styles.title}>Map</Text>
         <View style={styles.undertxt} />
       </View>
-      <Header />
-      <View style={styles.mapView}></View>
+      <View style={styles.mapView}>
+        <Mapitem />
+      </View>
     </View>
   );
 };
 
-export default MapArea;
+export default Map;
 
 const styles = StyleSheet.create({
+  mapcontainer: {marginBottom: 40},
   title: {
-    paddingTop: 10,
+    paddingTop: 6,
     color: '#323643',
     fontWeight: '600',
     fontSize: 24,
@@ -30,16 +32,15 @@ const styles = StyleSheet.create({
     width: '20%',
     height: 2,
     margin: 3,
-    marginBottom: 20,
+    // marginBottom: 5,
   },
   maparea: {
     padding: 10,
   },
   mapView: {
-    backgroundColor: '#5FAD41',
     width: '100%',
-    height: 195,
+    height: 230,
     padding: 10,
-    marginTop: 20,
+    marginTop: 30,
   },
 });

@@ -11,8 +11,8 @@ const TopicCard = ({item}) => {
             uri: item.image,
           }}
         />
+        <Text style={styles.TopicCards_name}>{item.name}</Text>
       </View>
-      <Text style={styles.TopicCards_name}>{item.name}</Text>
     </TouchableOpacity>
   );
 };
@@ -21,8 +21,8 @@ export default TopicCard;
 
 const styles = StyleSheet.create({
   TopicCards_container: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 170,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
