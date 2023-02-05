@@ -21,7 +21,7 @@ export const ItemPopular = ({navigation, item}) => {
 
 export const ItemCountries = ({navigation, item}) => {
   return (
-    <ScrollView style={styles.itempopular_container}>
+    <ScrollView style={styles.itemcountries_container}>
       <TouchableOpacity
         style={styles.itemcountries_item}
         onPress={() => navigation.navigate('TopicCountry', {item})}>
@@ -33,10 +33,6 @@ export const ItemCountries = ({navigation, item}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-    fontSize: 18,
-  },
   header: {
     flexDirection: 'row',
   },
@@ -46,9 +42,10 @@ const styles = StyleSheet.create({
     color: '#000009',
   },
   itempopular_container: {
-    width: 200,
+    width: '23%',
     height: 200,
   },
+  itemcountries_container: {width: '90%', height: 190},
   itempoopular_item: {
     paddingTop: 5,
     textAlign: 'center',
@@ -58,7 +55,7 @@ const styles = StyleSheet.create({
   },
   itempopular_image: {
     width: 170,
-    height: 110,
+    height: 100,
     borderRadius: 10,
   },
   itempopular_country: {
@@ -68,23 +65,29 @@ const styles = StyleSheet.create({
   },
 
   itemcountries_item: {
-    width: '90%',
-    height: 150,
+    width: '92%',
+    height: 160,
     textAlign: 'center',
     alignContent: 'center',
-    justifyContent: 'center',
+    paddingTop: 15,
+    paddingBottom: 18,
+    paddingLeft: 3,
+    paddingRight: 3,
     alignItems: 'center',
-    backgroundColor: 'green',
-    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: '#5FAD41',
+    borderRadius: 20,
     margin: 10,
   },
   itemcountries_image: {
     width: '90%',
-    height: 100,
+    height: '75%',
     borderRadius: 10,
   },
   itemcountries_country: {
-    fontSize: 20,
+    fontSize: 15,
     color: 'black',
     fontWeight: '400',
   },

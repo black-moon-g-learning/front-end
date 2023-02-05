@@ -23,12 +23,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 24,
     lineHeight: 20,
+    width: '20%',
   },
   undertxt: {
     backgroundColor: '#5FAD41',
     width: '20%',
     height: 2,
     margin: 3,
+    marginBottom: 20,
   },
   maparea: {
     padding: 10,
@@ -38,5 +40,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 195,
     padding: 10,
+    marginTop: 20,
   },
 });

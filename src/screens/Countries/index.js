@@ -38,7 +38,7 @@ const Countries = ({navigation, route}) => {
         <>
           <View style={styles.header}>
             <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
-            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
           <Text style={styles.title}>Popular</Text>
@@ -80,52 +80,20 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
   },
+  name: {
+    width: '100%',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#323643',
+    paddingBottom: 15,
+    textAlign: 'center',
+  },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#000009',
-  },
-  itempopular_container: {
-    width: 200,
-    height: 200,
-  },
-  itempoopular_item: {
-    paddingTop: 5,
-    textAlign: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  itempopular_image: {
-    width: 170,
-    height: 110,
-    borderRadius: 10,
-  },
-  itempopular_country: {
-    paddingTop: 5,
-    color: '#000000',
-    fontSize: 20,
-  },
-
-  itemcountries_item: {
-    width: '90%',
-    height: 150,
-    textAlign: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'green',
-    borderRadius: 10,
-    margin: 10,
-  },
-  itemcountries_image: {
-    width: '90%',
-    height: 100,
-    borderRadius: 10,
-  },
-  itemcountries_country: {
-    fontSize: 20,
-    color: 'black',
-    fontWeight: '400',
+    color: '#323643',
+    marginTop: 15,
+    marginBottom: 15,
+    paddingLeft: 10,
   },
 });
