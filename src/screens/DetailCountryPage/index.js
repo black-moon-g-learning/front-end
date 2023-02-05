@@ -69,7 +69,6 @@ export default DetailCountryPage;
 
 const styles = StyleSheet.create({
   container: {
-    // paddingLeft: 10,
     fontSize: 18,
   },
   flatlist: {paddingLeft: 10, paddingRight: 10},

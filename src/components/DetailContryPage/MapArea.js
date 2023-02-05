@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 20,
     width: '20%',
-    // textAlign:'center',
   },
   undertxt: {
     backgroundColor: '#5FAD41',
