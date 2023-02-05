@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const TopicCard = ({item}) => {
+const TopicCard = ({item, navigation}) => {
   return (
-    <TouchableOpacity style={styles.TopicCards_container}>
+    <TouchableOpacity
+      style={styles.TopicCards_container}
+      onPress={() => navigation.navigate('videos', {item})}>
       <View style={styles.TopicCards_item}>
         <Image
           style={styles.TopicCards_img}
