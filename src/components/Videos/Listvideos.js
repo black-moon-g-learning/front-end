@@ -2,16 +2,11 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Video from 'react-native-video';
 const ListVideo = ({navigation, item}) => {
   return (
-    <TouchableOpacity style={styles.item} key={item}>
-      <Video
-        source={{uri: item.url}}
-        ref={ref => {
-          this.player = ref;
-        }}
-        onBuffer={this.onBuffer}
-        onError={this.videoError}
-        style={styles.img}
-      />
+    <TouchableOpacity
+      style={styles.item}
+      key={item}
+      onPress={() => navigation.navigate('playvideo', {item})}>
+      <Image source={{uri: item.image}} style={styles.img} />
       <View>
         <Text style={styles.ContinentsName}>{item.name}</Text>
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
