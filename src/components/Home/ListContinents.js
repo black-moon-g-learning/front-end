@@ -1,26 +1,31 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
-const ListContinents = ({navigation, item}) => {
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import Learnpercent from './Learnpercent';
+const ListContinents = ({item}) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
-      style={styles.item}
-      key={item}
+      style={styles.flatItem}
       onPress={() => navigation.navigate('Country', {item})}>
-      <Image style={styles.img} source={{uri: item.image}} />
-      <View>
-        <Text style={styles.ContinentsName}>{item.name}</Text>
-        <Text style={styles.ContinentsDetail}>
-          {item.countries} countries and {item.regions} regions
-        </Text>
+      <View style={styles.item}>
+        <Image style={styles.img} source={{uri: item.image}} />
+        <View>
+          <Text style={styles.ContinentsName}>{item.name}</Text>
+          <Text style={styles.ContinentsDetail}>
+            {item.countries} countries and {item.regions} regions
+          </Text>
+        </View>
       </View>
+      <Learnpercent />
     </TouchableOpacity>
   );
 };
 
 export default ListContinents;
+
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: 'white',
+  flatItem: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -30,7 +35,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#5FAD41',
     marginBottom: 10,
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
     alignItems: 'center',
+  },
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 10,
   },
   img: {
     margin: 20,
