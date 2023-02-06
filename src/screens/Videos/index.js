@@ -43,7 +43,6 @@ const Videos = ({navigation, route}) => {
             <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
-          <Text style={styles.title}>Popular</Text>
           {!dataVideos.isLoaded ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (

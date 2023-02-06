@@ -48,7 +48,9 @@ function MyTabs() {
         component={Home}
         options={{
           headerShown: false,
-          tabBarIcon: () => <Icon name="home" size={20} color="black" />,
+          tabBarIcon: ({focused}) => (
+            <Icon name="home" size={25} color={focused ? '#5FAD41' : 'black'} />
+          ),
         }}
       />
       <Tab.Screen
@@ -56,8 +58,12 @@ function MyTabs() {
         component={Game}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <Icons name="game-controller" size={20} color="black" />
+          tabBarIcon: ({focused}) => (
+            <Icons
+              name="game-controller"
+              size={25}
+              color={focused ? '#5FAD41' : 'black'}
+            />
           ),
         }}
       />
@@ -67,7 +73,13 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Management',
           headerShown: false,
-          tabBarIcon: () => <Icons name="message" size={20} color="black" />,
+          tabBarIcon: ({focused}) => (
+            <Icons
+              name="message"
+              size={25}
+              color={focused ? '#5FAD41' : 'black'}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -75,7 +87,9 @@ function MyTabs() {
         component={Information}
         options={{
           headerShown: false,
-          tabBarIcon: () => <Icon name="user" size={20} color="black" />,
+          tabBarIcon: ({focused}) => (
+            <Icon name="user" size={25} color={focused ? '#5FAD41' : 'black'} />
+          ),
         }}
       />
       <Tab.Screen
@@ -86,14 +100,22 @@ function MyTabs() {
           tabBarButton: props => null, //like this
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="TopicCountry"
         component={DetailCountryPage}
         options={{
           headerShown: false,
           tabBarButton: props => null, //like this
         }}
-      /> */}
+      />
+      <Tab.Screen
+        name="videos"
+        component={Videos}
+        options={{
+          headerShown: false,
+          tabBarButton: props => null, //like this
+        }}
+      />
     </Tab.Navigator>
   );
 }
