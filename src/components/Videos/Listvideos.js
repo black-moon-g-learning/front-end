@@ -14,7 +14,7 @@ const ListVideo = ({navigation, item}) => {
       />
       <View>
         <Text style={styles.ContinentsName}>{item.name}</Text>
-        <Text style={styles.ContinentsDetail}>{item.author} regions</Text>
+        <Text style={styles.ContinentsDetail}>{item.author}</Text>
         <Text style={styles.ContinentsDetail}>Publish: {item.publish}</Text>
       </View>
     </TouchableOpacity>
