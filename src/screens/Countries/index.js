@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  RefreshControl,
   StyleSheet,
   Text,
   View,
@@ -18,20 +19,30 @@ import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 const Countries = ({navigation, route}) => {
   const {item} = route.params;
   const {isSuccess} = UseContinents([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   const [dataContry, setDataCountry] = useState({
     isLoaded: false,
     dataContry: [],
   });
 
-  useEffect(function () {
+  const getData = () => {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
         isLoaded: true,
         dataContry: dataContry.data.data,
       }),
     );
+  };
+  useEffect(() => {
+    onRefresh();
   }, []);
+
+  const onRefresh = () => {
+    // setDataCountry([]);
+    getData();
+    console.log('vao day chua');
+  };
 
   return (
     <View style={styles.container}>
@@ -54,6 +65,9 @@ const Countries = ({navigation, route}) => {
               renderItem={({item}) => {
                 return <ItemPopular navigation={navigation} item={item} />;
               }}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
             />
           )}
           <Text style={styles.title}>Countries</Text>
@@ -65,6 +79,9 @@ const Countries = ({navigation, route}) => {
             renderItem={({item}) => {
               return <ItemCountries navigation={navigation} item={item} />;
             }}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           />
         </>
       )}

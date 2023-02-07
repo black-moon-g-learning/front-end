@@ -13,9 +13,8 @@ const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const PlayVideo = ({navigation, route}) => {
   const {item} = route.params;
   const urlAPI = item.url;
-  const splitUrl = urlAPI.split('=');
-  console.log(splitUrl);
-  // console.log(item.url);
+  const splitUrl = urlAPI.split(/[=,&]/).slice(1, 2);
+  console.log('link n ha', splitUrl);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -27,7 +26,7 @@ const PlayVideo = ({navigation, route}) => {
         />
       </View>
       <View style={styles.video}>
-        <YoutubePlayer play={true} videoId={'6lVFJfvVB1g'} height={230} />
+        <YoutubePlayer play={true} videoId={splitUrl} height={230} />
         <Text style={styles.name}>{item.name}</Text>
       </View>
       <View style={styles.review}>

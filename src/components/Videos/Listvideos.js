@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   ContinentsName: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#323643',
+    width:'100%',
   },
   ContinentsDetail: {
     fontSize: 13,
