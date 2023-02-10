@@ -9,23 +9,16 @@ import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
+import HYHBDetail from '../screens/HYHBDetailPage';
+import News from '../screens/HYHBpage';
 import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Videos from '../screens/Videos';
-
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Game</Text>
-    </View>
-  );
-}
-
-function Countribuid() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Countribuid</Text>
     </View>
   );
 }
@@ -64,8 +57,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Countribuid"
-        component={Countribuid}
+        name="HYHB"
+        component={News}
         options={{
           tabBarLabel: 'Management',
           headerShown: false,
@@ -132,6 +125,7 @@ export default function Navigation() {
         <Stack.Screen name="loading" component={Loading} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="logout" component={Logout} />
+        <Stack.Screen name="News" component={HYHBDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

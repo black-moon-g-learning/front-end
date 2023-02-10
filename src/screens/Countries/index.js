@@ -22,7 +22,7 @@ const Countries = ({navigation, route}) => {
     isLoaded: false,
     dataContry: [],
   });
-
+  console.log(dataContry.dataContry);
   useEffect(function () {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
@@ -46,6 +46,7 @@ const Countries = ({navigation, route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
+              showsHorizontalScrollIndicator={false}
               data={dataContry.dataContry.popular}
               horizontal={true}
               ListEmptyComponent={ErrorMessage}
@@ -57,6 +58,7 @@ const Countries = ({navigation, route}) => {
           )}
           <Text style={styles.title}>Countries</Text>
           <FlatList
+            showsVerticalScrollIndicator={false}
             data={dataContry.dataContry.countries}
             numColumns={2}
             ListEmptyComponent={ErrorMessage}
