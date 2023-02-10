@@ -1,20 +1,23 @@
+import React from 'react';
 import {
   Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
-import YoutubePlayer from 'react-native-youtube-iframe';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import YoutubePlayer from 'react-native-youtube-iframe';
+import {RecommendVideo} from '../../components/Videos/Listvideos';
+import {ErrorMessage} from '../../components/ErrorMessage';
+
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const PlayVideo = ({navigation, route}) => {
-  const {item} = route.params;
+  const {item, videos} = route.params;
   const urlAPI = item.url;
   const splitUrl = urlAPI.split(/[=,&]/).slice(1, 2);
-  console.log('link n ha', splitUrl);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,6 +36,21 @@ const PlayVideo = ({navigation, route}) => {
         <TouchableOpacity style={styles.reviewbutton}>
           <Text style={styles.text}>REVIEW HERE</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Text style={styles.recommend}>RECOMMEND VIDEOS</Text>
+      </View>
+      <View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={videos}
+          horizontal={true}
+          ListEmptyComponent={ErrorMessage}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => {
+            return <RecommendVideo navigation={navigation} item={item} />;
+          }}
+        />
       </View>
     </View>
   );
@@ -63,17 +81,27 @@ const styles = StyleSheet.create({
   },
   video: {
     margin: 10,
+    height: 210,
     // width: '100%',
     borderRadius: 10,
     borderWidth: 0.8,
     borderColor: '#828282',
+    overflow: 'hidden',
     // alignItems: 'center',
-    // paddingTop: 1,
+    // paddingTop: 10,
   },
   review: {
-    marginTop: 20,
+    marginTop: 30,
     display: 'flex',
     alignItems: 'center',
+  },
+  recommend: {
+    paddingLeft: 10,
+    marginTop: 45,
+    marginBottom: 20,
+    fontSize: 20,
+    color: '#323643',
+    fontWeight: 'bold',
   },
   reviewbutton: {
     width: 200,

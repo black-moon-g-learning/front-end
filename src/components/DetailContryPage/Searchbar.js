@@ -1,25 +1,24 @@
-import React from 'react';
 import {
-  Image,
   StyleSheet,
-  TextInput,
+  Image,
   View,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const Searchbar = () => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require('../../assets/images/character.png')}
-      />
-      <View style={styles.searchbar}>
-        <TextInput style={styles.txt} />
-        <TouchableOpacity>
-          <Icon name="search" size={24} color="#323643" />
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container_header}>
+      <TouchableOpacity>
+        <Image
+          style={styles.character}
+          source={require('../../assets/images/character.png')}
+        />
+      </TouchableOpacity>
+      <TextInput style={styles.searchBar} placeholder="Search..." />
+      <Icon name="arrow-left" size={28} />
     </View>
   );
 };
@@ -27,36 +26,22 @@ const Searchbar = () => {
 export default Searchbar;
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
+  container_header: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-around',
   },
-  searchbar: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    width: '70%',
-    height: 44,
-    backgroundColor: '#F4F4F4',
-    borderRadius: 16,
-    borderColor: '#000000',
-    borderWidth: 1,
+  searchBar: {
+    width: 320,
+    height: 42,
     padding: 10,
+    borderWidth: 1,
+    borderColor: '#FFBF1C',
+    borderRadius: 10,
+    backgroundColor: '#F4F1F1',
   },
-  txt: {
-    width: '70%',
-    height: 44,
-  },
-  img: {
-    width: 51,
-    height: 63,
-  },
-  searchIcon: {
-    display: 'flex',
-    left: 0,
+  character: {
+    width: 40.38,
+    height: 45,
   },
 });

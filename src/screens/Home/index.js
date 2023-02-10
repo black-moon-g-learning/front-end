@@ -25,6 +25,7 @@ const Home = ({navigation}) => {
           <EarthGifImage />
           <Text style={styles.titlePage}>Continents</Text>
           <FlatList
+            showsVerticalScrollIndicator={false}
             style={styles.flatlist}
             ListEmptyComponent={ErrorMessage}
             keyExtractor={item => item.id}

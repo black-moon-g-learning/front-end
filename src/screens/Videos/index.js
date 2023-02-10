@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
-import ListVideo from '../../components/Videos/Listvideos';
+import {ListVideo} from '../../components/Videos/Listvideos';
 
 const Videos = ({navigation, route}) => {
   const {item} = route.params;
@@ -33,7 +33,7 @@ const Videos = ({navigation, route}) => {
         }),
       );
   }, []);
-  console.log(dataVideos.dataVideos);
+  // console.log(dataVideos.dataVideos);
   return (
     <View style={styles.container}>
       {isSuccess && (
@@ -51,10 +51,27 @@ const Videos = ({navigation, route}) => {
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}
               renderItem={({item}) => {
-                return <ListVideo navigation={navigation} item={item} />;
+                return (
+                  <ListVideo
+                    navigation={navigation}
+                    videos={dataVideos.dataVideos}
+                    item={item}
+                  />
+                );
               }}
             />
           )}
+          <Text style={styles.title}>Countries</Text>
+          {/* <FlatList
+            showsVerticalScrollIndicator={false}
+            data={}
+            numColumns={2}
+            ListEmptyComponent={ErrorMessage}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => {
+              return <ItemCountries navigation={navigation} item={item} />;
+            }}
+          /> */}
         </>
       )}
     </View>
