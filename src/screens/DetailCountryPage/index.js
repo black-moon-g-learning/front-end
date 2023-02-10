@@ -5,8 +5,8 @@ import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
-  View,
   Text,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import MapArea from '../../components/DetailContryPage/MapArea';
@@ -41,7 +41,9 @@ const DetailCountryPage = ({navigation, route}) => {
           name="arrow-left"
           size={28}
           color={'#FCFCFF'}
-          onPress={navigation.goBack}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
         />
         <Text style={styles.title}>WELCOME TO {item.name.toUpperCase()}</Text>
       </View>

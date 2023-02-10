@@ -5,23 +5,19 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Feather';
+import {Loading} from '../components/Loading';
+import Logout from '../components/Logout';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
+import Information from '../screens/Infor';
+import Login from '../screens/Login/Login';
 import Videos from '../screens/Videos';
 
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Game</Text>
-    </View>
-  );
-}
-
-function Information() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Information</Text>
     </View>
   );
 }
@@ -38,7 +34,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Loading"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
         tabBarShowLabel: false,
@@ -125,7 +121,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Tab"
+        initialRouteName="login"
         screenOptions={{
           headerShown: false,
         }}>
@@ -133,6 +129,9 @@ export default function Navigation() {
         <Stack.Screen name="Country" component={Countries} />
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
         <Stack.Screen name="videos" component={Videos} />
+        <Stack.Screen name="loading" component={Loading} />
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="logout" component={Logout} />
       </Stack.Navigator>
     </NavigationContainer>
   );

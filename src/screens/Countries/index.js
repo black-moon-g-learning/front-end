@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
-// import {ItemCountries, ItemPopular} from './Coutries';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 
 const Countries = ({navigation, route}) => {
