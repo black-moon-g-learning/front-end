@@ -9,7 +9,8 @@ import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
 import Videos from '../screens/Videos';
-
+import News from '../screens/HYHBpage';
+import HYHBDetail from '../screens/HYHBDetailPage';
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -22,14 +23,6 @@ function Information() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Information</Text>
-    </View>
-  );
-}
-
-function Countribuid() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Countribuid</Text>
     </View>
   );
 }
@@ -68,8 +61,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Countribuid"
-        component={Countribuid}
+        name="HYHB"
+        component={News}
         options={{
           tabBarLabel: 'Management',
           headerShown: false,
@@ -133,6 +126,7 @@ export default function Navigation() {
         <Stack.Screen name="Country" component={Countries} />
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
         <Stack.Screen name="videos" component={Videos} />
+        <Stack.Screen name="News" component={HYHBDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -47,6 +47,7 @@ const Videos = ({navigation, route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
+              showsVerticalScrollIndicator={false}
               data={dataVideos.dataVideos}
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}

@@ -34,6 +34,7 @@ const DetailCountryPage = ({navigation, route}) => {
       );
   }, []);
 
+  console.log(dataTopics.dataTopics);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
@@ -51,6 +52,7 @@ const DetailCountryPage = ({navigation, route}) => {
           <ActivityIndicator color="#00ff00" size="large" />
         ) : (
           <FlatList
+            showsHorizontalScrollIndicator={false}
             data={dataTopics.dataTopics}
             horizontal={true}
             ListEmptyComponent={ErrorMessage}
