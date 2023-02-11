@@ -12,8 +12,6 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import {ErrorMessage} from '../../components/ErrorMessage';
 
-const SCREEN_WIDTH = Dimensions.get('screen').width;
-const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
   const urlAPI = item.url;
@@ -59,10 +57,6 @@ const PlayVideo = ({navigation, route}) => {
 export default PlayVideo;
 
 const styles = StyleSheet.create({
-  container: {
-    // margin: 10,
-    // alignItems: 'center',
-  },
   header: {
     flexDirection: 'row',
     paddingLeft: 10,
@@ -82,13 +76,10 @@ const styles = StyleSheet.create({
   video: {
     margin: 10,
     height: 210,
-    // width: '100%',
     borderRadius: 10,
     borderWidth: 0.8,
     borderColor: '#828282',
     overflow: 'hidden',
-    // alignItems: 'center',
-    // paddingTop: 10,
   },
   review: {
     marginTop: 30,

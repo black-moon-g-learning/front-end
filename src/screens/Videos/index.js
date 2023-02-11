@@ -33,7 +33,6 @@ const Videos = ({navigation, route}) => {
         }),
       );
   }, []);
-  // console.log(dataVideos.dataVideos);
   return (
     <View style={styles.container}>
       {isSuccess && (
@@ -61,17 +60,6 @@ const Videos = ({navigation, route}) => {
               }}
             />
           )}
-          <Text style={styles.title}>Countries</Text>
-          {/* <FlatList
-            showsVerticalScrollIndicator={false}
-            data={}
-            numColumns={2}
-            ListEmptyComponent={ErrorMessage}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => {
-              return <ItemCountries navigation={navigation} item={item} />;
-            }}
-          /> */}
         </>
       )}
     </View>
