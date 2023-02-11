@@ -9,20 +9,20 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
-import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 
 const Countries = ({navigation, route}) => {
   const {item} = route.params;
-  const {isSuccess} = UseContinents([]);
+  const {isSuccess, refreshing} = UseContinents([]);
 
   const [dataContry, setDataCountry] = useState({
     isLoaded: false,
     dataContry: [],
   });
-  console.log(dataContry.dataContry);
+  // console.log(dataContry.dataContry);
   useEffect(function () {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
@@ -37,7 +37,11 @@ const Countries = ({navigation, route}) => {
       {isSuccess && (
         <>
           <View style={styles.header}>
-            <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
+            <Icon
+              name="arrow-left"
+              size={28}
+              onPress={() => navigation.navigate('Home')}
+            />
             <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
@@ -54,6 +58,7 @@ const Countries = ({navigation, route}) => {
               renderItem={({item}) => {
                 return <ItemPopular navigation={navigation} item={item} />;
               }}
+              refreshing={refreshing}
             />
           )}
           <Text style={styles.title}>Countries</Text>

@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   Image,
@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 const Login = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   GoogleSignin.configure({
     webClientId:
       '1082282985717-m0m9r4gr3lkqbcvmq6fftkjh5sapkd0b.apps.googleusercontent.com',
@@ -24,12 +24,21 @@ const Login = () => {
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
 
+    // const postUser = async () => {
+    //   const {data} = await axios.post(`${Continents_URL}/continents`, idToken);
+    //   return data;
+    // };
+    // const UseSign_in = () => useQuery('user', postUser);
+    // UseSign_in.then(user => {
+    //   console.log(user);
+    // }).catch(error => {
+    //   console.log(error);
+    // });
+
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
     // Sign-in the user with the credential
     const user_sign_in = auth().signInWithCredential(googleCredential);
-
     user_sign_in
       .then(user => {
         console.log(user);
@@ -96,6 +105,7 @@ const Login = () => {
     <View>
       <LoginForm />
       <LoginwithGoogle />
+      <LoginwithFacebook />
     </View>
   );
 };

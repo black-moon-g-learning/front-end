@@ -43,7 +43,7 @@ const DetailCountryPage = ({navigation, route}) => {
           size={28}
           color={'#FCFCFF'}
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('Country', {item});
           }}
         />
         <Text style={styles.title}>WELCOME TO {item.name.toUpperCase()}</Text>
