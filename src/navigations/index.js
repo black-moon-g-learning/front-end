@@ -9,6 +9,7 @@ import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
 import Videos from '../screens/Videos';
+import PlayVideo from '../screens/Videos/Playvideo';
 import News from '../screens/HYHBpage';
 import HYHBDetail from '../screens/HYHBDetailPage';
 function Game() {
@@ -126,6 +127,7 @@ export default function Navigation() {
         <Stack.Screen name="Country" component={Countries} />
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
         <Stack.Screen name="videos" component={Videos} />
+        <Stack.Screen name="playvideo" component={PlayVideo} />
         <Stack.Screen name="News" component={HYHBDetail} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -22,7 +22,7 @@ const Countries = ({navigation, route}) => {
     isLoaded: false,
     dataContry: [],
   });
-  console.log(dataContry.dataContry);
+  // console.log(dataContry.dataContry);
   useEffect(function () {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({

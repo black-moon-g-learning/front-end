@@ -1,17 +1,18 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Video from 'react-native-video';
-const ListVideo = ({navigation, item}) => {
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from 'react-native';
+export const ListVideo = ({navigation, item, videos}) => {
   return (
-    <TouchableOpacity style={styles.item} key={item}>
-      <Video
-        source={{uri: item.url}}
-        ref={ref => {
-          this.player = ref;
-        }}
-        onBuffer={this.onBuffer}
-        onError={this.videoError}
-        style={styles.img}
-      />
+    <TouchableOpacity
+      style={styles.item}
+      key={item}
+      onPress={() => navigation.navigate('playvideo', {item, videos})}>
+      <Image source={{uri: item.image}} style={styles.img} />
       <View>
         <Text style={styles.ContinentsName}>{item.name}</Text>
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
@@ -21,8 +22,23 @@ const ListVideo = ({navigation, item}) => {
   );
 };
 
-export default ListVideo;
-const styles = StyleSheet.create({
+export const RecommendVideo = ({navigation, item}) => {
+  return (
+    <ScrollView style={styles.itemRecommend_container}>
+      <TouchableOpacity
+        style={styles.item_RCMVideos}
+        key={item}
+        onPress={() => navigation.navigate('playvideo', {item})}>
+        <Image source={{uri: item.image}} style={styles.recommend_image} />
+        <View>
+          <Text style={styles.recommend_name}>{item.name}</Text>
+        </View>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+};
+
+export const styles = StyleSheet.create({
   item: {
     backgroundColor: 'white',
     width: '100%',
@@ -36,15 +52,39 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
   },
+  itemRecommend_container: {
+    width: 190,
+    height: 170,
+  },
+  item_RCMVideos: {
+    paddingTop: 5,
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  recommend_image: {
+    width: 170,
+    height: 100,
+    borderRadius: 10,
+  },
   img: {
     margin: 20,
     width: 100,
     height: 100,
     paddingRight: 10,
+    borderRadius: 10,
   },
   ContinentsName: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#323643',
+    width: '100%',
+  },
+  recommend_name: {
+    fontSize: 18,
+    color: '#323643',
+    width: '100%',
+    paddingTop: 7,
   },
   ContinentsDetail: {
     fontSize: 13,

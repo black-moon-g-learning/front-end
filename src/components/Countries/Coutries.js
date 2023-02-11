@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     color: '#000009',
   },
   itempopular_container: {
-    width: '23%',
-    height: 200,
+    width: 190,
+    height: 280,
   },
   itemcountries_container: {width: '90%', height: 190},
   itempoopular_item: {
@@ -59,8 +59,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   itempopular_country: {
+    width: 170,
     paddingTop: 5,
     color: '#000000',
+    textAlign: 'center',
     fontSize: 20,
   },
 
