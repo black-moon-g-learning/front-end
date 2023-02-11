@@ -1,4 +1,5 @@
 import {Continents_URL} from '@env';
+import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
@@ -14,15 +15,16 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
 
-const Countries = ({navigation, route}) => {
+const Countries = ({route}) => {
   const {item} = route.params;
-  const {isSuccess, refreshing} = UseContinents([]);
+  const {isSuccess} = UseContinents([]);
+  const navigation = useNavigation();
 
   const [dataContry, setDataCountry] = useState({
     isLoaded: false,
     dataContry: [],
   });
-  // console.log(dataContry.dataContry);
+
   useEffect(function () {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
@@ -40,7 +42,7 @@ const Countries = ({navigation, route}) => {
             <Icon
               name="arrow-left"
               size={28}
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => navigation.goBack('Home')}
             />
             <Text style={styles.name}>{item.name}</Text>
           </View>
@@ -50,7 +52,6 @@ const Countries = ({navigation, route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
-              showsHorizontalScrollIndicator={false}
               data={dataContry.dataContry.popular}
               horizontal={true}
               ListEmptyComponent={ErrorMessage}
@@ -58,7 +59,6 @@ const Countries = ({navigation, route}) => {
               renderItem={({item}) => {
                 return <ItemPopular navigation={navigation} item={item} />;
               }}
-              refreshing={refreshing}
             />
           )}
           <Text style={styles.title}>Countries</Text>

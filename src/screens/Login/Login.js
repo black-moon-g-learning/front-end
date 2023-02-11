@@ -24,6 +24,8 @@ const Login = () => {
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
 
+    // const idTokenResult = await firebase.auth().currentUser.getIdTokenResult();
+    // console.log('User JWT: ', idTokenResult.token);
     // const postUser = async () => {
     //   const {data} = await axios.post(`${Continents_URL}/continents`, idToken);
     //   return data;
@@ -47,6 +49,8 @@ const Login = () => {
         console.log(error);
       });
   };
+
+  // Login with facebook
 
   ///View
   const LoginForm = () => {
