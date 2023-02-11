@@ -1,12 +1,11 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import TitlePage from '../../components/HYHBpage/TitlePage';
 import HYHBCard from '../../components/HYHBpage/HYHBCard';
 const HYHBDetail = ({navigation, route}) => {
   const {item} = route.params;
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Icon
           name="arrow-left"
@@ -14,7 +13,7 @@ const HYHBDetail = ({navigation, route}) => {
           color={'#008000'}
           onPress={navigation.goBack}
         />
-        <TitlePage />
+        <Text style={styles.title}>Have You Heard Before?</Text>
       </View>
       <HYHBCard item={item} />
     </View>
@@ -24,55 +23,19 @@ const HYHBDetail = ({navigation, route}) => {
 export default HYHBDetail;
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    flex: 1,
+  },
   header: {
-    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: '100%',
-    height: 75,
-    padding: 10,
   },
   title: {
-    padding: 10,
     textAlign: 'center',
-    fontSize: 24,
+    color: '#000000',
+    fontSize: 28,
     fontWeight: '700',
     lineHeight: 20,
-    color: '#000000',
-  },
-  txt: {
-    fontSize: 16,
-    fontWeight: '400',
-    lineHeight: 20,
-    color: '#000000',
-  },
-  desc: {
     padding: 10,
-    width: '100%',
-  },
-  content: {
-    fontSize: 18,
-    //fontWeight: '600',
-    lineHeight: 20,
-    color: '#000000',
-  },
-  author: {
-    display: 'flex',
-    //justifyContent: 'center',
-    alignItems: 'flex-start',
-    padding: 10,
-    borderBottomColor: '#000000',
-    borderBottomWidth: 1,
-    margin: 10,
-  },
-  img: {
-    width: 315,
-    height: 213,
-  },
-  imgContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

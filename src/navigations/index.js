@@ -3,14 +3,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import Icons from 'react-native-vector-icons/Entypo';
+import Icons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Feather';
+import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import Home from '../screens/Home';
 import Videos from '../screens/Videos';
 import News from '../screens/HYHBpage';
 import HYHBDetail from '../screens/HYHBDetailPage';
+import Contribution from '../screens/Contribution';
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -53,7 +55,7 @@ function MyTabs() {
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icons
-              name="game-controller"
+              name="md-game-controller-outline"
               size={25}
               color={focused ? '#5FAD41' : 'black'}
             />
@@ -67,8 +69,8 @@ function MyTabs() {
           tabBarLabel: 'Management',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icons
-              name="message"
+            <IconQuestion
+              name="questioncircleo"
               size={25}
               color={focused ? '#5FAD41' : 'black'}
             />
@@ -127,6 +129,7 @@ export default function Navigation() {
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
         <Stack.Screen name="videos" component={Videos} />
         <Stack.Screen name="News" component={HYHBDetail} />
+        <Stack.Screen name="Contribution" component={Contribution} />
       </Stack.Navigator>
     </NavigationContainer>
   );

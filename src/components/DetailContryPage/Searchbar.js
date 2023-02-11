@@ -1,14 +1,16 @@
-import {
-  StyleSheet,
-  Image,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 const Searchbar = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>
@@ -18,7 +20,9 @@ const Searchbar = () => {
         />
       </TouchableOpacity>
       <TextInput style={styles.searchBar} placeholder="Search..." />
-      <Icon name="arrow-left" size={28} />
+      <TouchableOpacity onPress={() => navigation.navigate('Contribution')}>
+        <Icon name="pluscircle" size={40} color="#FFBF1C" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -30,9 +34,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
   },
   searchBar: {
-    width: 320,
+    width: 260,
     height: 42,
     padding: 10,
     borderWidth: 1,
