@@ -7,6 +7,6 @@ const getNews = async () => {
   //console.log(data);
   return data;
 };
-console.log(Continents_URL);
+// console.log(Continents_URL);
 const UseNews = () => useQuery('news', getNews);
 export default UseNews;

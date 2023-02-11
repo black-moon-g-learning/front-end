@@ -5,8 +5,8 @@ import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
-  View,
   Text,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import MapArea from '../../components/DetailContryPage/MapArea';
@@ -34,7 +34,7 @@ const DetailCountryPage = ({navigation, route}) => {
       );
   }, []);
 
-  console.log(dataTopics.dataTopics);
+  // console.log(dataTopics.dataTopics);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
@@ -42,7 +42,9 @@ const DetailCountryPage = ({navigation, route}) => {
           name="arrow-left"
           size={28}
           color={'#FCFCFF'}
-          onPress={navigation.goBack}
+          onPress={() => {
+            navigation.navigate('Country', {item});
+          }}
         />
         <Text style={styles.title}>WELCOME TO {item.name.toUpperCase()}</Text>
       </View>

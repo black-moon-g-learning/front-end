@@ -1,4 +1,5 @@
 import {Continents_URL} from '@env';
+import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
@@ -9,20 +10,20 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
-import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 
-const Countries = ({navigation, route}) => {
+const Countries = ({route}) => {
   const {item} = route.params;
   const {isSuccess} = UseContinents([]);
+  const navigation = useNavigation();
 
   const [dataContry, setDataCountry] = useState({
     isLoaded: false,
     dataContry: [],
   });
-  console.log(dataContry.dataContry);
   useEffect(function () {
     axios.get(`${Continents_URL}/continents/${item.id}`).then(dataContry =>
       setDataCountry({
@@ -37,7 +38,11 @@ const Countries = ({navigation, route}) => {
       {isSuccess && (
         <>
           <View style={styles.header}>
-            <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
+            <Icon
+              name="arrow-left"
+              size={28}
+              onPress={() => navigation.goBack('Home')}
+            />
             <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
@@ -78,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
+    // flex: 1,
   },
   header: {
     flexDirection: 'row',

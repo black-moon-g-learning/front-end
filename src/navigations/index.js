@@ -5,14 +5,21 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Feather';
+
 import IconQuestion from 'react-native-vector-icons/AntDesign';
+
+import {Loading} from '../components/Loading';
+import Logout from '../components/Logout';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
-import Home from '../screens/Home';
-import Videos from '../screens/Videos';
-import News from '../screens/HYHBpage';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import Contribution from '../screens/Contribution';
+import News from '../screens/HYHBpage';
+import Home from '../screens/Home';
+import Information from '../screens/Infor';
+import Login from '../screens/Login/Login';
+import Videos from '../screens/Videos';
+import PlayVideo from '../screens/Videos/Playvideo';
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -21,19 +28,11 @@ function Game() {
   );
 }
 
-function Information() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Information</Text>
-    </View>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Loading"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
         tabBarShowLabel: false,
@@ -111,6 +110,14 @@ function MyTabs() {
           tabBarButton: props => null, //like this
         }}
       />
+      <Tab.Screen
+        name="playvideo"
+        component={PlayVideo}
+        options={{
+          headerShown: false,
+          tabBarButton: props => null, //like this
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -120,7 +127,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Tab"
+        initialRouteName="login"
         screenOptions={{
           headerShown: false,
         }}>
@@ -128,8 +135,12 @@ export default function Navigation() {
         <Stack.Screen name="Country" component={Countries} />
         <Stack.Screen name="TopicCountry" component={DetailCountryPage} />
         <Stack.Screen name="videos" component={Videos} />
+        <Stack.Screen name="loading" component={Loading} />
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="logout" component={Logout} />
         <Stack.Screen name="News" component={HYHBDetail} />
         <Stack.Screen name="Contribution" component={Contribution} />
+        <Stack.Screen name="playvideo" component={PlayVideo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
-import ListVideo from '../../components/Videos/Listvideos';
+import {ListVideo} from '../../components/Videos/Listvideos';
 
 const Videos = ({navigation, route}) => {
   const {item} = route.params;
@@ -33,13 +33,18 @@ const Videos = ({navigation, route}) => {
         }),
       );
   }, []);
-  console.log(dataVideos.dataVideos);
   return (
     <View style={styles.container}>
       {isSuccess && (
         <>
           <View style={styles.header}>
-            <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
+            <Icon
+              name="arrow-left"
+              size={28}
+              onPress={() => {
+                navigation.navigate('TopicCountry', {item});
+              }}
+            />
             <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
@@ -52,7 +57,13 @@ const Videos = ({navigation, route}) => {
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}
               renderItem={({item}) => {
-                return <ListVideo navigation={navigation} item={item} />;
+                return (
+                  <ListVideo
+                    navigation={navigation}
+                    videos={dataVideos.dataVideos}
+                    item={item}
+                  />
+                );
               }}
             />
           )}
