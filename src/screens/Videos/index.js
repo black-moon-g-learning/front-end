@@ -11,8 +11,8 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import ListVideo from '../../components/Videos/Listvideos';
 import UseContinents from '../../hooks/UseContinents';
+import {ListVideo} from '../../components/Videos/Listvideos';
 
 const Videos = ({navigation, route}) => {
   const {item} = route.params;
@@ -33,7 +33,6 @@ const Videos = ({navigation, route}) => {
         }),
       );
   }, []);
-  console.log(dataVideos.dataVideos);
   return (
     <View style={styles.container}>
       {isSuccess && (
@@ -53,12 +52,17 @@ const Videos = ({navigation, route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
-              showsVerticalScrollIndicator={false}
               data={dataVideos.dataVideos}
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}
               renderItem={({item}) => {
-                return <ListVideo navigation={navigation} item={item} />;
+                return (
+                  <ListVideo
+                    navigation={navigation}
+                    videos={dataVideos.dataVideos}
+                    item={item}
+                  />
+                );
               }}
             />
           )}

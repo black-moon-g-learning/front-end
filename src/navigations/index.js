@@ -15,6 +15,7 @@ import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Videos from '../screens/Videos';
+import PlayVideo from '../screens/Videos/Playvideo';
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -126,6 +127,7 @@ export default function Navigation() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="logout" component={Logout} />
         <Stack.Screen name="News" component={HYHBDetail} />
+        <Stack.Screen name="playvideo" component={PlayVideo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

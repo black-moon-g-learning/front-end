@@ -34,7 +34,7 @@ const DetailCountryPage = ({navigation, route}) => {
       );
   }, []);
 
-  console.log(dataTopics.dataTopics);
+  // console.log(dataTopics.dataTopics);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>

@@ -75,31 +75,47 @@ const Login = () => {
             keyboardType="numeric"
           />
         </View>
-        <TouchableOpacity style={styles.button_login}>
-          <Text style={styles.text_login}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button_register}>
-          <Text style={styles.text_login}>Register</Text>
-        </TouchableOpacity>
+        <View style={styles.button}>
+          <TouchableOpacity style={styles.button_login}>
+            <Text style={styles.text_login}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button_register}>
+            <Text style={styles.text_register}>Register</Text>
+          </TouchableOpacity>
+        </View>
       </TouchableOpacity>
     );
   };
 
   const LoginwithGoogle = () => {
     return (
-      <TouchableOpacity
-        style={styles.container_gg}
-        onPress={() =>
-          signInWithGoogleAsync().then(() => navigation.navigate('Tab'))
-        }>
-        <Text style={styles.name_gg}>login with google</Text>
-      </TouchableOpacity>
+      <>
+        <TouchableOpacity
+          style={styles.container}
+          onPress={() =>
+            signInWithGoogleAsync().then(() => navigation.navigate('Tab'))
+          }>
+          <Image
+            style={styles.image_btn_login}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+          />
+          <Text style={styles.name_gg}>Login with google</Text>
+        </TouchableOpacity>
+      </>
     );
   };
 
   const LoginwithFacebook = () => {
     return (
-      <View style={styles.container_face}>
+      <View style={styles.container}>
+        <Image
+          style={styles.image_btn_login}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+        />
         <Text style={styles.name_face}>Login with Facebook</Text>
       </View>
     );
@@ -117,12 +133,54 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  container_gg: {},
-  container_face: {},
+  container: {
+    borderWidth: 1,
+    width: '50%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    margin: 10,
+    marginLeft: '25%',
+    height: 40,
+    borderRadius: 10,
+  },
+  image_btn_login: {
+    width: 25,
+    height: 25,
+    marginRight: 15,
+    marginLeft: 5,
+  },
   input_login: {
     height: 40,
-    margin: 12,
+    margin: 10,
     borderWidth: 1,
     padding: 10,
+  },
+  image_login: {
+    width: 200,
+    height: 200,
+    marginTop: 40,
+  },
+  logo_form: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  button: {
+    alignItems: 'center',
+  },
+  button_login: {
+    borderColor: 'red',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: 'green',
+  },
+  text_login: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '600',
   },
 });
