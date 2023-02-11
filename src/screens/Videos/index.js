@@ -38,7 +38,13 @@ const Videos = ({navigation, route}) => {
       {isSuccess && (
         <>
           <View style={styles.header}>
-            <Icon name="arrow-left" size={28} onPress={navigation.goBack} />
+            <Icon
+              name="arrow-left"
+              size={28}
+              onPress={() => {
+                navigation.navigate('TopicCountry', {item});
+              }}
+            />
             <Text style={styles.name}>{item.name}</Text>
           </View>
           <Header />
