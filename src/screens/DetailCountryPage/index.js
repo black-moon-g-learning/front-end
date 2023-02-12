@@ -8,8 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-// import MapArea from '../../components/DetailContryPage/MapArea';
+import Icon from 'react-native-vector-icons/Feather';
 import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
@@ -34,14 +33,14 @@ const DetailCountryPage = ({navigation, route}) => {
       );
   }, []);
 
-  // console.log(dataTopics.dataTopics);
+  console.log(dataTopics.dataTopics);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
         <Icon
           name="arrow-left"
-          size={28}
-          color={'#FCFCFF'}
+          size={30}
+          color={'#FFFFFF'}
           onPress={() => {
             navigation.navigate('Country', {item});
           }}
@@ -90,10 +89,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 23,
     width: '100%',
     textAlign: 'center',
+    fontFamily: 'Poppins-Bold',
   },
   emptyMessageStyle: {
     textAlign: 'center',

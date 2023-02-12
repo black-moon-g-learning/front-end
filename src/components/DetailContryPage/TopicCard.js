@@ -23,31 +23,35 @@ export default TopicCard;
 
 const styles = StyleSheet.create({
   TopicCards_container: {
-    width: 180,
-    height: 170,
+    width: 190,
+    height: 160,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
+    paddingBottom:10,
+    paddingTop:5,
   },
   TopicCards_item: {
     margin: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: 160,
-    height: 147,
+    width: 175,
+    height: 145,
     backgroundColor: '#5FAD41',
-    borderRadius: 10,
+    borderRadius: 20,
   },
   TopicCards_img: {
-    width: 131,
-    height: 84,
+    width: 150,
+    height: 90,
+    borderRadius: 15,
   },
   TopicCards_name: {
-    color: '#000',
+    color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
     lineHeight: 18,
     textAlign: 'center',
+    paddingBottom: 7,
   },
   imgBgd: {
     backgroundColor: '#FFFFFF',

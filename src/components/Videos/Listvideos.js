@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     height: 120,
-    marginTop: 10,
+    marginTop: 15,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
@@ -70,25 +70,29 @@ export const styles = StyleSheet.create({
   },
   img: {
     margin: 20,
-    width: 100,
+    width: 140,
     height: 100,
     paddingRight: 10,
     borderRadius: 10,
   },
   ContinentsName: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#323643',
     width: '100%',
+    fontFamily:'Poppins-Bold',
   },
   recommend_name: {
-    fontSize: 18,
+    fontSize: 13,
     color: '#323643',
     width: '100%',
-    paddingTop: 7,
+    paddingTop: 15,
+    fontFamily: 'Poppins-Bold',
   },
   ContinentsDetail: {
     fontSize: 13,
     color: '#323643',
     paddingTop: 5,
+    fontFamily:'Poppins-Regular',
+
   },
 });

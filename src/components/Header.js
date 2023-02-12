@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import React from 'react';
 const Header = () => {
   return (
@@ -15,7 +16,10 @@ const Header = () => {
           source={require('../assets/images/character.png')}
         />
       </TouchableOpacity>
-      <TextInput style={styles.searchBar} placeholder="Search..." />
+      <TouchableOpacity style={styles.searchBar}>
+        <TextInput style={styles.input} placeholder="Search..." />
+        <Icon name="search" size={25} color={'black'} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -28,14 +32,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  searchBar: {
-    width: 320,
-    height: 42,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#FFBF1C',
+  input: {
+    width: '75%',
+    height: 40,
     borderRadius: 10,
     backgroundColor: '#F4F1F1',
+    paddingLeft: 10,
+  },
+  searchBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // width: 320,
+    height: 46,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#000000',
+    borderRadius: 20,
+    // backgroundColor: '#F4F1F1',
   },
   character: {
     width: 40.38,

@@ -7,7 +7,7 @@ import {
   View,
   FlatList,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import {ErrorMessage} from '../../components/ErrorMessage';
@@ -21,9 +21,11 @@ const PlayVideo = ({navigation, route}) => {
       <View style={styles.header}>
         <Icon
           name="arrow-left"
-          size={28}
+          size={30}
           color={'#5FAD41'}
-          onPress={navigation.goBack}
+          onPress={() => {
+            navigation.navigate('videos', {item});
+          }}
         />
       </View>
       <View style={styles.video}>
@@ -36,7 +38,7 @@ const PlayVideo = ({navigation, route}) => {
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={styles.recommend}>RECOMMEND VIDEOS</Text>
+        <Text style={styles.recommend}>Recommend videos</Text>
       </View>
       <View>
         <FlatList
@@ -67,32 +69,31 @@ const styles = StyleSheet.create({
   },
   name: {
     width: '100%',
-    fontSize: 25,
-    fontWeight: 'bold',
+    fontSize: 20,
     color: '#323643',
-    paddingBottom: 15,
+    paddingBottom: 10,
     textAlign: 'center',
+    fontFamily: 'Poppins-Medium',
   },
   video: {
     margin: 10,
-    height: 210,
+    height: 280,
     borderRadius: 10,
     borderWidth: 0.8,
-    borderColor: '#828282',
+    borderColor: '#F2F2F2',
     overflow: 'hidden',
   },
   review: {
-    marginTop: 30,
     display: 'flex',
     alignItems: 'center',
   },
   recommend: {
     paddingLeft: 10,
-    marginTop: 45,
-    marginBottom: 20,
-    fontSize: 20,
+    marginTop: 30,
+    marginBottom: 10,
+    fontSize: 21,
     color: '#323643',
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   reviewbutton: {
     width: 200,
@@ -102,5 +103,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {color: '#FFFFFF'},
+  text: {color: '#FFFFFF', fontFamily: 'Poppins-Bold'},
 });

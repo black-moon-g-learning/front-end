@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import HYHBCard from '../../components/HYHBpage/HYHBCard';
 const HYHBDetail = ({navigation, route}) => {
   const {item} = route.params;
@@ -9,8 +9,8 @@ const HYHBDetail = ({navigation, route}) => {
       <View style={styles.header}>
         <Icon
           name="arrow-left"
-          size={28}
-          color={'#008000'}
+          size={30}
+          color={'#5FAD41'}
           onPress={navigation.goBack}
         />
         <Text style={styles.title}>Have You Heard Before?</Text>
@@ -29,13 +29,15 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+    marginBottom:5,
   },
   title: {
     textAlign: 'center',
     color: '#000000',
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: 22,
     lineHeight: 20,
     padding: 10,
+    fontFamily: 'Poppins-Bold',
+
   },
 });

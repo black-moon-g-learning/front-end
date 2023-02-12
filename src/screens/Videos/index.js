@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseContinents from '../../hooks/UseContinents';
@@ -33,6 +33,7 @@ const Videos = ({navigation, route}) => {
         }),
       );
   }, []);
+  console.log(dataVideos.dataVideos);
   return (
     <View style={styles.container}>
       {isSuccess && (
@@ -40,14 +41,18 @@ const Videos = ({navigation, route}) => {
           <View style={styles.header}>
             <Icon
               name="arrow-left"
-              size={28}
+              size={30}
+              color={'#5FAD41'}
               onPress={() => {
                 navigation.navigate('TopicCountry', {item});
               }}
             />
             <Text style={styles.name}>{item.name}</Text>
           </View>
-          <Header />
+
+          <View style={styles.top}>
+            <Header />
+          </View>
           {!dataVideos.isLoaded ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
@@ -80,16 +85,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flex: 1,
   },
+  top: {
+    paddingBottom: 20,
+  },
   header: {
     flexDirection: 'row',
   },
   name: {
     width: '100%',
-    fontSize: 25,
-    fontWeight: 'bold',
+    fontSize: 23,
+    fontFamily: 'Poppins-Bold',
     color: '#323643',
     paddingBottom: 15,
-    textAlign: 'center',
+    paddingLeft: 25,
   },
   title: {
     fontSize: 25,

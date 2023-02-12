@@ -30,25 +30,31 @@ export default HYHBCard;
 const styles = StyleSheet.create({
   title: {
     padding: 10,
-    textAlign: 'center',
-    fontSize: 24,
-    fontWeight: '700',
+    fontSize: 20,
     lineHeight: 20,
     color: '#000000',
+    fontFamily: 'Poppins-Medium',
+    lineHeight: 30,
+    width: '100%',
+    textAlign: 'justify',
+
   },
   txt: {
-    fontSize: 16,
-    fontWeight: '400',
+    fontSize: 15,
     lineHeight: 20,
     color: '#000000',
+    fontFamily: 'Poppins-Italic',
   },
   desc: {
     width: '100%',
   },
   content: {
+    padding: 10,
+    width: '100%',
     fontSize: 18,
     lineHeight: 20,
     color: '#000000',
+    textAlign: 'justify',
   },
   author: {
     display: 'flex',
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   img: {
-    width: 315,
+    width: '100%',
     height: 213,
   },
   imgContainer: {
