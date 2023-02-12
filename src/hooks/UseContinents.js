@@ -7,6 +7,6 @@ const getContinents = async () => {
   return data;
   // console.log(data);
 };
-// console.log(Continents_URL);
+console.log(Continents_URL);
 const UseContinents = () => useQuery('continents', getContinents);
 export default UseContinents;

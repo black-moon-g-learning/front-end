@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
     color: '#000009',
   },
   itempopular_container: {
-    width: 190,
-    height: 280,
+    paddingTop: 7,
+    width: 170,
+    height: 195,
   },
   itemcountries_container: {width: '90%', height: 190},
   itempoopular_item: {
@@ -54,8 +55,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   itempopular_image: {
-    width: 170,
-    height: 100,
+    width: 150,
+    height: 90,
     borderRadius: 10,
   },
   itempopular_country: {
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     color: '#000000',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 18,
+    fontFamily: 'Poppins-Regular',
   },
 
   itemcountries_item: {
@@ -79,18 +81,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: '#5FAD41',
+    backgroundColor: '#93D94E',
     borderRadius: 20,
     margin: 10,
   },
   itemcountries_image: {
-    width: '90%',
+    width: '85%',
     height: '75%',
     borderRadius: 10,
   },
   itemcountries_country: {
     fontSize: 15,
-    color: 'black',
-    fontWeight: '400',
+    color: '#323643',
+    fontFamily: 'Poppins-Regular',
+
   },
 });

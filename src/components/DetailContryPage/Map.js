@@ -20,19 +20,15 @@ export default Map;
 const styles = StyleSheet.create({
   mapcontainer: {marginBottom: 40},
   title: {
-    paddingTop: 6,
     color: '#323643',
-    fontWeight: '600',
-    fontSize: 24,
-    lineHeight: 20,
-    width: '20%',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 22,
   },
   undertxt: {
     backgroundColor: '#5FAD41',
     width: '20%',
     height: 2,
     margin: 3,
-    // marginBottom: 5,
   },
   maparea: {
     padding: 10,

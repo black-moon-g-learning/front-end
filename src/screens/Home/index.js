@@ -50,14 +50,13 @@ const styles = StyleSheet.create({
   },
   flatlist: {
     paddingLeft: 10,
-    marginTop: 10,
   },
   titlePage: {
     fontSize: 27,
     color: '#323643',
     paddingTop: 10,
     paddingLeft: 10,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold',
   },
   emptyMessageStyle: {
     textAlign: 'center',

@@ -47,9 +47,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#5FAD41',
     borderRadius: 10,
     marginBottom: 10,
+    paddingLeft: 5,
   },
   infor: {
-    width: 215,
+    width: 190,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   author: {
     display: 'flex',
@@ -67,16 +70,18 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '600',
     lineHeight: 18,
     marginBottom: 5,
+    fontFamily: 'Poppins-Bold',
+    lineHeight:25,
   },
   txt: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 10,
     fontWeight: '400',
     lineHeight: 16,
     marginBottom: 5,
+    fontFamily: 'Poppins-Regular',
   },
   btn: {
     width: 100,
@@ -88,14 +93,15 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     color: '#012030',
-    fontSize: 14,
-    fontWeight: '400',
+    fontSize: 13,
     lineHeight: 16,
     padding: 5,
     textAlign: 'center',
+    fontFamily: 'Poppins-Bold',
+
   },
   img: {
-    width: 130,
+    width: 150,
     height: 125,
     borderRadius: 10,
   },

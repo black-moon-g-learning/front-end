@@ -50,14 +50,17 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     paddingRight: 10,
+    borderRadius: 20,
   },
   ContinentsName: {
     fontSize: 20,
     color: '#323643',
+    fontFamily: 'Poppins-Medium',
   },
   ContinentsDetail: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#323643',
     paddingTop: 5,
+    fontFamily: 'Poppins-Regular',
   },
 });

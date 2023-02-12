@@ -17,11 +17,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    paddingTop: 10,
-    color: '323643',
-    fontWeight: '600',
-    fontSize: 24,
-    lineHeight: 20,
+    color: '#323643',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 22,
   },
   undertxt: {
     backgroundColor: '#5FAD41',

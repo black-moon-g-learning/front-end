@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
@@ -33,6 +33,7 @@ const Countries = ({route}) => {
     );
   }, []);
 
+  console.log(dataContry.dataContry);
   return (
     <View style={styles.container}>
       {isSuccess && (
@@ -40,7 +41,8 @@ const Countries = ({route}) => {
           <View style={styles.header}>
             <Icon
               name="arrow-left"
-              size={28}
+              size={30}
+              color={'#5FAD41'}
               onPress={() => navigation.goBack('Home')}
             />
             <Text style={styles.name}>{item.name}</Text>
@@ -91,17 +93,16 @@ const styles = StyleSheet.create({
   name: {
     width: '100%',
     fontSize: 25,
-    fontWeight: 'bold',
     color: '#323643',
     paddingBottom: 15,
-    textAlign: 'center',
+    paddingLeft: 35,
+    fontFamily:'Poppins-Bold',
   },
   title: {
-    fontSize: 25,
-    fontWeight: 'bold',
+    fontSize: 23,
     color: '#323643',
     marginTop: 15,
-    marginBottom: 15,
     paddingLeft: 10,
+    fontFamily:'Poppins-Medium',
   },
 });
