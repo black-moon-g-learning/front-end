@@ -4,13 +4,9 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 const NewsCard = ({item}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate('News', {item})}>
+    <View style={styles.container}>
       <Image style={styles.img} source={{uri: item.image}} />
-      <TouchableOpacity
-        style={styles.infor}
-        onPress={() => navigation.navigate('News', {item})}>
+      <View style={styles.infor}>
         <View style={styles.author}>
           <Text style={styles.txt}>{item.public}</Text>
           <View style={styles.devide} />
@@ -33,8 +29,8 @@ const NewsCard = ({item}) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-    </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 

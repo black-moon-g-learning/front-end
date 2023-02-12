@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   desc: {
-    padding: 10,
     width: '100%',
   },
   content: {
@@ -64,8 +63,7 @@ const styles = StyleSheet.create({
     height: 213,
   },
   imgContainer: {
-    display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
   },
 });

@@ -52,6 +52,7 @@ const Videos = ({navigation, route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
+              showsVerticalScrollIndicator={false}
               data={dataVideos.dataVideos}
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
+    flex: 1,
   },
   header: {
     flexDirection: 'row',

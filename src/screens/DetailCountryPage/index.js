@@ -75,12 +75,11 @@ export default DetailCountryPage;
 const styles = StyleSheet.create({
   container: {
     fontSize: 18,
+    flex: 1,
   },
   flatlist: {
     paddingLeft: 10,
     paddingRight: 10,
-    // display: 'flex',
-    // flexDirection: 'column',
   },
   topicsheader: {
     width: '100%',

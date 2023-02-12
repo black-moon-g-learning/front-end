@@ -51,6 +51,7 @@ const Countries = ({route}) => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <FlatList
+              showsHorizontalScrollIndicator={false}
               data={dataContry.dataContry.popular}
               horizontal={true}
               ListEmptyComponent={ErrorMessage}
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
+    // flex: 1,
   },
   header: {
     flexDirection: 'row',

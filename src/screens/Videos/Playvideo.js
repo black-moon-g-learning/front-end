@@ -40,7 +40,7 @@ const PlayVideo = ({navigation, route}) => {
       </View>
       <View>
         <FlatList
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           data={videos}
           horizontal={true}
           ListEmptyComponent={ErrorMessage}

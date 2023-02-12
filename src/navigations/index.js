@@ -3,13 +3,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import Icons from 'react-native-vector-icons/Entypo';
+import Icons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Feather';
+
+import IconQuestion from 'react-native-vector-icons/AntDesign';
+
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import HYHBDetail from '../screens/HYHBDetailPage';
+import Contribution from '../screens/Contribution';
 import News from '../screens/HYHBpage';
 import Home from '../screens/Home';
 import Information from '../screens/Infor';
@@ -50,7 +54,7 @@ function MyTabs() {
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icons
-              name="game-controller"
+              name="md-game-controller-outline"
               size={25}
               color={focused ? '#5FAD41' : 'black'}
             />
@@ -64,8 +68,8 @@ function MyTabs() {
           tabBarLabel: 'Management',
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icons
-              name="message"
+            <IconQuestion
+              name="questioncircleo"
               size={25}
               color={focused ? '#5FAD41' : 'black'}
             />
@@ -106,6 +110,14 @@ function MyTabs() {
           tabBarButton: props => null, //like this
         }}
       />
+      <Tab.Screen
+        name="playvideo"
+        component={PlayVideo}
+        options={{
+          headerShown: false,
+          tabBarButton: props => null, //like this
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -127,6 +139,7 @@ export default function Navigation() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="logout" component={Logout} />
         <Stack.Screen name="News" component={HYHBDetail} />
+        <Stack.Screen name="Contribution" component={Contribution} />
         <Stack.Screen name="playvideo" component={PlayVideo} />
       </Stack.Navigator>
     </NavigationContainer>
