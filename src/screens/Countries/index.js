@@ -19,20 +19,13 @@ const Countries = ({route}) => {
   const {item} = route.params;
   const {data, isSuccess, isLoading} = UsegetdataCountries(item.id);
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
+      <View style={styles.topicsheader}>
+        <Text style={styles.name}>{item.name}</Text>
+      </View>
       {isSuccess && (
-        <>
-          <View style={styles.header}>
-            <Icon
-              name="arrow-left"
-              size={30}
-              color={'#5FAD41'}
-              onPress={() => navigation.goBack('Home')}
-            />
-            <Text style={styles.name}>{item.name}</Text>
-          </View>
+        <View style={styles.flatlist}>
           <Header />
           <Text style={styles.title}>Popular</Text>
           {isLoading ? (
@@ -62,7 +55,7 @@ const Countries = ({route}) => {
               />
             </>
           )}
-        </>
+        </View>
       )}
     </View>
   );
@@ -75,9 +68,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     // flex: 1,
   },
-  header: {
-    flexDirection: 'row',
-  },
+  // header: {
+  //   flexDirection: 'row',
+  // },
+  // topicsheader: {
+  //   position: 'absolute',
+  //   top: -20,
+  //   left:30,
+  // },
   name: {
     width: '100%',
     fontSize: 25,
@@ -85,6 +83,9 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingLeft: 35,
     fontFamily: 'Poppins-Bold',
+    marginTop: -15,
+    // position: 'absolute',
+    // top: 5,
   },
   title: {
     fontSize: 23,

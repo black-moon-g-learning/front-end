@@ -20,14 +20,6 @@ const Videos = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon
-          name="arrow-left"
-          size={30}
-          color={'#5FAD41'}
-          onPress={() => {
-            navigation.navigate('TopicCountry', {item});
-          }}
-        />
         <Text style={styles.name}>{item.name}</Text>
       </View>
 
@@ -69,9 +61,9 @@ const styles = StyleSheet.create({
   top: {
     paddingBottom: 20,
   },
-  header: {
-    flexDirection: 'row',
-  },
+  // header: {
+  //   flexDirection: 'row',
+  // },
   name: {
     width: '100%',
     fontSize: 23,

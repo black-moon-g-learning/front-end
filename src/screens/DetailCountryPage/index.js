@@ -17,17 +17,10 @@ import Usegettopics from '../../hooks/Usegettopics';
 const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
   const {data, isSuccess, isLoading} = Usegettopics(item.id);
+  // console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
-        <Icon
-          name="arrow-left"
-          size={30}
-          color={'#FFFF'}
-          onPress={() => {
-            navigation.navigate('Country', {item});
-          }}
-        />
         <Text style={styles.title}>WELCOME TO {item.name.toUpperCase()}</Text>
       </View>
       <View style={styles.flatlist}>
@@ -65,10 +58,10 @@ const styles = StyleSheet.create({
   },
   topicsheader: {
     width: '100%',
-    height: 120,
+    height: 70,
     backgroundColor: '#5FAD41',
     paddingLeft: 10,
-    paddingTop: 20,
+    paddingTop: -200,
   },
   title: {
     color: '#FFFFFF',
@@ -76,6 +69,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',
+    position: 'absolute',
   },
   emptyMessageStyle: {
     textAlign: 'center',
