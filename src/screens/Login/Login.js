@@ -1,6 +1,8 @@
-import auth from '@react-native-firebase/auth';
+import {Continents_URL} from '@env';
+import auth, {firebase} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 import React from 'react';
 import {
   Image,
@@ -24,20 +26,6 @@ const Login = () => {
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
 
-    // const idTokenResult = await firebase.auth().currentUser.getIdTokenResult();
-    // console.log('User JWT: ', idTokenResult.token);
-    // const postUser = async () => {
-    //   const {data} = await axios.post(`${Continents_URL}/continents`, idToken);
-    //   return data;
-    // };
-    // const UseSign_in = () => useQuery('user', postUser);
-    // UseSign_in.then(user => {
-    //   console.log(user);
-    // }).catch(error => {
-    //   console.log(error);
-    // });
-
-    // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
     const user_sign_in = auth().signInWithCredential(googleCredential);
@@ -48,6 +36,26 @@ const Login = () => {
       .catch(error => {
         console.log(error);
       });
+
+    const idTokenResult = await firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user
+          .getIdTokenResult()
+          .then(data => {
+            console.log(data.token);
+            return data.token;
+          })
+          .then(data => {
+            return axios.post(`${Continents_URL}/login`, {
+              token: data,
+            });
+          })
+          .then(data => console.log('data 1 ', data));
+      } else {
+        console.log('not login');
+      }
+    });
+    idTokenResult();
   };
 
   // Login with facebook
