@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     color: '#323643',
     paddingBottom: 15,
     paddingLeft: 35,
-    fontFamily:'Poppins-Bold',
+    fontFamily: 'Poppins-Bold',
   },
   title: {
     fontSize: 23,
     color: '#323643',
     marginTop: 15,
     paddingLeft: 10,
-    fontFamily:'Poppins-Medium',
+    fontFamily: 'Poppins-Medium',
   },
 });
