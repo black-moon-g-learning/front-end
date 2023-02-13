@@ -1,15 +1,13 @@
-import auth from '@react-native-firebase/auth';
+import {Continents_URL} from '@env';
+import auth, {firebase} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import LoginForm from '../../components/Login/Form';
+import HeaderLogin from '../../components/Login/Header';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -19,27 +17,11 @@ const Login = () => {
   });
 
   const signInWithGoogleAsync = async () => {
-    // Check if your device supports Google Play
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-    // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
 
-    // const idTokenResult = await firebase.auth().currentUser.getIdTokenResult();
-    // console.log('User JWT: ', idTokenResult.token);
-    // const postUser = async () => {
-    //   const {data} = await axios.post(`${Continents_URL}/continents`, idToken);
-    //   return data;
-    // };
-    // const UseSign_in = () => useQuery('user', postUser);
-    // UseSign_in.then(user => {
-    //   console.log(user);
-    // }).catch(error => {
-    //   console.log(error);
-    // });
-
-    // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
+
     const user_sign_in = auth().signInWithCredential(googleCredential);
     user_sign_in
       .then(user => {
@@ -48,50 +30,35 @@ const Login = () => {
       .catch(error => {
         console.log(error);
       });
+    await firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user
+          .getIdTokenResult()
+          .then(data => {
+            console.log(data.token);
+            return data.token;
+          })
+          .then(data => {
+            return axios.post(`${Continents_URL}/login`, {
+              token: data,
+            });
+          })
+          .then(data => console.log('data 1  ', data));
+      } else {
+        console.log('not login');
+      }
+    });
   };
 
   // Login with facebook
 
   ///View
-  const LoginForm = () => {
-    return (
-      <TouchableOpacity style={styles.container_form}>
-        <View style={styles.logo_form}>
-          <Image
-            style={styles.image_login}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
-          />
-        </View>
-        <View>
-          <TextInput
-            style={styles.input_login}
-            placeholder="Enter your number"
-          />
-          <TextInput
-            style={styles.input_login}
-            placeholder="Enter password"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.button}>
-          <TouchableOpacity style={styles.button_login}>
-            <Text style={styles.text_login}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button_register}>
-            <Text style={styles.text_register}>Register</Text>
-          </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-    );
-  };
 
-  const LoginwithGoogle = () => {
+  const Loginwithsocial = () => {
     return (
-      <>
+      <View style={styles.container}>
         <TouchableOpacity
-          style={styles.container}
+          style={styles.btn_social}
           onPress={() =>
             signInWithGoogleAsync().then(() => navigation.navigate('Tab'))
           }>
@@ -101,31 +68,35 @@ const Login = () => {
               uri: 'https://reactnative.dev/img/tiny_logo.png',
             }}
           />
-          <Text style={styles.name_gg}>Login with google</Text>
         </TouchableOpacity>
-      </>
+        <TouchableOpacity style={styles.btn_social}>
+          <Image
+            style={styles.image_btn_login}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+          />
+        </TouchableOpacity>
+      </View>
     );
   };
 
-  const LoginwithFacebook = () => {
+  const ChooseRegister = () => {
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.image_btn_login}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
-        />
-        <Text style={styles.name_face}>Login with Facebook</Text>
+      <View style={styles.container_register}>
+        <Text style={styles.text}>
+          Not a member? <Text style={styles.text_color}>Register now</Text>
+        </Text>
       </View>
     );
   };
 
   return (
     <View>
+      <HeaderLogin />
       <LoginForm />
-      <LoginwithGoogle />
-      <LoginwithFacebook />
+      <Loginwithsocial />
+      <ChooseRegister />
     </View>
   );
 };
@@ -134,53 +105,27 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    width: '50%',
+    width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    margin: 10,
-    marginLeft: '25%',
-    height: 40,
-    borderRadius: 10,
+    justifyContent: 'center',
   },
   image_btn_login: {
-    width: 25,
-    height: 25,
-    marginRight: 15,
-    marginLeft: 5,
+    width: 50,
+    height: 50,
   },
-  input_login: {
-    height: 40,
-    margin: 10,
-    borderWidth: 1,
+  btn_social: {
+    alignItems: 'center',
     padding: 10,
   },
-  image_login: {
-    width: 200,
-    height: 200,
-    marginTop: 40,
-  },
-  logo_form: {
-    alignItems: 'center',
+  container_register: {
     justifyContent: 'center',
     alignContent: 'center',
-  },
-  button: {
     alignItems: 'center',
+    padding: 20,
   },
-  button_login: {
-    borderColor: 'red',
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'green',
+  text: {
+    fontSize: 18,
   },
-  text_login: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: '600',
-  },
+  text_color: {color: '#5FAD41'},
 });
