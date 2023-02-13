@@ -10,7 +10,7 @@ const hi = () => {
     useEffect(() => {
       let query = ref.limitToFirst(limit);
 
-      const handleData = snap => {
+      const handleData = snap => {F
         if (snap.val()) {
           setItems(snap.val());
           setLoading(false);

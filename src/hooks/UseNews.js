@@ -6,7 +6,6 @@ const getNews = async () => {
   const {data} = await axios.get(`${Continents_URL}/information`);
   return data;
 };
-console.log('hiii', Continents_URL);
 
 const UseNews = () => useQuery('news', getNews);
 export default UseNews;

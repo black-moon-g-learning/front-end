@@ -11,6 +11,7 @@ import IconQuestion from 'react-native-vector-icons/AntDesign';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import Countries from '../screens/Countries';
+// import { Countries } from '../screens/Countries/hi';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import Contribution from '../screens/Contribution';
