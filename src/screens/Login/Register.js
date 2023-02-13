@@ -1,10 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import RegisterForm from '../../components/Login/FormRegister';
+import {HeaderRegister} from '../../components/Login/Header';
+import LoginSocial from '../../components/Login/LoginSocial';
 
 const Register = () => {
   return (
     <View>
-      <Text>Register</Text>
+      <HeaderRegister />
+      <RegisterForm />
+      <LoginSocial />
     </View>
   );
 };

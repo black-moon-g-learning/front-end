@@ -1,5 +1,7 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 const HeaderLogin = () => {
   return (
@@ -17,8 +19,32 @@ const HeaderLogin = () => {
     </View>
   );
 };
+const HeaderRegister = () => {
+  const navigation = useNavigation();
 
-export default HeaderLogin;
+  return (
+    <View style={styles.container_header_login}>
+      <Icon
+        name="arrow-left"
+        size={30}
+        color={'#FFFFFF'}
+        onPress={() => navigation.goBack('login')}
+      />
+      <View style={styles.logo_form}>
+        <Image
+          style={styles.image_login}
+          source={require('../../assets/images/img-signup.png')}
+        />
+      </View>
+      <View style={styles.text}>
+        <Text style={styles.text_big}>Hi Student</Text>
+        <Text style={styles.text_title}>Register to continue</Text>
+      </View>
+    </View>
+  );
+};
+
+export {HeaderRegister, HeaderLogin};
 
 const styles = StyleSheet.create({
   container_header_login: {

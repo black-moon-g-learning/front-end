@@ -18,6 +18,7 @@ import News from '../screens/HYHBpage';
 import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
+import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 function Game() {
@@ -141,6 +142,7 @@ export default function Navigation() {
         <Stack.Screen name="News" component={HYHBDetail} />
         <Stack.Screen name="Contribution" component={Contribution} />
         <Stack.Screen name="playvideo" component={PlayVideo} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );
