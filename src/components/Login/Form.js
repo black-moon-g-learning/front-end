@@ -12,6 +12,9 @@ const LoginForm = () => {
     <TouchableOpacity style={styles.container_form}>
       <View style={styles.textInput}>
         <TextInput style={styles.input_login} placeholder="Enter your number" />
+        {/* <Text numberOfLines={1}>
+          _________________________________________________
+        </Text> */}
         <TextInput
           style={styles.input_login}
           placeholder="Enter password"
@@ -44,6 +47,8 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     padding: 10,
+    fontFamily: 'Poppins-Bold',
+    borderBottomWidth: 0.2,
   },
 
   logo_form: {
@@ -67,15 +72,17 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
     fontWeight: '400',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Bold',
   },
   text_forgot: {
     padding: 10,
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'Poppins-Bold',
   },
   chosemethod: {
-    padding: 5,
-    fontSize: 22,
+    paddingTop: 5,
+    fontSize: 18,
     color: '#5FAD41',
+    fontFamily: 'Poppins-Bold',
   },
 });

@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {Button, Text, View} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+import {Text, View} from 'react-native';
+import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
-import IconQuestion from 'react-native-vector-icons/AntDesign';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import Contribution from '../screens/Contribution';
@@ -195,7 +195,11 @@ export default function Navigation() {
           }}
         />
         <HomeStack.Screen name="logout" component={Logout} />
-        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

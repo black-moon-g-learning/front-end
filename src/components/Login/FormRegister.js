@@ -20,7 +20,7 @@ const RegisterForm = () => {
         <TouchableOpacity style={styles.button_login}>
           <Text style={styles.text_login}>REGISTER</Text>
         </TouchableOpacity>
-        <Text style={styles.chosemethod}>------- or ------ </Text>
+        <Text style={styles.chosemethod}>------- Or ------ </Text>
       </View>
     </TouchableOpacity>
   );
@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     margin: 10,
-    padding: 10,
+    fontFamily: 'Poppins-SemiBold',
+    borderBottomWidth: 0.6,
+    borderRadius: 10,
   },
 
   logo_form: {
@@ -61,16 +63,15 @@ const styles = StyleSheet.create({
   text_login: {
     color: '#FFFFFF',
     fontSize: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Bold',
   },
   text_forgot: {
     padding: 10,
     fontSize: 16,
   },
   chosemethod: {
-    padding: 5,
-    fontSize: 22,
+    paddingTop: 15,
+    fontSize: 18,
     color: '#323643',
   },
 });

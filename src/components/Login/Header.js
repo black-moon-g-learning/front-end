@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FFFFFF',
     paddingLeft: 30,
+    fontFamily: 'Poppins-Bold',
   },
   text_title: {
-    fontSize: 25,
-    fontWeight: '400',
+    fontSize: 23,
     color: '#FFFFFF61',
     paddingLeft: 30,
+    fontFamily: 'Poppins-Bold',
   },
 });
