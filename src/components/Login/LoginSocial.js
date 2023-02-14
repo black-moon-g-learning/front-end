@@ -63,17 +63,13 @@ const LoginSocial = () => {
           }>
           <Image
             style={styles.image_btn_login}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+            source={require('../../assets/images/google.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btn_social}>
           <Image
             style={styles.image_btn_login}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+            source={require('../../assets/images/facebook.png')}
           />
         </TouchableOpacity>
       </View>
@@ -94,6 +90,7 @@ const styles = StyleSheet.create({
   image_btn_login: {
     width: 50,
     height: 50,
+    borderRadius: 20,
   },
   btn_social: {
     alignItems: 'center',
