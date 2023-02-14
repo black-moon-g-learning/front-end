@@ -66,16 +66,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
-    // flex: 1,
   },
-  // header: {
-  //   flexDirection: 'row',
-  // },
-  // topicsheader: {
-  //   position: 'absolute',
-  //   top: -20,
-  //   left:30,
-  // },
   name: {
     width: '100%',
     fontSize: 25,
@@ -84,8 +75,6 @@ const styles = StyleSheet.create({
     paddingLeft: 35,
     fontFamily: 'Poppins-Bold',
     marginTop: -15,
-    // position: 'absolute',
-    // top: 5,
   },
   title: {
     fontSize: 23,

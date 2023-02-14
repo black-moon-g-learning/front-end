@@ -3,21 +3,20 @@ import {Button, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Feather';
-
+import Icons from 'react-native-vector-icons/Ionicons';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
-
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
+import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
 import HYHBDetail from '../screens/HYHBDetailPage';
-import Contribution from '../screens/Contribution';
 import News from '../screens/HYHBpage';
 import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
+import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 
@@ -155,7 +154,7 @@ function Bottomtab() {
 
 const Stack = createNativeStackNavigator();
 
-export default function Hello() {
+export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -196,6 +195,7 @@ export default function Hello() {
           }}
         />
         <HomeStack.Screen name="logout" component={Logout} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );
