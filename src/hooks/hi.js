@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
 
 const hi = () => {
   function useLoadMore(ref, limit) {
