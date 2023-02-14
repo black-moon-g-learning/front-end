@@ -100,7 +100,7 @@ function Bottomtab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
+        name="Homepage"
         component={HomeStackScreen}
         options={{
           headerShown: false,

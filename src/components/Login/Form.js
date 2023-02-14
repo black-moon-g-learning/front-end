@@ -10,20 +10,28 @@ import {
 const LoginForm = () => {
   return (
     <TouchableOpacity style={styles.container_form}>
-      <View style={styles.textInput}>
-        <TextInput style={styles.input_login} placeholder="Enter your number" />
-        <TextInput
-          style={styles.input_login}
-          placeholder="Enter password"
-          // keyboardType="numeric"
-        />
+      <View style={styles.form}>
+        <View style={styles.textInput}>
+          <Text style={styles.textlabel}>Enter your number</Text>
+          <TextInput
+            style={styles.input_login}
+            // keyboardType="numeric"
+          />
+        </View>
+        <View style={styles.textInput}>
+          <Text style={styles.textlabel}>Enter your number</Text>
+          <TextInput
+            style={styles.input_login}
+            // keyboardType="numeric"
+          />
+        </View>
       </View>
       <View style={styles.button}>
         <TouchableOpacity style={styles.button_login}>
           <Text style={styles.text_login}>SIGN UP</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button_register}>
-          <Text style={styles.text_forgot}>Forgot Password?</Text>
+          <Text style={styles.text_forgot}>Forgot Password ?</Text>
         </TouchableOpacity>
         <Text style={styles.chosemethod}>Or continue with</Text>
       </View>
@@ -39,11 +47,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  form: {
+    height: 170,
+  },
+  textlabel: {
+    width: 300,
+    height: 20,
+    fontFamily: 'Poppins-Regular',
+    color: '#A5A5A5',
+  },
   input_login: {
     width: 300,
-    height: 40,
-    margin: 10,
+    height: 35,
     padding: 10,
+    borderBottomWidth: 1,
   },
 
   logo_form: {
@@ -58,7 +75,7 @@ const styles = StyleSheet.create({
   button_login: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '60%',
+    width: '50%',
     height: 40,
     borderRadius: 10,
     backgroundColor: '#5FAD41',
@@ -66,16 +83,22 @@ const styles = StyleSheet.create({
   text_login: {
     color: '#FFFFFF',
     fontSize: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins',
+    height: 30,
+    fontFamily: 'Poppins-Regular',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text_forgot: {
-    padding: 10,
-    fontSize: 16,
+    paddingTop: 15,
+    paddingBottom: 10,
+    fontSize: 15,
+    fontFamily: 'Poppins-Regular',
+    color: '#313131',
   },
   chosemethod: {
-    padding: 5,
-    fontSize: 22,
+    fontSize: 16,
     color: '#5FAD41',
+    fontFamily: 'Poppins-Regular',
   },
 });
