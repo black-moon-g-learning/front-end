@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+// import auth from '@react-native-firebase/auth';
 
 import {Image, TouchableOpacity} from 'react-native';
 
@@ -16,6 +17,7 @@ const LoginSocial = () => {
   });
 
   const signInWithGoogleAsync = async () => {
+    let flag = true;
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
     const {idToken} = await GoogleSignin.signIn();
 
@@ -30,7 +32,7 @@ const LoginSocial = () => {
         console.log(error);
       });
     await firebase.auth().onAuthStateChanged(user => {
-      if (user) {
+      if (user && flag) {
         user
           .getIdTokenResult()
           .then(data => {
@@ -42,7 +44,8 @@ const LoginSocial = () => {
               token: data,
             });
           })
-          .then(data => console.log('data 1  ', data));
+          .then(data => console.log('data 1  ', data.data.data.access_token));
+        flag = false;
       } else {
         console.log('not login');
       }
