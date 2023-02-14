@@ -11,14 +11,12 @@ const Login = () => {
   const ChooseRegister = () => {
     return (
       <View style={styles.container_register}>
-        <Text style={styles.text}>
-          Not a member?
-          <TouchableOpacity
-            style={styles.registernow}
-            onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.text_color}>Register now</Text>
-          </TouchableOpacity>
-        </Text>
+        <Text style={styles.text}>Not a member?</Text>
+        <TouchableOpacity
+          style={styles.registernow}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.text_color}>Register now</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -36,33 +34,20 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  image_btn_login: {
-    width: 50,
-    height: 50,
-  },
-  btn_social: {
-    alignItems: 'center',
-    padding: 10,
-  },
   container_register: {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    flexDirection: 'row',
   },
   text: {
     fontSize: 18,
   },
-  text_color: {color: '#5FAD41'},
-  registernow: {
+  text_color: {
+    color: '#5FAD41',
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
+    paddingLeft: 5,
   },
 });
