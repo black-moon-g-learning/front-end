@@ -1,5 +1,5 @@
-import {Continents_URL} from '@env';
-import axios from 'axios';
+// import {Continents_URL} from '@env';
+// import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -13,48 +13,24 @@ import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
 import {ErrorMessage} from '../../components/ErrorMessage';
-
+import Usegettopics from '../../hooks/Usegettopics';
 const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
-
-  const [dataTopics, setDataTopics] = useState({
-    isLoaded: false,
-    dataContry: [],
-  });
-
-  useEffect(function () {
-    axios
-      .get(`${Continents_URL}/countries/${item.id}/topics`)
-      .then(dataTopics =>
-        setDataTopics({
-          isLoaded: true,
-          dataTopics: dataTopics.data.data,
-        }),
-      );
-  }, []);
-
-  console.log(dataTopics.dataTopics);
+  const {data, isSuccess, isLoading} = Usegettopics(item.id);
+  // console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
-        <Icon
-          name="arrow-left"
-          size={30}
-          color={'#FFFFFF'}
-          onPress={() => {
-            navigation.navigate('Country', {item});
-          }}
-        />
         <Text style={styles.title}>WELCOME TO {item.name.toUpperCase()}</Text>
       </View>
       <View style={styles.flatlist}>
         <TopicTitle />
-        {!dataTopics.isLoaded ? (
+        {isLoading ? (
           <ActivityIndicator color="#00ff00" size="large" />
         ) : (
           <FlatList
             showsHorizontalScrollIndicator={false}
-            data={dataTopics.dataTopics}
+            data={data.data}
             horizontal={true}
             ListEmptyComponent={ErrorMessage}
             keyExtractor={item => item.id}
@@ -82,10 +58,10 @@ const styles = StyleSheet.create({
   },
   topicsheader: {
     width: '100%',
-    height: 120,
+    height: 70,
     backgroundColor: '#5FAD41',
     paddingLeft: 10,
-    paddingTop: 20,
+    paddingTop: -200,
   },
   title: {
     color: '#FFFFFF',
@@ -93,6 +69,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',
+    position: 'absolute',
   },
   emptyMessageStyle: {
     textAlign: 'center',

@@ -11,69 +11,42 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UseContinents from '../../hooks/UseContinents';
+import UsegetdataVideos from '../../hooks/UsegetdataVideos';
 import {ListVideo} from '../../components/Videos/Listvideos';
 
 const Videos = ({navigation, route}) => {
   const {item} = route.params;
-  const {isSuccess} = UseContinents([]);
-
-  const [dataVideos, setDataVideos] = useState({
-    isLoaded: false,
-    dataVideos: [],
-  });
-
-  useEffect(function () {
-    axios
-      .get(`${Continents_URL}/countries-topics/${item.id}/videos`)
-      .then(dataVideos =>
-        setDataVideos({
-          isLoaded: true,
-          dataVideos: dataVideos.data.data,
-        }),
-      );
-  }, []);
-  console.log(dataVideos.dataVideos);
+  const {data, isSuccess, isLoading} = UsegetdataVideos(item.id);
   return (
     <View style={styles.container}>
-      {isSuccess && (
-        <>
-          <View style={styles.header}>
-            <Icon
-              name="arrow-left"
-              size={30}
-              color={'#5FAD41'}
-              onPress={() => {
-                navigation.navigate('TopicCountry', {item});
-              }}
-            />
-            <Text style={styles.name}>{item.name}</Text>
-          </View>
+      <View style={styles.header}>
+        <Text style={styles.name}>{item.name}</Text>
+      </View>
 
-          <View style={styles.top}>
-            <Header />
-          </View>
-          {!dataVideos.isLoaded ? (
-            <ActivityIndicator color="#00ff00" size="large" />
-          ) : (
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              data={dataVideos.dataVideos}
-              ListEmptyComponent={ErrorMessage}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => {
-                return (
-                  <ListVideo
-                    navigation={navigation}
-                    videos={dataVideos.dataVideos}
-                    item={item}
-                  />
-                );
-              }}
-            />
-          )}
-        </>
-      )}
+      <View style={styles.top}>
+        <Header />
+      </View>
+      <>
+        {isLoading ? (
+          <ActivityIndicator color="#00ff00" size="large" />
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={data.data}
+            ListEmptyComponent={ErrorMessage}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => {
+              return (
+                <ListVideo
+                  navigation={navigation}
+                  videos={data.data}
+                  item={item}
+                />
+              );
+            }}
+          />
+        )}
+      </>
     </View>
   );
 };
@@ -88,9 +61,9 @@ const styles = StyleSheet.create({
   top: {
     paddingBottom: 20,
   },
-  header: {
-    flexDirection: 'row',
-  },
+  // header: {
+  //   flexDirection: 'row',
+  // },
   name: {
     width: '100%',
     fontSize: 23,

@@ -7,12 +7,6 @@ const HYHBDetail = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon
-          name="arrow-left"
-          size={30}
-          color={'#5FAD41'}
-          onPress={navigation.goBack}
-        />
         <Text style={styles.title}>Have You Heard Before?</Text>
       </View>
       <HYHBCard item={item} />
@@ -29,7 +23,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    marginBottom:5,
+    marginBottom: 5,
   },
   title: {
     textAlign: 'center',
@@ -38,6 +32,5 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     padding: 10,
     fontFamily: 'Poppins-Bold',
-
   },
 });

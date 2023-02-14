@@ -2,12 +2,14 @@ import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Learnpercent from './Learnpercent';
-const ListContinents = ({item}) => {
+export const ListContinents = ({item}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.flatItem}
-      onPress={() => navigation.navigate('Country', {item})}>
+      onPress={() => {
+        navigation.navigate('Country', {item});
+      }}>
       <View style={styles.item}>
         <Image style={styles.img} source={{uri: item.image}} />
         <View>
@@ -22,7 +24,20 @@ const ListContinents = ({item}) => {
   );
 };
 
-export default ListContinents;
+// export default ListContinents;
+
+export const Hi = ({item}) => {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('title', {item});
+      }}
+    />
+  );
+};
+
+// export default Hi;
 
 const styles = StyleSheet.create({
   flatItem: {

@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#323643',
     width: '100%',
-    fontFamily:'Poppins-Bold',
+    fontFamily: 'Poppins-Bold',
   },
   recommend_name: {
     fontSize: 13,
@@ -92,7 +92,6 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     color: '#323643',
     paddingTop: 5,
-    fontFamily:'Poppins-Regular',
-
+    fontFamily: 'Poppins-Regular',
   },
 });
