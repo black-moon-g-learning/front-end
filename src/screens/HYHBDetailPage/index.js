@@ -7,12 +7,6 @@ const HYHBDetail = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon
-          name="arrow-left"
-          size={30}
-          color={'#5FAD41'}
-          onPress={navigation.goBack}
-        />
         <Text style={styles.title}>Have You Heard Before?</Text>
       </View>
       <HYHBCard item={item} />

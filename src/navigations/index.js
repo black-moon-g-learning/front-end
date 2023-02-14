@@ -1,8 +1,8 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+import {Button, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import * as React from 'react';
-import {Text, View} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -21,7 +21,6 @@ import Login from '../screens/Login/Login';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 
-// import {CountriesTitle} from '../screens/Countries';
 function Game() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -29,19 +28,81 @@ function Game() {
     </View>
   );
 }
+const HomeStack = createNativeStackNavigator();
 
-const Tab = createBottomTabNavigator();
-function MyTabs() {
+function HomeStackScreen() {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
-        tabBarShowLabel: false,
-      }}>
-      <Tab.Screen
+    <HomeStack.Navigator>
+      <HomeStack.Screen
         name="Home"
         component={Home}
+        options={{headerShown: false}}
+      />
+      <HomeStack.Screen
+        name="Country"
+        component={Countries}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+          headerTintColor: '#5FAD41',
+        }}
+      />
+      <HomeStack.Screen
+        name="TopicCountry"
+        component={DetailCountryPage}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: '#5FAD41',
+          },
+          headerShadowVisible: false,
+          headerTintColor: '#ffffff',
+        }}
+      />
+      <HomeStack.Screen
+        name="videos"
+        component={Videos}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+          headerTintColor: '#5FAD41',
+        }}
+      />
+      <HomeStack.Screen
+        name="loading"
+        component={Loading}
+        options={{headerShown: false}}
+      />
+      <HomeStack.Screen
+        name="playvideo"
+        component={PlayVideo}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+          headerTintColor: '#5FAD41',
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function Bottomtab() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -88,58 +149,13 @@ function MyTabs() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Country"
-        component={Countries}
-        options={{
-          headerShown: false,
-          tabBarButton: props => null, //like this
-        }}
-      /> */}
-      {/* <Tab.Screen
-        name="TopicCountry"
-        component={DetailCountryPage}
-        options={{
-          headerShown: false,
-          tabBarButton: props => null, //like this
-        }}
-      /> */}
-      {/* <Tab.Screen
-        name="videos"
-        component={Videos}
-        options={{
-          headerShown: false,
-          tabBarButton: props => null, //like this
-        }}
-      /> */}
-      {/* <Tab.Screen
-        name="playvideo"
-        component={PlayVideo}
-        options={{
-          headerShown: false,
-          tabBarButton: props => null, //like this
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }
-const CustomerHeader = () => {
-  return (
-    <View
-      style={{
-        position: 'absolute',
-        margin: 0,
-        padding: 20,
-        height: 10,
-        width: 10,
-        alignItems: 'center',
-        zIndex: 0,
-      }}></View>
-  );
-};
+
 const Stack = createNativeStackNavigator();
 
-export default function Navigation() {
+export default function Hello() {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -148,57 +164,15 @@ export default function Navigation() {
           animation: 'slide_from_bottom',
         }}>
         <Stack.Screen
-          name="Tab"
-          component={MyTabs}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Country"
-          component={Countries}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: '#F2F2F2',
-            },
-            headerShadowVisible: false,
-            headerTintColor: '#5FAD41',
-          }}
-        />
-        <Stack.Screen
-          name="TopicCountry"
-          component={DetailCountryPage}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: '#5FAD41',
-            },
-            headerShadowVisible: false,
-            headerTintColor: '#ffffff',
-          }}
-        />
-        <Stack.Screen
-          name="videos"
-          component={Videos}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: '#F2F2F2',
-            },
-            headerShadowVisible: false,
-          }}
-        />
-        <Stack.Screen
-          name="loading"
-          component={Loading}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="login"
           component={Login}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="logout" component={Logout} />
-        <Stack.Screen name="News" component={HYHBDetail} />
+        <Stack.Screen
+          name="Tab"
+          component={Bottomtab}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Contribution"
           component={Contribution}
@@ -211,8 +185,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="playvideo"
-          component={PlayVideo}
+          name="News"
+          component={HYHBDetail}
           options={{
             title: '',
             headerStyle: {
@@ -221,6 +195,7 @@ export default function Navigation() {
             headerShadowVisible: false,
           }}
         />
+        <HomeStack.Screen name="logout" component={Logout} />
       </Stack.Navigator>
     </NavigationContainer>
   );
