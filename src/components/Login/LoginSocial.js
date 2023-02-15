@@ -3,7 +3,7 @@ import auth, {firebase} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 // import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   btn_social: {
     alignItems: 'center',
-    padding: 10,
+    padding: 5,
   },
   container_register: {
     justifyContent: 'center',

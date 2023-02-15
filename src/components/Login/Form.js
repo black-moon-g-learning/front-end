@@ -10,21 +10,13 @@ import {
 const LoginForm = () => {
   return (
     <TouchableOpacity style={styles.container_form}>
-      <View style={styles.form}>
-        <View style={styles.textInput}>
-          <Text style={styles.textlabel}>Enter your number</Text>
-          <TextInput
-            style={styles.input_login}
-            // keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.textInput}>
-          <Text style={styles.textlabel}>Enter your Password</Text>
-          <TextInput
-            style={styles.input_login}
-            // keyboardType="numeric"
-          />
-        </View>
+      <View style={styles.textInput}>
+        <TextInput style={styles.input_login} placeholder="Enter your number" />
+        <TextInput
+          style={styles.input_login}
+          placeholder="Enter password"
+          secureTextEntry={true}
+        />
       </View>
       <View style={styles.button}>
         <TouchableOpacity style={styles.button_login}>
@@ -45,7 +37,8 @@ const styles = StyleSheet.create({
   textInput: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    alignContent: 'center',
+    marginTop: 30,
   },
   form: {
     height: 170,
@@ -58,10 +51,13 @@ const styles = StyleSheet.create({
   },
   input_login: {
     width: 300,
-    height: 35,
-    padding: 10,
-    borderBottomWidth: 1,
-    fontFamily: 'Poppins-Bold',
+    height: 50,
+    margin: 10,
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    // fontWeight: '300',
+    fontFamily: 'Poppins-SemiBold',
   },
 
   logo_form: {
@@ -76,10 +72,11 @@ const styles = StyleSheet.create({
   button_login: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '50%',
+    width: '40%',
     height: 40,
     borderRadius: 10,
     backgroundColor: '#5FAD41',
+    padding: 5,
   },
   text_login: {
     color: '#FFFFFF',
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
   text_forgot: {
     paddingTop: 18,
     fontSize: 14,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-MediumItalic',
   },
   chosemethod: {
     paddingTop: 10,
