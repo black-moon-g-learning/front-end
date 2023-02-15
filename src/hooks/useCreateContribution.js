@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Keyboard, StyleSheet} from 'react-native';
+import {Keyboard} from 'react-native';
 import {
   SuccessMessage,
   ValidatetionMessage,
@@ -99,5 +99,3 @@ const useCreateContribution = () => {
   };
 };
 export default useCreateContribution;
-
-const styles = StyleSheet.create({});

@@ -8,7 +8,9 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icons from 'react-native-vector-icons/FontAwesome';
 import useCreateContribution from '../../hooks/useCreateContribution';
+
 const ContributionForm = () => {
   const {
     contribution,
@@ -28,6 +30,12 @@ const ContributionForm = () => {
           }
           value={contribution.title}
         />
+        <Icons
+          style={styles.icon}
+          name="asterisk"
+          size={20}
+          color={'#FF3334'}
+        />
       </View>
       <View style={styles.wraper}>
         <TextInput
@@ -37,6 +45,12 @@ const ContributionForm = () => {
             onChangeContribution({...contribution, country: txt})
           }
           value={contribution.country}
+        />
+        <Icons
+          style={styles.icon}
+          name="asterisk"
+          size={20}
+          color={'#FF3334'}
         />
       </View>
       <View style={styles.wraper}>
@@ -49,6 +63,12 @@ const ContributionForm = () => {
             onChangeContribution({...contribution, desc: txt})
           }
           value={contribution.desc}
+        />
+        <Icons
+          style={styles.icon}
+          name="asterisk"
+          size={20}
+          color={'#FF3334'}
         />
       </View>
       <View style={styles.wraper}>
@@ -83,7 +103,7 @@ const styles = StyleSheet.create({
   },
   txtInput: {
     color: '#000000',
-    opacity: 0.5,
+    opacity: 0.7,
     fontSize: 16,
     lineHeight: 20,
     fontWeight: '400',
