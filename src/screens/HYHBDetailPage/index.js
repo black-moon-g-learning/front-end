@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    marginBottom:5,
+    marginBottom: 5,
   },
   title: {
     textAlign: 'center',
@@ -38,6 +38,5 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     padding: 10,
     fontFamily: 'Poppins-Bold',
-
   },
 });
