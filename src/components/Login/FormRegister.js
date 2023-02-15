@@ -13,14 +13,22 @@ const RegisterForm = () => {
       <View style={styles.textInput}>
         <TextInput style={styles.input_login} placeholder="Enter your name" />
         <TextInput style={styles.input_login} placeholder="Enter your number" />
-        <TextInput style={styles.input_login} placeholder="Enter password" />
-        <TextInput style={styles.input_login} placeholder="Comfirm password" />
+        <TextInput
+          style={styles.input_login}
+          placeholder="Enter password"
+          secureTextEntry={true}
+        />
+        <TextInput
+          style={styles.input_login}
+          placeholder="Comfirm password"
+          secureTextEntry={true}
+        />
       </View>
       <View style={styles.button}>
         <TouchableOpacity style={styles.button_login}>
           <Text style={styles.text_login}>REGISTER</Text>
         </TouchableOpacity>
-        <Text style={styles.chosemethod}>------- Or ------ </Text>
+        <Text style={styles.chosemethod}>------- Or -------</Text>
       </View>
     </TouchableOpacity>
   );
@@ -36,11 +44,13 @@ const styles = StyleSheet.create({
   },
   input_login: {
     width: 300,
-    height: 40,
+    height: 45,
     margin: 10,
-    fontFamily: 'Poppins-SemiBold',
-    borderBottomWidth: 0.6,
+    paddingLeft: 10,
+    borderWidth: 1,
     borderRadius: 10,
+    // fontWeight: '300',
+    fontFamily: 'Poppins-SemiBold',
   },
 
   logo_form: {
@@ -55,10 +65,11 @@ const styles = StyleSheet.create({
   button_login: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '60%',
+    width: '40%',
     height: 40,
     borderRadius: 10,
     backgroundColor: '#5FAD41',
+    paddingTop: 5,
   },
   text_login: {
     color: '#FFFFFF',
@@ -73,5 +84,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     fontSize: 18,
     color: '#323643',
+    fontFamily: 'Poppins',
   },
 });

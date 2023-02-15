@@ -24,17 +24,20 @@ const HeaderRegister = () => {
 
   return (
     <View style={styles.container_header_login}>
-      <Icon
-        name="arrow-left"
-        size={30}
-        color={'#FFFFFF'}
-        onPress={() => navigation.goBack('login')}
-      />
-      <View style={styles.logo_form}>
-        <Image
-          style={styles.image_login}
-          source={require('../../assets/images/img-signup.png')}
+      <View>
+        <Icon
+          name="arrow-left"
+          size={30}
+          color={'#FFFFFF'}
+          onPress={() => navigation.goBack('login')}
+          style={styles.icon}
         />
+        <View style={styles.logo_form}>
+          <Image
+            style={styles.image_login}
+            source={require('../../assets/images/img-signup.png')}
+          />
+        </View>
       </View>
       <View style={styles.text}>
         <Text style={styles.text_big}>Hi Student</Text>
@@ -51,6 +54,10 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#5FAD41',
     height: 270,
+  },
+  icon: {
+    position: 'absolute',
+    padding: 10,
   },
   logo_form: {
     height: 150,
@@ -72,8 +79,8 @@ const styles = StyleSheet.create({
   },
   text_title: {
     fontSize: 23,
-    color: '#FFFFFF61',
+    color: '#FFFFFF96',
     paddingLeft: 30,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
 });

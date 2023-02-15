@@ -93,11 +93,11 @@ const styles = StyleSheet.create({
   image_btn_login: {
     width: 50,
     height: 50,
-    borderRadius: 20,
+    borderRadius: 40,
   },
   btn_social: {
     alignItems: 'center',
-    padding: 10,
+    padding: 5,
   },
   container_register: {
     justifyContent: 'center',

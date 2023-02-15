@@ -12,13 +12,10 @@ const LoginForm = () => {
     <TouchableOpacity style={styles.container_form}>
       <View style={styles.textInput}>
         <TextInput style={styles.input_login} placeholder="Enter your number" />
-        {/* <Text numberOfLines={1}>
-          _________________________________________________
-        </Text> */}
         <TextInput
           style={styles.input_login}
           placeholder="Enter password"
-          // keyboardType="numeric"
+          secureTextEntry={true}
         />
       </View>
       <View style={styles.button}>
@@ -40,15 +37,18 @@ const styles = StyleSheet.create({
   textInput: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    alignContent: 'center',
+    marginTop: 30,
   },
   input_login: {
     width: 300,
-    height: 40,
+    height: 50,
     margin: 10,
-    padding: 10,
-    fontFamily: 'Poppins-Bold',
-    borderBottomWidth: 0.2,
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    // fontWeight: '300',
+    fontFamily: 'Poppins-SemiBold',
   },
 
   logo_form: {
@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
   button_login: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '60%',
+    width: '40%',
     height: 40,
     borderRadius: 10,
     backgroundColor: '#5FAD41',
+    padding: 5,
   },
   text_login: {
     color: '#FFFFFF',
@@ -77,12 +78,12 @@ const styles = StyleSheet.create({
   text_forgot: {
     padding: 10,
     fontSize: 14,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-MediumItalic',
   },
   chosemethod: {
-    paddingTop: 5,
+    paddingTop: 10,
     fontSize: 18,
     color: '#5FAD41',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Regular',
   },
 });
