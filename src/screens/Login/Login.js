@@ -76,9 +76,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text_color: {fontSize: 16, fontFamily: 'Poppins-Regular', color: '#5FAD41'},
-  registernow: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-  },
+  // text_color: {
+  //   color: '#5FAD41',
+  //   justifyContent: 'center',
+  //   alignContent: 'center',
+  //   alignItems: 'center',
+  //   paddingLeft: 5,
+  // },
 });

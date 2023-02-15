@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: '#FFFFFF',
     paddingLeft: 30,
+
     fontFamily: 'Poppins-Medium',
   },
   text_title: {

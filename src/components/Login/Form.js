@@ -19,7 +19,7 @@ const LoginForm = () => {
           />
         </View>
         <View style={styles.textInput}>
-          <Text style={styles.textlabel}>Enter your number</Text>
+          <Text style={styles.textlabel}>Enter your Password</Text>
           <TextInput
             style={styles.input_login}
             // keyboardType="numeric"
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     height: 35,
     padding: 10,
     borderBottomWidth: 1,
+    fontFamily: 'Poppins-Bold',
   },
 
   logo_form: {
@@ -89,15 +90,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   text_forgot: {
-    paddingTop: 15,
-    paddingBottom: 10,
-    fontSize: 15,
+    paddingTop: 18,
+    fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#313131',
   },
   chosemethod: {
-    fontSize: 16,
+    paddingTop: 10,
+    fontSize: 18,
     color: '#5FAD41',
     fontFamily: 'Poppins-Regular',
   },
