@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
 
 const hi = () => {
   function useLoadMore(ref, limit) {
@@ -10,7 +10,7 @@ const hi = () => {
     useEffect(() => {
       let query = ref.limitToFirst(limit);
 
-      const handleData = snap => {
+      const handleData = snap => {F
         if (snap.val()) {
           setItems(snap.val());
           setLoading(false);
