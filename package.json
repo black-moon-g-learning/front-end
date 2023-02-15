@@ -26,6 +26,7 @@
     "react-native-dotenv": "^3.4.7",
     "react-native-fbsdk-next": "^11.1.0",
     "react-native-google-places-autocomplete": "^2.5.1",
+    "react-native-image-crop-picker": "^0.38.1",
     "react-native-link": "^4.1.0",
     "react-native-maps": "^1.4.0",
     "react-native-safe-area-context": "^4.5.0",

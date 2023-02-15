@@ -6,7 +6,7 @@ const Contribution = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ContributionHeader navigation={navigation} />
-      <ContributionForm />
+      <ContributionForm navigation={navigation} />
     </View>
   );
 };
