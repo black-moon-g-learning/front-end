@@ -64,16 +64,17 @@ const styles = StyleSheet.create({
     height: 160,
   },
   text_big: {
-    fontSize: 35,
-    fontWeight: '700',
+    fontSize: 28,
     color: '#FFFFFF',
     paddingLeft: 30,
-    fontFamily: 'Poppins-Bold',
+
+    fontFamily: 'Poppins-Medium',
   },
   text_title: {
-    fontSize: 23,
-    color: '#FFFFFF61',
+    fontSize: 18,
+    fontWeight: '400',
+    color: '#C1DFB5',
     paddingLeft: 30,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Regular',
   },
 });

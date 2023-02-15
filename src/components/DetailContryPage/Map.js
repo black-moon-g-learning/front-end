@@ -30,13 +30,10 @@ const styles = StyleSheet.create({
     height: 2,
     margin: 3,
   },
-  maparea: {
-    padding: 10,
-  },
+
   mapView: {
     width: '100%',
-    height: 230,
-    padding: 10,
+    height: 200,
     marginTop: 30,
   },
 });

@@ -3,13 +3,15 @@ import auth, {firebase} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 // import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Image, TouchableOpacity} from 'react-native';
 
 const LoginSocial = () => {
+  // const [userInfo, setUserInfo] = useState({});
   const navigation = useNavigation();
   GoogleSignin.configure({
     webClientId:
@@ -44,7 +46,13 @@ const LoginSocial = () => {
               token: data,
             });
           })
-          .then(data => console.log('data 1  ', data.data.data.access_token));
+          .then(async data => {
+            const userInfo = data.data.data.access_token;
+            // console.log('heheheheh', userInfo);
+            await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
+            const currentUser = await AsyncStorage.getItem('@Token');
+            console.log('tokennnnn', currentUser);
+          });
         flag = false;
       } else {
         console.log('not login');
@@ -65,13 +73,13 @@ const LoginSocial = () => {
             signInWithGoogleAsync().then(() => navigation.navigate('Tab'))
           }>
           <Image
-            style={styles.image_btn_login}
+            style={styles.image_btn_login_gg}
             source={require('../../assets/images/google.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btn_social}>
           <Image
-            style={styles.image_btn_login}
+            style={styles.image_btn_login_fb}
             source={require('../../assets/images/facebook.png')}
           />
         </TouchableOpacity>
@@ -90,9 +98,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  image_btn_login: {
-    width: 50,
-    height: 50,
+  image_btn_login_gg: {
+    width: 37,
+    height: 37,
+    borderRadius: 20,
+  },
+  image_btn_login_fb: {
+    width: 37,
+    height: 37,
     borderRadius: 20,
   },
   btn_social: {
@@ -106,8 +119,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   text: {
-    fontSize: 18,
-    fontFamily: 'Poppins-Bold',
+    fontSize: 17,
   },
   text_color: {color: '#5FAD41'},
 });
