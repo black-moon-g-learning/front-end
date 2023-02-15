@@ -12,7 +12,7 @@ const OtherCard = ({country, id}) => {
       {data.data
         .filter(item => item.country === country && item.id !== id)
         .map(item => (
-          <View>
+          <View key={item.id}>
             <View style={styles.titleWraper}>
               <Text style={styles.title}>Other</Text>
             </View>
