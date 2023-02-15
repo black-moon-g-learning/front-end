@@ -23,7 +23,7 @@ const LoginForm = () => {
           <Text style={styles.text_login}>SIGN UP</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button_register}>
-          <Text style={styles.text_forgot}>Forgot Password?</Text>
+          <Text style={styles.text_forgot}>Forgot Password ?</Text>
         </TouchableOpacity>
         <Text style={styles.chosemethod}>Or continue with</Text>
       </View>
@@ -39,6 +39,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     marginTop: 30,
+  },
+  form: {
+    height: 170,
+  },
+  textlabel: {
+    width: 300,
+    height: 20,
+    fontFamily: 'Poppins-Regular',
+    color: '#A5A5A5',
   },
   input_login: {
     width: 300,
@@ -72,11 +81,15 @@ const styles = StyleSheet.create({
   text_login: {
     color: '#FFFFFF',
     fontSize: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
+    height: 30,
+    fontFamily: 'Poppins-Regular',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+
   text_forgot: {
-    padding: 10,
+    paddingTop: 18,
     fontSize: 14,
     fontFamily: 'Poppins-MediumItalic',
   },
