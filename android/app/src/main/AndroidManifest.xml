@@ -10,6 +10,8 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+      <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
       <meta-data
         android:name="com.google.android.geo.API_KEY"  
         android:value="AIzaSyDjzQjgRXF6N2Sqg1L0BgIMZk4rcKH2G88"/>
@@ -31,5 +33,9 @@
             <data android:scheme="g-learning"/>
         </intent-filter>
       </activity>
+      <provider android:authorities="com.facebook.app.FacebookContentProvider729554048874014"
+          android:name="com.facebook.FacebookContentProvider"
+        android:exported="true" />
+      <!-- <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" /> -->
     </application>
 </manifest>
