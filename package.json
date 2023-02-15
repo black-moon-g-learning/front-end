@@ -24,6 +24,7 @@
     "react-native": "^0.70.0",
     "react-native-circular-picker": "^1.0.6",
     "react-native-dotenv": "^3.4.7",
+    "react-native-fbsdk-next": "^11.1.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-link": "^4.1.0",
     "react-native-maps": "^1.4.0",
