@@ -7,6 +7,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 // import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import {Image, TouchableOpacity} from 'react-native';
 
@@ -61,7 +62,32 @@ const LoginSocial = () => {
   };
 
   // Login with facebook
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
 
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
   ///View
 
   const Loginwithsocial = () => {
@@ -77,7 +103,13 @@ const LoginSocial = () => {
             source={require('../../assets/images/google.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn_social}>
+        <TouchableOpacity
+          style={styles.btn_social}
+          onPress={() =>
+            onFacebookButtonPress().then(() =>
+              console.log('Signed in with Facebook!'),
+            )
+          }>
           <Image
             style={styles.image_btn_login_fb}
             source={require('../../assets/images/facebook.png')}
