@@ -63,7 +63,7 @@ const LoginSocial = () => {
 
   // Login with facebook
   async function onFacebookButtonPress() {
-    // Attempt login with permissions
+    let flag = true;
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
       'email',
@@ -73,20 +73,48 @@ const LoginSocial = () => {
       throw 'User cancelled the login process';
     }
 
-    // Once signed in, get the users AccesToken
     const data = await AccessToken.getCurrentAccessToken();
 
     if (!data) {
       throw 'Something went wrong obtaining access token';
     }
 
-    // Create a Firebase credential with the AccessToken
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
 
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(facebookCredential);
+    const user_sign_in = auth().signInWithCredential(facebookCredential);
+    user_sign_in
+      .then(user => {
+        console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    await firebase.auth().onAuthStateChanged(user => {
+      if (user && flag) {
+        user
+          .getIdTokenResult()
+          .then(data => {
+            console.log(data.token);
+            return data.token;
+          })
+          .then(data => {
+            return axios.post(`${Continents_URL}/login`, {
+              token: data,
+            });
+          })
+          .then(async data => {
+            const userInfo = data.data.data.access_token;
+            await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
+            const currentUser = await AsyncStorage.getItem('@Token');
+            console.log('tokennnnn', currentUser);
+          });
+        flag = false;
+      } else {
+        console.log('not login');
+      }
+    });
   }
   ///View
 
@@ -106,9 +134,7 @@ const LoginSocial = () => {
         <TouchableOpacity
           style={styles.btn_social}
           onPress={() =>
-            onFacebookButtonPress().then(() =>
-              console.log('Signed in with Facebook!'),
-            )
+            onFacebookButtonPress().then(() => navigation.navigate('Tab'))
           }>
           <Image
             style={styles.image_btn_login_fb}
