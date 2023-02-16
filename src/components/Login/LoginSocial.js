@@ -49,7 +49,6 @@ const LoginSocial = () => {
           })
           .then(async data => {
             const userInfo = data.data.data.access_token;
-            // console.log('heheheheh', userInfo);
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             const currentUser = await AsyncStorage.getItem('@Token');
             console.log('tokennnnn', currentUser);
@@ -96,7 +95,7 @@ const LoginSocial = () => {
         user
           .getIdTokenResult()
           .then(data => {
-            console.log(data.token);
+            // console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -108,7 +107,7 @@ const LoginSocial = () => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             const currentUser = await AsyncStorage.getItem('@Token');
-            console.log('tokennnnn', currentUser);
+            console.log('token : ', currentUser);
           });
         flag = false;
       } else {
