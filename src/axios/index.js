@@ -10,9 +10,9 @@ const axiosRequest = axios.create({
 axiosRequest.interceptors.request.use(
   async config => {
     const accessToken = await AsyncStorage.getItem('@Token');
-    const aaa = JSON.parse(accessToken);
+    const changeAccessToken = JSON.parse(accessToken);
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${aaa}`;
+      config.headers.Authorization = `Bearer ${changeAccessToken}`;
     }
     return config;
   },
