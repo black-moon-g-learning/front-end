@@ -61,7 +61,7 @@ const LoginSocial = () => {
   };
 
   // Login with facebook
-  async function onFacebookButtonPress() {
+  const onFacebookButtonPress = async () => {
     let flag = true;
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
@@ -81,7 +81,6 @@ const LoginSocial = () => {
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
-
     const user_sign_in = auth().signInWithCredential(facebookCredential);
     user_sign_in
       .then(user => {
@@ -95,7 +94,7 @@ const LoginSocial = () => {
         user
           .getIdTokenResult()
           .then(data => {
-            // console.log(data.token);
+            console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -114,7 +113,7 @@ const LoginSocial = () => {
         console.log('not login');
       }
     });
-  }
+  };
   ///View
 
   const Loginwithsocial = () => {
