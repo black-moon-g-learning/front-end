@@ -49,7 +49,6 @@ const LoginSocial = () => {
           })
           .then(async data => {
             const userInfo = data.data.data.access_token;
-            // console.log('heheheheh', userInfo);
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             const currentUser = await AsyncStorage.getItem('@Token');
             console.log('tokennnnn', currentUser);
@@ -62,7 +61,7 @@ const LoginSocial = () => {
   };
 
   // Login with facebook
-  async function onFacebookButtonPress() {
+  const onFacebookButtonPress = async () => {
     let flag = true;
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
@@ -82,7 +81,6 @@ const LoginSocial = () => {
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
-
     const user_sign_in = auth().signInWithCredential(facebookCredential);
     user_sign_in
       .then(user => {
@@ -108,14 +106,14 @@ const LoginSocial = () => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             const currentUser = await AsyncStorage.getItem('@Token');
-            console.log('tokennnnn', currentUser);
+            console.log('token : ', currentUser);
           });
         flag = false;
       } else {
         console.log('not login');
       }
     });
-  }
+  };
   ///View
 
   const Loginwithsocial = () => {

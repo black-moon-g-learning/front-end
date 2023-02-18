@@ -14,7 +14,6 @@ import UseContinents from '../../hooks/UseContinents';
 
 const Home = ({navigation}) => {
   const {data, isLoading, isSuccess} = UseContinents([]);
-  // console.log('home', data);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
