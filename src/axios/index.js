@@ -5,7 +5,7 @@ const ROOT_API = '';
 
 const axiosRequest = axios.create({
   baseURL: ROOT_API,
-  timeout: 15000,
+  timeout: 2000,
 });
 axiosRequest.interceptors.request.use(
   async config => {

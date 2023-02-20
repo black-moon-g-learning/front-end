@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -7,11 +7,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
+// import useProfile from '../../hooks/usegetProfile';
+import Logout from '../../components/Logout';
 
 const Information = () => {
   const {data, isLoading, isSuccess} = useProfile([]);
+  console.log('profile =>', isLoading);
+
+  const [isImage, setIsImage] = useState();
+  const [Name, setName] = useState();
+  const [Age, setAge] = useState();
+  const [Email, setEmail] = useState();
+  const [Phone, setPhone] = useState();
+  const [Gender, setGender] = useState();
+
+  useEffect(() => {
+    if (data) {
+      setIsImage(data.image);
+      setAge(data.age);
+      setName(data.first_name);
+      setEmail(data.email);
+      setPhone(data.phone);
+      setGender(data.gender);
+    }
+  }, [data]);
+
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
@@ -22,7 +43,7 @@ const Information = () => {
             <Image
               style={styles.image_profile}
               source={{
-                uri: data.image,
+                uri: isImage,
               }}
             />
             <Text style={styles.name_profile}>{data.first_name}</Text>
@@ -31,29 +52,25 @@ const Information = () => {
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Name</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>
-                  {data.first_name}
-                </Text>
+                <Text style={styles.information_profile}>{Name}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Age</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{data.age}</Text>
+                <Text style={styles.information_profile}>{Age}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Email</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_email_profile}>
-                  {data.email}
-                </Text>
+                <Text style={styles.information_email_profile}>{Email}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Phone</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{data.phone}</Text>
+                <Text style={styles.information_profile}>{Phone}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
@@ -65,7 +82,7 @@ const Information = () => {
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Gender</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{data.gender}</Text>
+                <Text style={styles.information_profile}>{Gender}</Text>
               </TouchableOpacity>
             </View>
           </View>
