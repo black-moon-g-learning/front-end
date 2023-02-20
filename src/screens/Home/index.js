@@ -10,11 +10,11 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
-import UseContinents from '../../hooks/UseContinents';
+import UseGetdata from '../../hooks/UseContinents';
 
-const Home = ({navigation}) => {
-  const {data, isLoading, isSuccess} = UseContinents([]);
-  // console.log('home', data);
+const Home = ({navigation, props}) => {
+  const API = `continents`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}

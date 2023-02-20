@@ -2,10 +2,13 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const TopicCard = ({item, navigation}) => {
+  const handlePress = () => {
+    navigation.navigate('listvideo', {item});
+    navigation.navigate('header', {item});
+    navigation.navigate('videos', {item});
+  };
   return (
-    <TouchableOpacity
-      style={styles.TopicCards_container}
-      onPress={() => navigation.navigate('videos', {item})}>
+    <TouchableOpacity style={styles.TopicCards_container} onPress={handlePress}>
       <View style={styles.TopicCards_item}>
         <Image
           style={styles.TopicCards_img}
@@ -28,8 +31,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    paddingBottom:10,
-    paddingTop:5,
+    paddingBottom: 10,
+    paddingTop: 5,
   },
   TopicCards_item: {
     margin: 10,

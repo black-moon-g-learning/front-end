@@ -19,6 +19,13 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+// import Search from '../screens/Search';
+// import Cat from '../screens/hi';
+import {TitleContries} from '../components/TitleHeaderNavigate';
+import {TitleListVideos} from '../components/TitleHeaderNavigate';
+// import Player from '../screens/Search';
+// import TextVideos from '../TextVideos';
+import Player from '../screens/videooooo';
 
 function Game() {
   return (
@@ -41,7 +48,7 @@ function HomeStackScreen() {
         name="Country"
         component={Countries}
         options={{
-          title: '',
+          headerTitle: props => <TitleContries {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -65,7 +72,7 @@ function HomeStackScreen() {
         name="videos"
         component={Videos}
         options={{
-          title: '',
+          headerTitle: props => <TitleListVideos {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -110,8 +117,8 @@ function Bottomtab() {
         }}
       />
       <Tab.Screen
-        name="Game"
-        component={Game}
+        name="Search"
+        component={Player}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -200,6 +207,8 @@ export default function Navigation() {
           component={Register}
           options={{headerShown: false}}
         />
+        <HomeStack.Screen name="title" component={TitleContries} />
+        <HomeStack.Screen name="listvideo" component={TitleListVideos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

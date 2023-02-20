@@ -13,11 +13,11 @@ import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
 import {ErrorMessage} from '../../components/ErrorMessage';
-import Usegettopics from '../../hooks/Usegettopics';
+import UseGetdata from '../../hooks/UseContinents';
 const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
-  const {data, isSuccess, isLoading} = Usegettopics(item.id);
-  // console.log(data);
+  const API = `countries/${item.id}/topics`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>

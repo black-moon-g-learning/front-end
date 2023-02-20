@@ -11,18 +11,15 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UsegetdataVideos from '../../hooks/UsegetdataVideos';
 import {ListVideo} from '../../components/Videos/Listvideos';
+import UseGetdata from '../../hooks/UseContinents';
 
 const Videos = ({navigation, route}) => {
   const {item} = route.params;
-  const {data, isSuccess, isLoading} = UsegetdataVideos(item.id);
+  const API = `countries-topics/${item.id}/videos`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.name}>{item.name}</Text>
-      </View>
-
       <View style={styles.top}>
         <Header />
       </View>
