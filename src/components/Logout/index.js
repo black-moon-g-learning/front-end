@@ -22,7 +22,6 @@ const Logout = () => {
         <Icon
           name="bell-ring-outline"
           size={30}
-          // color={'#FFFFFF'}
           onPress={() => navigation.goBack('login')}
           style={styles.icon}
         />
@@ -32,7 +31,6 @@ const Logout = () => {
         <Icon
           name="logout"
           size={30}
-          // color={'#FFFFFF'}
           onPress={() => navigation.goBack('login')}
           style={styles.icon}
         />
