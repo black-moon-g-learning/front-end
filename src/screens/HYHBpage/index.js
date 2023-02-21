@@ -3,9 +3,11 @@ import {StyleSheet, View, FlatList, ActivityIndicator} from 'react-native';
 import Searchbar from '../../components/DetailContryPage/Searchbar';
 import NewsCard from '../../components/HYHBpage/NewsCard';
 import {ErrorMessage} from '../../components/ErrorMessage';
-import UseNews from '../../hooks/UseNews';
+import UseGetdata from '../../hooks/UseContinents';
 const News = () => {
-  const {data, isLoading, isSuccess} = UseNews([]);
+  const API = `information`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
+  // const {data, isLoading, isSuccess} = UseNews([]);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}

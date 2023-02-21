@@ -18,6 +18,9 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import {TitleContries} from '../components/TitleHeaderNavigate';
+import {TitleListVideos} from '../components/TitleHeaderNavigate';
+import Player from '../screens/videooooo';
 import ChooseCountry from '../screens/G-Game/ChooseCountry';
 import GameLevels from '../screens/G-Game/GameLevels';
 
@@ -35,7 +38,7 @@ function HomeStackScreen() {
         name="Country"
         component={Countries}
         options={{
-          title: '',
+          headerTitle: props => <TitleContries {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -59,7 +62,7 @@ function HomeStackScreen() {
         name="videos"
         component={Videos}
         options={{
-          title: '',
+          headerTitle: props => <TitleListVideos {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -205,6 +208,8 @@ export default function Navigation() {
           component={Register}
           options={{headerShown: false}}
         />
+        <HomeStack.Screen name="title" component={TitleContries} />
+        <HomeStack.Screen name="listvideo" component={TitleListVideos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

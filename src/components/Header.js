@@ -6,8 +6,21 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import React from 'react';
-const Header = () => {
+import React, {useState} from 'react';
+import {useNavigationState} from '@react-navigation/native';
+import {useQueryClient} from 'react-query';
+import {useRoute} from '@react-navigation/native';
+import {UseItems} from '../hooks/UseKey';
+export const GetKey = () => {
+  const route = useRoute();
+  const {item} = route.params;
+};
+const Header = navigation => {
+  const queryClient = useQueryClient();
+  const routes = useNavigationState(state => state.routes);
+  // const currentRoute = routes[routes.length - 1].name;
+  // const [query, setQuery] = useState('');
+  const {items, addItem, removeItem} = UseItems();
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>
@@ -17,7 +30,13 @@ const Header = () => {
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchBar}>
-        <TextInput style={styles.input} placeholder="Search..." />
+        <TextInput
+          value={items}
+          onChangeText={addItem}
+          style={styles.input}
+          placeholder="Search..."
+          // onPress={letsearch(query)}
+        />
         <Icon name="search" size={25} color={'black'} />
       </TouchableOpacity>
     </View>

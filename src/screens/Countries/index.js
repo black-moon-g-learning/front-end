@@ -11,17 +11,19 @@ import {
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UsegetdataCountries from '../../hooks/UsegetdataCountries';
+import {useRoute} from '@react-navigation/native';
+import UseGetdata from '../../hooks/UseContinents';
 
-const Countries = ({route}) => {
+const Countries = () => {
+  const route = useRoute();
   const {item} = route.params;
-  const {data, isSuccess, isLoading} = UsegetdataCountries(item.id);
+  const API = `continents/${item.id}`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
+
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.topicsheader}>
-        <Text style={styles.name}>{item.name}</Text>
-      </View>
+      <View style={styles.topicsheader}></View>
       {isSuccess && (
         <View style={styles.flatlist}>
           <Header />
@@ -67,12 +69,13 @@ const styles = StyleSheet.create({
   },
   name: {
     width: '100%',
-    fontSize: 25,
+    fontSize: 23,
     color: '#323643',
-    paddingBottom: 15,
-    paddingLeft: 35,
+    // paddingBottom: 15,
+    paddingLeft: -15,
     fontFamily: 'Poppins-Bold',
-    marginTop: -15,
+    // marginTop: -15,
+    alignItems: 'center',
   },
   title: {
     fontSize: 23,
