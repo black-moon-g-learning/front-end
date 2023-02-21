@@ -2,7 +2,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import {Text, View} from 'react-native';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -19,14 +18,9 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import GameLevels from '../screens/G-Game/GameLevels';
 
-function Game() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Game</Text>
-    </View>
-  );
-}
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -111,7 +105,7 @@ function Bottomtab() {
       />
       <Tab.Screen
         name="Game"
-        component={Game}
+        component={ChooseCountry}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -186,6 +180,17 @@ export default function Navigation() {
         <Stack.Screen
           name="News"
           component={HYHBDetail}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: '#F2F2F2',
+            },
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="GameLevels"
+          component={GameLevels}
           options={{
             title: '',
             headerStyle: {
