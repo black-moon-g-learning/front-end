@@ -70,10 +70,9 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFFFFF',
     fontSize: 16,
-    lineHeight: 18,
     marginBottom: 5,
     fontFamily: 'Poppins-Bold',
-    lineHeight:25,
+    lineHeight: 25,
   },
   txt: {
     color: '#FFFFFF',
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',
-
   },
   img: {
     width: 150,
