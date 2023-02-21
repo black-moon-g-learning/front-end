@@ -4,7 +4,6 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 const TopicCard = ({item, navigation}) => {
   const handlePress = () => {
     navigation.navigate('listvideo', {item});
-    navigation.navigate('header', {item});
     navigation.navigate('videos', {item});
   };
   return (

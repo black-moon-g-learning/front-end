@@ -19,12 +19,8 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-// import Search from '../screens/Search';
-// import Cat from '../screens/hi';
 import {TitleContries} from '../components/TitleHeaderNavigate';
 import {TitleListVideos} from '../components/TitleHeaderNavigate';
-// import Player from '../screens/Search';
-// import TextVideos from '../TextVideos';
 import Player from '../screens/videooooo';
 
 function Game() {

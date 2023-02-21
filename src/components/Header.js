@@ -9,32 +9,18 @@ import Icon from 'react-native-vector-icons/Feather';
 import React, {useState} from 'react';
 import {useNavigationState} from '@react-navigation/native';
 import {useQueryClient} from 'react-query';
-import UseGetdata from '../hooks/UseContinents';
 import {useRoute} from '@react-navigation/native';
-const Header = () => {
-  const routes = useNavigationState(state => state.routes);
-  const currentRoute = routes[routes.length - 1].name;
-
+import {UseItems} from '../hooks/UseKey';
+export const GetKey = () => {
   const route = useRoute();
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-
-  const letsearch = async search => {
-    if (currentRoute === 'Country') {
-      console.log('ban dang o', currentRoute);
-    } else if (currentRoute === 'videos') {
-      const data = await Search(search);
-      setResults(data);
-    }
-  };
-  const Search = search => {
-    const {item} = route.params;
-    const API = `countries-topics/${item.id}/videos?s=${search}`;
-    const {data, isLoading, isSuccess} = UseGetdata(API);
-    return data.data;
-  };
-
-  console.log('dataaaa', results);
+  const {item} = route.params;
+};
+const Header = navigation => {
+  const queryClient = useQueryClient();
+  const routes = useNavigationState(state => state.routes);
+  // const currentRoute = routes[routes.length - 1].name;
+  // const [query, setQuery] = useState('');
+  const {items, addItem, removeItem} = UseItems();
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>
@@ -45,11 +31,11 @@ const Header = () => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchBar}>
         <TextInput
-          value={query}
-          onChangeText={setQuery}
+          value={items}
+          onChangeText={addItem}
           style={styles.input}
           placeholder="Search..."
-          onPress={letsearch(query)}
+          // onPress={letsearch(query)}
         />
         <Icon name="search" size={25} color={'black'} />
       </TouchableOpacity>

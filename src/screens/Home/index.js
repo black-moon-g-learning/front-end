@@ -11,7 +11,6 @@ import Header from '../../components/Header';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
 import UseGetdata from '../../hooks/UseContinents';
-
 const Home = ({navigation, props}) => {
   const API = `continents`;
   const {data, isLoading, isSuccess} = UseGetdata(API);

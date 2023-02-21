@@ -13,11 +13,20 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import {ListVideo} from '../../components/Videos/Listvideos';
 import UseGetdata from '../../hooks/UseContinents';
-
-const Videos = ({navigation, route}) => {
+import {UseItems} from '../../hooks/UseKey';
+import {useQueryClient} from 'react-query';
+const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
+  const search = route.params;
+  console.log('co text o day ko ', search.query);
   const API = `countries-topics/${item.id}/videos`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  const {items, addItem, removeItem} = UseItems();
+  const queryClient = useQueryClient();
+
+  const dataQR = queryClient.getQueryData('items');
+  console.log('log thử xemmm, t met r', dataQR);
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -58,9 +67,6 @@ const styles = StyleSheet.create({
   top: {
     paddingBottom: 20,
   },
-  // header: {
-  //   flexDirection: 'row',
-  // },
   name: {
     width: '100%',
     fontSize: 23,
