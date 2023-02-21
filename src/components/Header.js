@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   input: {
-    width: '75%',
+    width: '70%',
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#F4F1F1',
+    // backgroundColor: '#F4F1F1',
     paddingLeft: 10,
   },
   searchBar: {
