@@ -1,24 +1,24 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const NomarlLevel = ({item}) => {
+const HardLevel = ({level}) => {
   return (
-    <TouchableOpacity style={styles.container} key={item.id}>
-      <View style={styles.easyContainer}>
-        <Text style={styles.level}>{item.name}</Text>
+    <View style={styles.container} key={level.id}>
+      <TouchableOpacity style={styles.easyContainer}>
+        <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>
-          {item.description}
+          {level.description}
         </Text>
-      </View>
+      </TouchableOpacity>
       <Image
         style={styles.img}
-        source={require('../../assets/images/nomarl.png')}
+        source={require('../../assets/images/hard.png')}
       />
-    </TouchableOpacity>
+    </View>
   );
 };
 
-export default NomarlLevel;
+export default HardLevel;
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   easyContainer: {
     position: 'relative',
     width: '60%',
-    backgroundColor: '#5FAD41',
+    backgroundColor: '#2D936C',
     borderRadius: 15,
     margin: 10,
     padding: 10,

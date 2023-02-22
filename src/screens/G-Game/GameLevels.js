@@ -1,10 +1,11 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import UseGameLevels from '../../hooks/UseGameLevel';
-import EasyLevel from './easyLevel';
-import NomarlLevel from './nomarlLevel';
-import HardLevel from './hardLevel';
-const GameLevels = () => {
+import EasyLevel from '../../components/G-Game/easyLevel';
+import NomarlLevel from '../../components/G-Game/nomarlLevel';
+import HardLevel from '../../components/G-Game/hardLevel';
+const GameLevels = ({route}) => {
+  const {item} = route.params;
   const {data, isLoading, isSuccess} = UseGameLevels([]);
   return (
     <View style={styles.con}>
@@ -12,19 +13,19 @@ const GameLevels = () => {
       {isSuccess && (
         <>
           {data.data
-            .filter(item => item.id === 1)
-            .map(item => (
-              <EasyLevel item={item} key={item.id} />
+            .filter(level => level.id === 1)
+            .map(level => (
+              <EasyLevel level={level} key={item.id} />
             ))}
           {data.data
-            .filter(item => item.id === 2)
-            .map(item => (
-              <NomarlLevel item={item} key={item.id} />
+            .filter(level => level.id === 2)
+            .map(level => (
+              <NomarlLevel level={level} key={item.id} />
             ))}
           {data.data
-            .filter(item => item.id === 3)
-            .map(item => (
-              <HardLevel item={item} key={item.id} />
+            .filter(level => level.id === 3)
+            .map(level => (
+              <HardLevel level={level} key={item.id} />
             ))}
         </>
       )}

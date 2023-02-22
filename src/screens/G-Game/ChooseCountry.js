@@ -1,43 +1,56 @@
 import React from 'react';
 import {
-  Image,
+  ActivityIndicator,
+  FlatList,
   ImageBackground,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
-import Header from '../../components/Header';
+import {ErrorMessage} from '../../components/ErrorMessage';
+import UseListCountries from '../../hooks/UseListCountries';
+import GameHeader from '../../components/G-Game/GameHeader';
+import CountryCard from '../../components/G-Game/CountryCard';
+import UseOnChangePage from '../../hooks/UseOnChangePage';
+
 const ChooseCountry = () => {
+  const {pageId, NextPage} = UseOnChangePage();
+  const {data, isSuccess, isLoading} = UseListCountries(pageId);
+  const BtnViewMore = () => {
+    return (
+      <View style={styles.btnContainer}>
+        <TouchableOpacity style={styles.btn} onPress={NextPage}>
+          <Text style={styles.txtBtn}>View more</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../../assets/images/bgd.png')}
         resizeMode="cover"
         style={styles.image}>
-        <Text style={styles.title}>G-GAME</Text>
-        <Header />
-        <View style={styles.countryContainer}>
-          <ImageBackground
-            source={require('../../assets/images/bgdCountry.png')}
-            resizeMode="cover"
-            style={styles.imgbgd}>
-            <Text style={styles.countryName}>Viet Nam</Text>
-            <Image
-              style={styles.imgContry}
-              source={require('../../assets/images/country.png')}
+        {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
+
+        {isSuccess && (
+          <>
+            <GameHeader />
+            <BtnViewMore />
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              style={styles.flatlist}
+              ListEmptyComponent={ErrorMessage}
+              keyExtractor={item => item.id}
+              data={data.data}
+              renderItem={({item}) => {
+                return <CountryCard item={item} />;
+              }}
+              numColumns={2}
             />
-            <View style={styles.btnContainer}>
-              <TouchableOpacity style={styles.btn}>
-                <Text style={styles.txtBtn}>Play</Text>
-              </TouchableOpacity>
-              <View style={styles.percentDisplay}>
-                <View style={styles.percent} />
-                <Text style={styles.txt}>60%</Text>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
+          </>
+        )}
       </ImageBackground>
     </View>
   );
@@ -52,72 +65,24 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
-  title: {
-    color: '#FFFFFF',
-    fontFamily: 'Poppins-Bold',
-    fontSize: 30,
-    lineHeight: 20,
-    fontWeight: '700',
-    textAlign: 'center',
-    padding: 30,
-  },
-  countryContainer: {
-    margin: 10,
-    width: '45%',
-  },
-  imgbgd: {
-    width: 197,
-    height: 211,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  countryName: {
-    color: '#000000',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 15,
-    paddingTop: 10,
-  },
-  imgContry: {
-    alignItems: 'center',
+  btnContainer: {
+    alignItems: 'flex-end',
+    padding: 10,
+    marginRight: 10,
   },
   btn: {
-    width: 65,
-    height: 30,
     backgroundColor: '#5FAD41',
+    width: 110,
+    height: 40,
     borderRadius: 10,
-    marginBottom: 40,
-    marginLeft: 10,
   },
   txtBtn: {
-    color: '#FFFFFF',
+    color: '#FCFCFF',
     fontSize: 16,
-    fontWeight: '700',
-    lineHeight: 15,
+    fontWeight: '600',
+    lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
-    padding: 7,
-  },
-  percent: {
-    width: 30,
-    height: 13,
-    backgroundColor: '#5FAD41',
-    borderRadius: 10,
-  },
-  txt: {
-    color: '#000000',
-    fontSize: 14,
-    fontWeight: '500',
-    lineHeight: 10,
-    fontFamily: 'Poppins-Bold',
-    padding: 7,
-  },
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  percentDisplay: {
-    flexDirection: 'row',
     padding: 10,
   },
 });

@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import HYHBCard from '../../components/HYHBpage/HYHBCard';
 const HYHBDetail = ({navigation, route}) => {
   const {item} = route.params;
