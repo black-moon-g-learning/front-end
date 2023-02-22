@@ -2,7 +2,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import {Text, View} from 'react-native';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -19,14 +18,12 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import {TitleContries} from '../components/TitleHeaderNavigate';
+import {TitleListVideos} from '../components/TitleHeaderNavigate';
+import Player from '../screens/videooooo';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import GameLevels from '../screens/G-Game/GameLevels';
 
-function Game() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Game</Text>
-    </View>
-  );
-}
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -41,7 +38,7 @@ function HomeStackScreen() {
         name="Country"
         component={Countries}
         options={{
-          title: '',
+          headerTitle: props => <TitleContries {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -65,7 +62,7 @@ function HomeStackScreen() {
         name="videos"
         component={Videos}
         options={{
-          title: '',
+          headerTitle: props => <TitleListVideos {...props} />,
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
@@ -111,7 +108,7 @@ function Bottomtab() {
       />
       <Tab.Screen
         name="Game"
-        component={Game}
+        component={ChooseCountry}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -194,12 +191,25 @@ export default function Navigation() {
             headerShadowVisible: false,
           }}
         />
+        <Stack.Screen
+          name="GameLevels"
+          component={GameLevels}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: '#F2F2F2',
+            },
+            headerShadowVisible: false,
+          }}
+        />
         <HomeStack.Screen name="logout" component={Logout} />
         <Stack.Screen
           name="Register"
           component={Register}
           options={{headerShown: false}}
         />
+        <HomeStack.Screen name="title" component={TitleContries} />
+        <HomeStack.Screen name="listvideo" component={TitleListVideos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

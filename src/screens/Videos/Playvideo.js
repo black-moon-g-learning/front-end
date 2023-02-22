@@ -14,6 +14,7 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
+  console.log(item);
   const urlAPI = item.url;
   const splitUrl = urlAPI.split(/[=,&]/).slice(1, 2);
   return (

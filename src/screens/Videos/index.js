@@ -11,18 +11,24 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UsegetdataVideos from '../../hooks/UsegetdataVideos';
 import {ListVideo} from '../../components/Videos/Listvideos';
-
-const Videos = ({navigation, route}) => {
+import UseGetdata from '../../hooks/UseContinents';
+import {UseItems} from '../../hooks/UseKey';
+import {useQueryClient} from 'react-query';
+const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
-  const {data, isSuccess, isLoading} = UsegetdataVideos(item.id);
+  const search = route.params;
+  console.log('co text o day ko ', search.query);
+  const API = `countries-topics/${item.id}/videos`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
+  const {items, addItem, removeItem} = UseItems();
+  const queryClient = useQueryClient();
+
+  const dataQR = queryClient.getQueryData('items');
+  console.log('log thử xemmm, t met r', dataQR);
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.name}>{item.name}</Text>
-      </View>
-
       <View style={styles.top}>
         <Header />
       </View>
@@ -61,9 +67,6 @@ const styles = StyleSheet.create({
   top: {
     paddingBottom: 20,
   },
-  // header: {
-  //   flexDirection: 'row',
-  // },
   name: {
     width: '100%',
     fontSize: 23,

@@ -2,10 +2,12 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import UseNews from '../../hooks/UseNews';
+// import UseNews from '../../hooks/UseNews';
+import UseGetdata from '../../hooks/UseContinents';
 
 const OtherCard = ({country, id}) => {
-  const {data} = UseNews([]);
+  const API = `information`;
+  const {data} = UseGetdata(API);
   const navigation = useNavigation();
   return (
     <View>

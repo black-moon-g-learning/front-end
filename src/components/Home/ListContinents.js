@@ -4,12 +4,12 @@ import {useNavigation} from '@react-navigation/native';
 import Learnpercent from './Learnpercent';
 export const ListContinents = ({item}) => {
   const navigation = useNavigation();
+  const handlePress = () => {
+    navigation.navigate('title', {item});
+    navigation.navigate('Country', {item});
+  };
   return (
-    <TouchableOpacity
-      style={styles.flatItem}
-      onPress={() => {
-        navigation.navigate('Country', {item});
-      }}>
+    <TouchableOpacity style={styles.flatItem} onPress={handlePress}>
       <View style={styles.item}>
         <Image style={styles.img} source={{uri: item.image}} />
         <View>
@@ -19,25 +19,12 @@ export const ListContinents = ({item}) => {
           </Text>
         </View>
       </View>
-      <Learnpercent />
+      <View style={styles.learnpercent}>
+        <Learnpercent />
+      </View>
     </TouchableOpacity>
   );
 };
-
-// export default ListContinents;
-
-export const Hi = ({item}) => {
-  const navigation = useNavigation();
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('title', {item});
-      }}
-    />
-  );
-};
-
-// export default Hi;
 
 const styles = StyleSheet.create({
   flatItem: {
@@ -60,12 +47,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+  learnpercent: {paddingRight: 10},
   img: {
-    margin: 20,
+    marginLeft: 10,
+    marginRight: 13,
     width: 100,
     height: 100,
-    paddingRight: 10,
     borderRadius: 20,
+    borderWidth: 1,
   },
   ContinentsName: {
     fontSize: 20,
@@ -77,5 +66,6 @@ const styles = StyleSheet.create({
     color: '#323643',
     paddingTop: 5,
     fontFamily: 'Poppins-Regular',
+    width: '100%',
   },
 });
