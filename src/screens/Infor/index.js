@@ -1,19 +1,25 @@
+import {Continents_URL} from '@env';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
+  Modal,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import useProfile from '../../hooks/usegetProfile';
-// import useProfile from '../../hooks/usegetProfile';
+import ImagePicker from 'react-native-image-crop-picker';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import axiosRequest from '../../axios';
 import Logout from '../../components/Logout';
+import useProfile from '../../hooks/usegetProfile';
 
 const Information = () => {
   const {data, isLoading, isSuccess} = useProfile([]);
-  console.log('profile =>', isLoading);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [isImage, setIsImage] = useState();
   const [Name, setName] = useState();
@@ -21,6 +27,48 @@ const Information = () => {
   const [Email, setEmail] = useState();
   const [Phone, setPhone] = useState();
   const [Gender, setGender] = useState();
+
+  const handelUpdate = () => {
+    axiosRequest
+      .put(`${Continents_URL}/profile`, {
+        first_name: '',
+        age: '',
+        email: '',
+        phone: '',
+        gender: '',
+      })
+      .then(response => {
+        setName(response.first_name);
+        setAge(response.age);
+        setEmail(response.email);
+        setPhone(response.phone);
+        setGender(response.gender);
+      });
+  };
+
+  const handleImage = async () => {
+    try {
+      const imageResult = await ImagePicker.openPicker({
+        width: 300,
+        height: 400,
+        cropping: true,
+      });
+
+      if (imageResult) {
+        let localUri = imageResult.path;
+        let filename = localUri.split('/').pop();
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : 'image';
+        axiosRequest
+          .put(`${Continents_URL}/profile`, {
+            image: {uri: localUri, name: filename, type},
+          })
+          .then(response => {
+            setIsImage(response.image);
+          });
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
     if (data) {
@@ -46,54 +94,133 @@ const Information = () => {
                 uri: isImage,
               }}
             />
+            <TouchableOpacity onPress={handleImage} style={styles.icon_view}>
+              <Icon style={styles.icon} name="pencil" size={20} />
+            </TouchableOpacity>
+
             <Text style={styles.name_profile}>{data.first_name}</Text>
           </View>
           <View style={styles.form_profile}>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Name</Text>
+              <Text style={styles.title_form_profile}>Name :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>{Name}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Age</Text>
+              <Text style={styles.title_form_profile}>Age :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>{Age}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Email</Text>
+              <Text style={styles.title_form_profile}>Email :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_email_profile}>{Email}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Phone</Text>
+              <Text style={styles.title_form_profile}>Phone :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>{Phone}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Country</Text>
+              <Text style={styles.title_form_profile}>Country :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>Viet Nam</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Gender</Text>
+              <Text style={styles.title_form_profile}>Gender :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>{Gender}</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.btn_infor}>
-            <TouchableOpacity style={styles.btn_click}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}>
+            <View style={{backgroundColor: '#00000099', flex: 1}}>
+              <View style={styles.modalView}>
+                <View style={styles.row_form_profile}>
+                  <Text style={styles.title_form_profile}>Name :</Text>
+                  <TouchableOpacity style={styles.infor_form_profile}>
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Name}
+                      onChangeText={setName}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.row_form_profile}>
+                  <Text style={styles.title_form_profile}>Age :</Text>
+                  <TouchableOpacity style={styles.infor_form_profile}>
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Age}
+                      onChangeText={setAge}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.row_form_profile}>
+                  <Text style={styles.title_form_profile}>Email :</Text>
+                  <TouchableOpacity style={styles.infor_form_profile}>
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Email}
+                      onChangeText={setEmail}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.row_form_profile}>
+                  <Text style={styles.title_form_profile}>Phone :</Text>
+                  <TouchableOpacity style={styles.infor_form_profile}>
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Phone}
+                      onChangeText={setPhone}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.row_form_profile}>
+                  <Text style={styles.title_form_profile}>Gender :</Text>
+                  <TouchableOpacity style={styles.infor_form_profile}>
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Gender}
+                      onChangeText={setGender}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.btn_modal_update}>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(!modalVisible)}>
+                    <Text style={styles.textStyle}>Cancel</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() =>
+                      handelUpdate(!data.id) || setModalVisible(!modalVisible)
+                    }>
+                    <Text style={styles.textStyle}>Save</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </Modal>
+          <Pressable style={styles.btn_infor}>
+            <TouchableOpacity
+              style={styles.btn_click}
+              onPress={() => setModalVisible(true)}>
               <Text style={styles.text_btn}>EDIT</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn_click}>
-              <Text style={styles.text_btn}>SAVE</Text>
-            </TouchableOpacity>
-          </View>
+          </Pressable>
           <View style={styles.package}>
             <Text style={styles.title_package}>Package: </Text>
             <TouchableOpacity style={styles.infor_pakage}>
@@ -120,6 +247,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     borderRadius: 10,
+    marginTop: '2%',
   },
   image_profile: {
     width: 70,
@@ -154,21 +282,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   infor_form_profile: {
-    borderWidth: 1,
     width: '82%',
     borderRadius: 10,
   },
   information_profile: {
-    paddingTop: '3%',
-    paddingLeft: 5,
-    fontSize: 14,
+    textAlign: 'center',
+    paddingTop: '2%',
+    fontSize: 17,
     fontFamily: 'Poppins-Medium',
   },
   information_email_profile: {
     paddingTop: '3%',
-    paddingLeft: 1,
     fontSize: 11,
     fontFamily: 'Poppins-Medium',
+    textAlign: 'center',
   },
   btn_infor: {
     flexDirection: 'row',
@@ -180,7 +307,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 50,
     backgroundColor: '#5FAD41',
   },
   text_btn: {
@@ -208,5 +334,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 30,
     backgroundColor: '#5FAD41',
+  },
+  icon_view: {
+    position: 'absolute',
+    marginLeft: 70,
+    marginTop: 50,
+  },
+  icon: {
+    color: 'green',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  btn_modal_update: {
+    flexDirection: 'row',
+  },
+  buttonClose: {
+    backgroundColor: 'red',
+    width: 100,
+    margin: 20,
   },
 });
