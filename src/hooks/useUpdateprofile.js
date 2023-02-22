@@ -3,18 +3,25 @@
 // import {useState} from 'react';
 // import {Keyboard} from 'react-native';
 // import ImagePicker from 'react-native-image-crop-picker';
-// import {useMutation} from 'react-query';
+// import {useMutation, useQuery} from 'react-query';
+// import axiosRequest from '../axios';
 // import {
 //   SuccessMessage,
 //   ValidatetionMessage,
 // } from '../components/Contribution/ValidatetionMess';
-// import useProfile from './usegetProfile';
+
+// const getProfile = async () => {
+//   const {data} = await axiosRequest.get(`${Continents_URL}/profile`);
+//   return data;
+// };
+// export const useProfile = () => useQuery('profile', getProfile);
 
 // const useUpdateProfile = () => {
-//   const {data} = useProfile([]);
+//   const data = useProfile();
+//   console.log('dta=> ', data);
 
 //   const [profile, onChangeProfile] = useState({
-//     name: data.name,
+//     name: data.first_name,
 //     age: data.age,
 //     email: data.email,
 //     img: {
@@ -25,6 +32,7 @@
 //     phone: data.phone,
 //     gender: data.gender,
 //   });
+
 //   const ValidateContribution = () => {
 //     Keyboard.dismiss();
 //     let isValid = true;
@@ -56,6 +64,7 @@
 //       });
 //     }
 //   };
+
 //   const handleImage = async () => {
 //     try {
 //       const imageResult = await ImagePicker.openPicker({
@@ -99,6 +108,7 @@
 //       },
 //     },
 //   );
+
 //   return {
 //     profile,
 //     onChangeProfile,

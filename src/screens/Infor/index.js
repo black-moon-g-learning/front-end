@@ -1,3 +1,4 @@
+import {Continents_URL} from '@env';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -9,16 +10,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import useProfile from '../../hooks/usegetProfile';
-// import useProfile from '../../hooks/usegetProfile';
+import ImagePicker from 'react-native-image-crop-picker';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import axiosRequest from '../../axios';
 import Logout from '../../components/Logout';
+import useProfile from '../../hooks/usegetProfile';
 
 const Information = () => {
   const {data, isLoading, isSuccess} = useProfile([]);
-  // console.log('profile =>', isLoading);
+  console.log('profile =>', data);
   const [modalVisible, setModalVisible] = useState(false);
-  // const {handleImage} = useUpdateProfile();
+  // const {handleImage} = useCreateContribution();
 
   const [isImage, setIsImage] = useState();
   const [Name, setName] = useState();
@@ -26,6 +29,45 @@ const Information = () => {
   const [Email, setEmail] = useState();
   const [Phone, setPhone] = useState();
   const [Gender, setGender] = useState();
+
+  const handelUpdate = () => {
+    axiosRequest
+      .put(`${Continents_URL}/profile`, {
+        first_name: '',
+        age: '',
+        email: '',
+        phone: '',
+        gender: '',
+      })
+      .then(response => {
+        setName(response.first_name);
+        setAge(response.age);
+        setEmail(response.email);
+        setPhone(response.phone);
+        setGender(response.gender);
+      });
+  };
+
+  const handleImage = async () => {
+    try {
+      const imageResult = await ImagePicker.openPicker({
+        width: 300,
+        height: 400,
+        cropping: true,
+      });
+
+      if (imageResult) {
+        let localUri = imageResult.path;
+        let filename = localUri.split('/').pop();
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : 'image';
+        setIsImage({
+          ...isImage,
+          img: {uri: localUri, name: filename, type},
+        });
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
     if (data) {
@@ -51,9 +93,9 @@ const Information = () => {
                 uri: isImage,
               }}
             />
-            {/* <TouchableOpacity onPress={handleImage} style={styles.icon_view}>
+            <TouchableOpacity onPress={handleImage} style={styles.icon_view}>
               <Icon style={styles.icon} name="pencil" size={20} />
-            </TouchableOpacity> */}
+            </TouchableOpacity>
 
             <Text style={styles.name_profile}>{data.first_name}</Text>
           </View>
@@ -110,13 +152,18 @@ const Information = () => {
                     <TextInput
                       style={styles.information_profile}
                       value={Name}
+                      onChangeText={setName}
                     />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.row_form_profile}>
                   <Text style={styles.title_form_profile}>Age :</Text>
                   <TouchableOpacity style={styles.infor_form_profile}>
-                    <TextInput style={styles.information_profile} value={Age} />
+                    <TextInput
+                      style={styles.information_profile}
+                      value={Age}
+                      onChangeText={setAge}
+                    />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.row_form_profile}>
@@ -125,6 +172,7 @@ const Information = () => {
                     <TextInput
                       style={styles.information_profile}
                       value={Email}
+                      onChangeText={setEmail}
                     />
                   </TouchableOpacity>
                 </View>
@@ -134,6 +182,7 @@ const Information = () => {
                     <TextInput
                       style={styles.information_profile}
                       value={Phone}
+                      onChangeText={setPhone}
                     />
                   </TouchableOpacity>
                 </View>
@@ -143,6 +192,7 @@ const Information = () => {
                     <TextInput
                       style={styles.information_profile}
                       value={Gender}
+                      onChangeText={setGender}
                     />
                   </TouchableOpacity>
                 </View>
@@ -154,7 +204,7 @@ const Information = () => {
                   </Pressable>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
+                    onPress={() => handelUpdate(!data.id)}>
                     <Text style={styles.textStyle}>Save</Text>
                   </Pressable>
                 </View>
@@ -194,8 +244,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     borderRadius: 10,
-    marginTop: '1%',
-    elevation: 6,
+    marginTop: '2%',
   },
   image_profile: {
     width: 70,
