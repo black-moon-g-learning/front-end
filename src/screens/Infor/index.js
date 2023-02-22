@@ -19,9 +19,7 @@ import useProfile from '../../hooks/usegetProfile';
 
 const Information = () => {
   const {data, isLoading, isSuccess} = useProfile([]);
-  console.log('profile =>', data);
   const [modalVisible, setModalVisible] = useState(false);
-  // const {handleImage} = useCreateContribution();
 
   const [isImage, setIsImage] = useState();
   const [Name, setName] = useState();
@@ -61,10 +59,13 @@ const Information = () => {
         let filename = localUri.split('/').pop();
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `image/${match[1]}` : 'image';
-        setIsImage({
-          ...isImage,
-          img: {uri: localUri, name: filename, type},
-        });
+        axiosRequest
+          .put(`${Continents_URL}/profile`, {
+            image: {uri: localUri, name: filename, type},
+          })
+          .then(response => {
+            setIsImage(response.image);
+          });
       }
     } catch (error) {}
   };
@@ -204,7 +205,9 @@ const Information = () => {
                   </Pressable>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
-                    onPress={() => handelUpdate(!data.id)}>
+                    onPress={() =>
+                      handelUpdate(!data.id) || setModalVisible(!modalVisible)
+                    }>
                     <Text style={styles.textStyle}>Save</Text>
                   </Pressable>
                 </View>
