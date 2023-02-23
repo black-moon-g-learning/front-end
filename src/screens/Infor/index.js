@@ -17,8 +17,9 @@ import axiosRequest from '../../axios';
 import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
 
-const Information = () => {
+const Information = ({navigation}) => {
   const {data, isLoading, isSuccess} = useProfile([]);
+  console.log('data => ', data);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [isImage, setIsImage] = useState();
@@ -31,19 +32,16 @@ const Information = () => {
   const handelUpdate = () => {
     axiosRequest
       .put(`${Continents_URL}/profile`, {
-        first_name: '',
-        age: '',
-        email: '',
-        phone: '',
-        gender: '',
+        firstName: Name,
+        age: Age,
+        email: Email,
+        phone: Phone,
+        gender: Gender,
       })
-      .then(response => {
-        setName(response.first_name);
-        setAge(response.age);
-        setEmail(response.email);
-        setPhone(response.phone);
-        setGender(response.gender);
-      });
+      .then(() => {
+        console.log('thanh cong');
+      })
+      .catch(error => console.log('error', error.response.data));
   };
 
   const handleImage = async () => {
@@ -59,22 +57,34 @@ const Information = () => {
         let filename = localUri.split('/').pop();
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `image/${match[1]}` : 'image';
-        axiosRequest
-          .put(`${Continents_URL}/profile`, {
-            image: {uri: localUri, name: filename, type},
-          })
+        let formData = new FormData();
+        formData.append('image', {
+          uri: localUri,
+          name: filename,
+          type,
+        });
+        formData.append('_method', 'patch');
+        console.log('url =>', formData);
+
+        await axiosRequest
+          .post(`${Continents_URL}/profile`, formData)
           .then(response => {
-            setIsImage(response.image);
+            console.log('thanhcong', response);
+          })
+          .catch(error => {
+            console.log('error', error.response);
           });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log('error', error.message);
+    }
   };
 
   useEffect(() => {
     if (data) {
       setIsImage(data.image);
       setAge(data.age);
-      setName(data.first_name);
+      setName(data.firstName);
       setEmail(data.email);
       setPhone(data.phone);
       setGender(data.gender);
@@ -98,7 +108,7 @@ const Information = () => {
               <Icon style={styles.icon} name="pencil" size={20} />
             </TouchableOpacity>
 
-            <Text style={styles.name_profile}>{data.first_name}</Text>
+            <Text style={styles.name_profile}>{Name}</Text>
           </View>
           <View style={styles.form_profile}>
             <View style={styles.row_form_profile}>
@@ -162,7 +172,7 @@ const Information = () => {
                   <TouchableOpacity style={styles.infor_form_profile}>
                     <TextInput
                       style={styles.information_profile}
-                      value={Age}
+                      value={String(Age)}
                       onChangeText={setAge}
                     />
                   </TouchableOpacity>
@@ -182,7 +192,7 @@ const Information = () => {
                   <TouchableOpacity style={styles.infor_form_profile}>
                     <TextInput
                       style={styles.information_profile}
-                      value={Phone}
+                      value={String(Phone)}
                       onChangeText={setPhone}
                     />
                   </TouchableOpacity>
@@ -226,7 +236,9 @@ const Information = () => {
             <TouchableOpacity style={styles.infor_pakage}>
               <Text style={styles.text_package}>72 days 16 hours</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn_click_package}>
+            <TouchableOpacity
+              style={styles.btn_click_package}
+              onPress={() => navigation.navigate('payment')}>
               <Text style={styles.text_btn}>Buy more</Text>
             </TouchableOpacity>
           </View>
@@ -282,20 +294,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   infor_form_profile: {
-    width: '82%',
+    width: '90%',
     borderRadius: 10,
   },
   information_profile: {
     textAlign: 'center',
-    paddingTop: '2%',
+    paddingTop: '3%',
     fontSize: 17,
     fontFamily: 'Poppins-Medium',
   },
   information_email_profile: {
     paddingTop: '3%',
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'Poppins-Medium',
     textAlign: 'center',
+    marginLeft: -20,
   },
   btn_infor: {
     flexDirection: 'row',
@@ -337,11 +350,11 @@ const styles = StyleSheet.create({
   },
   icon_view: {
     position: 'absolute',
-    marginLeft: 70,
-    marginTop: 50,
+    marginLeft: '21%',
+    marginTop: '15%',
   },
   icon: {
-    color: 'green',
+    color: 'black',
   },
   modalView: {
     margin: 20,
