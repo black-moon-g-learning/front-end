@@ -23,7 +23,7 @@ import {TitleListVideos} from '../components/TitleHeaderNavigate';
 import Player from '../screens/videooooo';
 import ChooseCountry from '../screens/G-Game/ChooseCountry';
 import GameLevels from '../screens/G-Game/GameLevels';
-
+import LevelHeader from '../components/G-Game/LevelHeader';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -195,7 +195,7 @@ export default function Navigation() {
           name="GameLevels"
           component={GameLevels}
           options={{
-            title: '',
+            headerTitle: props => <LevelHeader {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },

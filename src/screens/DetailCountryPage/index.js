@@ -14,6 +14,7 @@ import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import UseGetdata from '../../hooks/UseContinents';
+
 const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
   const API = `countries/${item.id}/topics`;

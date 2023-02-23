@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+import React from 'react';
 export const ListVideo = ({navigation, item, videos}) => {
   return (
     <TouchableOpacity

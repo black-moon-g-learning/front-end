@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const HardLevel = ({level}) => {
   return (
-    <View style={styles.container} key={level.id}>
+    <View style={styles.container}>
       <TouchableOpacity style={styles.easyContainer}>
         <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>

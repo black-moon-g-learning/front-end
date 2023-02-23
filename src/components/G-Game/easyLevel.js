@@ -3,7 +3,7 @@ import React from 'react';
 
 const EasyLevel = ({level}) => {
   return (
-    <TouchableOpacity style={styles.container} key={level.id}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.easyContainer}>
         <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>
