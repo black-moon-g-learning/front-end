@@ -13,7 +13,6 @@ axiosRequest.interceptors.request.use(
     const changeAccessToken = JSON.parse(accessToken);
     if (accessToken) {
       config.headers.Authorization = `Bearer ${changeAccessToken}`;
-      config.headers['Content-Type'] = 'multipart/form-data';
     }
     return config;
   },
