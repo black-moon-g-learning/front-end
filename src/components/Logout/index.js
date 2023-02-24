@@ -46,12 +46,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: '5%',
   },
   btn_logout: {
     flexDirection: 'row',
     width: '98%',
     height: 50,
-    borderBottomWidth: 1,
+    borderTopWidth: 0.5,
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },

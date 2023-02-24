@@ -2,6 +2,7 @@ import {Continents_URL} from '@env';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   Modal,
   StyleSheet,
@@ -18,8 +19,7 @@ import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
 
 const Information = ({navigation}) => {
-  const {data, isLoading, isSuccess} = useProfile([]);
-  console.log('data => ', data);
+  const {data, isLoading, isSuccess, refetch} = useProfile([]);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [isImage, setIsImage] = useState();
@@ -38,10 +38,26 @@ const Information = ({navigation}) => {
         phone: Phone,
         gender: Gender,
       })
-      .then(() => {
-        console.log('thanh cong');
-      })
-      .catch(error => console.log('error', error.response.data));
+      .then(() =>
+        Alert.alert('Notification:', 'Update Successful your profile', [
+          {
+            text: 'OK',
+            onPress: () => {
+              console.log('Successful');
+            },
+          },
+        ]),
+      )
+      .catch(error =>
+        Alert.alert('Notification', 'Upload NotSuccessful', [
+          {
+            text: 'OK',
+            onPress: () => {
+              console.log(error.response.data);
+            },
+          },
+        ]),
+      );
   };
 
   const handleImage = async () => {
@@ -64,30 +80,54 @@ const Information = ({navigation}) => {
           type,
         });
         formData.append('_method', 'patch');
-        console.log('url =>', formData);
-
         await axiosRequest
-          .post(`${Continents_URL}/profile`, formData)
-          .then(response => {
-            console.log('thanhcong', response);
+          .post(`${Continents_URL}/profile`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
           })
+          .then(() =>
+            Alert.alert('Notification', 'Upload Successful avatar', [
+              {
+                text: 'OK',
+                onPress: () => {
+                  refetch();
+                  console.log('successful');
+                },
+              },
+            ]),
+          )
           .catch(error => {
-            console.log('error', error.response);
+            Alert.alert('Notification', 'Upload NotSuccessful avatar', [
+              {
+                text: 'OK',
+                onPress: () => {
+                  console.log(error.response);
+                },
+              },
+            ]);
           });
       }
     } catch (error) {
-      console.log('error', error.message);
+      Alert.alert('Notification', 'Upload NotSuccessful avatar', [
+        {
+          text: 'K',
+          onPress: () => {
+            console.log(error.message);
+          },
+        },
+      ]);
     }
   };
 
   useEffect(() => {
     if (data) {
-      setIsImage(data.image);
-      setAge(data.age);
       setName(data.firstName);
+      setAge(data.age);
       setEmail(data.email);
       setPhone(data.phone);
       setGender(data.gender);
+      setIsImage(data.image);
     }
   }, [data]);
 
@@ -104,7 +144,20 @@ const Information = ({navigation}) => {
                 uri: isImage,
               }}
             />
-            <TouchableOpacity onPress={handleImage} style={styles.icon_view}>
+            <TouchableOpacity
+              onPress={() =>
+                Alert.alert('Notification', 'Are you change avatar', [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                  },
+                  {
+                    text: 'continute',
+                    onPress: () => handleImage(),
+                  },
+                ])
+              }
+              style={styles.icon_view}>
               <Icon style={styles.icon} name="pencil" size={20} />
             </TouchableOpacity>
 
@@ -126,7 +179,9 @@ const Information = ({navigation}) => {
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Email :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_email_profile}>{Email}</Text>
+                <Text style={styles.information_profile} numberOfLines={1}>
+                  {Email}
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.row_form_profile}>
@@ -157,51 +212,51 @@ const Information = ({navigation}) => {
             }}>
             <View style={{backgroundColor: '#00000099', flex: 1}}>
               <View style={styles.modalView}>
-                <View style={styles.row_form_profile}>
+                <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Name :</Text>
-                  <TouchableOpacity style={styles.infor_form_profile}>
+                  <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
-                      style={styles.information_profile}
+                      style={styles.information_modal_profile}
                       value={Name}
                       onChangeText={setName}
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={styles.row_form_profile}>
+                <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Age :</Text>
-                  <TouchableOpacity style={styles.infor_form_profile}>
+                  <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
-                      style={styles.information_profile}
+                      style={styles.information_modal_profile}
                       value={String(Age)}
                       onChangeText={setAge}
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={styles.row_form_profile}>
+                <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Email :</Text>
-                  <TouchableOpacity style={styles.infor_form_profile}>
+                  <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
-                      style={styles.information_profile}
-                      value={Email}
+                      style={styles.information_modal_profile}
+                      value={String(Email)}
                       onChangeText={setEmail}
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={styles.row_form_profile}>
+                <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Phone :</Text>
-                  <TouchableOpacity style={styles.infor_form_profile}>
+                  <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
-                      style={styles.information_profile}
+                      style={styles.information_modal_profile}
                       value={String(Phone)}
                       onChangeText={setPhone}
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={styles.row_form_profile}>
+                <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Gender :</Text>
-                  <TouchableOpacity style={styles.infor_form_profile}>
+                  <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
-                      style={styles.information_profile}
+                      style={styles.information_modal_profile}
                       value={Gender}
                       onChangeText={setGender}
                     />
@@ -279,36 +334,38 @@ const styles = StyleSheet.create({
   },
   form_profile: {
     padding: 10,
-    marginLeft: 10,
+    marginLeft: 20,
   },
   row_form_profile: {
     flexDirection: 'row',
     padding: 10,
-    height: 60,
+    height: 50,
     justifyContent: 'center',
   },
   title_form_profile: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 17,
-    width: 80,
+    width: '30%',
     alignSelf: 'center',
   },
   infor_form_profile: {
-    width: '90%',
+    width: '70%',
     borderRadius: 10,
+    alignItems: 'center',
   },
   information_profile: {
-    textAlign: 'center',
     paddingTop: '3%',
     fontSize: 17,
     fontFamily: 'Poppins-Medium',
+    marginRight: 10,
   },
-  information_email_profile: {
-    paddingTop: '3%',
-    fontSize: 12,
-    fontFamily: 'Poppins-Medium',
+  information_modal_profile: {
+    borderWidth: 1,
+    borderRadius: 20,
     textAlign: 'center',
-    marginLeft: -20,
+  },
+  infor_formmodal_profile: {
+    width: '80%',
   },
   btn_infor: {
     flexDirection: 'row',
@@ -333,6 +390,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     alignSelf: 'center',
+    marginTop: 40,
   },
   title_package: {
     fontFamily: 'Poppins-Bold',
@@ -356,6 +414,13 @@ const styles = StyleSheet.create({
   icon: {
     color: 'black',
   },
+  row_formmodal_profile: {
+    flexDirection: 'row',
+    padding: 10,
+    height: 60,
+    justifyContent: 'center',
+  },
+
   modalView: {
     margin: 20,
     backgroundColor: 'white',
@@ -388,7 +453,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonClose: {
-    backgroundColor: 'red',
+    backgroundColor: 'green',
     width: 100,
     margin: 20,
   },
