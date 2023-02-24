@@ -8,8 +8,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {useQueryClient} from 'react-query';
-const Header = navigation => {
+const Header = () => {
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>

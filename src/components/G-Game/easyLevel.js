@@ -1,24 +1,24 @@
-import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
 
-const HardLevel = ({item}) => {
+const EasyLevel = ({level}) => {
   return (
-    <View style={styles.container} key={item.id}>
-      <TouchableOpacity style={styles.easyContainer}>
-        <Text style={styles.level}>{item.name}</Text>
+    <TouchableOpacity style={styles.container} key={level.id}>
+      <View style={styles.easyContainer}>
+        <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>
-          {item.description}
+          {level.description}
         </Text>
-      </TouchableOpacity>
+      </View>
       <Image
         style={styles.img}
-        source={require('../../assets/images/hard.png')}
+        source={require('../../assets/images/easy.png')}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
-export default HardLevel;
+export default EasyLevel;
 
 const styles = StyleSheet.create({
   container: {
@@ -29,12 +29,11 @@ const styles = StyleSheet.create({
   easyContainer: {
     position: 'relative',
     width: '60%',
-    backgroundColor: '#2D936C',
+    backgroundColor: '#BFAE48',
     borderRadius: 15,
     margin: 10,
     padding: 10,
     left: 30,
-    height: 189,
   },
   level: {
     color: '#FFFFFF',
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '700',
     fontFamily: 'Poppins-Bold',
-    padding: 10,
+    paddingTop: 5,
   },
   desc: {
     color: '#000000',
@@ -52,12 +51,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 20,
     textAlign: 'justify',
-    padding: 10,
+    padding: 20,
   },
   img: {
     position: 'absolute',
     alignItems: 'flex-start',
-    left: 15,
-    bottom: -10,
+    left: 30,
+    bottom: -15,
   },
 });
