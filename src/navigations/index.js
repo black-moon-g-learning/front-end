@@ -7,22 +7,23 @@ import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
+import {
+  TitleContries,
+  TitleListVideos,
+} from '../components/TitleHeaderNavigate';
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import GameLevels from '../screens/G-Game/GameLevels';
+import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-import {TitleContries} from '../components/TitleHeaderNavigate';
-import {TitleListVideos} from '../components/TitleHeaderNavigate';
-import Player from '../screens/videooooo';
-import ChooseCountry from '../screens/G-Game/ChooseCountry';
-import GameLevels from '../screens/G-Game/GameLevels';
 
 const HomeStack = createNativeStackNavigator();
 
