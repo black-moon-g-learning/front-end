@@ -14,15 +14,14 @@ import {
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
+import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-// import ChooseCountry from '../screens/G-Game/ChooseCountry';
 import ChooseCountry from '../screens/G-Game/ChooseCountry';
 import GameLevels from '../screens/G-Game/GameLevels';
 import Payment from '../screens/Payment';

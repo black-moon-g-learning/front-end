@@ -1,16 +1,9 @@
-import React, {createRef, useState, useEffect} from 'react';
-import Video from 'react-native-video';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  StatusBar,
-  Image,
-} from 'react-native';
-import ProgressBar from './progressBar';
-import PlayerControls from './playerControls';
+import React, {createRef, useEffect, useState} from 'react';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import Video from 'react-native-video';
+import PlayerControls from './playerControls';
+import ProgressBar from './progressBar';
 
 import Orientation from 'react-native-orientation-locker';
 
