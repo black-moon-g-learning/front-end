@@ -293,7 +293,7 @@ const Information = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn_click_package}
-              onPress={() => navigation.navigate('payment')}>
+              onPress={() => navigation.navigate('services')}>
               <Text style={styles.text_btn}>Buy more</Text>
             </TouchableOpacity>
           </View>

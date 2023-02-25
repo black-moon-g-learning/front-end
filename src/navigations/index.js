@@ -14,17 +14,17 @@ import {
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
-import Home from '../screens/Home';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import GameLevels from '../screens/G-Game/GameLevels';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
+import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
+import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-import ChooseCountry from '../screens/G-Game/ChooseCountry';
-import GameLevels from '../screens/G-Game/GameLevels';
-import Payment from '../screens/Payment';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -212,7 +212,7 @@ export default function Navigation() {
         />
         <HomeStack.Screen name="title" component={TitleContries} />
         <HomeStack.Screen name="listvideo" component={TitleListVideos} />
-        <HomeStack.Screen name="payment" component={Payment} />
+        <HomeStack.Screen name="services" component={Payment} />
       </Stack.Navigator>
     </NavigationContainer>
   );
