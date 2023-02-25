@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, ActivityIndicator} from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
 import Searchbar from '../../components/DetailContryPage/Searchbar';
-import NewsCard from '../../components/HYHBpage/NewsCard';
 import {ErrorMessage} from '../../components/ErrorMessage';
+import NewsCard from '../../components/HYHBpage/NewsCard';
 import UseGetdata from '../../hooks/UseContinents';
+
 const News = () => {
   const API = `information`;
   const {data, isLoading, isSuccess} = UseGetdata(API);

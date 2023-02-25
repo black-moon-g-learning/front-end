@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import ContributionForm from '../../components/Contribution/ContributionForm';
 
-const Contribution = ({navigation}) => {
+const Contribution = () => {
   return (
-    <View style={styles.container}>
-      <ContributionForm navigation={navigation} />
-    </View>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ContributionForm />
+    </ScrollView>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   Image,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
@@ -9,9 +11,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome';
+import UseGetdata from '../../hooks/UseContinents';
 import useCreateContribution from '../../hooks/useCreateContribution';
+import PickerSelect from '../PickerSelect';
 
 const ContributionForm = () => {
+  const API = `countries?page=page`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
   const {
     contribution,
     onChangeContribution,
@@ -19,79 +25,80 @@ const ContributionForm = () => {
     handleImage,
   } = useCreateContribution();
   return (
-    <View style={styles.form}>
-      <View style={styles.wraper}>
-        <TextInput
-          placeholder="Title"
-          style={styles.txtInput}
-          maxLength={100}
-          onChangeText={txt =>
-            onChangeContribution({...contribution, title: txt})
-          }
-          value={contribution.title}
-        />
-        <Icons
-          style={styles.icon}
-          name="asterisk"
-          size={20}
-          color={'#FF3334'}
-        />
-      </View>
-      <View style={styles.wraper}>
-        <TextInput
-          placeholder="Country"
-          style={styles.txtInput}
-          onChangeText={txt =>
-            onChangeContribution({...contribution, country: txt})
-          }
-          value={contribution.country}
-        />
-        <Icons
-          style={styles.icon}
-          name="asterisk"
-          size={20}
-          color={'#FF3334'}
-        />
-      </View>
-      <View style={styles.wraper}>
-        <TextInput
-          style={styles.txtInput}
-          textAlignVertical="top"
-          placeholder="Description"
-          numberOfLines={5}
-          onChangeText={txt =>
-            onChangeContribution({...contribution, desc: txt})
-          }
-          value={contribution.desc}
-        />
-        <Icons
-          style={styles.icon}
-          name="asterisk"
-          size={20}
-          color={'#FF3334'}
-        />
-      </View>
-      <View style={styles.wraper}>
-        <TextInput
-          style={styles.txtInput}
-          placeholder="Choose Image"
-          value={contribution.img.uri}
-          editable={false}
-        />
-        <TouchableOpacity onPress={handleImage}>
-          <Icon style={styles.icon} name="plus" size={40} color={'#5FAD41'} />
-        </TouchableOpacity>
-      </View>
-      <Image
-        style={styles.img}
-        source={contribution.img.uri ? {uri: contribution.img.uri} : null}
-      />
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => ValidateContribution(contribution)}>
-        <Text style={styles.txtBtn}>Submit</Text>
-      </TouchableOpacity>
-    </View>
+    <KeyboardAvoidingView style={styles.form}>
+      {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
+      {isSuccess && (
+        <>
+          <View style={styles.wraper}>
+            <TextInput
+              placeholder="Title"
+              style={styles.txtInput}
+              maxLength={100}
+              onChangeText={txt =>
+                onChangeContribution({...contribution, title: txt})
+              }
+              value={contribution.title}
+            />
+            <Icons
+              style={styles.icon}
+              name="asterisk"
+              size={20}
+              color={'#FF3334'}
+            />
+          </View>
+          <View style={styles.here}>
+            <PickerSelect
+              onChangeContribution={onChangeContribution}
+              contribution={contribution}
+              data={data}
+            />
+          </View>
+          <View style={styles.wraper}>
+            <TextInput
+              style={styles.txtInput}
+              textAlignVertical="top"
+              placeholder="Description"
+              numberOfLines={5}
+              onChangeText={txt =>
+                onChangeContribution({...contribution, desc: txt})
+              }
+              value={contribution.desc}
+            />
+            <Icons
+              style={styles.icon}
+              name="asterisk"
+              size={20}
+              color={'#FF3334'}
+            />
+          </View>
+          <View style={styles.wraper}>
+            <TextInput
+              style={styles.txtInput}
+              placeholder="Choose Image"
+              value={contribution.img.uri}
+              editable={false}
+            />
+            <TouchableOpacity onPress={handleImage}>
+              <Icon
+                style={styles.icon}
+                name="plus"
+                size={30}
+                color={'#5FAD41'}
+              />
+            </TouchableOpacity>
+          </View>
+          <Image
+            style={styles.img}
+            source={contribution.img.uri ? {uri: contribution.img.uri} : null}
+          />
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => ValidateContribution(contribution)}>
+            <Text style={styles.txtBtn}>Submit</Text>
+          </TouchableOpacity>
+        </>
+      )}
+    </KeyboardAvoidingView>
   );
 };
 
@@ -141,5 +148,22 @@ const styles = StyleSheet.create({
     width: 150,
     height: 100,
     margin: 5,
+  },
+  here: {
+    backgroundColor: '#D9D9D9',
+    width: '90%',
+    padding: 10,
+    borderRadius: 20,
+  },
+});
+const pickerSelectStyles = StyleSheet.create({
+  inputAndroid: {
+    fontSize: 16,
+    color: '#000000',
+    lineHeight: 20,
+    fontWeight: '400',
+    fontFamily: 'Poppins-Bold',
+    paddingLeft: 10,
+    opacity: 0.7,
   },
 });
