@@ -5,25 +5,29 @@ import * as React from 'react';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
+import ContributionHeader from '../components/Contribution/ContributionHeader';
+import LevelHeader from '../components/G-Game/LevelHeader';
+import HYHBHeader from '../components/HYHBpage/HYHBHeader';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
+import {
+  TitleContries,
+  TitleListVideos,
+} from '../components/TitleHeaderNavigate';
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import GameLevels from '../screens/G-Game/GameLevels';
+import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-import {TitleContries} from '../components/TitleHeaderNavigate';
-import {TitleListVideos} from '../components/TitleHeaderNavigate';
-import Player from '../screens/videooooo';
-import ChooseCountry from '../screens/G-Game/ChooseCountry';
-import GameLevels from '../screens/G-Game/GameLevels';
-import LevelHeader from '../components/G-Game/LevelHeader';
+
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -173,7 +177,7 @@ export default function Navigation() {
           name="Contribution"
           component={Contribution}
           options={{
-            title: '',
+            headerTitle: props => <ContributionHeader {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },
@@ -184,7 +188,7 @@ export default function Navigation() {
           name="News"
           component={HYHBDetail}
           options={{
-            title: '',
+            headerTitle: props => <HYHBHeader {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },

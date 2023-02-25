@@ -7,11 +7,9 @@ import UseGetdata from '../../hooks/UseContinents';
 const News = () => {
   const API = `information`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  // const {data, isLoading, isSuccess} = UseNews([]);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
-
       {isSuccess && (
         <>
           <Searchbar />

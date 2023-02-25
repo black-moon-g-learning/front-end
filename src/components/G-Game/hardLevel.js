@@ -1,10 +1,21 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import GLevelDetail from './GLevelDetail';
 const HardLevel = ({level}) => {
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.easyContainer}>
+      <TouchableOpacity
+        style={styles.easyContainer}
+        onPress={() => changeModalVisible(true)}>
         <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>
           {level.description}
@@ -14,6 +25,13 @@ const HardLevel = ({level}) => {
         style={styles.img}
         source={require('../../assets/images/hard.png')}
       />
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <GLevelDetail changeModalVisible={changeModalVisible} level={level} />
+      </Modal>
     </View>
   );
 };
