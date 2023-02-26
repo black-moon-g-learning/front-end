@@ -1,9 +1,15 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const GLevelDetail = props => {
+  const navigation = useNavigation();
   const CloseModal = bool => {
     props.changeModalVisible(bool);
+  };
+  const playingGame = () => {
+    navigation.navigate('DisplayQuestions');
+    CloseModal(false);
   };
   return (
     <TouchableOpacity style={styles.container} disabled={true}>
@@ -16,7 +22,7 @@ const GLevelDetail = props => {
           <TouchableOpacity onPress={() => CloseModal(false)}>
             <Text style={styles.btn}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => CloseModal(false)}>
+          <TouchableOpacity onPress={() => playingGame()}>
             <Text style={styles.btn}>Play now</Text>
           </TouchableOpacity>
         </View>

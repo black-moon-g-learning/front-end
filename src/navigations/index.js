@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
+import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -27,6 +28,7 @@ import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import Score from '../components/G-Game/Score';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -200,6 +202,17 @@ export default function Navigation() {
           component={GameLevels}
           options={{
             headerTitle: props => <LevelHeader {...props} />,
+            headerStyle: {
+              backgroundColor: '#F2F2F2',
+            },
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="DisplayQuestions"
+          component={DisplayQuestion}
+          options={{
+            headerTitle: props => <Score {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },

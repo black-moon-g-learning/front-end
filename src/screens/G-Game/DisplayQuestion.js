@@ -9,11 +9,21 @@ const DisplayQuestion = () => {
           style={styles.title}
           source={require('../../assets/images/G-GAME.png')}
         />
-        <View style={styles.scorebgd}>
-          <Text style={styles.score}>100</Text>
-        </View>
+      </View>
+      <View style={styles.Timer}>
+        <View style={styles.countTime} />
+        <Image
+          style={styles.clock}
+          source={require('../../assets/images/clock.png')}
+        />
       </View>
       <View style={styles.questionContainer}>
+        {/* <View style={styles.characterCon}>
+          <Image
+            style={styles.character}
+            source={require('../../assets/images/easy.png')}
+          />
+        </View> */}
         <View style={styles.countQues}>
           <Text style={styles.countTxt}>Question 1/15</Text>
         </View>
@@ -53,37 +63,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  title: {
-    left: 25,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  scorebgd: {
-    backgroundColor: '#FFD500',
-    borderRadius: 100,
-    width: 70,
-    height: 70,
-    right: -70,
-  },
-  score: {
-    textAlign: 'center',
-    fontSize: 24,
-    fontWeight: '700',
-    lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
-    color: '#000000',
-    paddingTop: 30,
-  },
   questionContainer: {
     backgroundColor: '#5FAD41',
-    borderRadius: 10,
+    borderRadius: 20,
     width: '90%',
-    marginTop: 10,
-    //flex: 0.9,
+    marginTop: 20,
     alignItems: 'center',
+    position: 'relative',
   },
   countQues: {
     backgroundColor: '#FFFFFF',
@@ -99,6 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'center',
     padding: 13,
+    color: '#000000',
   },
   quesCon: {
     padding: 10,
@@ -145,5 +132,28 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     padding: 10,
     paddingLeft: '10%',
+  },
+  Timer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 10,
+    width: '100%',
+    backgroundColor: '#5FAD41',
+    borderRadius: 20,
+    borderColor: '#5FAD41',
+    borderWidth: 1,
+    borderBottomWidth: 2,
+    paddingRight: 10,
+  },
+  countTime: {
+    width: '90%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 15,
+  },
+  clock: {
+    width: 27,
+    height: 27,
   },
 });

@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  FlatList,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-import {RecommendVideo} from '../../components/Videos/Listvideos';
 import {ErrorMessage} from '../../components/ErrorMessage';
+import {RecommendVideo} from '../../components/Videos/Listvideos';
 
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;

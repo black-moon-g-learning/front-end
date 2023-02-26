@@ -156,14 +156,3 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-const pickerSelectStyles = StyleSheet.create({
-  inputAndroid: {
-    fontSize: 16,
-    color: '#000000',
-    lineHeight: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
-    paddingLeft: 10,
-    opacity: 0.7,
-  },
-});

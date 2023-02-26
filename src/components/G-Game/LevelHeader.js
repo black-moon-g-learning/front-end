@@ -1,14 +1,13 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const LevelHeader = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>G-GAME</Text>
-      <Image
-        style={styles.img}
-        source={require('../../assets/images/score.png')}
-      />
+      <View style={styles.scorebgd}>
+        <Text style={styles.score}>100</Text>
+      </View>
     </View>
   );
 };
@@ -19,24 +18,34 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '95%',
+    width: '90%',
   },
   title: {
+    marginLeft: '20%',
     color: '#000000',
     fontWeight: '700',
     lineHeight: 20,
-    fontSize: 24,
+    fontSize: 28,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
-    padding: 10,
-    marginLeft: '10%',
+    paddingTop: 20,
   },
-  img: {
-    width: 57,
-    height: 54,
-    margin: 5,
-    left: 0,
+  scorebgd: {
+    backgroundColor: '#FFD500',
+    borderRadius: 100,
+    width: 60,
+    height: 60,
+    marginTop: 3,
+  },
+  score: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '700',
+    lineHeight: 20,
+    fontFamily: 'Poppins-Bold',
+    color: '#000000',
+    paddingTop: 20,
   },
 });
