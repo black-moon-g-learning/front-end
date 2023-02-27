@@ -30,6 +30,8 @@ import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Score from '../components/G-Game/Score';
 import FailPage from '../screens/G-Game/FailPage';
+import GoodPage from '../screens/G-Game/GoodPage';
+import GreatePage from '../screens/G-Game/GreatePage';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -114,7 +116,7 @@ function Bottomtab() {
       />
       <Tab.Screen
         name="Game"
-        component={FailPage}
+        component={GreatePage}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (

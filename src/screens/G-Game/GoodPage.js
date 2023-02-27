@@ -6,7 +6,7 @@ import {
   GroupBtn,
 } from '../../components/G-Game/FailHeader';
 
-const FailPage = () => {
+const GoodPage = () => {
   return (
     <View style={styles.container}>
       <FailHeader />
@@ -16,12 +16,12 @@ const FailPage = () => {
             style={styles.failImg}
             source={require('../../assets/images/nomarl.png')}
           />
-          <Text style={styles.failTxt}>Failed</Text>
+          <Text style={styles.failTxt}>Good</Text>
         </View>
         <View style={styles.failIconCon}>
           <Image
             style={styles.failIcon}
-            source={require('../../assets/images/fail.png')}
+            source={require('../../assets/images/good.png')}
           />
         </View>
         <FinalResult />
@@ -31,12 +31,12 @@ const FailPage = () => {
   );
 };
 
-export default FailPage;
+export default GoodPage;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 15,
+    margin: 10,
     justifyContent: 'center',
   },
   resultContainer: {
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   failIcon: {
-    width: 145,
-    height: 145,
+    width: 122,
+    height: 186,
   },
   failTxt: {
     fontFamily: 'Poppins-Bold',
