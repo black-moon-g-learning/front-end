@@ -1,26 +1,14 @@
+import {useNavigationState, useRoute} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {
-  StyleSheet,
   Image,
-  View,
-  TouchableOpacity,
+  StyleSheet,
   TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import React, {useState} from 'react';
-import {useNavigationState} from '@react-navigation/native';
-import {useQueryClient} from 'react-query';
-import {useRoute} from '@react-navigation/native';
-import {UseItems} from '../hooks/UseKey';
-export const GetKey = () => {
-  const route = useRoute();
-  const {item} = route.params;
-};
-const Header = navigation => {
-  const queryClient = useQueryClient();
-  const routes = useNavigationState(state => state.routes);
-  // const currentRoute = routes[routes.length - 1].name;
-  // const [query, setQuery] = useState('');
-  const {items, addItem, removeItem} = UseItems();
+const Header = () => {
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>
@@ -30,13 +18,7 @@ const Header = navigation => {
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchBar}>
-        <TextInput
-          value={items}
-          onChangeText={addItem}
-          style={styles.input}
-          placeholder="Search..."
-          // onPress={letsearch(query)}
-        />
+        <TextInput style={styles.input} placeholder="Search..." />
         <Icon name="search" size={25} color={'black'} />
       </TouchableOpacity>
     </View>
@@ -55,7 +37,6 @@ const styles = StyleSheet.create({
     width: '70%',
     height: 40,
     borderRadius: 10,
-    // backgroundColor: '#F4F1F1',
     paddingLeft: 10,
   },
   searchBar: {
@@ -63,13 +44,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // width: 320,
     height: 46,
     padding: 10,
     borderWidth: 1,
     borderColor: '#000000',
     borderRadius: 20,
-    // backgroundColor: '#F4F1F1',
   },
   character: {
     width: 40.38,

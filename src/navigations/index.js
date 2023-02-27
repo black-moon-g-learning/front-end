@@ -2,12 +2,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
 import ContributionHeader from '../components/Contribution/ContributionHeader';
 import LevelHeader from '../components/G-Game/LevelHeader';
+import Score from '../components/G-Game/Score';
 import HYHBHeader from '../components/HYHBpage/HYHBHeader';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
@@ -18,20 +18,18 @@ import {
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
-import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import GameLevels from '../screens/G-Game/GameLevels';
+import GreatePage from '../screens/G-Game/GreatePage';
 import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
+import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-import Score from '../components/G-Game/Score';
-import FailPage from '../screens/G-Game/FailPage';
-import GoodPage from '../screens/G-Game/GoodPage';
-import GreatePage from '../screens/G-Game/GreatePage';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -229,6 +227,7 @@ export default function Navigation() {
         />
         <HomeStack.Screen name="title" component={TitleContries} />
         <HomeStack.Screen name="listvideo" component={TitleListVideos} />
+        <HomeStack.Screen name="services" component={Payment} />
       </Stack.Navigator>
     </NavigationContainer>
   );

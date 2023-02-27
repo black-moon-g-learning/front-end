@@ -62,6 +62,7 @@ const Countries = () => {
 };
 
 export default Countries;
+
 const styles = StyleSheet.create({
   container: {
     margin: 10,
@@ -69,13 +70,12 @@ const styles = StyleSheet.create({
   },
   name: {
     width: '100%',
-    fontSize: 23,
+    fontSize: 25,
     color: '#323643',
-    // paddingBottom: 15,
-    paddingLeft: -15,
+    paddingBottom: 15,
+    paddingLeft: 35,
     fontFamily: 'Poppins-Bold',
-    // marginTop: -15,
-    alignItems: 'center',
+    marginTop: -15,
   },
   title: {
     fontSize: 23,
