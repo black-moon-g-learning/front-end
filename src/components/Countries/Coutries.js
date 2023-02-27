@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-
+import React from 'react';
 export const ItemPopular = ({navigation, item}) => {
   return (
     <ScrollView style={styles.itempopular_container}>

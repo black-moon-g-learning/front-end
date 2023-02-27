@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+
 export const TitleContries = () => {
   const route = useRoute();
   const {item} = route.params;
-  // console.log('first', item.name);
   return (
     <View>
       <Text style={styles.name}>{item.name}</Text>
@@ -27,10 +27,8 @@ const styles = StyleSheet.create({
     width: '100%',
     fontSize: 23,
     color: '#323643',
-    // paddingBottom: 15,
     paddingLeft: -15,
     fontFamily: 'Poppins-Bold',
-    // marginTop: -15,
     alignItems: 'center',
   },
 });

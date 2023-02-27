@@ -5,27 +5,18 @@ import {
   ImageBackground,
   StyleSheet,
   View,
-  TouchableOpacity,
-  Text,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
-import UseListCountries from '../../hooks/UseListCountries';
-import GameHeader from '../../components/G-Game/GameHeader';
+import BtnViewMore from '../../components/G-Game/btnViewMore';
 import CountryCard from '../../components/G-Game/CountryCard';
+import GameHeader from '../../components/G-Game/GameHeader';
+import UseGetdata from '../../hooks/UseContinents';
 import UseOnChangePage from '../../hooks/UseOnChangePage';
 
 const ChooseCountry = () => {
   const {pageId, NextPage} = UseOnChangePage();
-  const {data, isSuccess, isLoading} = UseListCountries(pageId);
-  const BtnViewMore = () => {
-    return (
-      <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.btn} onPress={NextPage}>
-          <Text style={styles.txtBtn}>View more</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const API = `countries?page=${pageId}`;
+  const {data, isSuccess, isLoading} = UseGetdata(API);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -37,7 +28,7 @@ const ChooseCountry = () => {
         {isSuccess && (
           <>
             <GameHeader />
-            <BtnViewMore />
+            <BtnViewMore NextPage={NextPage} />
             <FlatList
               showsVerticalScrollIndicator={false}
               style={styles.flatlist}

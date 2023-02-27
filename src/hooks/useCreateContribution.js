@@ -12,7 +12,7 @@ import {
 const useCreateContribution = () => {
   const [contribution, onChangeContribution] = useState({
     title: '',
-    country: '',
+    country_id: null,
     desc: '',
     img: {
       uri: '',
@@ -27,7 +27,7 @@ const useCreateContribution = () => {
     if (
       !contribution.img.uri ||
       !contribution.desc ||
-      !contribution.country ||
+      !contribution.country_id ||
       !contribution.title
     ) {
       ValidatetionMessage();
@@ -38,7 +38,7 @@ const useCreateContribution = () => {
       SuccessMessage();
       onChangeContribution({
         title: '',
-        country: '',
+        country_id: '',
         desc: '',
         img: {
           uri: '',
@@ -72,7 +72,7 @@ const useCreateContribution = () => {
   const handleCreateContribution = Contribution => {
     var data = new FormData();
     data.append('title', Contribution.title);
-    data.append('country', Contribution.country);
+    data.append('country_id', Contribution.country_id);
     data.append('description', Contribution.desc);
     data.append('owner_id', 1);
     data.append('image', Contribution.img);

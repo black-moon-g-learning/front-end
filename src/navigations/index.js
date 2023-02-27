@@ -5,6 +5,10 @@ import * as React from 'react';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
+import ContributionHeader from '../components/Contribution/ContributionHeader';
+import LevelHeader from '../components/G-Game/LevelHeader';
+import Score from '../components/G-Game/Score';
+import HYHBHeader from '../components/HYHBpage/HYHBHeader';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import {
@@ -14,18 +18,18 @@ import {
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
 import DetailCountryPage from '../screens/DetailCountryPage';
-import ChooseCountry from '../screens/G-Game/ChooseCountry';
+import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import GameLevels from '../screens/G-Game/GameLevels';
+import GreatePage from '../screens/G-Game/GreatePage';
+import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -110,7 +114,7 @@ function Bottomtab() {
       />
       <Tab.Screen
         name="Game"
-        component={ChooseCountry}
+        component={GreatePage}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -175,7 +179,7 @@ export default function Navigation() {
           name="Contribution"
           component={Contribution}
           options={{
-            title: '',
+            headerTitle: props => <ContributionHeader {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },
@@ -186,7 +190,7 @@ export default function Navigation() {
           name="News"
           component={HYHBDetail}
           options={{
-            title: '',
+            headerTitle: props => <HYHBHeader {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },
@@ -197,7 +201,18 @@ export default function Navigation() {
           name="GameLevels"
           component={GameLevels}
           options={{
-            title: '',
+            headerTitle: props => <LevelHeader {...props} />,
+            headerStyle: {
+              backgroundColor: '#F2F2F2',
+            },
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="DisplayQuestions"
+          component={DisplayQuestion}
+          options={{
+            headerTitle: props => <Score {...props} />,
             headerStyle: {
               backgroundColor: '#F2F2F2',
             },

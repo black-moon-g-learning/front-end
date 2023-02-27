@@ -1,9 +1,21 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import GLevelDetail from './GLevelDetail';
 
 const EasyLevel = ({level}) => {
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
-    <TouchableOpacity style={styles.container} key={level.id}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => changeModalVisible(true)}>
       <View style={styles.easyContainer}>
         <Text style={styles.level}>{level.name}</Text>
         <Text numberOfLines={6} style={styles.desc}>
@@ -14,6 +26,13 @@ const EasyLevel = ({level}) => {
         style={styles.img}
         source={require('../../assets/images/easy.png')}
       />
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <GLevelDetail changeModalVisible={changeModalVisible} level={level} />
+      </Modal>
     </TouchableOpacity>
   );
 };

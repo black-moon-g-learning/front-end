@@ -10,6 +10,7 @@ const UseOnChangePage = () => {
     }
   };
   return {
+    setPageId,
     pageId,
     NextPage,
   };

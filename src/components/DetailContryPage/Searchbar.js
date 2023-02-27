@@ -1,25 +1,27 @@
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {useNavigation} from '@react-navigation/native';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import ContributionModal from '../Contribution/ContributionModal';
 import Header from '../Header';
 
 const Searchbar = () => {
-  const navigation = useNavigation();
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
     <View style={styles.container_header}>
       <Header />
       <TouchableOpacity
         style={styles.Icon}
-        onPress={() => navigation.navigate('Contribution')}>
+        onPress={() => changeModalVisible(true)}>
         <Icon name="pluscircle" size={40} color="#FFBF1C" />
       </TouchableOpacity>
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <ContributionModal changeModalVisible={changeModalVisible} />
+      </Modal>
     </View>
   );
 };

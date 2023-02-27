@@ -1,12 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import UseOnChangePage from '../../hooks/UseOnChangePage';
-const BtnViewMore = () => {
-  const {NextPage} = UseOnChangePage();
-  //console.log(pageId);
+
+const BtnViewMore = props => {
   return (
     <View style={styles.btnContainer}>
-      <TouchableOpacity style={styles.btn} onPress={NextPage}>
+      <TouchableOpacity style={styles.btn} onPress={() => props.NextPage()}>
         <Text style={styles.txtBtn}>View more</Text>
       </TouchableOpacity>
     </View>
