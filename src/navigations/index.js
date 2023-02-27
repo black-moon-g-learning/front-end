@@ -227,7 +227,7 @@ export default function Navigation() {
         />
         <HomeStack.Screen name="title" component={TitleContries} />
         <HomeStack.Screen name="listvideo" component={TitleListVideos} />
-        <HomeStack.Screen name="services" component={Payment} />
+        <HomeStack.Screen name="Payment" component={Payment} />
       </Stack.Navigator>
     </NavigationContainer>
   );
