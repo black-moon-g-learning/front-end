@@ -11,7 +11,7 @@ const DisplayQuestion = () => {
         <View style={styles.countTime} />
         <Image
           style={styles.clock}
-          source={require('../../assets/images/clock.png')}
+          source={require('../../assets/images/Clock.png')}
         />
       </View>
       <View style={styles.questionContainer}>
