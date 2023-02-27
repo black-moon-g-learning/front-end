@@ -13,10 +13,7 @@ const Method = () => {
           <Text style={styles.text_row_method}>Zalo</Text>
           <Image
             style={styles.image_method}
-            // source={require('@expo/snack-static/react-native-logo.png')}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+            source={require('../../assets/images/ZaloPAy.png')}
           />
         </View>
       ),
@@ -30,10 +27,7 @@ const Method = () => {
           <Text style={styles.text_row_method}>Visa card</Text>
           <Image
             style={styles.image_method}
-            // source={require('@expo/snack-static/react-native-logo.png')}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+            source={require('../../assets/images/visacard.png')}
           />
         </View>
       ),
@@ -71,13 +65,14 @@ const styles = StyleSheet.create({
   },
   space: {
     borderBottomWidth: 1,
-    width: '35%',
+    width: '55%',
   },
   image_method: {
     width: 50,
     height: 50,
     alignSelf: 'center',
     marginLeft: 20,
+    borderRadius: 10,
   },
   row_method: {
     flexDirection: 'row',
