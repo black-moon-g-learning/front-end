@@ -10,6 +10,7 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
+import ModalPopUp from '../../components/Popup/Modal';
 import UseGetdata from '../../hooks/UseContinents';
 const Home = ({navigation}) => {
   const API = `continents`;
@@ -22,7 +23,7 @@ const Home = ({navigation}) => {
         <>
           <Header />
           <EarthGifImage />
-          <Text style={styles.titlePage}>Continents</Text>
+          <Text style={styles.titlePage}>Continents </Text>
           <FlatList
             showsVerticalScrollIndicator={false}
             style={styles.flatlist}

@@ -111,7 +111,7 @@ const Information = ({navigation}) => {
     } catch (error) {
       Alert.alert('Notification', 'Upload NotSuccessful avatar', [
         {
-          text: 'K',
+          text: 'OK',
           onPress: () => {
             console.log(error.message);
           },
@@ -145,6 +145,7 @@ const Information = ({navigation}) => {
               }}
             />
             <TouchableOpacity
+              style={styles.icon_view}
               onPress={() =>
                 Alert.alert('Notification', 'Are you change avatar', [
                   {
@@ -156,8 +157,7 @@ const Information = ({navigation}) => {
                     onPress: () => handleImage(),
                   },
                 ])
-              }
-              style={styles.icon_view}>
+              }>
               <Icon style={styles.icon} name="pencil" size={20} />
             </TouchableOpacity>
 
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
     marginTop: '15%',
   },
   icon: {
-    color: 'black',
+    color: 'yellow',
   },
   row_formmodal_profile: {
     flexDirection: 'row',

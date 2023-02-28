@@ -8,10 +8,10 @@ import {
   View,
 } from 'react-native';
 // import Icon from 'react-native-vector-icons/Feather';
+import {useRoute} from '@react-navigation/native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import {useRoute} from '@react-navigation/native';
 import UseGetdata from '../../hooks/UseContinents';
 
 const Countries = () => {
