@@ -30,6 +30,7 @@ import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import ChooseCountry from '../screens/G-Game/ChooseCountry';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -114,7 +115,7 @@ function Bottomtab() {
       />
       <Tab.Screen
         name="Game"
-        component={GreatePage}
+        component={ChooseCountry}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (

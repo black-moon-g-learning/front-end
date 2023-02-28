@@ -1,56 +1,61 @@
-import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useRoute} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {FailHeader} from '../../components/G-Game/FailHeader';
+import ListAnswer from '../../components/G-Game/ListAnswer';
+import QuestionContainer from '../../components/G-Game/QuestionContainer';
+import UseGetdata from '../../hooks/UseContinents';
 
 const DisplayQuestion = () => {
+  const route = useRoute();
+  const item = route.params;
+  const API = `countries/${item.id}/questions`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
+  const [index, setIndex] = useState(0);
+  const question = isSuccess ? data.data[index].content : 'co cai nit';
+  const handleQuestion = () => {
+    setIndex(index + 1);
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require('../../assets/images/G-GAME.png')} />
-      </View>
-      <View style={styles.Timer}>
-        <View style={styles.countTime} />
-        <Image
-          style={styles.clock}
-          source={require('../../assets/images/Clock.png')}
-        />
-      </View>
-      <View style={styles.questionContainer}>
-        <View style={styles.characterCon}>
-          <Image
-            style={styles.character}
-            source={require('../../assets/images/nomarl.png')}
-          />
-        </View>
-        <View style={styles.countQues}>
-          <Text style={styles.countTxt}>Question 1/15</Text>
-        </View>
-        <View style={styles.quesCon}>
-          <Text style={styles.question} numberOfLines={4}>
-            What is the curent population of Việt Nam?
-          </Text>
-        </View>
-        <View style={styles.ansContainer}>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
+      {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
+      {isSuccess ? (
+        <>
+          <FailHeader />
+          <View style={styles.Timer}>
+            <View style={styles.countTime} />
+            <Image
+              style={styles.clock}
+              source={require('../../assets/images/Clock.png')}
+            />
           </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
+          <View style={styles.questionContainer}>
+            <View style={styles.characterCon}>
+              <Image
+                style={styles.character}
+                source={require('../../assets/images/nomarl.png')}
+              />
+            </View>
+            <View style={styles.countQues}>
+              <Text style={styles.countTxt}>Question 1/15</Text>
+            </View>
+            <QuestionContainer question={question} />
+            <ListAnswer />
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => handleQuestion()}>
+              <Text style={styles.txtBtn}>Next</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
-          </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
-          </View>
-        </View>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.txtBtn}>Next</Text>
-        </TouchableOpacity>
-      </View>
+        </>
+      ) : null}
     </View>
   );
 };
@@ -86,48 +91,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 13,
     color: '#000000',
-  },
-  quesCon: {
-    padding: 10,
-  },
-  question: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 20,
-    fontWeight: 'bold',
-    lineHeight: 20,
-    textAlign: 'center',
-    color: '#FFFFFF',
-  },
-  ansContainer: {
-    width: '90%',
-  },
-  ans: {
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    borderRadius: 100,
-    margin: 10,
-  },
-  option: {
-    color: '#000000',
-    fontSize: 20,
-    fontWeight: '600',
-    lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
-    padding: 15,
-    backgroundColor: '#EFD207',
-    borderRadius: 100,
-    width: 50,
-    height: 50,
-    textAlign: 'center',
-  },
-  answer: {
-    color: '#323643',
-    fontSize: 16,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
-    padding: 10,
-    paddingLeft: '10%',
   },
   Timer: {
     flexDirection: 'row',
