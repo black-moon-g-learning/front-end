@@ -21,13 +21,14 @@ import DetailCountryPage from '../screens/DetailCountryPage';
 import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GreatePage from '../screens/G-Game/GreatePage';
-import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
+import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
+import PaymentVNpay from '../screens/Payment/PamentVNPAY';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 const HomeStack = createNativeStackNavigator();
@@ -228,6 +229,7 @@ export default function Navigation() {
         <HomeStack.Screen name="title" component={TitleContries} />
         <HomeStack.Screen name="listvideo" component={TitleListVideos} />
         <HomeStack.Screen name="Payment" component={Payment} />
+        <HomeStack.Screen name="VNPAY" component={PaymentVNpay} />
       </Stack.Navigator>
     </NavigationContainer>
   );

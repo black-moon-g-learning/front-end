@@ -1,8 +1,11 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 
 const Method = () => {
+  const navigation = useNavigation();
+
   const [radioButtons, setRadioButtons] = useState([
     {
       value: 'Zalo',
@@ -49,7 +52,9 @@ const Method = () => {
           radioButtons={radioButtons}
         />
       </View>
-      <TouchableOpacity style={styles.btn_submit}>
+      <TouchableOpacity
+        style={styles.btn_submit}
+        onPress={() => navigation.navigate('VNPAY')}>
         <Text style={styles.text_submit}>SUBMIT</Text>
       </TouchableOpacity>
     </View>
