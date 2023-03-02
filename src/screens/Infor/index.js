@@ -19,6 +19,8 @@ import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
 
 const Information = ({navigation}) => {
+  // const API = 'profile';
+  // const {data, isLoading, isSuccess, refetch} = UseGetdata([API]);
   const {data, isLoading, isSuccess, refetch} = useProfile([]);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -289,12 +291,12 @@ const Information = ({navigation}) => {
           <View style={styles.package}>
             <Text style={styles.title_package}>Package: </Text>
             <TouchableOpacity style={styles.infor_pakage}>
-              <Text style={styles.text_package}>72 days 16 hours</Text>
+              <Text style={styles.text_package}>Free</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn_click_package}
               onPress={() => navigation.navigate('Payment')}>
-              <Text style={styles.text_btn}>Buy more</Text>
+              <Text style={styles.text_btn}>Buy Now</Text>
             </TouchableOpacity>
           </View>
           <Logout />
@@ -457,4 +459,5 @@ const styles = StyleSheet.create({
     width: 100,
     margin: 20,
   },
+  text_package: {fontFamily: 'Poppins-Bold', fontSize: 20, color: 'black'},
 });
