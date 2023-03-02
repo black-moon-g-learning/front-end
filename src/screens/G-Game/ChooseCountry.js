@@ -7,9 +7,9 @@ import {
   View,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
-import BtnViewMore from '../../components/G-Game/btnViewMore';
 import CountryCard from '../../components/G-Game/CountryCard';
 import GameHeader from '../../components/G-Game/GameHeader';
+import BtnViewMore from '../../components/G-Game/btnViewMore';
 import UseGetdata from '../../hooks/UseContinents';
 import UseOnChangePage from '../../hooks/UseOnChangePage';
 

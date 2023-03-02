@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
-import useServices from '../../hooks/useService';
+import UseGetdata from '../../hooks/UseContinents';
 
 const Package = () => {
-  const {data, isLoading, isSuccess} = useServices([]);
-  // console.log('data=>', data);
+  const API = `services`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
   const [service, setService] = useState({
     name: '',
     description: '',
