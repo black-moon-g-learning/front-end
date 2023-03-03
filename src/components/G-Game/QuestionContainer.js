@@ -3,9 +3,9 @@ import {StyleSheet, Text, View} from 'react-native';
 
 const QuestionContainer = props => {
   return (
-    <View style={styles.quesCon}>
+    <View style={styles.quesCon} key={props.question.id}>
       <Text style={styles.question} numberOfLines={1}>
-        {props.question}
+        {props.question.content}
       </Text>
     </View>
   );

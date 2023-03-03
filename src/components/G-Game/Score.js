@@ -1,10 +1,20 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const Score = () => {
+  // const myScore = async () => {
+  //   try {
+  //     const finalScore = await AsyncStorage.getItem('score');
+  //     console.log('my score', finalScore);
+  //     return finalScore;
+  //   } catch (error) {
+  //     console.log('loi: ', error);
+  //   }
+  // };
   return (
     <View style={styles.scorebgd}>
-      <Text style={styles.score}>100</Text>
+      <Text style={styles.score}>0</Text>
     </View>
   );
 };

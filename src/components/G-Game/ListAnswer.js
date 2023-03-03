@@ -1,26 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const ListAnswer = () => {
+const ListAnswer = props => {
   return (
-    <View style={styles.ansContainer}>
-      <View style={styles.ans}>
-        <Text style={styles.option}>A</Text>
-        <Text style={styles.answer}>98,186 million people</Text>
-      </View>
-      <TouchableOpacity style={styles.ans}>
-        <Text style={styles.option}>A</Text>
-        <Text style={styles.answer}>98,186 million people</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.ans}>
-        <Text style={styles.option}>A</Text>
-        <Text style={styles.answer}>98,186 million people</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.ans}>
-        <Text style={styles.option}>A</Text>
-        <Text style={styles.answer}>98,186 million people</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      style={[styles.ans, props.getOptionStyle(props.answersOption)]}
+      onPress={() => props.handleSelectOption(props.answersOption)}
+      disabled={
+        props.selectedAnswerIndex !== null &&
+        props.selectedAnswerIndex !== props.answersOption.id
+      }>
+      <Text numberOfLines={1} style={styles.answer}>
+        {props.answersOption.content}
+      </Text>
+    </TouchableOpacity>
   );
 };
 
@@ -31,11 +24,12 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   ans: {
-    backgroundColor: '#FFFFFF',
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     borderRadius: 100,
     margin: 10,
+    backgroundColor: '#FFFFFF',
   },
   option: {
     color: '#000000',
@@ -57,5 +51,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     padding: 10,
     paddingLeft: '10%',
+  },
+  correctAnswer: {
+    backgroundColor: 'yellow',
   },
 });

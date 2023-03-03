@@ -1,12 +1,33 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const LevelHeader = () => {
+  const [score, setScore] = React.useState(100);
+  // React.useEffect(() => {
+  //   // Lấy giá trị điểm từ Async Storage khi màn hình được hiển thị
+  //   async function myScore() {
+  //     try {
+  //       const value = await AsyncStorage.getItem('score');
+  //       if (value !== null) {
+  //         setScore(value);
+  //       }
+  //     } catch (e) {
+  //       // xử lý lỗi nếu có
+  //     }
+  //   }
+
+  //   myScore();
+  // }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>G-GAME</Text>
       <View style={styles.scorebgd}>
-        <Text style={styles.score}>100</Text>
+        {score !== null ? (
+          <Text style={styles.score}>{score}</Text>
+        ) : (
+          <Text style={styles.score}>No</Text>
+        )}
       </View>
     </View>
   );

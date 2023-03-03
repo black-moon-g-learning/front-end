@@ -1,7 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  Animated,
   Image,
   StyleSheet,
   Text,
@@ -19,9 +21,67 @@ const DisplayQuestion = () => {
   const API = `countries/${item.id}/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const [index, setIndex] = useState(0);
-  const question = isSuccess ? data.data[index].content : 'co cai nit';
+  const question = isSuccess ? data.data[index] : null;
+  const totalQuestion = isSuccess ? data.data.length : null;
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [score, setScore] = useState(0);
+  const [viewWidth, setViewWidth] = useState(new Animated.Value(300));
+  const [timeLeft, setTimeLeft] = useState(15);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (timeLeft > 0) {
+        setTimeLeft(timeLeft - 1);
+        Animated.timing(viewWidth, {
+          toValue: viewWidth._value - 20, // giảm độ dài view đi 2 đơn vị mỗi giây
+          duration: 1000,
+          useNativeDriver: false,
+        }).start();
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  //Increase the index of the question
   const handleQuestion = () => {
     setIndex(index + 1);
+  };
+  //Save the Score to Async storage
+  // const saveScore = async finalScore => {
+  //   try {
+  //     await AsyncStorage.setItem('score', finalScore.toString());
+  //     console.log('Score saved successfully!');
+  //   } catch (error) {
+  //     console.log('loi', error);
+  //   }
+  // };
+  //Handle the correct answer
+  const handleSelectOption = answer => {
+    setSelectedAnswer(answer.content);
+    setSelectedAnswerIndex(answer.id);
+    if (answer.is_correct === 1) {
+      setCorrectAnswer(answer.id);
+      setScore(score + 100);
+      // saveScore(score);
+    }
+  };
+  //Change the style of selected answer
+  const getOptionStyle = option => {
+    if (option.content === selectedAnswer && option.id === correctAnswer) {
+      return styles.correctAnswer;
+    } else if (
+      option.content === selectedAnswer &&
+      option.id !== correctAnswer
+    ) {
+      return styles.incorrectAnswer;
+    } else {
+      return null;
+    }
   };
   return (
     <View style={styles.container}>
@@ -30,7 +90,7 @@ const DisplayQuestion = () => {
         <>
           <FailHeader />
           <View style={styles.Timer}>
-            <View style={styles.countTime} />
+            <Animated.View style={[styles.countTime, {width: viewWidth}]} />
             <Image
               style={styles.clock}
               source={require('../../assets/images/Clock.png')}
@@ -44,10 +104,20 @@ const DisplayQuestion = () => {
               />
             </View>
             <View style={styles.countQues}>
-              <Text style={styles.countTxt}>Question 1/15</Text>
+              <Text style={styles.countTxt}>
+                Question {index + 1}/{totalQuestion}
+              </Text>
             </View>
             <QuestionContainer question={question} />
-            <ListAnswer />
+            {question.answers.map(answersOption => (
+              <ListAnswer
+                key={answersOption.id}
+                answersOption={answersOption}
+                handleSelectOption={handleSelectOption}
+                getOptionStyle={getOptionStyle}
+                selectedAnswerIndex={selectedAnswerIndex}
+              />
+            ))}
             <TouchableOpacity
               style={styles.btn}
               onPress={() => handleQuestion()}>
@@ -106,7 +176,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   countTime: {
-    width: '90%',
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 15,
@@ -142,5 +211,11 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
     paddingTop: 5,
+  },
+  correctAnswer: {
+    backgroundColor: '#FFBF1C',
+  },
+  incorrectAnswer: {
+    backgroundColor: '#E31919',
   },
 });

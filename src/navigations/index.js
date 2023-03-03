@@ -31,6 +31,7 @@ import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import ChooseCountry from '../screens/G-Game/ChooseCountry';
+
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
