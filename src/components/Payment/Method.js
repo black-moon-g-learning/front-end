@@ -22,9 +22,10 @@ const Method = () => {
 
   const [radioButtons, setRadioButtons] = useState([
     {
-      value: 'VNPay',
       id: '1',
       color: 'green',
+      value: 'VNPay',
+      selected: true,
       label: (
         <View style={styles.row_method}>
           <Text style={styles.text_row_method}>VNPay</Text>
@@ -92,7 +93,6 @@ const Method = () => {
           style={styles.btn_radio}
           onPress={onPressRadioButton}
           radioButtons={radioButtons}
-          initial={1}
         />
       </View>
       <TouchableOpacity
@@ -103,7 +103,7 @@ const Method = () => {
         <Text style={styles.text_submit}>SUBMIT</Text>
       </TouchableOpacity>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
