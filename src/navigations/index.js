@@ -90,6 +90,7 @@ function HomeStackScreen() {
             backgroundColor: '#F2F2F2',
           },
           headerShadowVisible: false,
+
           headerTintColor: '#5FAD41',
         }}
       />
