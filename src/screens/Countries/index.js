@@ -18,9 +18,7 @@ import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseGetdata from '../../hooks/UseContinents';
-import axios from 'axios';
 import axiosRequest from '../../axios';
-
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -73,23 +71,8 @@ const Countries = () => {
       <View style={styles.topicsheader}></View>
       {isSuccess && (
         <View style={styles.flatlist}>
-          <View style={styles.container_header}>
-            <TouchableOpacity>
-              <Image
-                style={styles.character}
-                source={require('../../assets/images/character.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.searchBar}>
-              <TextInput
-                onChangeText={handleSearch}
-                value={searchValue}
-                style={styles.input}
-                placeholder="Search..."
-              />
-              <Icon name="search" size={25} color={'black'} />
-            </TouchableOpacity>
-          </View>
+          <Header value={searchValue} onChangeText={handleSearch} />
+
           {isLoading ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (

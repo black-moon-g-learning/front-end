@@ -16,6 +16,7 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import {ListVideo} from '../../components/Videos/Listvideos';
 import UseGetdata from '../../hooks/UseContinents';
 import Icon from 'react-native-vector-icons/Feather';
+import Header from '../../components/Header';
 
 const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
@@ -61,23 +62,7 @@ const Videos = ({navigation, route, props}) => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <View style={styles.container_header}>
-          <TouchableOpacity>
-            <Image
-              style={styles.character}
-              source={require('../../assets/images/character.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.searchBar}>
-            <TextInput
-              onChangeText={handleSearch}
-              value={searchValue}
-              style={styles.input}
-              placeholder="Search..."
-            />
-            <Icon name="search" size={25} color={'black'} />
-          </TouchableOpacity>
-        </View>
+        <Header value={searchValue} onChangeText={handleSearch} />
       </View>
       <>
         {isLoading ? (
