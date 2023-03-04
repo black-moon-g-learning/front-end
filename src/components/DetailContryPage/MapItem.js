@@ -36,7 +36,7 @@ const Mapitem = () => {
           styles={{textInput: styles.input}}
           placeholder="Search"
           query={{
-            key: 'AIzaSyDZ5nB0-nRs6-NqnURqrVkJB2vxbhjRubA',
+            key: 'AIzaSyB-uDeSWu-qyIBYK7b-W-GGaweudEIyVy0',
             language: 'en',
           }}
           fetchDetails={true}

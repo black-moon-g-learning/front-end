@@ -1,56 +1,179 @@
-import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {
+  ActivityIndicator,
+  Animated,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {FailHeader} from '../../components/G-Game/FailHeader';
+import ListAnswer from '../../components/G-Game/ListAnswer';
+import QuestionContainer from '../../components/G-Game/QuestionContainer';
+import UseGetdata from '../../hooks/UseContinents';
 
 const DisplayQuestion = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const item = route.params;
+  const API = `countries/${item.id}/questions`;
+  const {data, isLoading, isSuccess} = UseGetdata(API);
+  //Index of question
+  const [index, setIndex] = useState(0);
+  //Question is a object
+  const question = isSuccess ? data.data[index] : null;
+  //total of question
+  const totalQuestion = isSuccess ? data.data.length : null;
+  //total correct answers
+  const [totalCorrectAns, setTotalCorrectAns] = useState(0);
+  //Select answer
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  //Index of select answer
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  //correct answer
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  //score
+  const [score, setScore] = useState(0);
+  //Width of Wiew to show downtime
+  const [viewWidth, setViewWidth] = useState(new Animated.Value(300));
+  //total of time to answer the question
+  const [timeLeft, setTimeLeft] = useState(15);
+  //Option to choose
+  const options = ['A', 'B', 'C', 'D'];
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (timeLeft > 0) {
+        setTimeLeft(timeLeft - 1);
+        Animated.timing(viewWidth, {
+          toValue: viewWidth._value - 20, // giảm độ dài view đi 2 đơn vị mỗi giây
+          duration: 1000,
+          useNativeDriver: false,
+        }).start();
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  //Increase the index of the question
+  const handleQuestion = myScore => {
+    if (index + 1 === totalQuestion) {
+      finalScreen(myScore);
+    } else {
+      setIndex(index + 1);
+      setTimeLeft(15);
+      viewWidth.setValue(300);
+      setSelectedAnswerIndex(null);
+    }
+  };
+  //Navigate to result screens
+  const finalScreen = finalScore => {
+    if (finalScore <= 500) {
+      navigation.navigate('FailScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    } else if (finalScore <= 1000) {
+      navigation.navigate('GoodScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    } else {
+      navigation.navigate('GreatScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    }
+  };
+  //Save the Score to Async storage
+  // const saveScore = async finalScore => {
+  //   try {
+  //     await AsyncStorage.setItem('score', finalScore.toString());
+  //     console.log('Score saved successfully!');
+  //   } catch (error) {
+  //     console.log('loi', error);
+  //   }
+  // };
+  //Handle the correct answer
+  const handleSelectOption = answer => {
+    setSelectedAnswer(answer.content);
+    setSelectedAnswerIndex(answer.id);
+    if (answer.is_correct === 1) {
+      setCorrectAnswer(answer.id);
+      setScore(score + 100);
+      setTotalCorrectAns(totalCorrectAns + 1);
+      // saveScore(score);
+    }
+  };
+  //Change the style of selected answer
+  const getOptionStyle = option => {
+    if (option.content === selectedAnswer && option.id === correctAnswer) {
+      return styles.correctAnswer;
+    } else if (
+      option.content === selectedAnswer &&
+      option.id !== correctAnswer
+    ) {
+      return styles.incorrectAnswer;
+    } else {
+      return null;
+    }
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require('../../assets/images/G-GAME.png')} />
-      </View>
-      <View style={styles.Timer}>
-        <View style={styles.countTime} />
-        <Image
-          style={styles.clock}
-          source={require('../../assets/images/Clock.png')}
-        />
-      </View>
-      <View style={styles.questionContainer}>
-        <View style={styles.characterCon}>
-          <Image
-            style={styles.character}
-            source={require('../../assets/images/nomarl.png')}
-          />
-        </View>
-        <View style={styles.countQues}>
-          <Text style={styles.countTxt}>Question 1/15</Text>
-        </View>
-        <View style={styles.quesCon}>
-          <Text style={styles.question} numberOfLines={4}>
-            What is the curent population of Việt Nam?
-          </Text>
-        </View>
-        <View style={styles.ansContainer}>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
+      {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
+      {isSuccess ? (
+        <>
+          <FailHeader score={score} />
+          <View style={styles.Timer}>
+            <Animated.View style={[styles.countTime, {width: viewWidth}]} />
+            <Image
+              style={styles.clock}
+              source={require('../../assets/images/Clock.png')}
+            />
           </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
+          <View style={styles.questionContainer}>
+            <View style={styles.characterCon}>
+              <Image
+                style={styles.character}
+                source={require('../../assets/images/nomarl.png')}
+              />
+            </View>
+            <View style={styles.countQues}>
+              <Text style={styles.countTxt}>
+                Question {index + 1}/{totalQuestion}
+              </Text>
+            </View>
+            <QuestionContainer question={question} />
+            {question.answers.map((answersOption, ind) => (
+              <ListAnswer
+                key={answersOption.id}
+                answersOption={answersOption}
+                handleSelectOption={handleSelectOption}
+                getOptionStyle={getOptionStyle}
+                selectedAnswerIndex={selectedAnswerIndex}
+                option={options}
+                index={ind}
+              />
+            ))}
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => handleQuestion(score)}>
+              <Text style={styles.txtBtn}>Next</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
-          </View>
-          <View style={styles.ans}>
-            <Text style={styles.option}>A</Text>
-            <Text style={styles.answer}>98,186 million people</Text>
-          </View>
-        </View>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.txtBtn}>Next</Text>
-        </TouchableOpacity>
-      </View>
+        </>
+      ) : null}
     </View>
   );
 };
@@ -87,48 +210,6 @@ const styles = StyleSheet.create({
     padding: 13,
     color: '#000000',
   },
-  quesCon: {
-    padding: 10,
-  },
-  question: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 20,
-    fontWeight: 'bold',
-    lineHeight: 20,
-    textAlign: 'center',
-    color: '#FFFFFF',
-  },
-  ansContainer: {
-    width: '90%',
-  },
-  ans: {
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    borderRadius: 100,
-    margin: 10,
-  },
-  option: {
-    color: '#000000',
-    fontSize: 20,
-    fontWeight: '600',
-    lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
-    padding: 15,
-    backgroundColor: '#EFD207',
-    borderRadius: 100,
-    width: 50,
-    height: 50,
-    textAlign: 'center',
-  },
-  answer: {
-    color: '#323643',
-    fontSize: 16,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
-    padding: 10,
-    paddingLeft: '10%',
-  },
   Timer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -143,7 +224,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   countTime: {
-    width: '90%',
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 15,
@@ -179,5 +259,11 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
     paddingTop: 5,
+  },
+  correctAnswer: {
+    backgroundColor: '#FFBF1C',
+  },
+  incorrectAnswer: {
+    backgroundColor: '#E31919',
   },
 });

@@ -6,10 +6,11 @@ import {
   GroupBtn,
 } from '../../components/G-Game/FailHeader';
 
-const GoodPage = () => {
+const GoodPage = ({route}) => {
+  const {item, score, totalQuestion, totalCorrectAns} = route.params;
   return (
     <View style={styles.container}>
-      <FailHeader />
+      <FailHeader score={score} />
       <View style={styles.resultContainer}>
         <View style={styles.result}>
           <Image
@@ -24,8 +25,11 @@ const GoodPage = () => {
             source={require('../../assets/images/good.png')}
           />
         </View>
-        <FinalResult />
-        <GroupBtn />
+        <FinalResult
+          totalQuestion={totalQuestion}
+          totalCorrectAns={totalCorrectAns}
+        />
+        <GroupBtn item={item} />
       </View>
     </View>
   );

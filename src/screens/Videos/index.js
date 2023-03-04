@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Continents_URL} from '@env';
-import axios from 'axios';
 import {useQuery} from 'react-query';
+import axiosRequest from '../../axios';
 import {
   ActivityIndicator,
   FlatList,
@@ -28,7 +28,7 @@ const Videos = ({navigation, route, props}) => {
   useEffect(() => {
     const search = async () => {
       try {
-        const result = await axios.get(
+        const result = await axiosRequest.get(
           `${Continents_URL}/countries-topics/${item.id}/videos?s=${searchValue}`,
         );
         setSearchResult(result.data);

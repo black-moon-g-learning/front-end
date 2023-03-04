@@ -19,6 +19,8 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseGetdata from '../../hooks/UseContinents';
 import axios from 'axios';
+import axiosRequest from '../../axios';
+
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -35,7 +37,7 @@ const Countries = () => {
   useEffect(() => {
     const search = async () => {
       try {
-        const result = await axios.get(
+        const result = await axiosRequest.get(
           `${Continents_URL}/continents/${item.id}?s=${searchValue}`,
         );
         setSearchResult(result.data);
@@ -114,10 +116,13 @@ const Countries = () => {
                 />
               ) : (
                 <>
-                  {/* <>
+                  <>
+                    {DataCountries === null && (
+                      <Text style={styles.title}>Popular</Text>
+                    )}
                     <FlatList
                       showsHorizontalScrollIndicator={false}
-                      data={DataCountries ? [DataCountries] : null}
+                      data={DataCountries ? [DataCountries] : data.data.popular}
                       horizontal={true}
                       ListEmptyComponent={ErrorMessage}
                       keyExtractor={item => item.id}
@@ -127,39 +132,23 @@ const Countries = () => {
                         );
                       }}
                     />
-                  </> */}
-                  {/* <> */}
-                  {DataCountries && DataCountries.length > 0 && (
-                    <Text style={styles.title}>Popular</Text>
-                  )}
-                  <FlatList
-                    showsHorizontalScrollIndicator={false}
-                    data={DataCountries ? [DataCountries] : data.data.popular}
-                    horizontal={true}
-                    ListEmptyComponent={ErrorMessage}
-                    keyExtractor={item => item.id}
-                    renderItem={({item}) => {
-                      return (
-                        <ItemPopular navigation={navigation} item={item} />
-                      );
-                    }}
-                  />
-                  {DataCountries && DataCountries.length > 0 && (
-                    <Text style={styles.title}>Countries</Text>
-                  )}
-                  <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={DataCountries ? [] : data.data.countries}
-                    numColumns={2}
-                    ListEmptyComponent={ErrorMessage}
-                    keyExtractor={item => item.id}
-                    renderItem={({item}) => {
-                      return (
-                        <ItemCountries navigation={navigation} item={item} />
-                      );
-                    }}
-                  />
-                  {/* </> */}
+
+                    {DataCountries === null && (
+                      <Text style={styles.title}>Countries</Text>
+                    )}
+                    <FlatList
+                      showsVerticalScrollIndicator={false}
+                      data={DataCountries ? [] : data.data.countries}
+                      numColumns={2}
+                      ListEmptyComponent={ErrorMessage}
+                      keyExtractor={item => item.id}
+                      renderItem={({item}) => {
+                        return (
+                          <ItemCountries navigation={navigation} item={item} />
+                        );
+                      }}
+                    />
+                  </>
                 </>
               )}
             </>

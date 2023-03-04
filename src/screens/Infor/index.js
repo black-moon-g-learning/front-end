@@ -19,8 +19,6 @@ import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
 
 const Information = ({navigation}) => {
-  // const API = 'profile';
-  // const {data, isLoading, isSuccess, refetch} = UseGetdata([API]);
   const {data, isLoading, isSuccess, refetch} = useProfile([]);
   const [modalVisible, setModalVisible] = useState(false);
 
