@@ -88,7 +88,6 @@ const Countries = () => {
               <Icon name="search" size={25} color={'black'} />
             </TouchableOpacity>
           </View>
-          <Text style={styles.title}>Popular</Text>
           {isLoading ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
@@ -105,22 +104,9 @@ const Countries = () => {
                       <View>
                         <TouchableOpacity
                           onPress={() => handleResultPress(item)}
-                          style={{
-                            width: '60%',
-                            alignItems: 'center',
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-around',
-                          }}>
+                          style={styles.modal}>
                           <Icon name="search" size={20} color={'red'} />
-                          <Text
-                            style={{
-                              color: '#323643',
-                              fontSize: 17,
-                              fontFamily: 'Poppins-Medium',
-                            }}>
-                            {item.name}
-                          </Text>
+                          <Text style={styles.textSearch}>{item.name}</Text>
                         </TouchableOpacity>
                       </View>
                     );
@@ -128,9 +114,26 @@ const Countries = () => {
                 />
               ) : (
                 <>
+                  {/* <>
+                    <FlatList
+                      showsHorizontalScrollIndicator={false}
+                      data={DataCountries ? [DataCountries] : null}
+                      horizontal={true}
+                      ListEmptyComponent={ErrorMessage}
+                      keyExtractor={item => item.id}
+                      renderItem={({item}) => {
+                        return (
+                          <ItemPopular navigation={navigation} item={item} />
+                        );
+                      }}
+                    />
+                  </> */}
+                  {/* <> */}
+                  {DataCountries && DataCountries.length > 0 && (
+                    <Text style={styles.title}>Popular</Text>
+                  )}
                   <FlatList
                     showsHorizontalScrollIndicator={false}
-                    // data={data.data.popular}
                     data={DataCountries ? [DataCountries] : data.data.popular}
                     horizontal={true}
                     ListEmptyComponent={ErrorMessage}
@@ -141,10 +144,12 @@ const Countries = () => {
                       );
                     }}
                   />
-                  <Text style={styles.title}>Countries</Text>
+                  {DataCountries && DataCountries.length > 0 && (
+                    <Text style={styles.title}>Countries</Text>
+                  )}
                   <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={DataCountries ? [DataCountries] : data.data.countries}
+                    data={DataCountries ? [] : data.data.countries}
                     numColumns={2}
                     ListEmptyComponent={ErrorMessage}
                     keyExtractor={item => item.id}
@@ -154,6 +159,7 @@ const Countries = () => {
                       );
                     }}
                   />
+                  {/* </> */}
                 </>
               )}
             </>
@@ -171,6 +177,15 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 18,
   },
+  modal: {
+    width: '60%',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 20,
+  },
+  textSearch: {color: '#323643', fontSize: 17, fontFamily: 'Poppins-Medium'},
   container_header: {
     display: 'flex',
     flexDirection: 'row',
