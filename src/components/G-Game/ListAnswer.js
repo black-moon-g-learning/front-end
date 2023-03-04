@@ -6,10 +6,10 @@ const ListAnswer = props => {
     <TouchableOpacity
       style={[styles.ans, props.getOptionStyle(props.answersOption)]}
       onPress={() => props.handleSelectOption(props.answersOption)}
-      disabled={
-        props.selectedAnswerIndex !== null &&
-        props.selectedAnswerIndex !== props.answersOption.id
-      }>
+      disabled={props.selectedAnswerIndex !== null}>
+      <Text style={[styles.option, props.getOptionStyle(props.answersOption)]}>
+        {props.option[props.index]}
+      </Text>
       <Text numberOfLines={1} style={styles.answer}>
         {props.answersOption.content}
       </Text>
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
   answer: {
     color: '#323643',
     fontSize: 16,
-    fontWeight: '400',
+    //fontWeight: '400',
     fontFamily: 'Poppins-Bold',
     padding: 10,
-    paddingLeft: '10%',
+    paddingLeft: '3%',
   },
   correctAnswer: {
     backgroundColor: 'yellow',

@@ -1,37 +1,66 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-export const FailHeader = () => {
+export const FailHeader = ({score}) => {
   return (
     <View style={styles.header}>
+      <View style={styles.scorebgd}>
+        <Text style={styles.score}>{score}</Text>
+      </View>
       <Image source={require('../../assets/images/G-GAME.png')} />
     </View>
   );
 };
 
-export const GroupBtn = () => {
+export const GroupBtn = ({item}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity style={styles.btn}>
-        <Text style={[styles.btnTxt, {color: '#008000'}]}>Play Again</Text>
+        <Text
+          style={[styles.btnTxt, {color: '#008000'}]}
+          onPress={() => navigation.navigate('DisplayQuestions', item)}>
+          Play Again
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.btn, {backgroundColor: '#FFC845'}]}>
+      <TouchableOpacity
+        style={[styles.btn, {backgroundColor: '#FFC845'}]}
+        onPress={() => navigation.navigate('GameLevels', {item})}>
         <Text style={styles.btnTxt}>Menu</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export const FinalResult = () => {
+export const FinalResult = ({totalCorrectAns, totalQuestion}) => {
   return (
     <View style={styles.finalResult}>
-      <Text style={styles.txtResult}>Your answer: 3/15</Text>
+      <Text style={styles.txtResult}>
+        Your answer: {totalCorrectAns}/{totalQuestion}
+      </Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
+  scorebgd: {
+    marginLeft: '70%',
+    backgroundColor: '#FFD500',
+    borderRadius: 100,
+    width: 60,
+    height: 60,
+    marginTop: 3,
+  },
+  score: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '700',
+    lineHeight: 20,
+    fontFamily: 'Poppins-Bold',
+    color: '#000000',
+    paddingTop: 20,
+  },
   header: {
-    justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
   },

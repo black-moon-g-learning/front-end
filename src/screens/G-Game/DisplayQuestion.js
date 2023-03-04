@@ -1,5 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -16,19 +15,33 @@ import QuestionContainer from '../../components/G-Game/QuestionContainer';
 import UseGetdata from '../../hooks/UseContinents';
 
 const DisplayQuestion = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const item = route.params;
   const API = `countries/${item.id}/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  //Index of question
   const [index, setIndex] = useState(0);
+  //Question is a object
   const question = isSuccess ? data.data[index] : null;
+  //total of question
   const totalQuestion = isSuccess ? data.data.length : null;
+  //total correct answers
+  const [totalCorrectAns, setTotalCorrectAns] = useState(0);
+  //Select answer
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  //Index of select answer
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  //correct answer
   const [correctAnswer, setCorrectAnswer] = useState(null);
+  //score
   const [score, setScore] = useState(0);
+  //Width of Wiew to show downtime
   const [viewWidth, setViewWidth] = useState(new Animated.Value(300));
+  //total of time to answer the question
   const [timeLeft, setTimeLeft] = useState(15);
+  //Option to choose
+  const options = ['A', 'B', 'C', 'D'];
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -48,8 +61,40 @@ const DisplayQuestion = () => {
   }, [timeLeft]);
 
   //Increase the index of the question
-  const handleQuestion = () => {
-    setIndex(index + 1);
+  const handleQuestion = myScore => {
+    if (index + 1 === totalQuestion) {
+      finalScreen(myScore);
+    } else {
+      setIndex(index + 1);
+      setTimeLeft(15);
+      viewWidth.setValue(300);
+      setSelectedAnswerIndex(null);
+    }
+  };
+  //Navigate to result screens
+  const finalScreen = finalScore => {
+    if (finalScore <= 500) {
+      navigation.navigate('FailScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    } else if (finalScore <= 1000) {
+      navigation.navigate('GoodScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    } else {
+      navigation.navigate('GreatScreen', {
+        item,
+        score,
+        totalCorrectAns,
+        totalQuestion,
+      });
+    }
   };
   //Save the Score to Async storage
   // const saveScore = async finalScore => {
@@ -67,6 +112,7 @@ const DisplayQuestion = () => {
     if (answer.is_correct === 1) {
       setCorrectAnswer(answer.id);
       setScore(score + 100);
+      setTotalCorrectAns(totalCorrectAns + 1);
       // saveScore(score);
     }
   };
@@ -88,7 +134,7 @@ const DisplayQuestion = () => {
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
       {isSuccess ? (
         <>
-          <FailHeader />
+          <FailHeader score={score} />
           <View style={styles.Timer}>
             <Animated.View style={[styles.countTime, {width: viewWidth}]} />
             <Image
@@ -109,18 +155,20 @@ const DisplayQuestion = () => {
               </Text>
             </View>
             <QuestionContainer question={question} />
-            {question.answers.map(answersOption => (
+            {question.answers.map((answersOption, ind) => (
               <ListAnswer
                 key={answersOption.id}
                 answersOption={answersOption}
                 handleSelectOption={handleSelectOption}
                 getOptionStyle={getOptionStyle}
                 selectedAnswerIndex={selectedAnswerIndex}
+                option={options}
+                index={ind}
               />
             ))}
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => handleQuestion()}>
+              onPress={() => handleQuestion(score)}>
               <Text style={styles.txtBtn}>Next</Text>
             </TouchableOpacity>
           </View>
