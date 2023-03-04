@@ -10,7 +10,7 @@ import {
 import UseLevelModal from '../../hooks/UseLevelModal';
 import GLevelDetail from './GLevelDetail';
 
-const EasyLevel = ({level}) => {
+const EasyLevel = ({level, item}) => {
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
     <TouchableOpacity
@@ -31,7 +31,11 @@ const EasyLevel = ({level}) => {
         animationType="fade"
         visible={isModalVisible}
         nRequestClose={() => changeModalVisible(false)}>
-        <GLevelDetail changeModalVisible={changeModalVisible} level={level} />
+        <GLevelDetail
+          changeModalVisible={changeModalVisible}
+          level={level}
+          item={item}
+        />
       </Modal>
     </TouchableOpacity>
   );

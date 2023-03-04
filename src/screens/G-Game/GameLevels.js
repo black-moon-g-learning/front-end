@@ -19,7 +19,7 @@ const GameLevels = () => {
           {data.data
             .filter(level => level.id === 1)
             .map(level => (
-              <EasyLevel level={level} key={item.id} />
+              <EasyLevel level={level} key={item.id} item={item} />
             ))}
           {data.data
             .filter(level => level.id === 2)

@@ -19,7 +19,6 @@ const Countries = () => {
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

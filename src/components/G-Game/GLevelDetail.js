@@ -8,7 +8,7 @@ const GLevelDetail = props => {
     props.changeModalVisible(bool);
   };
   const playingGame = () => {
-    navigation.navigate('DisplayQuestions');
+    navigation.navigate('DisplayQuestions', props.item);
     CloseModal(false);
   };
   return (

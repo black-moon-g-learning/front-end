@@ -25,7 +25,7 @@ const LoginSocial = () => {
     const {idToken} = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
+    console.log(idToken);
     const user_sign_in = auth().signInWithCredential(googleCredential);
     user_sign_in
       .then(user => {
