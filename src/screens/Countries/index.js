@@ -1,26 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {Continents_URL} from '@env';
-
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
-  Image,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/Feather';
 import {useRoute} from '@react-navigation/native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import UseGetdata from '../../hooks/UseContinents';
-import axiosRequest from '../../axios';
-
+import ModalSearch from '../../components/ModalSearch';
 import Icon from 'react-native-vector-icons/Feather';
+import useSearch from '../../hooks/useSearch';
 
 const Countries = () => {
   const route = useRoute();
@@ -28,27 +23,9 @@ const Countries = () => {
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResult, setSearchResult] = useState(null);
+  const {searchValue, setSearchValue, searchResult, setSearchResult} =
+    useSearch(API);
   const [DataCountries, setDataCountries] = useState(null);
-
-  useEffect(() => {
-    const search = async () => {
-      try {
-        const result = await axiosRequest.get(
-          `${Continents_URL}/continents/${item.id}?s=${searchValue}`,
-        );
-        setSearchResult(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (searchValue.length >= 2) {
-      search();
-    } else {
-      setSearchResult(null);
-    }
-  }, [searchValue]);
 
   const handleSearch = value => {
     console.log('searching for', value);
@@ -72,28 +49,23 @@ const Countries = () => {
       {isSuccess && (
         <View style={styles.flatlist}>
           <Header value={searchValue} onChangeText={handleSearch} />
-
           {isLoading ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <>
               {searchResult ? (
                 <FlatList
-                  style={{width: '100%'}}
+                  style={{width: '100%', paddingTop: 20}}
                   showsVerticalScrollIndicator={false}
                   data={searchResult.data}
                   ListEmptyComponent={ErrorMessage}
                   keyExtractor={item => item.id.toString()}
                   renderItem={({item}) => {
                     return (
-                      <View>
-                        <TouchableOpacity
-                          onPress={() => handleResultPress(item)}
-                          style={styles.modal}>
-                          <Icon name="search" size={20} color={'red'} />
-                          <Text style={styles.textSearch}>{item.name}</Text>
-                        </TouchableOpacity>
-                      </View>
+                      <ModalSearch
+                        item={item}
+                        onPress={() => handleResultPress(item)}
+                      />
                     );
                   }}
                 />
@@ -148,42 +120,6 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
-  },
-  modal: {
-    width: '60%',
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingTop: 20,
-  },
-  textSearch: {color: '#323643', fontSize: 17, fontFamily: 'Poppins-Medium'},
-  container_header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  input: {
-    width: '75%',
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: '#F4F1F1',
-    paddingLeft: 10,
-  },
-  searchBar: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 46,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#000000',
-    borderRadius: 20,
-  },
-  character: {
-    width: 40.38,
-    height: 45,
   },
   name: {
     width: '100%',
