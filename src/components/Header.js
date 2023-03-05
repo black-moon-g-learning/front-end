@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-const Header = () => {
+const Header = ({value, onChangeText}) => {
   return (
     <View style={styles.container_header}>
       <TouchableOpacity>
@@ -17,7 +17,12 @@ const Header = () => {
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchBar}>
-        <TextInput style={styles.input} placeholder="Search..." />
+        <TextInput
+          onChangeText={onChangeText}
+          value={value}
+          style={styles.input}
+          placeholder="Search..."
+        />
         <Icon name="search" size={25} color={'black'} />
       </TouchableOpacity>
     </View>

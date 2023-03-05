@@ -31,7 +31,13 @@ const PlayVideo = ({navigation, route}) => {
           ListEmptyComponent={ErrorMessage}
           keyExtractor={item => item.id}
           renderItem={({item}) => {
-            return <RecommendVideo navigation={navigation} item={item} />;
+            return (
+              <RecommendVideo
+                navigation={navigation}
+                item={item}
+                videos={videos}
+              />
+            );
           }}
         />
       </View>
