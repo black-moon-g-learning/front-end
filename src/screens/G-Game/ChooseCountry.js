@@ -1,4 +1,5 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -7,15 +8,29 @@ import {
   View,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
+import BtnViewMore from '../../components/G-Game/btnViewMore';
 import CountryCard from '../../components/G-Game/CountryCard';
 import GameHeader from '../../components/G-Game/GameHeader';
-import BtnViewMore from '../../components/G-Game/btnViewMore';
 import UseGetdata from '../../hooks/UseContinents';
-import UseOnChangePage from '../../hooks/UseOnChangePage';
-
 const ChooseCountry = () => {
-  const {pageId, NextPage} = UseOnChangePage();
-  const API = `countries?page=${pageId}`;
+  const [page, setPage] = useState(1);
+  const [showPrevious, setShowPrevious] = useState(false);
+
+  const handlePreviousPage = () => {
+    if (page === 2) {
+      setShowPrevious(false);
+    }
+    setPage(page - 1);
+  };
+
+  const handleViewMore = () => {
+    if (page === 1) {
+      setShowPrevious(true);
+    }
+    setPage(page + 1);
+  };
+
+  const API = `countries?page=${page}`;
   const {data, isSuccess, isLoading} = UseGetdata(API);
   return (
     <View style={styles.container}>
@@ -28,7 +43,12 @@ const ChooseCountry = () => {
         {isSuccess && (
           <>
             <GameHeader />
-            <BtnViewMore NextPage={NextPage} />
+            <BtnViewMore
+              handleViewMore={handleViewMore}
+              handlePrevious={handlePreviousPage}
+              page={page}
+              showPrevious={showPrevious}
+            />
             <FlatList
               showsVerticalScrollIndicator={false}
               style={styles.flatlist}
