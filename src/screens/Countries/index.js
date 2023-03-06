@@ -54,7 +54,6 @@ const Countries = () => {
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <>
-<<<<<<< HEAD
               <FlatList
                 showsHorizontalScrollIndicator={false}
                 data={data.data.popular}
@@ -76,61 +75,6 @@ const Countries = () => {
                   return <ItemCountries navigation={navigation} item={item} />;
                 }}
               />
-=======
-              {searchResult ? (
-                <FlatList
-                  style={{width: '100%', paddingTop: 20}}
-                  showsVerticalScrollIndicator={false}
-                  data={searchResult.data}
-                  ListEmptyComponent={ErrorMessage}
-                  keyExtractor={item => item.id.toString()}
-                  renderItem={({item}) => {
-                    return (
-                      <ModalSearch
-                        item={item}
-                        onPress={() => handleResultPress(item)}
-                      />
-                    );
-                  }}
-                />
-              ) : (
-                <>
-                  <>
-                    {DataCountries === null && (
-                      <Text style={styles.title}>Popular</Text>
-                    )}
-                    <FlatList
-                      showsHorizontalScrollIndicator={false}
-                      data={DataCountries ? [DataCountries] : data.data.popular}
-                      horizontal={true}
-                      ListEmptyComponent={ErrorMessage}
-                      keyExtractor={item => item.id}
-                      renderItem={({item}) => {
-                        return (
-                          <ItemPopular navigation={navigation} item={item} />
-                        );
-                      }}
-                    />
-
-                    {DataCountries === null && (
-                      <Text style={styles.title}>Countries</Text>
-                    )}
-                    <FlatList
-                      showsVerticalScrollIndicator={false}
-                      data={DataCountries ? [] : data.data.countries}
-                      numColumns={2}
-                      ListEmptyComponent={ErrorMessage}
-                      keyExtractor={item => item.id}
-                      renderItem={({item}) => {
-                        return (
-                          <ItemCountries navigation={navigation} item={item} />
-                        );
-                      }}
-                    />
-                  </>
-                </>
-              )}
->>>>>>> 7eb2313ff4a03e9650deed99ac8cc214297cd5d2
             </>
           )}
         </View>
