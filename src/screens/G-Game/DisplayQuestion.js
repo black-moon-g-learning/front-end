@@ -46,10 +46,11 @@ const DisplayQuestion = () => {
   const [timeLeft, setTimeLeft] = useState(15);
   //Option to choose
   const options = ['A', 'B', 'C', 'D'];
+  const [questionState, setQuestionState] = useState('unanswered');
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (timeLeft > 0) {
+      if (timeLeft >= 0) {
         setTimeLeft(timeLeft - 1);
         Animated.timing(viewWidth, {
           toValue: viewWidth._value - 20,
@@ -72,8 +73,21 @@ const DisplayQuestion = () => {
       setTimeLeft(15);
       viewWidth.setValue(300);
       setSelectedAnswerIndex(null);
+      setSelectedAnswer(null);
+      setQuestionState('unanswered');
     }
   };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (questionState === 'unanswered') {
+        setQuestionState('timeout');
+        changeModalVisible(true);
+      }
+    }, 15000);
+
+    return () => clearTimeout(timeout);
+  }, [questionState]);
+
   //Clear data to play game again
   const restartQuiz = () => {
     setTotalCorrectAns(0);
@@ -131,6 +145,7 @@ const DisplayQuestion = () => {
   const handleSelectOption = answer => {
     setSelectedAnswer(answer.content);
     setSelectedAnswerIndex(answer.id);
+    setQuestionState('answered');
     if (answer.is_correct === 1) {
       setCorrectAnswer(answer.id);
       setScore(score + 100);
@@ -169,7 +184,11 @@ const DisplayQuestion = () => {
             animationType="fade"
             visible={isModalVisible}
             nRequestClose={() => changeModalVisible(false)}>
-            <TimeupModal changeModalVisible={changeModalVisible} />
+            <TimeupModal
+              changeModalVisible={changeModalVisible}
+              score={score}
+              handleQuestion={handleQuestion}
+            />
           </Modal>
           <View style={styles.questionContainer}>
             <View style={styles.characterCon}>
