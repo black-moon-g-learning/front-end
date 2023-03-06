@@ -7,8 +7,7 @@ import {
 } from '../../components/G-Game/FailHeader';
 
 const FailPage = ({route}) => {
-  const {item, score, totalQuestion, totalCorrectAns, restartQuiz} =
-    route.params;
+  const {item, score, totalQuestion, totalCorrectAns, restart} = route.params;
   return (
     <View style={styles.container}>
       <FailHeader score={score} />
@@ -30,7 +29,7 @@ const FailPage = ({route}) => {
           totalQuestion={totalQuestion}
           totalCorrectAns={totalCorrectAns}
         />
-        <GroupBtn item={item} restartQuiz={restartQuiz} />
+        <GroupBtn item={item} restart={restart} />
       </View>
     </View>
   );

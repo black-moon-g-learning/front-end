@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   Animated,
   Image,
+  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,8 +14,11 @@ import {FailHeader} from '../../components/G-Game/FailHeader';
 import ListAnswer from '../../components/G-Game/ListAnswer';
 import QuestionContainer from '../../components/G-Game/QuestionContainer';
 import UseGetdata from '../../hooks/UseContinents';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import TimeupModal from './TimeupModal';
 
 const DisplayQuestion = () => {
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   const navigation = useNavigation();
   const route = useRoute();
   const item = route.params;
@@ -48,7 +52,7 @@ const DisplayQuestion = () => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
         Animated.timing(viewWidth, {
-          toValue: viewWidth._value - 20, // giảm độ dài view đi 2 đơn vị mỗi giây
+          toValue: viewWidth._value - 20,
           duration: 1000,
           useNativeDriver: false,
         }).start();
@@ -59,7 +63,6 @@ const DisplayQuestion = () => {
 
     return () => clearInterval(intervalId);
   }, [timeLeft]);
-
   //Increase the index of the question
   const handleQuestion = myScore => {
     if (index === totalQuestion - 1) {
@@ -71,6 +74,7 @@ const DisplayQuestion = () => {
       setSelectedAnswerIndex(null);
     }
   };
+  //Clear data to play game again
   const restartQuiz = () => {
     setTotalCorrectAns(0);
     setSelectedAnswer(null);
@@ -88,7 +92,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
-        restartQuiz,
+        restart: 'restartQuiz',
       });
     } else if (finalScore <= 1000) {
       navigation.navigate('GoodScreen', {
@@ -96,6 +100,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
+        restart: 'restartQuiz',
       });
     } else {
       navigation.navigate('GreatScreen', {
@@ -103,6 +108,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
+        restart: 'restartQuiz',
       });
     }
   };
@@ -115,7 +121,13 @@ const DisplayQuestion = () => {
   //     console.log('loi', error);
   //   }
   // };
-  //Handle the correct answer
+  //
+  // useEffect(() => {
+  //   if (timeLeft === 0 && selectedAnswer === null) {
+  //     changeModalVisible(true);
+  //   }
+  // }, []);
+  //Handle the correct
   const handleSelectOption = answer => {
     setSelectedAnswer(answer.content);
     setSelectedAnswerIndex(answer.id);
@@ -152,6 +164,13 @@ const DisplayQuestion = () => {
               source={require('../../assets/images/Clock.png')}
             />
           </View>
+          <Modal
+            transparent={true}
+            animationType="fade"
+            visible={isModalVisible}
+            nRequestClose={() => changeModalVisible(false)}>
+            <TimeupModal changeModalVisible={changeModalVisible} />
+          </Modal>
           <View style={styles.questionContainer}>
             <View style={styles.characterCon}>
               <Image
