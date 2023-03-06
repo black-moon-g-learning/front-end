@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import {Alert, Linking} from 'react-native';
 
 const ROOT_API = '';
 
@@ -20,4 +21,27 @@ axiosRequest.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
+axiosRequest.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response.status === 403) {
+      return Alert.alert(
+        'Notification',
+        'You have used up 7 free days. Please purchase additional packages to continue using.',
+        [
+          {
+            text: 'BUY NOW',
+            onPress: () => {
+              Linking.openURL('g-learning://payment');
+            },
+            style: 'default',
+          },
+        ],
+        {cancelable: false},
+      );
+    }
+  },
+);
+
 export default axiosRequest;

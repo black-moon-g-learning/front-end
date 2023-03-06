@@ -12,6 +12,7 @@ import {useRoute} from '@react-navigation/native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
+import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
 
 const Countries = () => {
@@ -36,7 +37,7 @@ const Countries = () => {
                 showsHorizontalScrollIndicator={false}
                 data={data.data.popular}
                 horizontal={true}
-                ListEmptyComponent={ErrorMessage}
+                ListEmptyComponent={Emty}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => {
                   return <ItemPopular navigation={navigation} item={item} />;

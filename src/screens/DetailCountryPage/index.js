@@ -1,6 +1,6 @@
 // import {Continents_URL} from '@env';
 // import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -8,11 +8,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
-import {ErrorMessage} from '../../components/ErrorMessage';
+import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
 
 const DetailCountryPage = ({navigation, route}) => {
@@ -33,7 +32,7 @@ const DetailCountryPage = ({navigation, route}) => {
             showsHorizontalScrollIndicator={false}
             data={data.data}
             horizontal={true}
-            ListEmptyComponent={ErrorMessage}
+            ListEmptyComponent={Emty}
             keyExtractor={item => item.id}
             renderItem={({item}) => {
               return <TopicCard navigation={navigation} item={item} />;

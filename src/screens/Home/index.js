@@ -10,8 +10,8 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
-import ModalPopUp from '../../components/Popup/Modal';
 import UseGetdata from '../../hooks/UseContinents';
+
 const Home = ({navigation}) => {
   const API = `continents`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
