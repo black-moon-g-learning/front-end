@@ -50,8 +50,7 @@
     "react-native-vnpay-merchant": "file:react-native-vnpay-merchant",
     "react-native-webview": "^11.26.1",
     "react-native-youtube-iframe": "^2.2.2",
-    "react-query": "^3.39.3",
-    "react-router-dom": "^6.8.1"
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

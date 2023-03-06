@@ -1,5 +1,4 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
@@ -163,85 +162,74 @@ const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="login"
-        screenOptions={{
-          animation: 'slide_from_bottom',
-        }}>
-        <Stack.Screen
-          name="login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Tab"
-          component={Bottomtab}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Contribution"
-          component={Contribution}
-          options={{
-            headerTitle: props => <ContributionHeader {...props} />,
-            headerStyle: {
-              backgroundColor: '#F2F2F2',
-            },
-            headerShadowVisible: false,
-          }}
-        />
-        <Stack.Screen
-          name="News"
-          component={HYHBDetail}
-          options={{
-            headerTitle: props => <HYHBHeader {...props} />,
-            headerStyle: {
-              backgroundColor: '#F2F2F2',
-            },
-            headerShadowVisible: false,
-          }}
-        />
-        <Stack.Screen
-          name="GameLevels"
-          component={GameLevels}
-          options={{
-            headerTitle: props => <LevelHeader {...props} />,
-            headerStyle: {
-              backgroundColor: '#F2F2F2',
-            },
-            headerShadowVisible: false,
-          }}
-        />
-        <Stack.Screen
-          name="DisplayQuestions"
-          component={DisplayQuestion}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="FailScreen"
-          component={FailPage}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="GoodScreen"
-          component={GoodPage}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="GreatScreen"
-          component={GreatePage}
-          options={{headerShown: false}}
-        />
-        <HomeStack.Screen name="logout" component={Logout} />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{headerShown: false}}
-        />
-        <HomeStack.Screen name="title" component={TitleContries} />
-        <HomeStack.Screen name="listvideo" component={TitleListVideos} />
-        <HomeStack.Screen name="Payment" component={Payment} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="login"
+      screenOptions={{
+        animation: 'slide_from_bottom',
+      }}>
+      <Stack.Screen
+        name="login"
+        component={Login}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Tab"
+        component={Bottomtab}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Contribution"
+        component={Contribution}
+        options={{
+          headerTitle: props => <ContributionHeader {...props} />,
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="News"
+        component={HYHBDetail}
+        options={{
+          headerTitle: props => <HYHBHeader {...props} />,
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="GameLevels"
+        component={GameLevels}
+        options={{
+          headerTitle: props => <LevelHeader {...props} />,
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="DisplayQuestions"
+        component={DisplayQuestion}
+        options={{
+          headerTitle: props => <Score {...props} />,
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <HomeStack.Screen name="logout" component={Logout} />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{headerShown: false}}
+      />
+      <HomeStack.Screen name="title" component={TitleContries} />
+      <HomeStack.Screen name="listvideo" component={TitleListVideos} />
+      <HomeStack.Screen name="Payment" component={Payment} />
+    </Stack.Navigator>
   );
 }

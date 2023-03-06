@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import OtherCard from './OtherCard';
 const HYHBCard = ({item}) => {
   return (
@@ -34,10 +34,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: '#000000',
     fontFamily: 'Poppins-Medium',
-    lineHeight: 30,
     width: '100%',
     textAlign: 'justify',
-
   },
   txt: {
     fontSize: 15,
