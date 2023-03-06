@@ -16,7 +16,7 @@ import useCreateContribution from '../../hooks/useCreateContribution';
 import PickerSelect from '../PickerSelect';
 
 const ContributionForm = () => {
-  const API = `countries?page=page`;
+  const API = `countries?attribute=name`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const {
     contribution,

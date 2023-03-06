@@ -13,14 +13,22 @@ export const FailHeader = ({score}) => {
   );
 };
 
-export const GroupBtn = ({item}) => {
+export const GroupBtn = ({item, restart}) => {
   const navigation = useNavigation();
+  const handleRestart = () => {
+    if (typeof restart === 'function') {
+      restart();
+      navigation.navigate('DisplayQuestions', item);
+    } else if (typeof window[restart] === 'function') {
+      window[restart]();
+    }
+  };
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity style={styles.btn}>
         <Text
           style={[styles.btnTxt, {color: '#008000'}]}
-          onPress={() => navigation.navigate('DisplayQuestions', item)}>
+          onPress={() => handleRestart()}>
           Play Again
         </Text>
       </TouchableOpacity>
