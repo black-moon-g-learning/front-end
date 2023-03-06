@@ -62,7 +62,7 @@ const DisplayQuestion = () => {
 
   //Increase the index of the question
   const handleQuestion = myScore => {
-    if (index + 1 === totalQuestion) {
+    if (index === totalQuestion - 1) {
       finalScreen(myScore);
     } else {
       setIndex(index + 1);
@@ -70,6 +70,15 @@ const DisplayQuestion = () => {
       viewWidth.setValue(300);
       setSelectedAnswerIndex(null);
     }
+  };
+  const restartQuiz = () => {
+    setTotalCorrectAns(0);
+    setSelectedAnswer(null);
+    setSelectedAnswerIndex(null);
+    setCorrectAnswer(null);
+    setScore(0);
+    viewWidth.setValue(300);
+    setTimeLeft(15);
   };
   //Navigate to result screens
   const finalScreen = finalScore => {
@@ -79,6 +88,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
+        restartQuiz,
       });
     } else if (finalScore <= 1000) {
       navigation.navigate('GoodScreen', {

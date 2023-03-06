@@ -13,14 +13,18 @@ export const FailHeader = ({score}) => {
   );
 };
 
-export const GroupBtn = ({item}) => {
+export const GroupBtn = ({item, restartQuiz}) => {
   const navigation = useNavigation();
+  const handleRestart = () => {
+    restartQuiz();
+    navigation.navigate('DisplayQuestions', item);
+  };
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity style={styles.btn}>
         <Text
           style={[styles.btnTxt, {color: '#008000'}]}
-          onPress={() => navigation.navigate('DisplayQuestions', item)}>
+          onPress={() => handleRestart()}>
           Play Again
         </Text>
       </TouchableOpacity>

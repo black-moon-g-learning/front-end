@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Header from '../Header';
 const GameHeader = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>G-GAME</Text>
       <Header />
     </View>
@@ -13,6 +13,9 @@ const GameHeader = () => {
 export default GameHeader;
 
 const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 10,
+  },
   title: {
     color: '#FFFFFF',
     fontFamily: 'Poppins-Bold',
