@@ -1,24 +1,26 @@
 // import {Continents_URL} from '@env';
 // import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import Map from '../../components/DetailContryPage/Map';
 import TopicCard from '../../components/DetailContryPage/TopicCard';
 import TopicTitle from '../../components/DetailContryPage/TopicTitle';
-import {ErrorMessage} from '../../components/ErrorMessage';
+import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
 
 const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
   const API = `countries/${item.id}/topics`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  // const [bottomTabVisible, setBottomTabVisible] = useState(true);
+
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}>
@@ -33,15 +35,17 @@ const DetailCountryPage = ({navigation, route}) => {
             showsHorizontalScrollIndicator={false}
             data={data.data}
             horizontal={true}
-            ListEmptyComponent={ErrorMessage}
+            ListEmptyComponent={Emty}
             keyExtractor={item => item.id}
             renderItem={({item}) => {
               return <TopicCard navigation={navigation} item={item} />;
             }}
           />
         )}
-        <Map />
       </View>
+      <KeyboardAvoidingView style={styles.containerMap} behavior="padding">
+        <Map />
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -53,9 +57,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flex: 1,
   },
+
+  containerMap: {flex: 1},
   flatlist: {
     paddingLeft: 10,
     paddingRight: 10,
+    height: '34%',
   },
   topicsheader: {
     width: '100%',

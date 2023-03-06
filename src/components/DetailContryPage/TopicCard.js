@@ -26,19 +26,18 @@ export default TopicCard;
 const styles = StyleSheet.create({
   TopicCards_container: {
     width: 190,
-    height: 160,
+    height: 155,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10,
-    paddingTop: 5,
+    paddingBottom: 15,
   },
   TopicCards_item: {
     margin: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
     width: 175,
-    height: 145,
+    height: 140,
     backgroundColor: '#5FAD41',
     borderRadius: 20,
   },

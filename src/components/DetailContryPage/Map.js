@@ -18,22 +18,26 @@ const Map = () => {
 export default Map;
 
 const styles = StyleSheet.create({
-  mapcontainer: {marginBottom: 40},
+  mapcontainer: {paddingLeft: 10, paddingBottom: 10},
   title: {
     color: '#323643',
     fontFamily: 'Poppins-SemiBold',
-    fontSize: 22,
+    fontSize: 20,
   },
   undertxt: {
     backgroundColor: '#5FAD41',
     width: '20%',
     height: 2,
     margin: 3,
+    marginBottom: 30,
   },
 
   mapView: {
     width: '100%',
-    height: 200,
-    marginTop: 30,
+    height: 300,
+    marginTop: 20,
+  },
+  maparea: {
+    // paddingTop: 50,
   },
 });

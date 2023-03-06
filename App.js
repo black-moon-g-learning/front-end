@@ -1,3 +1,4 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import {QueryClient, QueryClientProvider} from 'react-query';
@@ -8,9 +9,22 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
+  const config = {
+    screens: {
+      Payment: 'payment',
+    },
+  };
+
+  const linking = {
+    prefixes: ['g-learning://'],
+    config,
+  };
   return (
     <QueryClientProvider client={queryClient}>
-      <Navigation />
+      <NavigationContainer linking={linking}>
+        <Navigation />
+      </NavigationContainer>
     </QueryClientProvider>
   );
 };

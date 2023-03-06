@@ -4,6 +4,7 @@ import Searchbar from '../../components/DetailContryPage/Searchbar';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import NewsCard from '../../components/HYHBpage/NewsCard';
 import UseGetdata from '../../hooks/UseContinents';
+import Emty from '../../components/Popup/Emty';
 
 const News = () => {
   const API = `information`;
@@ -17,7 +18,7 @@ const News = () => {
           <FlatList
             showsVerticalScrollIndicator={false}
             style={styles.flatlist}
-            ListEmptyComponent={ErrorMessage}
+            ListEmptyComponent={Emty}
             keyExtractor={item => item.id}
             data={data.data}
             renderItem={({item}) => {
