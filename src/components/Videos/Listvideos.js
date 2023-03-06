@@ -23,19 +23,21 @@ export const ListVideo = ({navigation, item, videos}) => {
   );
 };
 
-export const RecommendVideo = ({navigation, item}) => {
+export const RecommendVideo = ({navigation, item, videos}) => {
   return (
-    <ScrollView style={styles.itemRecommend_container}>
-      <TouchableOpacity
-        style={styles.item_RCMVideos}
-        key={item}
-        onPress={() => navigation.navigate('playvideo', {item})}>
+    <TouchableOpacity
+      style={styles.itemRecommend_container}
+      key={item}
+      onPress={() =>
+        navigation.replace('playvideo', {item: item, videos: videos})
+      }>
+      <View style={styles.item_RCMVideos}>
         <Image source={{uri: item.image}} style={styles.recommend_image} />
         <View>
           <Text style={styles.recommend_name}>{item.name}</Text>
         </View>
-      </TouchableOpacity>
-    </ScrollView>
+      </View>
+    </TouchableOpacity>
   );
 };
 

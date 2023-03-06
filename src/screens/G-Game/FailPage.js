@@ -6,10 +6,12 @@ import {
   GroupBtn,
 } from '../../components/G-Game/FailHeader';
 
-const FailPage = () => {
+const FailPage = ({route}) => {
+  const {item, score, totalQuestion, totalCorrectAns} = route.params;
+  console.log('my socre => ', score);
   return (
     <View style={styles.container}>
-      <FailHeader />
+      <FailHeader score={score} />
       <View style={styles.resultContainer}>
         <View style={styles.result}>
           <Image
@@ -24,8 +26,11 @@ const FailPage = () => {
             source={require('../../assets/images/fail.png')}
           />
         </View>
-        <FinalResult />
-        <GroupBtn />
+        <FinalResult
+          totalQuestion={totalQuestion}
+          totalCorrectAns={totalCorrectAns}
+        />
+        <GroupBtn item={item} />
       </View>
     </View>
   );
@@ -35,9 +40,7 @@ export default FailPage;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 15,
-    justifyContent: 'center',
+    marginHorizontal: 15,
   },
   resultContainer: {
     backgroundColor: '#5FAD41',

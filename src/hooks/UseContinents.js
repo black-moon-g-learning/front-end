@@ -12,6 +12,7 @@ const getContinents = async API => {
     return response;
   }
 };
+console.log(Continents_URL);
 const UseGetdata = API =>
   useQuery(['continents', API], () => getContinents(API));
 export default UseGetdata;

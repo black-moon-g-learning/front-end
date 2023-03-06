@@ -15,6 +15,7 @@ import UseGetdata from '../../hooks/UseContinents';
 const Home = ({navigation}) => {
   const API = `continents`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  console.log('data', data);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
