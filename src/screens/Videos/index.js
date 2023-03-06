@@ -22,7 +22,7 @@ import ModalSearch from '../../components/ModalSearch';
 const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;
-  const {data, isLoading, isError, isSuccess} = UseGetdata(API);
+  const {data, isLoading} = UseGetdata(API);
   const {searchValue, setSearchValue, searchResult, setSearchResult} =
     useSearch(API);
   const [DataVideo, setDataVideo] = useState(null);
