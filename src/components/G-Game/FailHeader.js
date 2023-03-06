@@ -13,15 +13,11 @@ export const FailHeader = ({score}) => {
   );
 };
 
-export const GroupBtn = ({item, restart}) => {
+export const GroupBtn = ({item, restartQuiz}) => {
   const navigation = useNavigation();
   const handleRestart = () => {
-    if (typeof restart === 'function') {
-      restart();
-      navigation.navigate('DisplayQuestions', item);
-    } else if (typeof window[restart] === 'function') {
-      window[restart]();
-    }
+    restartQuiz();
+    navigation.navigate('DisplayQuestions', item);
   };
   return (
     <View style={styles.btnGroup}>
