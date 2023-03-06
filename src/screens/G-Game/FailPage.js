@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, LogBox} from 'react-native';
 import {
   FailHeader,
   FinalResult,
@@ -7,7 +7,11 @@ import {
 } from '../../components/G-Game/FailHeader';
 
 const FailPage = ({route}) => {
-  const {item, score, totalQuestion, totalCorrectAns, restart} = route.params;
+  LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+  ]);
+  const {item, score, totalQuestion, totalCorrectAns, restartQuiz} =
+    route.params;
   return (
     <View style={styles.container}>
       <FailHeader score={score} />
@@ -29,7 +33,7 @@ const FailPage = ({route}) => {
           totalQuestion={totalQuestion}
           totalCorrectAns={totalCorrectAns}
         />
-        <GroupBtn item={item} restart={restart} />
+        <GroupBtn item={item} restartQuiz={restartQuiz} />
       </View>
     </View>
   );

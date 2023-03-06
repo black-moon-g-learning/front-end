@@ -92,7 +92,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
-        restart: 'restartQuiz',
+        restartQuiz: restartQuiz,
       });
     } else if (finalScore <= 1000) {
       navigation.navigate('GoodScreen', {
@@ -100,7 +100,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
-        restart: 'restartQuiz',
+        restartQuiz: restartQuiz,
       });
     } else {
       navigation.navigate('GreatScreen', {
@@ -108,7 +108,7 @@ const DisplayQuestion = () => {
         score,
         totalCorrectAns,
         totalQuestion,
-        restart: 'restartQuiz',
+        restartQuiz: restartQuiz,
       });
     }
   };
