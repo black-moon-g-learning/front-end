@@ -22,9 +22,9 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
+import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Home from '../screens/Home';
 import Information from '../screens/Infor';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
@@ -213,13 +213,22 @@ export default function Navigation() {
       <Stack.Screen
         name="DisplayQuestions"
         component={DisplayQuestion}
-        options={{
-          headerTitle: props => <Score {...props} />,
-          headerStyle: {
-            backgroundColor: '#F2F2F2',
-          },
-          headerShadowVisible: false,
-        }}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FailScreen"
+        component={FailPage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="GoodScreen"
+        component={GoodPage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="GreatScreen"
+        component={GreatePage}
+        options={{headerShown: false}}
       />
       <HomeStack.Screen name="logout" component={Logout} />
       <Stack.Screen
