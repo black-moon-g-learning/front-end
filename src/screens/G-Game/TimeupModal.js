@@ -9,7 +9,7 @@ const TimeupModal = props => {
   };
   const nextContribution = () => {
     // props.handleQuestion(props.score);
-    navigation.navigate('Contribution');
+    props.handleQuestion(props.score);
     CloseModal(false);
   };
   return (
@@ -20,9 +20,6 @@ const TimeupModal = props => {
           <Text style={styles.title}>Time's up!</Text>
         </View>
         <View style={styles.btnGroup}>
-          <TouchableOpacity onPress={() => CloseModal(false)}>
-            <Text style={styles.btn}>Cancel</Text>
-          </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.btn} onPress={() => nextContribution()}>
               OK
@@ -58,8 +55,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   btnGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
   },
