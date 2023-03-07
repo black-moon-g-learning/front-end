@@ -31,6 +31,7 @@ import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
+import MapViewCountry from '../components/DetailContryPage/MapView';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -239,6 +240,13 @@ export default function Navigation() {
       <HomeStack.Screen name="title" component={TitleContries} />
       <HomeStack.Screen name="listvideo" component={TitleListVideos} />
       <HomeStack.Screen name="Payment" component={Payment} />
+      <HomeStack.Screen
+        name="mapview"
+        component={MapViewCountry}
+        options={{
+          title: 'G - MAP',
+        }}
+      />
     </Stack.Navigator>
   );
 }

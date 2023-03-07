@@ -1,13 +1,8 @@
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {View, StyleSheet} from 'react-native';
-import {useRef, useState} from 'react';
-import {TouchableOpacity, TextInput} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {useNavigation} from '@react-navigation/native';
-
-const Mapitem = () => {
-  const navigation = useNavigation();
+import React, {useRef, useState} from 'react';
+const MapViewCountry = () => {
   const mapRef = useRef(null);
   console.log(mapRef?.current);
   const [markerPosition, setMarkerPosition] = useState({
@@ -33,12 +28,35 @@ const Mapitem = () => {
           }}
         />
       </MapView>
+
       <View style={styles.searchContainer}>
-        <TouchableOpacity
-          style={styles.searchBar}
-          onPress={() => navigation.navigate('mapview')}>
-          <TextInput style={styles.input} placeholder="Search..." />
-        </TouchableOpacity>
+        <GooglePlacesAutocomplete
+          styles={{textInput: styles.input}}
+          placeholder="Search"
+          query={{
+            key: 'AIzaSyB-uDeSWu-qyIBYK7b-W-GGaweudEIyVy0',
+            language: 'en',
+          }}
+          fetchDetails={true}
+          GooglePlacesDetailsQuery={{fields: 'geometry'}}
+          onPress={(data, details = null) => {
+            console.log('data', data);
+            console.log('details', details);
+            console.log(JSON.stringify(details?.geometry?.location));
+            const region = details?.geometry?.location;
+            setMarkerPosition(region);
+            mapRef?.current?.animateToRegion(
+              {
+                latitude: region?.lat,
+                longitude: region?.lng,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121,
+              },
+              500,
+            );
+          }}
+          onFail={error => console.error(error)}
+        />
       </View>
     </View>
   );
@@ -54,30 +72,15 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   searchContainer: {
-    top: -48,
+    top: 5,
     position: 'absolute',
     width: '95%',
   },
-  // input: {
-  //   borderWidth: 1,
-  // },
   input: {
-    width: '20%',
-    height: 40,
-    borderRadius: 10,
-    paddingLeft: 10,
-  },
-  searchBar: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 46,
-    padding: 10,
     borderWidth: 1,
     borderColor: '#FFBF1C',
     borderRadius: 10,
   },
 });
 
-export default Mapitem;
+export default MapViewCountry;
