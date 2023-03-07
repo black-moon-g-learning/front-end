@@ -1,17 +1,23 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ScrollView,
-} from 'react-native';
+import {Continents_URL} from '@env';
 import React from 'react';
+
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import axiosRequest from '../../axios';
 export const ListVideo = ({navigation, item, videos}) => {
+  const VideoWatched = () => {
+    axiosRequest
+      .post(`${Continents_URL}/${item.id}/store-history`, {
+        id: item.id,
+      })
+      .then(() => console.log('successful'))
+      .catch(error => console.log(error.response.data));
+  };
+
   return (
     <TouchableOpacity
       style={styles.item}
       key={item}
+      onPressIn={VideoWatched}
       onPress={() => navigation.navigate('playvideo', {item, videos})}>
       <Image source={{uri: item.image}} style={styles.img} />
       <View>
