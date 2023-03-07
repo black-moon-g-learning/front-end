@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -31,21 +31,36 @@ const Countries = () => {
       setDataCountries(null);
     }
   };
-
   const handleResultPress = item => {
     setSearchResult(null);
-    setDataCountries(item);
+    setDataCountries(item ? [item] : data.data.popular);
     if (!item) {
       setDataCountries(null);
     }
   };
-  console.log(searchResult);
+
+  const SearchOnpress = value => {
+    if (!value) {
+      setDataCountries(null);
+    } else {
+      setDataCountries(searchResult?.data);
+    }
+    setSearchResult(null);
+  };
+
+  console.log('datanef', DataCountries);
+  // console.log('search', searchResult);
+
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}></View>
       {isSuccess && (
         <View style={styles.flatlist}>
-          <Header value={searchValue} onChangeText={handleSearch} />
+          <Header
+            value={searchValue}
+            onChangeText={handleSearch}
+            onPress={SearchOnpress}
+          />
           {isLoading ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
@@ -73,39 +88,50 @@ const Countries = () => {
                 </>
               ) : (
                 <>
-                  <>
-                    {DataCountries === null && (
-                      <Text style={styles.title}>Popular</Text>
-                    )}
-                    <FlatList
-                      showsHorizontalScrollIndicator={false}
-                      data={DataCountries ? [DataCountries] : data.data.popular}
-                      horizontal={true}
-                      ListEmptyComponent={ErrorMessage}
-                      keyExtractor={item => item.id}
-                      renderItem={({item}) => {
-                        return (
-                          <ItemPopular navigation={navigation} item={item} />
-                        );
-                      }}
-                    />
+                  {DataCountries === undefined ? (
+                    <Text style={styles.errorTitle}>Hãy nhập</Text>
+                  ) : (
+                    <>
+                      {DataCountries === null && (
+                        <Text style={styles.title}>Popular</Text>
+                      )}
+                      <FlatList
+                        showsHorizontalScrollIndicator={false}
+                        data={DataCountries || data.data.popular}
+                        horizontal={true}
+                        ListEmptyComponent={ErrorMessage}
+                        keyExtractor={item => item.id}
+                        renderItem={({item}) => {
+                          return (
+                            <ItemPopular
+                              navigation={navigation}
+                              key={item.id}
+                              item={item}
+                            />
+                          );
+                        }}
+                      />
 
-                    {DataCountries === null && (
-                      <Text style={styles.title}>Countries</Text>
-                    )}
-                    <FlatList
-                      showsVerticalScrollIndicator={false}
-                      data={DataCountries ? [] : data.data.countries}
-                      numColumns={2}
-                      ListEmptyComponent={ErrorMessage}
-                      keyExtractor={item => item.id}
-                      renderItem={({item}) => {
-                        return (
-                          <ItemCountries navigation={navigation} item={item} />
-                        );
-                      }}
-                    />
-                  </>
+                      {DataCountries === null && (
+                        <Text style={styles.title}>Countries</Text>
+                      )}
+                      <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={DataCountries ? [] : data.data.countries}
+                        numColumns={2}
+                        ListEmptyComponent={ErrorMessage}
+                        keyExtractor={item => item.id}
+                        renderItem={({item}) => {
+                          return (
+                            <ItemCountries
+                              navigation={navigation}
+                              item={item}
+                            />
+                          );
+                        }}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </>
@@ -140,6 +166,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   errorTitle: {
+    paddingTop: 15,
     color: '#323643',
     fontSize: 17,
     fontFamily: 'Poppins-Medium',

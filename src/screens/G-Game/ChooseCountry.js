@@ -31,6 +31,7 @@ const ChooseCountry = () => {
 
   const API = `countries?page=${page}`;
   const {data, isSuccess, isLoading} = UseGetdata(API);
+
   return (
     <View style={styles.container}>
       <ImageBackground

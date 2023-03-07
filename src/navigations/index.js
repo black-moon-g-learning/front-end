@@ -22,17 +22,17 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
-import Home from '../screens/Home';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
-import Information from '../screens/Infor';
+import Home from '../screens/Home';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import MapViewCountry from '../components/DetailContryPage/MapView';
-
+import Information from './../screens/Infor/index';
+import HistoryVideo from '../screens/History';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -248,6 +248,7 @@ export default function Navigation() {
           headerTintColor: '#5FAD41',
         }}
       />
+      <HomeStack.Screen name="History" component={HistoryVideo} />
     </Stack.Navigator>
   );
 }

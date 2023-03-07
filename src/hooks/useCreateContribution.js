@@ -1,9 +1,9 @@
 import {Continents_URL} from '@env';
-import axios from 'axios';
 import {useState} from 'react';
 import {Keyboard} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useMutation} from 'react-query';
+import axiosRequest from '../axios';
 import {
   SuccessMessage,
   ValidatetionMessage,
@@ -81,9 +81,13 @@ const useCreateContribution = () => {
   const mutationContribution = useMutation(
     ['mutation-post'],
     newContribution => {
-      return axios.post(`${Continents_URL}/information`, newContribution, {
-        headers: {'Content-Type': 'multipart/form-data'},
-      });
+      return axiosRequest.post(
+        `${Continents_URL}/information`,
+        newContribution,
+        {
+          headers: {'Content-Type': 'multipart/form-data'},
+        },
+      );
     },
     {
       onSuccess: () => {

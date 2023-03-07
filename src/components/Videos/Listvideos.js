@@ -7,7 +7,9 @@ export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
       .post(`${Continents_URL}/videos/${item.id}/store-history`)
-      .then(() => console.log('successful'))
+      .then(response => {
+        console.log('successful => ', response.data);
+      })
       .catch(error => console.log(error.response.data));
   };
 

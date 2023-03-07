@@ -20,37 +20,33 @@ const ListAnswer = props => {
 export default ListAnswer;
 
 const styles = StyleSheet.create({
-  ansContainer: {
-    width: '90%',
-  },
   ans: {
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     borderRadius: 100,
-    margin: 10,
+    margin: 8,
     backgroundColor: '#FFFFFF',
   },
   option: {
     color: '#000000',
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '400',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
-    padding: 15,
+    padding: 10,
     backgroundColor: '#EFD207',
     borderRadius: 100,
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     textAlign: 'center',
   },
   answer: {
     color: '#323643',
-    fontSize: 16,
-    //fontWeight: '400',
+    fontSize: 14,
     fontFamily: 'Poppins-Bold',
-    padding: 10,
-    paddingLeft: '3%',
+    paddingVertical: 10,
+    paddingLeft: '2%',
   },
   correctAnswer: {
     backgroundColor: 'yellow',

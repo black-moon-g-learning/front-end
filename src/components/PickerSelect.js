@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const PickerSelect = props => {
   return (
@@ -10,7 +11,6 @@ const PickerSelect = props => {
       placeholder={{
         label: 'Country',
         value: null,
-        color: 'red',
       }}
       onValueChange={value =>
         props.onChangeContribution({...props.contribution, country_id: value})
@@ -20,6 +20,16 @@ const PickerSelect = props => {
         value: country.id,
       }))}
       value={props.contribution.country_id}
+      Icon={() => {
+        return (
+          <Icon
+            style={{padding: 10}}
+            name="caretdown"
+            size={20}
+            color="#5FAD41"
+          />
+        );
+      }}
     />
   );
 };
@@ -35,5 +45,13 @@ const pickerSelectStyles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     paddingLeft: 10,
     opacity: 0.7,
+  },
+  placeholder: {
+    color: '#000000',
+    opacity: 0.3,
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '400',
+    fontFamily: 'Poppins-Bold',
   },
 });
