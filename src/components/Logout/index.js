@@ -16,16 +16,14 @@ const Logout = () => {
       console.log(e);
     }
   };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={signOutUser} style={styles.btn_logout}>
-        <Icon
-          name="bell-ring-outline"
-          size={30}
-          onPress={() => navigation.goBack('login')}
-          style={styles.icon}
-        />
-        <Text style={styles.text_logout}>Help & Support</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('History')}
+        style={styles.btn_logout}>
+        <Icon name="bell-ring-outline" size={30} style={styles.icon} />
+        <Text style={styles.text_logout}>History</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={signOutUser} style={styles.btn_logout}>
         <Icon
