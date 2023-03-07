@@ -6,9 +6,7 @@ import axiosRequest from '../../axios';
 export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
-      .post(`${Continents_URL}/${item.id}/store-history`, {
-        id: item.id,
-      })
+      .post(`${Continents_URL}/videos/${item.id}/store-history`)
       .then(() => console.log('successful'))
       .catch(error => console.log(error.response.data));
   };
