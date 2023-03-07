@@ -24,7 +24,10 @@ const HistoryVideo = () => {
         style={styles.item}
         key={item}
         onPress={() => navigation.navigate('playvideo', {item, videos})}>
-        <Image source={{uri: item.image}} style={styles.img} />
+        <TouchableOpacity>
+          <Image source={{uri: item.image}} style={styles.img} />
+          <Text style={styles.time}>{item.time}</Text>
+        </TouchableOpacity>
         <View>
           <Text style={styles.ContinentsName}>{item.name}</Text>
           <Text style={styles.ContinentsDetail}>{item.author}</Text>
@@ -114,5 +117,14 @@ export const styles = StyleSheet.create({
     color: '#323643',
     paddingTop: 5,
     fontFamily: 'Poppins-Regular',
+  },
+  time: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    marginTop: '53%',
+    marginRight: '53%',
+    color: 'black',
+    fontWeight: '500',
+    fontSize: 16,
   },
 });
