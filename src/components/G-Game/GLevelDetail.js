@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontSize: 14,
-    fontWeight: '400',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     color: '#000000',
@@ -71,8 +70,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     color: '#5FAD41',
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: 'bold',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     padding: 10,

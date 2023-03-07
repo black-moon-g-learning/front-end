@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: '#5FAD41',
-    width: 110,
+    width: 100,
     height: 40,
     borderRadius: 10,
   },
   txtBtn: {
     color: '#FCFCFF',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 14,
+    fontWeight: '400',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
