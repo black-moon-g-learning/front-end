@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
@@ -6,15 +6,12 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UseGetdata from '../../hooks/UseContinents';
 import ModalSearch from '../../components/ModalSearch';
-import Icon from 'react-native-vector-icons/Feather';
+import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
 
 const Countries = () => {
