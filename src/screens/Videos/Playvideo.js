@@ -1,6 +1,8 @@
+import {Continents_URL} from '@env';
 import React from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import axiosRequest from '../../axios';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 
@@ -9,6 +11,15 @@ const PlayVideo = ({navigation, route}) => {
   console.log(item);
   const urlAPI = item.url;
   const splitUrl = urlAPI.split(/[=,&]/).slice(1, 2);
+  const VideoWatched = () => {
+    axiosRequest
+      .post(`${Continents_URL}/${item.id}/store-history`, {
+        id: item.id,
+      })
+      .then(() => console.log('successful'))
+      .catch(error => console.log(error.response.data));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.video}>
