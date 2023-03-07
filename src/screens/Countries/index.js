@@ -48,8 +48,6 @@ const Countries = () => {
     setSearchResult(null);
   };
 
-  console.log('datanef', DataCountries);
-  // console.log('search', searchResult);
 
   return (
     <View style={styles.container}>

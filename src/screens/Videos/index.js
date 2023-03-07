@@ -31,16 +31,29 @@ const Videos = ({navigation, route, props}) => {
 
   const handleResultPress = item => {
     setSearchResult(null);
-    setDataVideo(item);
+    setDataVideo(item ? [item] : data.data.popular);
     if (!item) {
       setDataVideo(null);
     }
   };
 
+  const SearchOnpress = value => {
+    if (!value) {
+      setDataVideo(null);
+    } else {
+      setDataVideo(searchResult?.data);
+    }
+    setSearchResult(null);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Header value={searchValue} onChangeText={handleSearch} />
+        <Header
+          value={searchValue}
+          onChangeText={handleSearch}
+          onPress={SearchOnpress}
+        />
       </View>
       <>
         {isLoading ? (
@@ -69,21 +82,27 @@ const Videos = ({navigation, route, props}) => {
                 }
               />
             ) : (
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                data={DataVideo ? [DataVideo] : data.data}
-                ListEmptyComponent={ErrorMessage}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => {
-                  return (
-                    <ListVideo
-                      navigation={navigation}
-                      videos={data.data}
-                      item={item}
-                    />
-                  );
-                }}
-              />
+              <>
+                {DataVideo === undefined ? (
+                  <Text style={styles.errorTitle}>Hãy nhập</Text>
+                ) : (
+                  <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={DataVideo || data.data}
+                    ListEmptyComponent={ErrorMessage}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => {
+                      return (
+                        <ListVideo
+                          navigation={navigation}
+                          videos={data.data}
+                          item={item}
+                        />
+                      );
+                    }}
+                  />
+                )}
+              </>
             )}
           </>
         )}
