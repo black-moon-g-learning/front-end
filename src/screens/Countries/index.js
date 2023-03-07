@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
@@ -6,15 +6,12 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
-import UseGetdata from '../../hooks/UseContinents';
 import ModalSearch from '../../components/ModalSearch';
-import Icon from 'react-native-vector-icons/Feather';
+import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
 
 const Countries = () => {
@@ -42,7 +39,7 @@ const Countries = () => {
       setDataCountries(null);
     }
   };
-
+  console.log(searchResult);
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}></View>
@@ -54,21 +51,26 @@ const Countries = () => {
           ) : (
             <>
               {searchResult ? (
-                <FlatList
-                  style={{width: '100%', paddingTop: 20}}
-                  showsVerticalScrollIndicator={false}
-                  data={searchResult.data}
-                  ListEmptyComponent={ErrorMessage}
-                  keyExtractor={item => item.id.toString()}
-                  renderItem={({item}) => {
-                    return (
+                <>
+                  <FlatList
+                    style={{width: '100%', paddingTop: 20}}
+                    showsVerticalScrollIndicator={false}
+                    data={searchResult.data}
+                    ListEmptyComponent={ErrorMessage}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => (
                       <ModalSearch
                         item={item}
                         onPress={() => handleResultPress(item)}
                       />
-                    );
-                  }}
-                />
+                    )}
+                    ListHeaderComponent={
+                      searchResult.data.length === 0 && (
+                        <Text style={styles.errorTitle}>Not found </Text>
+                      )
+                    }
+                  />
+                </>
               ) : (
                 <>
                   <>
@@ -136,5 +138,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingLeft: 10,
     fontFamily: 'Poppins-Medium',
+  },
+  errorTitle: {
+    color: '#323643',
+    fontSize: 17,
+    fontFamily: 'Poppins-Medium',
+    width: '100%',
+    textAlign: 'center',
   },
 });

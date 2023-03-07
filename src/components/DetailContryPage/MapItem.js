@@ -58,11 +58,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '95%',
   },
-  // input: {
-  //   borderWidth: 1,
-  // },
   input: {
-    width: '20%',
+    width: '16%',
     height: 40,
     borderRadius: 10,
     paddingLeft: 10,

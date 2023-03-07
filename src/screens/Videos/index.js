@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import ModalSearch from '../../components/ModalSearch';
@@ -56,6 +62,11 @@ const Videos = ({navigation, route, props}) => {
                     />
                   );
                 }}
+                ListHeaderComponent={
+                  searchResult.data.length === 0 && (
+                    <Text style={styles.errorTitle}>Not found </Text>
+                  )
+                }
               />
             ) : (
               <FlatList
@@ -106,5 +117,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     paddingLeft: 10,
+  },
+  errorTitle: {
+    color: '#323643',
+    fontSize: 17,
+    fontFamily: 'Poppins-Medium',
+    width: '100%',
+    textAlign: 'center',
   },
 });

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axiosRequest from '../axios';
 import {Continents_URL} from '@env';
 
@@ -27,19 +27,12 @@ const useSearch = apiEndpoint => {
       setSearchResult(null);
     }
   }, [searchValue, apiEndpoint]);
-
-  // const handleSearch = value => {
-  //   console.log('searching for', value);
-  //   setSearchValue(value);
-  // };
-
   return {
     searchValue,
     setSearchValue,
     searchResult,
     setSearchResult,
     isLoading,
-    // handleSearch,
   };
 };
 

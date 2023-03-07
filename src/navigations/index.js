@@ -245,6 +245,7 @@ export default function Navigation() {
         component={MapViewCountry}
         options={{
           title: 'G - MAP',
+          headerTintColor: '#5FAD41',
         }}
       />
     </Stack.Navigator>
