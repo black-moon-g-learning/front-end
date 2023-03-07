@@ -27,8 +27,8 @@ const CountryCard = ({item}) => {
             <Text style={styles.txtBtn}>Play</Text>
           </TouchableOpacity>
           <View style={styles.percentDisplay}>
-            <View style={styles.percent} />
-            <Text style={styles.txt}>60%</Text>
+            {/* <View style={styles.percent} /> */}
+            <Text style={styles.txt}>{item.user_play}%</Text>
           </View>
         </View>
       </ImageBackground>
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
   },
   countryName: {
     color: '#000000',
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '700',
     lineHeight: 15,
     paddingTop: 10,
-    width: '50%',
+    //width: '80%',
     textAlign: 'center',
   },
   imgContry: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '700',
     lineHeight: 15,
     fontFamily: 'Poppins-Bold',
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: '#000000',
-    fontSize: 14,
-    fontWeight: '500',
+    fontSize: 15,
+    fontWeight: '400',
     lineHeight: 10,
     fontFamily: 'Poppins-Bold',
     padding: 7,

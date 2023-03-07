@@ -1,3 +1,4 @@
+import {Continents_URL} from '@env';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
@@ -10,9 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useMutation} from 'react-query';
+import axiosRequest from '../../axios';
 import {FailHeader} from '../../components/G-Game/FailHeader';
 import ListAnswer from '../../components/G-Game/ListAnswer';
-import QuestionContainer from '../../components/G-Game/QuestionContainer';
 import UseGetdata from '../../hooks/UseContinents';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import TimeupModal from './TimeupModal';
@@ -65,8 +67,13 @@ const DisplayQuestion = () => {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
   //Increase the index of the question
-  const handleQuestion = myScore => {
+  const handleQuestion = (myScore, correctAns, totalQues) => {
     if (index === totalQuestion - 1) {
+      // let gameHistory = {
+      //   total_correct_answers: totalCorrectAns,
+      //   total_questions: totalQuestion,
+      // };
+      handleGameHistory(correctAns, totalQues);
       finalScreen(myScore);
     } else {
       setIndex(index + 1);
@@ -90,6 +97,7 @@ const DisplayQuestion = () => {
 
   //Clear data to play game again
   const restartQuiz = () => {
+    setIndex(0);
     setTotalCorrectAns(0);
     setSelectedAnswer(null);
     setSelectedAnswerIndex(null);
@@ -97,6 +105,7 @@ const DisplayQuestion = () => {
     setScore(0);
     viewWidth.setValue(300);
     setTimeLeft(15);
+    setQuestionState('unanswered');
   };
   //Navigate to result screens
   const finalScreen = finalScore => {
@@ -166,6 +175,29 @@ const DisplayQuestion = () => {
       return null;
     }
   };
+  const handleGameHistory = (correctAns, totalQues) => {
+    var dataHistory = new FormData();
+    dataHistory.append('total_correct_answers', correctAns);
+    dataHistory.append('total_questions', totalQues);
+    mutationContribution.mutate(dataHistory);
+  };
+  const mutationContribution = useMutation(
+    ['mutation-post'],
+    gameHistory => {
+      return axiosRequest.post(
+        `${Continents_URL}/countries/${item.id}/history-play-game`,
+        gameHistory,
+        {
+          headers: {'Content-Type': 'multipart/form-data'},
+        },
+      );
+    },
+    {
+      onSuccess: () => {
+        console.log('Success');
+      },
+    },
+  );
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
@@ -202,7 +234,11 @@ const DisplayQuestion = () => {
                 Question {index + 1}/{totalQuestion}
               </Text>
             </View>
-            <QuestionContainer question={question} />
+            <View style={styles.quesCon} key={question.id}>
+              <Text style={styles.question} numberOfLines={2}>
+                {question.content}
+              </Text>
+            </View>
             {question.answers.map((answersOption, ind) => (
               <ListAnswer
                 key={answersOption.id}
@@ -216,7 +252,9 @@ const DisplayQuestion = () => {
             ))}
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => handleQuestion(score)}>
+              onPress={() =>
+                handleQuestion(score, totalCorrectAns, totalQuestion)
+              }>
               <Text style={styles.txtBtn}>Next</Text>
             </TouchableOpacity>
           </View>
@@ -241,6 +279,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     alignItems: 'center',
     position: 'relative',
+    paddingVertical: 10,
   },
   countQues: {
     backgroundColor: '#FFFFFF',
@@ -250,9 +289,9 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   countTxt: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Poppins-Bold',
-    fontWeight: '500',
+    fontWeight: '400',
     lineHeight: 20,
     textAlign: 'center',
     padding: 13,
@@ -313,5 +352,18 @@ const styles = StyleSheet.create({
   },
   incorrectAnswer: {
     backgroundColor: '#E31919',
+  },
+  quesCon: {
+    width: '90%',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  question: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 20,
+    textAlign: 'justify',
+    color: '#FFFFFF',
   },
 });

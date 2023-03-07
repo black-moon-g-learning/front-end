@@ -29,7 +29,6 @@ const Searchbar = () => {
               placeholder={{
                 label: 'Choose a country...',
                 value: null,
-                color: 'red',
               }}
               onValueChange={value => setFilterCountry(value)}
               items={data.data.map(country => ({
@@ -96,6 +95,13 @@ const pickerSelectStyles = StyleSheet.create({
     color: '#5FAD41',
     lineHeight: 20,
     paddingLeft: 10,
+    fontFamily: 'Poppins-Bold',
+  },
+  placeholder: {
+    color: '#000000',
+    opacity: 0.5,
+    fontSize: 16,
+    lineHeight: 20,
     fontFamily: 'Poppins-Bold',
   },
 });

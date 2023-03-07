@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   failTxt: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 50,
+    fontSize: 40,
     fontWeight: '500',
     lineHeight: 20,
     color: '#FFFFFF',

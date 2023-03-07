@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import UseGetdata from '../../hooks/UseContinents';
 import useCreateContribution from '../../hooks/useCreateContribution';
@@ -43,7 +42,7 @@ const ContributionForm = () => {
               style={styles.icon}
               name="asterisk"
               size={20}
-              color={'#FF3334'}
+              color={'#5FAD41'}
             />
           </View>
           <View style={styles.here}>
@@ -68,7 +67,7 @@ const ContributionForm = () => {
               style={styles.icon}
               name="asterisk"
               size={20}
-              color={'#FF3334'}
+              color={'#5FAD41'}
             />
           </View>
           <View style={styles.wraper}>
@@ -79,9 +78,9 @@ const ContributionForm = () => {
               editable={false}
             />
             <TouchableOpacity onPress={handleImage}>
-              <Icon
+              <Icons
                 style={styles.icon}
-                name="plus"
+                name="search-plus"
                 size={30}
                 color={'#5FAD41'}
               />
@@ -89,7 +88,13 @@ const ContributionForm = () => {
           </View>
           <Image
             style={styles.img}
-            source={contribution.img.uri ? {uri: contribution.img.uri} : null}
+            source={
+              contribution.img.uri
+                ? {uri: contribution.img.uri}
+                : {
+                    uri: 'https://cdn-icons-png.flaticon.com/512/1160/1160358.png',
+                  }
+            }
           />
           <TouchableOpacity
             style={styles.btn}
@@ -145,8 +150,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   img: {
-    width: 150,
-    height: 100,
+    width: 130,
+    height: 130,
     margin: 5,
   },
   here: {

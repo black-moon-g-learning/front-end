@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     marginVertical: '5%',
   },
   btn: {
-    width: 110,
+    width: 100,
     height: 40,
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
