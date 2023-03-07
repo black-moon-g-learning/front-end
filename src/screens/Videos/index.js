@@ -1,24 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Continents_URL} from '@env';
-import {useQuery} from 'react-query';
-import axiosRequest from '../../axios';
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
+import Header from '../../components/Header';
+import ModalSearch from '../../components/ModalSearch';
 import {ListVideo} from '../../components/Videos/Listvideos';
 import UseGetdata from '../../hooks/UseContinents';
-import Icon from 'react-native-vector-icons/Feather';
-import Header from '../../components/Header';
 import useSearch from '../../hooks/useSearch';
-import ModalSearch from '../../components/ModalSearch';
+
 const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;
@@ -42,6 +30,7 @@ const Videos = ({navigation, route, props}) => {
       setDataVideo(null);
     }
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
