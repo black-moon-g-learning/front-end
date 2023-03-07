@@ -1,7 +1,10 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {LogBox, StyleSheet, View} from 'react-native';
 import Method from '../../components/Payment/Method';
 import Package from '../../components/Payment/Package';
+
+LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const Payment = () => {
   return (
