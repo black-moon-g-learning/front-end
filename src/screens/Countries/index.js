@@ -48,7 +48,6 @@ const Countries = () => {
     setSearchResult(null);
   };
 
-
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}></View>
@@ -86,50 +85,43 @@ const Countries = () => {
                 </>
               ) : (
                 <>
-                  {DataCountries === undefined ? (
-                    <Text style={styles.errorTitle}>Hãy nhập</Text>
-                  ) : (
-                    <>
-                      {DataCountries === null && (
-                        <Text style={styles.title}>Popular</Text>
-                      )}
-                      <FlatList
-                        showsHorizontalScrollIndicator={false}
-                        data={DataCountries || data.data.popular}
-                        horizontal={true}
-                        ListEmptyComponent={ErrorMessage}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => {
-                          return (
-                            <ItemPopular
-                              navigation={navigation}
-                              key={item.id}
-                              item={item}
-                            />
-                          );
-                        }}
-                      />
+                  <>
+                    {DataCountries === null && (
+                      <Text style={styles.title}>Popular</Text>
+                    )}
+                    <FlatList
+                      showsHorizontalScrollIndicator={false}
+                      data={DataCountries || data.data.popular}
+                      horizontal={true}
+                      ListEmptyComponent={ErrorMessage}
+                      keyExtractor={item => item.id}
+                      renderItem={({item}) => {
+                        return (
+                          <ItemPopular
+                            navigation={navigation}
+                            key={item.id}
+                            item={item}
+                          />
+                        );
+                      }}
+                    />
 
-                      {DataCountries === null && (
-                        <Text style={styles.title}>Countries</Text>
-                      )}
-                      <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={DataCountries ? [] : data.data.countries}
-                        numColumns={2}
-                        ListEmptyComponent={ErrorMessage}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => {
-                          return (
-                            <ItemCountries
-                              navigation={navigation}
-                              item={item}
-                            />
-                          );
-                        }}
-                      />
-                    </>
-                  )}
+                    {DataCountries === null && (
+                      <Text style={styles.title}>Countries</Text>
+                    )}
+                    <FlatList
+                      showsVerticalScrollIndicator={false}
+                      data={DataCountries ? [] : data.data.countries}
+                      numColumns={2}
+                      ListEmptyComponent={ErrorMessage}
+                      keyExtractor={item => item.id}
+                      renderItem={({item}) => {
+                        return (
+                          <ItemCountries navigation={navigation} item={item} />
+                        );
+                      }}
+                    />
+                  </>
                 </>
               )}
             </>

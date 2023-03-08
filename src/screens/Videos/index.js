@@ -83,25 +83,21 @@ const Videos = ({navigation, route, props}) => {
               />
             ) : (
               <>
-                {DataVideo === undefined ? (
-                  <Text style={styles.errorTitle}>Hãy nhập</Text>
-                ) : (
-                  <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={DataVideo || data.data}
-                    ListEmptyComponent={ErrorMessage}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) => {
-                      return (
-                        <ListVideo
-                          navigation={navigation}
-                          videos={data.data}
-                          item={item}
-                        />
-                      );
-                    }}
-                  />
-                )}
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={DataVideo || data.data}
+                  ListEmptyComponent={ErrorMessage}
+                  keyExtractor={item => item.id.toString()}
+                  renderItem={({item}) => {
+                    return (
+                      <ListVideo
+                        navigation={navigation}
+                        videos={data.data}
+                        item={item}
+                      />
+                    );
+                  }}
+                />
               </>
             )}
           </>
