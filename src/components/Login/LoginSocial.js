@@ -25,21 +25,21 @@ const LoginSocial = () => {
     const {idToken} = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    console.log(idToken);
+    // console.log(idToken);
     const user_sign_in = auth().signInWithCredential(googleCredential);
     user_sign_in
       .then(user => {
-        console.log(user);
+        // console.log(user);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
     await firebase.auth().onAuthStateChanged(user => {
       if (user && flag) {
         user
           .getIdTokenResult()
           .then(data => {
-            console.log(data.token);
+            // console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -50,8 +50,8 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            const currentUser = await AsyncStorage.getItem('@Token');
-            console.log('tokennnnn', currentUser);
+            await AsyncStorage.getItem('@Token');
+            // console.log('tokennnnn', currentUser);
           });
         flag = false;
       } else {
@@ -84,17 +84,17 @@ const LoginSocial = () => {
     const user_sign_in = auth().signInWithCredential(facebookCredential);
     user_sign_in
       .then(user => {
-        console.log(user);
+        // console.log(user);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
     await firebase.auth().onAuthStateChanged(user => {
       if (user && flag) {
         user
           .getIdTokenResult()
           .then(data => {
-            console.log(data.token);
+            // console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -105,8 +105,8 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            const currentUser = await AsyncStorage.getItem('@Token');
-            console.log('token : ', currentUser);
+            await AsyncStorage.getItem('@Token');
+            // console.log('token : ', currentUser);
           });
         flag = false;
       } else {
