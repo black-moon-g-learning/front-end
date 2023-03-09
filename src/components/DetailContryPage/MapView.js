@@ -34,7 +34,7 @@ const MapViewCountry = () => {
           styles={{textInput: styles.input}}
           placeholder="Search"
           query={{
-            key: 'AIzaSyB-uDeSWu-qyIBYK7b-W-GGaweudEIyVy0',
+            key: 'AIzaSyAJLe8emvJdBAb9U5604sa6Z0RPnxuzrAc',
             language: 'en',
           }}
           fetchDetails={true}
