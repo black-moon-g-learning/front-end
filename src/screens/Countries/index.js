@@ -20,33 +20,17 @@ const Countries = () => {
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  const {searchValue, setSearchValue, searchResult, setSearchResult} =
-    useSearch(API);
-  const [DataCountries, setDataCountries] = useState(null);
-
-  const handleSearch = value => {
-    console.log('searching for', value);
-    setSearchValue(value);
-    if (!value) {
-      setDataCountries(null);
-    }
-  };
-  const handleResultPress = item => {
-    setSearchResult(null);
-    setDataCountries(item ? [item] : data.data.popular);
-    if (!item) {
-      setDataCountries(null);
-    }
-  };
-
-  const SearchOnpress = value => {
-    if (!value) {
-      setDataCountries(null);
-    } else {
-      setDataCountries(searchResult?.data);
-    }
-    setSearchResult(null);
-  };
+  const {
+    searchValue,
+    setSearchValue,
+    searchResult,
+    setSearchResult,
+    setDataShow,
+    handleSearch,
+    SearchOnpress,
+    DataShow,
+    handleResultPress,
+  } = useSearch(API, item);
 
   return (
     <View style={styles.container}>
@@ -86,12 +70,13 @@ const Countries = () => {
               ) : (
                 <>
                   <>
-                    {DataCountries === null && (
+                    {DataShow === null && (
                       <Text style={styles.title}>Popular</Text>
                     )}
                     <FlatList
                       showsHorizontalScrollIndicator={false}
-                      data={DataCountries || data.data.popular}
+                      // data={DataShow || data.data.popular}
+                      data={DataShow ? [] : data.data.popular}
                       horizontal={true}
                       ListEmptyComponent={ErrorMessage}
                       keyExtractor={item => item.id}
@@ -106,12 +91,12 @@ const Countries = () => {
                       }}
                     />
 
-                    {DataCountries === null && (
+                    {DataShow === null && (
                       <Text style={styles.title}>Countries</Text>
                     )}
                     <FlatList
                       showsVerticalScrollIndicator={false}
-                      data={DataCountries ? [] : data.data.countries}
+                      data={DataShow || data.data.countries}
                       numColumns={2}
                       ListEmptyComponent={ErrorMessage}
                       keyExtractor={item => item.id}

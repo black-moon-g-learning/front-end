@@ -17,34 +17,18 @@ const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;
   const {data, isLoading} = UseGetdata(API);
-  const {searchValue, setSearchValue, searchResult, setSearchResult} =
-    useSearch(API);
-  const [DataVideo, setDataVideo] = useState(null);
+  const {
+    searchValue,
+    setSearchValue,
+    searchResult,
+    setSearchResult,
+    setDataShow,
+    handleSearch,
+    SearchOnpress,
+    DataShow,
+    handleResultPress,
+  } = useSearch(API,item);
 
-  const handleSearch = value => {
-    console.log('searching for', value);
-    setSearchValue(value);
-    if (!value) {
-      setDataVideo(null);
-    }
-  };
-
-  const handleResultPress = item => {
-    setSearchResult(null);
-    setDataVideo(item ? [item] : data.data.popular);
-    if (!item) {
-      setDataVideo(null);
-    }
-  };
-
-  const SearchOnpress = value => {
-    if (!value) {
-      setDataVideo(null);
-    } else {
-      setDataVideo(searchResult?.data);
-    }
-    setSearchResult(null);
-  };
 
   return (
     <View style={styles.container}>
@@ -85,7 +69,7 @@ const Videos = ({navigation, route, props}) => {
               <>
                 <FlatList
                   showsVerticalScrollIndicator={false}
-                  data={DataVideo || data.data}
+                  data={DataShow || data.data}
                   ListEmptyComponent={ErrorMessage}
                   keyExtractor={item => item.id.toString()}
                   renderItem={({item}) => {
