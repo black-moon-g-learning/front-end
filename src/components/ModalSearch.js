@@ -6,7 +6,8 @@ const ModalSearch = ({item, onPress}) => {
   return (
     <View>
       <TouchableOpacity onPress={onPress} style={styles.modal}>
-        <Icon name="search" size={20} color={'red'} />
+        {item === null && <Text style={styles.title}>Khong co Ket qua</Text>}
+        <Icon name="search" size={20} color={'black'} />
         <Text style={styles.textSearch}>{item.name}</Text>
       </TouchableOpacity>
     </View>
@@ -21,15 +22,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    justifyContent: 'space-around',
-    paddingLeft: -10,
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 25,
   },
 
   textSearch: {
     color: '#323643',
     fontSize: 17,
     fontFamily: 'Poppins-Medium',
-    marginLeft: -60,
+    width: '80%',
   },
 });
 

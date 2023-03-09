@@ -19,7 +19,6 @@ const DetailCountryPage = ({navigation, route}) => {
   const {item} = route.params;
   const API = `countries/${item.id}/topics`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  // const [bottomTabVisible, setBottomTabVisible] = useState(true);
 
   return (
     <View style={styles.container}>
@@ -43,9 +42,7 @@ const DetailCountryPage = ({navigation, route}) => {
           />
         )}
       </View>
-      <KeyboardAvoidingView style={styles.containerMap} behavior="padding">
-        <Map />
-      </KeyboardAvoidingView>
+      <Map />
     </View>
   );
 };
@@ -58,11 +55,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  containerMap: {flex: 1},
   flatlist: {
     paddingLeft: 10,
     paddingRight: 10,
-    height: '34%',
   },
   topicsheader: {
     width: '100%',

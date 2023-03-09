@@ -17,7 +17,6 @@ const EarthGifImage = () => {
 const Styles = StyleSheet.create({
   container: {
     alignContent: 'center',
-    marginTop: 20,
     paddingLeft: 10,
     borderRadius: 10,
   },
