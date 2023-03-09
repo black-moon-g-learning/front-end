@@ -70,15 +70,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000000',
-    fontSize: 14,
+    fontSize: 12,
     marginBottom: 5,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
   },
   txt: {
     color: '#000000',
-    fontSize: 10,
-    fontWeight: '500',
+    fontSize: 9,
     lineHeight: 16,
     marginBottom: 5,
     fontFamily: 'Poppins-Regular',
@@ -93,11 +92,11 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     color: '#012030',
-    fontSize: 13,
+    fontSize: 12,
     lineHeight: 16,
-    padding: 5,
+    padding: 3,
     textAlign: 'center',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
   img: {
     width: 150,

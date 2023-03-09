@@ -137,7 +137,6 @@ const Information = ({navigation}) => {
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
-
       {isSuccess && (
         <>
           <View style={styles.header_profile}>
@@ -314,6 +313,9 @@ const Information = ({navigation}) => {
 export default Information;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   header_profile: {
     width: '96%',
     height: 100,

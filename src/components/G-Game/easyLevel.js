@@ -46,7 +46,7 @@ export default EasyLevel;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    display: 'flex',
+    flex: 1,
     justifyContent: 'space-around',
   },
   easyContainer: {
@@ -64,22 +64,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 20,
     fontWeight: 'bold',
-    fontFamily: 'Poppins-Bold',
-    paddingTop: 5,
+    fontFamily: 'Poppins-Medium',
   },
   desc: {
     color: '#000000',
-    fontSize: 14,
-    fontFamily: 'Poppins-Bold',
-    //fontWeight: '400',
+    fontSize: 12,
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',
-    padding: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
   img: {
     position: 'absolute',
     alignItems: 'flex-start',
-    left: 20,
-    bottom: -15,
+    left: 15,
+    bottom: -25,
   },
 });

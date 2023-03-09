@@ -81,7 +81,7 @@ const ContributionForm = () => {
               <Icons
                 style={styles.icon}
                 name="search-plus"
-                size={30}
+                size={28}
                 color={'#5FAD41'}
               />
             </TouchableOpacity>
@@ -118,24 +118,23 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
-    padding: 20,
+    fontFamily: 'Poppins-Medium',
+    padding: 15,
     width: '80%',
   },
   btn: {
-    width: 155,
-    height: 44,
+    width: 150,
+    height: 40,
     backgroundColor: '#5FAD41',
     borderRadius: 20,
-    margin: 20,
+    margin: 10,
   },
   txtBtn: {
     color: '#FFFFFF',
     fontSize: 16,
     textAlign: 'center',
-    fontWeight: '600',
-    fontFamily: 'Poppins-Bold',
+    fontWeight: '700',
+    fontFamily: 'Poppins-Medium',
     padding: 10,
   },
   wraper: {
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   icon: {
-    padding: 20,
+    padding: 10,
   },
   img: {
     width: 130,
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
   here: {
     backgroundColor: '#D9D9D9',
     width: '90%',
-    padding: 10,
+    padding: 5,
     borderRadius: 20,
   },
 });

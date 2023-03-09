@@ -11,6 +11,7 @@ const GameLevels = () => {
   const {item} = route.params;
   const API = 'levels';
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  console.log('data', data);
   return (
     <View style={styles.con}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
@@ -40,7 +41,7 @@ const GameLevels = () => {
 export default GameLevels;
 
 const styles = StyleSheet.create({
-  container: {
+  con: {
     flex: 1,
     backgroundColor: '#FFFFFF',
   },

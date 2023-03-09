@@ -20,7 +20,6 @@ const News = () => {
       setFilterData(filtered);
     }
   };
-  // console.log('filter data', isSuccess ? data.data.length : null);
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}

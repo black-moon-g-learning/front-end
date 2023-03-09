@@ -43,7 +43,7 @@ const DisplayQuestion = () => {
   //score
   const [score, setScore] = useState(0);
   //Width of Wiew to show downtime
-  const [viewWidth, setViewWidth] = useState(new Animated.Value(300));
+  const [viewWidth, setViewWidth] = useState(new Animated.Value(240));
   //total of time to answer the question
   const [timeLeft, setTimeLeft] = useState(15);
   //Option to choose
@@ -55,7 +55,7 @@ const DisplayQuestion = () => {
       if (timeLeft >= 0) {
         setTimeLeft(timeLeft - 1);
         Animated.timing(viewWidth, {
-          toValue: viewWidth._value - 20,
+          toValue: viewWidth._value - 16,
           duration: 1000,
           useNativeDriver: false,
         }).start();
@@ -78,7 +78,7 @@ const DisplayQuestion = () => {
     } else {
       setIndex(index + 1);
       setTimeLeft(15);
-      viewWidth.setValue(300);
+      viewWidth.setValue(240);
       setSelectedAnswerIndex(null);
       setSelectedAnswer(null);
       setQuestionState('unanswered');
@@ -286,15 +286,15 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 40,
     borderRadius: 10,
-    marginTop: 60,
+    marginTop: 45,
   },
   countTxt: {
-    fontSize: 18,
-    fontFamily: 'Poppins-Bold',
-    fontWeight: '400',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    fontWeight: '700',
     lineHeight: 20,
     textAlign: 'center',
-    padding: 13,
+    padding: 10,
     color: '#000000',
   },
   Timer: {
@@ -340,9 +340,9 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '700',
     lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     color: '#000000',
     textAlign: 'center',
     paddingTop: 5,
@@ -356,10 +356,9 @@ const styles = StyleSheet.create({
   quesCon: {
     width: '90%',
     paddingVertical: 5,
-    paddingHorizontal: 10,
   },
   question: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 20,

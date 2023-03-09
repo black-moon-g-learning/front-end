@@ -41,8 +41,7 @@ const pickerSelectStyles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
     lineHeight: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     paddingLeft: 10,
     opacity: 0.7,
   },
@@ -51,7 +50,6 @@ const pickerSelectStyles = StyleSheet.create({
     opacity: 0.3,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '400',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
 });

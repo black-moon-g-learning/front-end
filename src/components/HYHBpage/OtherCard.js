@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000000',
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 20,
     fontWeight: '600',
     paddingTop: 5,
     paddingBottom: 5,
+    fontFamily: 'Poppins-Medium',
   },
   other: {
     width: '90%',
@@ -60,9 +61,9 @@ const styles = StyleSheet.create({
   },
   infor: {
     color: '#008000',
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 20,
-    fontWeight: '600',
     paddingLeft: 10,
+    fontFamily: 'Poppins-Medium',
   },
 });

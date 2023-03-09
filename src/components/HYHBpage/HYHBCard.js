@@ -30,7 +30,7 @@ export default HYHBCard;
 const styles = StyleSheet.create({
   title: {
     padding: 10,
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 20,
     color: '#000000',
     fontFamily: 'Poppins-Medium',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
   txt: {
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 20,
     color: '#000000',
     fontFamily: 'Poppins-Italic',
@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
   content: {
     padding: 10,
     width: '100%',
-    fontSize: 18,
+    fontSize: 14,
     lineHeight: 20,
     color: '#000000',
     textAlign: 'justify',
+    fontFamily: 'Poppins-Medium',
   },
   author: {
     display: 'flex',

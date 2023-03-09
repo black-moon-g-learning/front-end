@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
   },
   option: {
     color: '#000000',
-    fontSize: 18,
-    fontWeight: '400',
+    fontSize: 16,
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     padding: 10,
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
   answer: {
     color: '#323643',
     fontSize: 14,
-    fontFamily: 'Poppins-Bold',
-    paddingVertical: 10,
+    fontFamily: 'Poppins-Medium',
+    paddingVertical: 5,
     paddingLeft: '2%',
   },
   correctAnswer: {

@@ -46,9 +46,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
-    lineHeight: 24,
-    fontFamily: 'Poppins-Bold',
+    lineHeight: 22,
+    fontFamily: 'Poppins-Medium',
     color: '#000000',
     padding: 20,
     textAlign: 'center',
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     padding: 10,
   },
 });

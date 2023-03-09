@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     height: 145,
   },
   failTxt: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     fontSize: 40,
     fontWeight: '500',
     lineHeight: 20,

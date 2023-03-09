@@ -84,11 +84,12 @@ const styles = StyleSheet.create({
     borderColor: '#5FAD41',
   },
   btnTxt: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
     textAlign: 'center',
     color: '#000000',
     padding: 5,
+    fontWeight: '700',
   },
   finalResult: {
     width: '90%',
@@ -99,10 +100,10 @@ const styles = StyleSheet.create({
     marginVertical: '8%',
   },
   txtResult: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
     textAlign: 'center',
-    fontWeight: '500',
+    fontWeight: '700',
     lineHeight: 20,
     color: '#000000',
   },

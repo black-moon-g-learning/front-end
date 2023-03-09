@@ -42,7 +42,7 @@ export default NomarlLevel;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    display: 'flex',
+    flex: 1,
     justifyContent: 'space-around',
   },
   easyContainer: {
@@ -60,16 +60,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 20,
     fontWeight: 'bold',
-    fontFamily: 'Poppins-Bold',
-    padding: 10,
+    fontFamily: 'Poppins-Medium',
   },
   desc: {
     color: '#000000',
-    fontSize: 14,
-    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
   img: {
     position: 'absolute',

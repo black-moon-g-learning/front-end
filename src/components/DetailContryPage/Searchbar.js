@@ -93,13 +93,13 @@ const pickerSelectStyles = StyleSheet.create({
     color: '#5FAD41',
     lineHeight: 20,
     paddingLeft: 10,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
   placeholder: {
     color: '#000000',
     opacity: 0.5,
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
 });

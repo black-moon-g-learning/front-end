@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     color: '#FCFCFF',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '400',
     lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     textAlign: 'center',
     padding: 10,
   },
