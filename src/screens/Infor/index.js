@@ -20,6 +20,7 @@ import useProfile from '../../hooks/usegetProfile';
 
 const Information = ({navigation}) => {
   const {data, isLoading, isSuccess, refetch} = useProfile([]);
+  console.log('information', data);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [isImage, setIsImage] = useState();
@@ -28,6 +29,7 @@ const Information = ({navigation}) => {
   const [Email, setEmail] = useState();
   const [Phone, setPhone] = useState();
   const [Gender, setGender] = useState();
+  const [Time, setTime] = useState();
 
   const handelUpdate = () => {
     axiosRequest
@@ -128,6 +130,7 @@ const Information = ({navigation}) => {
       setPhone(data.phone);
       setGender(data.gender);
       setIsImage(data.image);
+      setTime(data.trial);
     }
   }, [data]);
 
@@ -289,7 +292,11 @@ const Information = ({navigation}) => {
           <View style={styles.package}>
             <Text style={styles.title_package}>Package: </Text>
             <TouchableOpacity style={styles.infor_pakage}>
-              <Text style={styles.text_package}>Free</Text>
+              {Time === null ? (
+                <Text style={styles.text_package}>Plus</Text>
+              ) : (
+                <Text style={styles.text_package}>{Time} day</Text>
+              )}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn_click_package}
