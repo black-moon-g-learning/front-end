@@ -12,10 +12,9 @@ import UseGetdata from '../../hooks/UseContinents';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import ContributionModal from '../Contribution/ContributionModal';
 
-const Searchbar = () => {
+const Searchbar = props => {
   const API = `countries?attribute=name`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  const [filterCountry, setFilterCountry] = React.useState();
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
     <View style={styles.container_header}>
@@ -30,12 +29,11 @@ const Searchbar = () => {
                 label: 'Choose a country...',
                 value: null,
               }}
-              onValueChange={value => setFilterCountry(value)}
+              onValueChange={value => props.filterInformation(value)}
               items={data.data.map(country => ({
                 label: country.name,
-                value: country.id,
+                value: country.name,
               }))}
-              value={filterCountry}
               Icon={() => {
                 return (
                   <Icon

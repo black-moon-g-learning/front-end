@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axiosRequest from '../axios';
 import {Continents_URL} from '@env';
 
-const useSearch = (apiEndpoint, item) => {
+const useSearch = apiEndpoint => {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,13 +36,6 @@ const useSearch = (apiEndpoint, item) => {
       setDataShow(null);
     }
   };
-  const handleResultPress = () => {
-    setSearchResult(null);
-    setDataShow(item ? [item] : data.data.popular);
-    if (!item) {
-      setDataShow(null);
-    }
-  };
 
   const SearchOnpress = searchValue => {
     if (!searchValue) {
@@ -62,7 +55,6 @@ const useSearch = (apiEndpoint, item) => {
     SearchOnpress,
     setDataShow,
     DataShow,
-    handleResultPress,
   };
 };
 
