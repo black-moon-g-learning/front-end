@@ -1,7 +1,6 @@
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import Learnpercent from './Learnpercent';
+import React, {useState} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 export const ListContinents = ({item}) => {
   const navigation = useNavigation();
   const handlePress = () => {
@@ -19,9 +18,6 @@ export const ListContinents = ({item}) => {
           </Text>
         </View>
       </View>
-      <View style={styles.learnpercent}>
-        <Learnpercent />
-      </View>
     </TouchableOpacity>
   );
 };
@@ -31,8 +27,8 @@ const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    height: 120,
-    marginTop: 10,
+    height: 110,
+    marginTop: 5,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
@@ -51,13 +47,13 @@ const styles = StyleSheet.create({
   img: {
     marginLeft: 10,
     marginRight: 13,
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     borderRadius: 20,
     borderWidth: 1,
   },
   ContinentsName: {
-    fontSize: 20,
+    fontSize: 17,
     color: '#323643',
     fontFamily: 'Poppins-Medium',
   },

@@ -33,6 +33,7 @@ import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
+import Review from '../screens/Review';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -245,6 +246,14 @@ export default function Navigation() {
         component={MapViewCountry}
         options={{
           title: 'G - MAP',
+          headerTintColor: '#5FAD41',
+        }}
+      />
+      <HomeStack.Screen
+        name="review"
+        component={Review}
+        options={{
+          title: 'REVIEW',
           headerTintColor: '#5FAD41',
         }}
       />

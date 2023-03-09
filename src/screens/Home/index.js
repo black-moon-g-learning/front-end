@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import EarthGifImage from '../../components/Home/Earthgif';
@@ -16,25 +17,31 @@ const Home = ({navigation}) => {
   const {data, isLoading, isSuccess} = UseGetdata(API);
   console.log('data', data);
   return (
-    <View style={styles.container}>
-      {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
-      {isSuccess && (
-        <>
-          <EarthGifImage />
-          <Text style={styles.titlePage}>Continents </Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            style={styles.flatlist}
-            ListEmptyComponent={ErrorMessage}
-            keyExtractor={item => item.id}
-            data={data.data}
-            renderItem={({item}) => {
-              return <ListContinents navigation={navigation} item={item} />;
-            }}
-          />
-        </>
+    <SafeAreaView style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator color="#00ff00" size="large" />
+      ) : (
+        <View>
+          {isSuccess && (
+            <>
+              <EarthGifImage />
+              <Text style={styles.titlePage}>Continents </Text>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                style={styles.flatlist}
+                ListEmptyComponent={ErrorMessage}
+                keyExtractor={item => item.id}
+                data={data.data}
+                renderItem={({item}) => {
+                  return <ListContinents navigation={navigation} item={item} />;
+                }}
+              />
+            </>
+          )}
+        </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -50,10 +57,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   titlePage: {
-    fontSize: 27,
+    fontSize: 23,
     color: '#323643',
-    paddingTop: 10,
-    paddingLeft: 10,
+    paddingTop: 13,
+    paddingLeft: 13,
     fontFamily: 'Poppins-SemiBold',
   },
   emptyMessageStyle: {
