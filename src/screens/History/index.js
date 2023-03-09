@@ -16,7 +16,6 @@ const HistoryVideo = () => {
   const navigation = useNavigation();
   const API = `watched-history`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  console.log('data => ', data);
 
   const AllvideoWatched = ({item, videos}) => {
     return (
@@ -36,6 +35,13 @@ const HistoryVideo = () => {
             Watched: {item.watched_at}
           </Text>
         </View>
+        {item.watched === 1 && (
+          <TouchableOpacity
+            style={styles.modal_video_watched}
+            onPress={() => navigation.navigate('playvideo', {item, videos})}>
+            <Text style={styles.text_video_watched}>Watched</Text>
+          </TouchableOpacity>
+        )}
       </TouchableOpacity>
     );
   };
@@ -51,7 +57,6 @@ const HistoryVideo = () => {
           data={data.data}
           keyExtractor={item => item.id}
           renderItem={item => {
-            console.log('item => ', item.item);
             return <AllvideoWatched item={item.item} videos={data.data} />;
           }}
         />
@@ -126,5 +131,19 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '500',
     fontSize: 16,
+  },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  text_video_watched: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
+    marginRight: '50%',
   },
 });

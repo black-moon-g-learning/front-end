@@ -25,6 +25,13 @@ export const ListVideo = ({navigation, item, videos}) => {
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
         <Text style={styles.ContinentsDetail}>Publish: {item.publish}</Text>
       </View>
+      {item.watched === 1 && (
+        <TouchableOpacity
+          style={styles.modal_video_watched}
+          onPress={() => navigation.navigate('playvideo', {item, videos})}>
+          <Text style={styles.text_video_watched}>Watched</Text>
+        </TouchableOpacity>
+      )}
     </TouchableOpacity>
   );
 };
@@ -102,5 +109,19 @@ export const styles = StyleSheet.create({
     color: '#323643',
     paddingTop: 5,
     fontFamily: 'Poppins-Regular',
+  },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  text_video_watched: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
+    marginRight: '50%',
   },
 });

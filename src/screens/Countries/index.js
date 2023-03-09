@@ -22,16 +22,21 @@ const Countries = () => {
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const {
     searchValue,
-    setSearchValue,
     searchResult,
     setSearchResult,
     setDataShow,
     handleSearch,
     SearchOnpress,
     DataShow,
-    handleResultPress,
-  } = useSearch(API, item);
+  } = useSearch(API);
 
+  const handleResultPress = item => {
+    setSearchResult(null);
+    setDataShow(item ? [item] : data.data.popular);
+    if (!item) {
+      setDataShow(null);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}></View>
