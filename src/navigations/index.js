@@ -5,6 +5,7 @@ import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
 import ContributionHeader from '../components/Contribution/ContributionHeader';
+import MapViewCountry from '../components/DetailContryPage/MapView';
 import LevelHeader from '../components/G-Game/LevelHeader';
 import HYHBHeader from '../components/HYHBpage/HYHBHeader';
 import {Loading} from '../components/Loading';
@@ -24,15 +25,14 @@ import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
+import HistoryVideo from '../screens/History';
 import Home from '../screens/Home';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
-import MapViewCountry from '../components/DetailContryPage/MapView';
 import Information from './../screens/Infor/index';
-import HistoryVideo from '../screens/History';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
