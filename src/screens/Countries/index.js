@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -20,77 +20,83 @@ const Countries = () => {
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  const {searchValue, setSearchValue, searchResult, setSearchResult} =
-    useSearch(API);
-  const [DataCountries, setDataCountries] = useState(null);
-
-  const handleSearch = value => {
-    console.log('searching for', value);
-    setSearchValue(value);
-    if (!value) {
-      setDataCountries(null);
-    }
-  };
-
-  const handleResultPress = item => {
-    setSearchResult(null);
-    setDataCountries(item);
-    if (!item) {
-      setDataCountries(null);
-    }
-  };
+  const {
+    searchValue,
+    setSearchValue,
+    searchResult,
+    setSearchResult,
+    setDataShow,
+    handleSearch,
+    SearchOnpress,
+    DataShow,
+    handleResultPress,
+  } = useSearch(API, item);
 
   return (
     <View style={styles.container}>
       <View style={styles.topicsheader}></View>
       {isSuccess && (
         <View style={styles.flatlist}>
-          <Header value={searchValue} onChangeText={handleSearch} />
+          <Header
+            value={searchValue}
+            onChangeText={handleSearch}
+            onPress={SearchOnpress}
+          />
           {isLoading ? (
             <ActivityIndicator color="#00ff00" size="large" />
           ) : (
             <>
               {searchResult ? (
-                <FlatList
-                  style={{width: '100%', paddingTop: 20}}
-                  showsVerticalScrollIndicator={false}
-                  data={searchResult.data}
-                  ListEmptyComponent={ErrorMessage}
-                  keyExtractor={item => item.id.toString()}
-                  renderItem={({item}) => {
-                    return (
+                <>
+                  <FlatList
+                    style={{width: '100%', paddingTop: 20}}
+                    showsVerticalScrollIndicator={false}
+                    data={searchResult.data}
+                    ListEmptyComponent={ErrorMessage}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => (
                       <ModalSearch
                         item={item}
                         onPress={() => handleResultPress(item)}
                       />
-                    );
-                  }}
-                />
+                    )}
+                    ListHeaderComponent={
+                      searchResult.data.length === 0 && (
+                        <Text style={styles.errorTitle}>Not found </Text>
+                      )
+                    }
+                  />
+                </>
               ) : (
                 <>
                   <>
-                    {DataCountries === null && (
+                    {DataShow === null && (
                       <Text style={styles.title}>Popular</Text>
                     )}
                     <FlatList
                       showsHorizontalScrollIndicator={false}
-                      data={DataCountries ? [DataCountries] : data.data.popular}
+                      // data={DataShow || data.data.popular}
+                      data={DataShow ? [] : data.data.popular}
                       horizontal={true}
                       ListEmptyComponent={ErrorMessage}
                       keyExtractor={item => item.id}
                       renderItem={({item}) => {
                         return (
-                          <ItemPopular navigation={navigation} item={item} />
+                          <ItemPopular
+                            navigation={navigation}
+                            key={item.id}
+                            item={item}
+                          />
                         );
                       }}
                     />
 
-                    {DataCountries === null && (
+                    {DataShow === null && (
                       <Text style={styles.title}>Countries</Text>
                     )}
                     <FlatList
                       showsVerticalScrollIndicator={false}
-                      data={DataCountries ? [] : data.data.countries}
+                      data={DataShow || data.data.countries}
                       numColumns={2}
                       ListEmptyComponent={ErrorMessage}
                       keyExtractor={item => item.id}
@@ -133,5 +139,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingLeft: 10,
     fontFamily: 'Poppins-Medium',
+  },
+  errorTitle: {
+    paddingTop: 15,
+    color: '#323643',
+    fontSize: 17,
+    fontFamily: 'Poppins-Medium',
+    width: '100%',
+    textAlign: 'center',
   },
 });

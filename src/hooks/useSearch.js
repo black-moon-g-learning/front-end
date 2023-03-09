@@ -1,11 +1,12 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axiosRequest from '../axios';
 import {Continents_URL} from '@env';
 
-const useSearch = apiEndpoint => {
+const useSearch = (apiEndpoint, item) => {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [DataShow, setDataShow] = useState(null);
 
   useEffect(() => {
     const search = async () => {
@@ -28,18 +29,40 @@ const useSearch = apiEndpoint => {
     }
   }, [searchValue, apiEndpoint]);
 
-  // const handleSearch = value => {
-  //   console.log('searching for', value);
-  //   setSearchValue(value);
-  // };
+  const handleSearch = searchValue => {
+    console.log('searching for', searchValue);
+    setSearchValue(searchValue);
+    if (!searchValue) {
+      setDataShow(null);
+    }
+  };
+  const handleResultPress = () => {
+    setSearchResult(null);
+    setDataShow(item ? [item] : data.data.popular);
+    if (!item) {
+      setDataShow(null);
+    }
+  };
 
+  const SearchOnpress = searchValue => {
+    if (!searchValue) {
+      setDataShow(null);
+    } else {
+      setDataShow(searchResult?.data);
+    }
+    setSearchResult(null);
+  };
   return {
     searchValue,
     setSearchValue,
     searchResult,
     setSearchResult,
     isLoading,
-    // handleSearch,
+    handleSearch,
+    SearchOnpress,
+    setDataShow,
+    DataShow,
+    handleResultPress,
   };
 };
 

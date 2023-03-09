@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
 
   itemcountries_item: {
-    width: '92%',
+    width: 170,
     height: 160,
     textAlign: 'center',
     alignContent: 'center',

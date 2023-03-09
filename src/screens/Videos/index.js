@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
 import ModalSearch from '../../components/ModalSearch';
@@ -11,30 +17,27 @@ const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;
   const {data, isLoading} = UseGetdata(API);
-  const {searchValue, setSearchValue, searchResult, setSearchResult} =
-    useSearch(API);
-  const [DataVideo, setDataVideo] = useState(null);
+  const {
+    searchValue,
+    setSearchValue,
+    searchResult,
+    setSearchResult,
+    setDataShow,
+    handleSearch,
+    SearchOnpress,
+    DataShow,
+    handleResultPress,
+  } = useSearch(API,item);
 
-  const handleSearch = value => {
-    console.log('searching for', value);
-    setSearchValue(value);
-    if (!value) {
-      setDataVideo(null);
-    }
-  };
-
-  const handleResultPress = item => {
-    setSearchResult(null);
-    setDataVideo(item);
-    if (!item) {
-      setDataVideo(null);
-    }
-  };
 
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Header value={searchValue} onChangeText={handleSearch} />
+        <Header
+          value={searchValue}
+          onChangeText={handleSearch}
+          onPress={SearchOnpress}
+        />
       </View>
       <>
         {isLoading ? (
@@ -56,23 +59,30 @@ const Videos = ({navigation, route, props}) => {
                     />
                   );
                 }}
+                ListHeaderComponent={
+                  searchResult.data.length === 0 && (
+                    <Text style={styles.errorTitle}>Not found </Text>
+                  )
+                }
               />
             ) : (
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                data={DataVideo ? [DataVideo] : data.data}
-                ListEmptyComponent={ErrorMessage}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => {
-                  return (
-                    <ListVideo
-                      navigation={navigation}
-                      videos={data.data}
-                      item={item}
-                    />
-                  );
-                }}
-              />
+              <>
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={DataShow || data.data}
+                  ListEmptyComponent={ErrorMessage}
+                  keyExtractor={item => item.id.toString()}
+                  renderItem={({item}) => {
+                    return (
+                      <ListVideo
+                        navigation={navigation}
+                        videos={data.data}
+                        item={item}
+                      />
+                    );
+                  }}
+                />
+              </>
             )}
           </>
         )}
@@ -106,5 +116,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     paddingLeft: 10,
+  },
+  errorTitle: {
+    color: '#323643',
+    fontSize: 17,
+    fontFamily: 'Poppins-Medium',
+    width: '100%',
+    textAlign: 'center',
   },
 });
