@@ -8,19 +8,21 @@ import {
   ActivityIndicator,
   ScrollView,
   TouchableOpacity,
+  Switch,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-
+// import SwitchToggle from 'react-native-switch-toggle';
+import ToggleSwitch from 'toggle-switch-react-native';
 import UseGetdata from '../../hooks/UseContinents';
 import {ErrorMessage} from '../../components/ErrorMessage';
 
 const Review = () => {
   const route = useRoute();
   const navigation = useNavigation();
-
   const {item} = route.params;
-  const API = `videos/105/questions`;
+  const API = `videos/683/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const [indexItem, setIndexItem] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -35,17 +37,43 @@ const Review = () => {
   const question = isSuccess ? data.data[indexItem] : null;
   //total of question
   const totalQuestion = isSuccess ? data.data.length : null;
+  const [switchStates, setSwitchStates] = useState(
+    question ? new Array(question.answers.length).fill(false) : [],
+  );
+  const [prevSwitchIndex, setPrevSwitchIndex] = useState(null);
+  const [Nguyet, setNguyet] = useState(null);
+
   const handleQuestion = (correctAns, totalQues) => {
+    if (Nguyet === 1) {
+      // setCorrectAnswer(answer.id);
+      setTotalCorrectAns(totalCorrectAns + 1);
+      Alert.alert('Kết quả', 'Đúng rồi nha', [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ]);
+      console.log('đúng nhaaa');
+    } else {
+      Alert.alert('Kết quả', 'Sai rồi con', [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ]);
+      console.log('sai nhaa');
+    }
     if (indexItem === totalQuestion - 1) {
       finalScreen();
     } else {
+      setSwitchStates(new Array(question.answers.length).fill(false));
       setIndexItem(indexItem + 1);
       setSelectedAnswerIndex(null);
       setSelectedAnswer(null);
     }
   };
   const finalScreen = () => {
-    navigation.navigate('FailScreen', {
+    navigation.navigate('ModalAnswer', {
       item,
       totalCorrectAns,
       totalQuestion,
@@ -53,29 +81,33 @@ const Review = () => {
     });
   };
 
-  const handleSelectOption = answer => {
+  const handleSelectOption = (answer, index) => {
     setSelectedAnswer(answer.content);
     setSelectedAnswerIndex(answer.id);
-    // setQuestionState('answered');
-    if (answer.is_correct === 1) {
-      setCorrectAnswer(answer.id);
-      setTotalCorrectAns(totalCorrectAns + 1);
-      console.log('đúng nhaaa');
-      // saveScore(score);
-    } else {
-      console.log('sai nhaa');
+    setNguyet(answer.is_correct);
+
+    // Update switchStates
+    const newSwitchStates = [...switchStates];
+    // Reset previous switch state
+    if (prevSwitchIndex !== null && prevSwitchIndex !== index) {
+      newSwitchStates[prevSwitchIndex] = false;
     }
+    // Update current switch state
+    newSwitchStates[index] = !newSwitchStates[index];
+    // Set previous switch index
+    setPrevSwitchIndex(index);
+    setSwitchStates(newSwitchStates);
   };
 
-  const getOptionStyle = answerOptions => {
+  const getOptionStyle = answerOption => {
     if (
-      answerOptions.content === selectedAnswer &&
-      answerOptions.id === correctAnswer
+      answerOption.content === selectedAnswer &&
+      answerOption.is_correct === 1
     ) {
       return styles.correctAnswer;
     } else if (
-      answerOptions.content === selectedAnswer &&
-      answerOptions.id !== correctAnswer
+      answerOption.content === selectedAnswer &&
+      answerOption.is_correct === 0
     ) {
       return styles.incorrectAnswer;
     } else {
@@ -83,18 +115,27 @@ const Review = () => {
     }
   };
 
-  const Item = ({item, answerOption}) => (
-    <ScrollView style={styles.item}>
+  const Item = ({item, answerOption, index}) => (
+    <ScrollView style={styles.item} key={index}>
       <TouchableOpacity style={styles.answersItem}>
         <Image source={{uri: item.image}} style={styles.answersImage} />
-        <TouchableOpacity
-          style={[styles.buttonAnswers, getOptionStyle(item)]}
-          onPress={() => handleSelectOption(item)}>
+        <TouchableOpacity style={[styles.buttonAnswers]}>
+          <Switch
+            onValueChange={newValue => {
+              const newSwitchStates = [...switchStates];
+              newSwitchStates[index] = newValue;
+              setSwitchStates(newSwitchStates);
+              handleSelectOption(item, index);
+            }}
+            style={[{transform: [{scaleX: 2}, {scaleY: 2}]}]}
+            value={switchStates[index]}
+          />
           <Text style={styles.textoption}>{answerOption}</Text>
         </TouchableOpacity>
       </TouchableOpacity>
     </ScrollView>
   );
+
   return (
     <SafeAreaView style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
@@ -129,7 +170,14 @@ const Review = () => {
               ListEmptyComponent={ErrorMessage}
               keyExtractor={item => item.id}
               renderItem={({item, index}) => {
-                return <Item item={item} answerOption={answerOptions[index]} />;
+                return (
+                  <Item
+                    item={item}
+                    answerOption={answerOptions[index]}
+                    index={index}
+                    getOptionStyle={getOptionStyle(item)}
+                  />
+                );
               }}
             />
           </>
@@ -187,10 +235,15 @@ const styles = StyleSheet.create({
     marginRight: '-2.4%',
   },
 
-  item: {width: '90%', height: 200, display: 'flex'},
+  item: {
+    width: '90%',
+    height: 200,
+    display: 'flex',
+    marginTop: -5,
+  },
   answersItem: {
     width: '90%',
-    height: 170,
+    height: 160,
     textAlign: 'center',
     alignContent: 'center',
     paddingLeft: 3,
@@ -202,8 +255,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   answersImage: {
-    width: '100%',
-    height: '70%',
+    width: '90%',
+    height: '65%',
     borderRadius: 10,
     marginBottom: 15,
   },
@@ -221,7 +274,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 13,
     color: '#000000',
-    marginTop: -15,
+    marginTop: -28,
   },
   textoption: {
     fontSize: 18,
@@ -240,11 +293,14 @@ const styles = StyleSheet.create({
   },
   buttonAnswers: {
     backgroundColor: 'white',
-    borderWidth: 1,
-    width: '60%',
-    height: 40,
+    width: '80%',
+    height: 45,
     borderRadius: 20,
-    marginLeft: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    paddingLeft: 5,
   },
   nextButton: {
     width: '100%',
@@ -252,20 +308,20 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   btn: {
-    marginTop: -60,
-
-    width: 94,
-    height: 32,
+    marginTop: -80,
+    width: 170,
+    height: 45,
     borderRadius: 10,
     backgroundColor: '#FFC845',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   txtBtn: {
+    width: 170,
     fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 20,
     fontFamily: 'Poppins-Bold',
     color: 'green',
     textAlign: 'center',
-    paddingTop: 5,
   },
 });

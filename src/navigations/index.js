@@ -23,6 +23,7 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
+import ModalAnswer from '../screens/Review/ModalAnswer';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
 import HistoryVideo from '../screens/History';
@@ -225,6 +226,11 @@ export default function Navigation() {
       <Stack.Screen
         name="GoodScreen"
         component={GoodPage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ModalAnswer"
+        component={ModalAnswer}
         options={{headerShown: false}}
       />
       <Stack.Screen

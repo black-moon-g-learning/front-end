@@ -6,7 +6,7 @@ import {RecommendVideo} from '../../components/Videos/Listvideos';
 
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
-  console.log(item);
+  console.log('item truyen ve ne', item);
   const urlAPI = item.url;
   const splitUrl = urlAPI.split(/[=,&]/).slice(1, 2);
 
