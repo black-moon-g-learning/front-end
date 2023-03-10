@@ -41,6 +41,12 @@ axiosRequest.interceptors.response.use(
         {cancelable: false},
       );
     }
+    if (error.response.status === 423) {
+      return Alert.alert(
+        'Notification',
+        'Your account has been locked, contact phone number 0825503379 for support.',
+      );
+    }
   },
 );
 
