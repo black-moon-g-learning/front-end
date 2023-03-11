@@ -36,12 +36,23 @@ export const GroupBtn = ({item, restartQuiz}) => {
     </View>
   );
 };
-export const ReviewBtn = ({item, restartQuiz}) => {
+export const ReviewBtn = ({item, videos, onClose}) => {
+  console.log('o day nhan dc ko', item);
+  const handlePlayVideo = () => {
+    navigation.navigate('playvideo', {item, videos});
+    navigation.replace('playvideo', {item, videos});
+  };
+
+  const handlePress = () => {
+    onClose();
+    handlePlayVideo();
+  };
   const navigation = useNavigation();
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity
-        style={[styles.btnReview, {backgroundColor: '#FFC845'}]}>
+        style={[styles.btnReview, {backgroundColor: '#FFC845'}]}
+        onPress={() => handlePress()}>
         <Text style={styles.btnTxt}>BACK</Text>
       </TouchableOpacity>
     </View>

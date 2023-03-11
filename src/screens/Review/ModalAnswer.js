@@ -6,11 +6,17 @@ import {
   ReviewBtn,
 } from '../../components/G-Game/FailHeader';
 
-const ModalAnswer = ({route}) => {
+const ModalAnswer = ({
+  onClose,
+  totalQuestion,
+  totalCorrectAns,
+  item,
+  videos,
+}) => {
   LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
   ]);
-  const {item, totalQuestion, totalCorrectAns} = route.params;
+  // const {item, totalQuestion, totalCorrectAns} = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.resultContainer}>
@@ -32,6 +38,9 @@ const ModalAnswer = ({route}) => {
           totalCorrectAns={totalCorrectAns}
         />
         <ReviewBtn
+          onClose={onClose}
+          videos={videos}
+          item={item}
           totalQuestion={totalQuestion}
           totalCorrectAns={totalCorrectAns}
         />

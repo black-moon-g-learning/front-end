@@ -19,7 +19,9 @@ const PlayVideo = ({navigation, route}) => {
       <View style={styles.review}>
         <TouchableOpacity
           style={styles.reviewbutton}
-          onPress={() => navigation.navigate('review', {item})}>
+          onPress={() =>
+            navigation.navigate('review', {item, splitUrl, videos})
+          }>
           <Text style={styles.text}>REVIEW HERE</Text>
         </TouchableOpacity>
       </View>

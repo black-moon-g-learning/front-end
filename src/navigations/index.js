@@ -35,6 +35,7 @@ import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
 import Review from '../screens/Review';
+import ModalNext from '../screens/Review/ModalNextQuestion';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -236,6 +237,11 @@ export default function Navigation() {
       <Stack.Screen
         name="GreatScreen"
         component={GreatePage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="next"
+        component={ModalNext}
         options={{headerShown: false}}
       />
       <HomeStack.Screen name="logout" component={Logout} />

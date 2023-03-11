@@ -9,92 +9,76 @@ import {
   ScrollView,
   TouchableOpacity,
   Switch,
-  Alert,
+  Modal,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-// import SwitchToggle from 'react-native-switch-toggle';
-import ToggleSwitch from 'toggle-switch-react-native';
 import UseGetdata from '../../hooks/UseContinents';
 import {ErrorMessage} from '../../components/ErrorMessage';
-
+import ModalNext from './ModalNextQuestion';
+import ModalAnswer from './ModalAnswer';
+import Icon from 'react-native-vector-icons/Feather';
 const Review = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const {item} = route.params;
+  const {item, splitUrl, videos} = route.params;
+  console.log('url ne', videos);
   const API = `videos/683/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalResoult, setModalResoult] = useState(false);
   const [indexItem, setIndexItem] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  //Index of select answer
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
   const [totalCorrectAns, setTotalCorrectAns] = useState(0);
+  const [images, setImages] = useState('');
+  const [AnswerNotificatiion, setAnswerNotificatiion] = useState('');
 
-  //correct answer
-  const [correctAnswer, setCorrectAnswer] = useState(null);
   const answerOptions = ['A', 'B', 'C', 'D'];
-  //Question is a object
   const question = isSuccess ? data.data[indexItem] : null;
-  //total of question
   const totalQuestion = isSuccess ? data.data.length : null;
   const [switchStates, setSwitchStates] = useState(
     question ? new Array(question.answers.length).fill(false) : [],
   );
   const [prevSwitchIndex, setPrevSwitchIndex] = useState(null);
   const [Nguyet, setNguyet] = useState(null);
-
+  const handleModalClose = () => {
+    setShowModal(false);
+    setModalResoult(false);
+  };
   const handleQuestion = (correctAns, totalQues) => {
     if (Nguyet === 1) {
-      // setCorrectAnswer(answer.id);
       setTotalCorrectAns(totalCorrectAns + 1);
-      Alert.alert('Kết quả', 'Đúng rồi nha', [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-      ]);
-      console.log('đúng nhaaa');
+      setAnswerNotificatiion('You Correct');
+      setImages('https://cdn-icons-png.flaticon.com/512/4436/4436481.png');
+      setShowModal(true);
     } else {
-      Alert.alert('Kết quả', 'Sai rồi con', [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-      ]);
-      console.log('sai nhaa');
+      setImages(
+        'https://img.myloview.com/stickers/incorrect-wrong-or-bad-icons-in-flat-design-with-shadow-vector-eps-10-700-195282712.jpg',
+      );
+
+      setAnswerNotificatiion('Not Correct');
+      setShowModal(true);
     }
+  };
+  const Result = () => {
     if (indexItem === totalQuestion - 1) {
-      finalScreen();
+      setModalResoult(true);
     } else {
       setSwitchStates(new Array(question.answers.length).fill(false));
       setIndexItem(indexItem + 1);
-      setSelectedAnswerIndex(null);
       setSelectedAnswer(null);
     }
-  };
-  const finalScreen = () => {
-    navigation.navigate('ModalAnswer', {
-      item,
-      totalCorrectAns,
-      totalQuestion,
-      restartQuiz: '',
-    });
   };
 
   const handleSelectOption = (answer, index) => {
     setSelectedAnswer(answer.content);
-    setSelectedAnswerIndex(answer.id);
     setNguyet(answer.is_correct);
 
-    // Update switchStates
     const newSwitchStates = [...switchStates];
-    // Reset previous switch state
     if (prevSwitchIndex !== null && prevSwitchIndex !== index) {
       newSwitchStates[prevSwitchIndex] = false;
     }
-    // Update current switch state
     newSwitchStates[index] = !newSwitchStates[index];
-    // Set previous switch index
     setPrevSwitchIndex(index);
     setSwitchStates(newSwitchStates);
   };
@@ -135,7 +119,6 @@ const Review = () => {
       </TouchableOpacity>
     </ScrollView>
   );
-
   return (
     <SafeAreaView style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
@@ -161,6 +144,27 @@ const Review = () => {
               Question {indexItem + 1}/{totalQuestion}
             </Text>
           </View>
+          {showModal && (
+            <Modal transparent={true} animationType="fade">
+              <ModalNext
+                onClose={handleModalClose}
+                images={images}
+                text={AnswerNotificatiion}
+                Result={Result}
+              />
+            </Modal>
+          )}
+          {showModalResoult && (
+            <Modal transparent={true} animationType="fade">
+              <ModalAnswer
+                onClose={handleModalClose}
+                totalQuestion={totalQuestion}
+                totalCorrectAns={totalCorrectAns}
+                item={item}
+                videos={videos}
+              />
+            </Modal>
+          )}
           <>
             <FlatList
               showsVerticalScrollIndicator={false}
