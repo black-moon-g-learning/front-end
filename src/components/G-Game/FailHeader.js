@@ -31,7 +31,29 @@ export const GroupBtn = ({item, restartQuiz}) => {
       <TouchableOpacity
         style={[styles.btn, {backgroundColor: '#FFC845'}]}
         onPress={() => navigation.navigate('GameLevels', {item})}>
-        <Text style={styles.btnTxt}>Menu</Text>
+        <Text style={styles.btnTxt}>Back</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+export const ReviewBtn = ({item, videos, onClose}) => {
+  console.log('o day nhan dc ko', item);
+  const handlePlayVideo = () => {
+    navigation.navigate('playvideo', {item, videos});
+    navigation.replace('playvideo', {item, videos});
+  };
+
+  const handlePress = () => {
+    onClose();
+    handlePlayVideo();
+  };
+  const navigation = useNavigation();
+  return (
+    <View style={styles.btnGroup}>
+      <TouchableOpacity
+        style={[styles.btnReview, {backgroundColor: '#FFC845'}]}
+        onPress={() => handlePress()}>
+        <Text style={styles.btnTxt}>BACK</Text>
       </TouchableOpacity>
     </View>
   );
@@ -82,6 +104,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#5FAD41',
+  },
+  btnReview: {
+    width: '90%',
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#5FAD41',
+    // paddingBottom: 20,
   },
   btnTxt: {
     fontFamily: 'Poppins-Bold',

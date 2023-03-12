@@ -1,5 +1,6 @@
 import {
   Image,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,14 +22,19 @@ export const ItemPopular = ({navigation, item}) => {
 
 export const ItemCountries = ({navigation, item}) => {
   return (
-    <ScrollView style={styles.itemcountries_container}>
-      <TouchableOpacity
-        style={styles.itemcountries_item}
-        onPress={() => navigation.navigate('TopicCountry', {item})}>
-        <Image style={styles.itemcountries_image} source={{uri: item.image}} />
-        <Text style={styles.itemcountries_country}>{item.name}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView style={styles.itemcountries_container}>
+        <TouchableOpacity
+          style={styles.itemcountries_item}
+          onPress={() => navigation.navigate('TopicCountry', {item})}>
+          <Image
+            style={styles.itemcountries_image}
+            source={{uri: item.image}}
+          />
+          <Text style={styles.itemcountries_country}>{item.name}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
     width: 170,
     height: 195,
   },
-  itemcountries_container: {width: '90%', height: 190},
+  itemcountries_container: {width: '90%', height: 190, flex: 1},
   itempoopular_item: {
     paddingTop: 5,
     textAlign: 'center',

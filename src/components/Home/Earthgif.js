@@ -6,9 +6,7 @@ const EarthGifImage = () => {
     <View style={Styles.container}>
       <Image
         style={Styles.gif}
-        source={{
-          uri: 'https://i.chzbgr.com/full/6855613952/h835E9CAA/nasa-earth-at-nigh',
-        }}
+        source={require('../../assets/images/earth.gif')}
       />
     </View>
   );

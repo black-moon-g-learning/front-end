@@ -23,6 +23,7 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
+import ModalAnswer from '../components/Review/ModalAnswer';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
 import HistoryVideo from '../screens/History';
@@ -33,6 +34,8 @@ import Payment from '../screens/Payment';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
+import Review from '../screens/Review';
+import ModalNext from '../components/Review/ModalNextQuestion';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -227,8 +230,18 @@ export default function Navigation() {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="ModalAnswer"
+        component={ModalAnswer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="GreatScreen"
         component={GreatePage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="next"
+        component={ModalNext}
         options={{headerShown: false}}
       />
       <HomeStack.Screen name="logout" component={Logout} />
@@ -245,6 +258,14 @@ export default function Navigation() {
         component={MapViewCountry}
         options={{
           title: 'G - MAP',
+          headerTintColor: '#5FAD41',
+        }}
+      />
+      <HomeStack.Screen
+        name="review"
+        component={Review}
+        options={{
+          title: 'REVIEW',
           headerTintColor: '#5FAD41',
         }}
       />
