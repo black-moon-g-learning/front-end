@@ -1,29 +1,28 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  SafeAreaView,
-  FlatList,
-  ActivityIndicator,
-  ScrollView,
-  TouchableOpacity,
-  Switch,
-  Modal,
-} from 'react-native';
-import React, {useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import UseGetdata from '../../hooks/UseContinents';
+import React, {useState} from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  Modal,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
-import ModalNext from './ModalNextQuestion';
-import ModalAnswer from './ModalAnswer';
-import Icon from 'react-native-vector-icons/Feather';
+import ModalAnswer from '../../components/Review/ModalAnswer';
+import UseGetdata from '../../hooks/UseContinents';
+import ModalNext from '../../components/Review/ModalNextQuestion';
 const Review = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const {item, splitUrl, videos} = route.params;
   console.log('url ne', videos);
-  const API = `videos/683/questions`;
+  const API = `videos/${item.id}/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const [showModal, setShowModal] = useState(false);
   const [showModalResoult, setModalResoult] = useState(false);
@@ -53,7 +52,7 @@ const Review = () => {
       setShowModal(true);
     } else {
       setImages(
-        'https://img.myloview.com/stickers/incorrect-wrong-or-bad-icons-in-flat-design-with-shadow-vector-eps-10-700-195282712.jpg',
+        'https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png',
       );
 
       setAnswerNotificatiion('Not Correct');

@@ -1,10 +1,6 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, LogBox} from 'react-native';
-import {
-  FailHeader,
-  FinalResult,
-  ReviewBtn,
-} from '../../components/G-Game/FailHeader';
+import {Image, LogBox, StyleSheet, Text, View} from 'react-native';
+import {FinalResult, ReviewBtn} from '../G-Game/FailHeader';
 
 const ModalAnswer = ({
   onClose,

@@ -8,21 +8,21 @@ const PlayerControls = props => {
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity style={styles.touchable} onPress={skipBackwards}>
-        <Icon name="rotate-ccw" size={40} color={'white'} />
+        <Icon name="rotate-ccw" size={30} color={'white'} />
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.touchable}
         onPress={playing ? onPause : onPlay}>
         {playing ? (
-          <Icon name="pause" size={40} color={'white'} />
+          <Icon name="pause" size={30} color={'white'} />
         ) : (
-          <Icon name="play" size={40} color={'white'} />
+          <Icon name="play" size={30} color={'white'} />
         )}
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.touchable} onPress={skipForwards}>
-        <Icon name="rotate-cw" size={40} color={'white'} />
+        <Icon name="rotate-cw" size={30} color={'white'} />
       </TouchableOpacity>
     </View>
   );

@@ -2,20 +2,19 @@ import React, {createRef, useEffect, useState} from 'react';
 import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Video from 'react-native-video';
-import PlayerControls from './playerControls';
-import ProgressBar from './progressBar';
+import PlayerControls from '../../components/VideoCustom/playerControls';
+import ProgressBar from '../../components/VideoCustom/progressBar';
 
 import Orientation from 'react-native-orientation-locker';
 
-const windowHeight = Dimensions.get('window').width * (10 / 16);
+const windowHeight = Dimensions.get('window').width * (10 / 18);
 const windowWidth = Dimensions.get('window').width;
 
 const height = Dimensions.get('window').width;
 const width = Dimensions.get('window').height;
 
-const Player = () => {
+const Player = ({urlVideo}) => {
   const videoRef = createRef();
-
   useEffect(() => {
     Orientation.addOrientationListener(handleOrientation);
     return () => {
@@ -104,7 +103,7 @@ const Player = () => {
           <Video
             ref={videoRef}
             source={{
-              uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+              uri: urlVideo,
             }}
             style={fullscreen ? styles.fullscreenVideo : styles.video}
             controls={false}
@@ -113,7 +112,6 @@ const Player = () => {
             onProgress={onProgress}
             onEnd={onEnd}
             paused={!play}
-            // muted={true}
           />
 
           {showControl && (
@@ -123,9 +121,9 @@ const Player = () => {
                 hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
                 style={styles.fullscreenButton}>
                 {fullscreen ? (
-                  <Icon name="minimize" size={40} color={'white'} />
+                  <Icon name="minimize" size={30} color={'white'} />
                 ) : (
-                  <Icon name="maximize" size={40} color={'white'} />
+                  <Icon name="maximize" size={30} color={'white'} />
                 )}
               </TouchableOpacity>
 
@@ -155,6 +153,7 @@ const Player = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ebebeb',
+    marginBottom: 15,
   },
   fullscreenContainer: {
     flex: 1,
@@ -175,12 +174,6 @@ const styles = StyleSheet.create({
     height: height,
     width: width,
     backgroundColor: 'black',
-  },
-  text: {
-    marginTop: 30,
-    marginHorizontal: 20,
-    fontSize: 15,
-    textAlign: 'justify',
   },
   fullscreenButton: {
     flex: 1,

@@ -39,7 +39,7 @@ const Countries = () => {
     }
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.topicsheader}></View>
       {/* {isSuccess && ( */}
       <View style={styles.flatlist}>
@@ -76,7 +76,7 @@ const Countries = () => {
             ) : (
               <>
                 <>
-                  <SafeAreaView style={styles.safeView}>
+                  <>
                     {DataShow === null && (
                       <Text style={styles.title}>Popular</Text>
                     )}
@@ -96,7 +96,7 @@ const Countries = () => {
                         );
                       }}
                     />
-                  </SafeAreaView>
+                  </>
 
                   {DataShow === null && (
                     <Text style={styles.title}>Countries</Text>
@@ -120,7 +120,7 @@ const Countries = () => {
         )}
       </View>
       {/* )} */}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     fontSize: 18,
+    flex: 1,
   },
   // safeView: {
   //   flex: 2,

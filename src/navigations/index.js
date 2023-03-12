@@ -23,7 +23,7 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
-import ModalAnswer from '../screens/Review/ModalAnswer';
+import ModalAnswer from '../components/Review/ModalAnswer';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
 import HistoryVideo from '../screens/History';
@@ -35,7 +35,7 @@ import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
 import Review from '../screens/Review';
-import ModalNext from '../screens/Review/ModalNextQuestion';
+import ModalNext from '../components/Review/ModalNextQuestion';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
