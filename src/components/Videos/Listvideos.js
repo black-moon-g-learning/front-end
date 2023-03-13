@@ -17,8 +17,10 @@ export const ListVideo = ({navigation, item, videos}) => {
     <TouchableOpacity
       style={styles.item}
       key={item}
-      onPressIn={VideoWatched}
-      onPress={() => navigation.navigate('playvideo', {item, videos})}>
+      onPress={() => {
+        navigation.navigate('playvideo', {item, videos});
+        VideoWatched();
+      }}>
       <Image source={{uri: item.image}} style={styles.img} />
       <View>
         <Text style={styles.ContinentsName}>{item.name}</Text>
