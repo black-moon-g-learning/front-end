@@ -15,7 +15,7 @@ const HeaderLogin = () => {
     Animated.loop(
       Animated.timing(rotateValue, {
         toValue: 1,
-        duration: 5000,
+        duration: 7000,
         easing: Easing.linear(),
         useNativeDriver: false,
       }),

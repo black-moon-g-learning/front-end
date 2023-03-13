@@ -230,7 +230,7 @@ const Information = ({navigation}) => {
                   <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
                       style={styles.information_modal_profile}
-                      value={String(Age)}
+                      value={Age}
                       onChangeText={setAge}
                     />
                   </TouchableOpacity>
@@ -240,7 +240,7 @@ const Information = ({navigation}) => {
                   <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
                       style={styles.information_modal_profile}
-                      value={String(Email)}
+                      value={Email}
                       onChangeText={setEmail}
                     />
                   </TouchableOpacity>
@@ -250,7 +250,7 @@ const Information = ({navigation}) => {
                   <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
                       style={styles.information_modal_profile}
-                      value={String(Phone)}
+                      value={Phone}
                       onChangeText={setPhone}
                     />
                   </TouchableOpacity>
