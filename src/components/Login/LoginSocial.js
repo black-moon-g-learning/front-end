@@ -11,7 +11,12 @@ import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import messaging from '@react-native-firebase/messaging';
 import {Image, TouchableOpacity} from 'react-native';
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -71,7 +76,7 @@ export const NotificationListner = () => {
 };
 
 const LoginSocial = () => {
-  // const [userInfo, setUserInfo] = useState({});
+  // const queryClient = useQueryClient();
   const navigation = useNavigation();
   GoogleSignin.configure({
     webClientId:
@@ -84,15 +89,8 @@ const LoginSocial = () => {
     const {idToken} = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // console.log(idToken);
     const user_sign_in = auth().signInWithCredential(googleCredential);
-    user_sign_in
-      .then(user => {
-        // console.log(user);
-      })
-      .catch(error => {
-        // console.log(error);
-      });
+    user_sign_in.then(user => {}).catch(error => {});
     const tokenfcm = await requestUserPermission();
 
     await firebase.auth().onAuthStateChanged(user => {
@@ -100,7 +98,6 @@ const LoginSocial = () => {
         user
           .getIdTokenResult()
           .then(data => {
-            // console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -113,7 +110,7 @@ const LoginSocial = () => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             await AsyncStorage.getItem('@Token');
-            // console.log('tokennnnn', currentUser);
+            // queryClient.setQueryData('todos', userInfo);
           });
         flag = false;
       } else {
@@ -144,13 +141,7 @@ const LoginSocial = () => {
       data.accessToken,
     );
     const user_sign_in = auth().signInWithCredential(facebookCredential);
-    user_sign_in
-      .then(user => {
-        // console.log(user);
-      })
-      .catch(error => {
-        // console.log(error);
-      });
+    user_sign_in.then(user => {}).catch(error => {});
     const tokenfcm = await requestUserPermission();
 
     await firebase.auth().onAuthStateChanged(user => {
@@ -158,7 +149,6 @@ const LoginSocial = () => {
         user
           .getIdTokenResult()
           .then(data => {
-            // console.log(data.token);
             return data.token;
           })
           .then(data => {
@@ -171,7 +161,6 @@ const LoginSocial = () => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
             await AsyncStorage.getItem('@Token');
-            // console.log('token : ', currentUser);
           });
         flag = false;
       } else {
