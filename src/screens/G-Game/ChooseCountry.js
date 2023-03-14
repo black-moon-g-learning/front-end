@@ -154,4 +154,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 10,
   },
+  errorTitle: {
+    color: '#323643',
+    fontSize: 17,
+    fontFamily: 'Poppins-Medium',
+    width: '100%',
+    textAlign: 'center',
+  },
 });

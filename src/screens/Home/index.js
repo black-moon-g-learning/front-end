@@ -15,7 +15,6 @@ import UseGetdata from '../../hooks/UseContinents';
 const Home = ({navigation}) => {
   const API = `continents`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
-  console.log('data', data);
   return (
     <SafeAreaView style={styles.container}>
       {isLoading ? (

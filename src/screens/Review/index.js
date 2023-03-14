@@ -21,7 +21,6 @@ const Review = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const {item, splitUrl, videos} = route.params;
-  console.log('url ne', videos);
   const API = `videos/${item.id}/questions`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   const [showModal, setShowModal] = useState(false);

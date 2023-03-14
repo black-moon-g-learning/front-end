@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 10,
   },
   btn: {
     backgroundColor: '#5FAD41',
