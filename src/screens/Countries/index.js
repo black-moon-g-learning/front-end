@@ -14,10 +14,18 @@ import Header from '../../components/Header';
 import ModalSearch from '../../components/ModalSearch';
 import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 const Countries = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const queryClient = useQueryClient();
+  // const updatedData = queryClient.getQueryData('todos');
+  // console.log('nghuyetttttttt', updatedData);
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
