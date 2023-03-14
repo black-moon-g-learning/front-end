@@ -1,6 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
+import firebase from '@react-native-firebase/app';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -36,6 +37,7 @@ import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
 import Review from '../screens/Review';
 import ModalNext from '../components/Review/ModalNextQuestion';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -165,22 +167,34 @@ function Bottomtab() {
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      setIsLoggedIn(user ? true : false);
+    });
+
+    return unsubscribe;
+  }, []);
   return (
     <Stack.Navigator
       initialRouteName="login"
       screenOptions={{
         animation: 'slide_from_bottom',
       }}>
-      <Stack.Screen
-        name="login"
-        component={Login}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Tab"
-        component={Bottomtab}
-        options={{headerShown: false}}
-      />
+      {isLoggedIn ? (
+        <Stack.Screen
+          name="Tab"
+          component={Bottomtab}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+      )}
       <Stack.Screen
         name="Contribution"
         component={Contribution}
