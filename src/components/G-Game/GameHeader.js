@@ -1,11 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Header from '../Header';
 const GameHeader = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>G-GAME</Text>
-      <Header />
     </View>
   );
 };

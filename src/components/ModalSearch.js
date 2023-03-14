@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ModalSearch = ({item, onPress}) => {
@@ -9,6 +9,7 @@ const ModalSearch = ({item, onPress}) => {
         {item === null && <Text style={styles.title}>Khong co Ket qua</Text>}
         <Icon name="search" size={20} color={'black'} />
         <Text style={styles.textSearch}>{item.name}</Text>
+        <Image style={styles.flag} source={{uri: item.image}} />
       </TouchableOpacity>
     </View>
   );
@@ -31,7 +32,12 @@ const styles = StyleSheet.create({
     color: '#323643',
     fontSize: 17,
     fontFamily: 'Poppins-Medium',
-    width: '80%',
+    width: '60%',
+  },
+  flag: {
+    width: 50,
+    height: 50,
+    borderRadius: 100,
   },
 });
 

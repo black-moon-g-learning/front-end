@@ -9,7 +9,6 @@ import {useNavigation} from '@react-navigation/native';
 const Mapitem = () => {
   const navigation = useNavigation();
   const mapRef = useRef(null);
-  console.log(mapRef?.current);
   const [markerPosition, setMarkerPosition] = useState({
     lat: 37.78825,
     lng: -122.4324,

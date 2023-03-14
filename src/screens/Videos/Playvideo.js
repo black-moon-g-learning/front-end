@@ -10,14 +10,12 @@ import {
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
-// import
 import Player from '../VideoCustom/videooooo';
 const windowHeight = Dimensions.get('window').width * (10 / 16);
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
   const urlAPI = item.url;
-  console.log('log cai link thu xem', item.url);
   const splitUrl = item.url.split(/[=,&]/).slice(1, 2);
   const checkURL = item.url.includes('youtube');
   useEffect(() => {
