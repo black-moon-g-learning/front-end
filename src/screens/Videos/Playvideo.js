@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
+  Dimensions,
   FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Dimensions,
 } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
