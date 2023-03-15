@@ -8,6 +8,7 @@ import LoginSocial from '../../components/Login/LoginSocial';
 
 const Login = () => {
   const navigation = useNavigation();
+  console.log('đang ở login');
   const ChooseRegister = () => {
     return (
       <View style={styles.container_register}>
