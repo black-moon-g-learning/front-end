@@ -172,23 +172,23 @@ export default function Navigation() {
     return await AsyncStorage.getItem('@Token');
   };
 
-  // const Loading = () => {
-  //   const navigation = useNavigation();
-  //   getToken().then(response => {
-  //     navigation.navigate(response ? 'Tab' : 'login');
-  //   }, []);
-  //   return (
-  //     <>
-  //       <View>
-  //         <ActivityIndicator size="large" color="#00ff00" />
-  //       </View>
-  //     </>
-  //   );
-  // };
+  const Loading = () => {
+    const navigation = useNavigation();
+    getToken().then(response => {
+      navigation.navigate(response ? 'Tab' : 'login');
+    }, []);
+    return (
+      <>
+        <View>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </View>
+      </>
+    );
+  };
 
   return (
     <Stack.Navigator
-      initialRouteName={'login'}
+      initialRouteName={'loading'}
       screenOptions={{
         animation: 'slide_from_bottom',
       }}>
@@ -292,11 +292,11 @@ export default function Navigation() {
         }}
       />
       <HomeStack.Screen name="History" component={HistoryVideo} />
-      {/* <HomeStack.Screen
+      <HomeStack.Screen
         name="loading"
         options={{headerShown: false}}
         component={Loading}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
