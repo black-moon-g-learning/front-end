@@ -103,12 +103,10 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            // navigation.navigate('Tab');
             navigation.reset({
               index: 0,
               routes: [{name: 'Tab'}],
             });
-            // queryClient.setQueryData('todos', userInfo);
           });
         flag = false;
       } else {

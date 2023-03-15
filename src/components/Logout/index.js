@@ -13,7 +13,12 @@ const Logout = () => {
     try {
       await auth()
         .signOut()
-        .then(() => navigation.navigate('login'));
+        .then(() =>
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'login'}],
+          }),
+        );
     } catch (e) {
       console.log(e);
     }
