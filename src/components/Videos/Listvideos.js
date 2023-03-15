@@ -3,6 +3,7 @@ import React from 'react';
 
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import axiosRequest from '../../axios';
+
 export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
@@ -12,7 +13,6 @@ export const ListVideo = ({navigation, item, videos}) => {
       })
       .catch(error => console.log(error.response.data));
   };
-
   return (
     <TouchableOpacity
       style={styles.item}
@@ -39,13 +39,22 @@ export const ListVideo = ({navigation, item, videos}) => {
 };
 
 export const RecommendVideo = ({navigation, item, videos}) => {
+  const VideoWatched = () => {
+    axiosRequest
+      .post(`${Continents_URL}/videos/${item.id}/store-history`)
+      .then(response => {
+        console.log('successful => ', response.data);
+      })
+      .catch(error => console.log(error.response.data));
+  };
   return (
     <TouchableOpacity
       style={styles.itemRecommend_container}
       key={item}
-      onPress={() =>
-        navigation.replace('playvideo', {item: item, videos: videos})
-      }>
+      onPress={() => {
+        navigation.replace('playvideo', {item: item, videos: videos});
+        VideoWatched();
+      }}>
       <View style={styles.item_RCMVideos}>
         <Image source={{uri: item.image}} style={styles.recommend_image} />
         <View>
