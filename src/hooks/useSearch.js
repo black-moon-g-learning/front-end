@@ -30,7 +30,6 @@ const useSearch = apiEndpoint => {
   }, [searchValue, apiEndpoint]);
 
   const handleSearch = searchValue => {
-    console.log('searching for', searchValue);
     setSearchValue(searchValue);
     if (!searchValue) {
       setDataShow(null);

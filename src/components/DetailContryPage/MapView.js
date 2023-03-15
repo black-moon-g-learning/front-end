@@ -4,7 +4,6 @@ import {View, StyleSheet} from 'react-native';
 import React, {useRef, useState} from 'react';
 const MapViewCountry = () => {
   const mapRef = useRef(null);
-  console.log(mapRef?.current);
   const [markerPosition, setMarkerPosition] = useState({
     lat: 37.78825,
     lng: -122.4324,
@@ -40,9 +39,6 @@ const MapViewCountry = () => {
           fetchDetails={true}
           GooglePlacesDetailsQuery={{fields: 'geometry'}}
           onPress={(data, details = null) => {
-            console.log('data', data);
-            console.log('details', details);
-            console.log(JSON.stringify(details?.geometry?.location));
             const region = details?.geometry?.location;
             setMarkerPosition(region);
             mapRef?.current?.animateToRegion(

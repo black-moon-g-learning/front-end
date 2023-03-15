@@ -48,11 +48,12 @@ const styles = StyleSheet.create({
     color: '#000009',
   },
   itempopular_container: {
-    paddingTop: 7,
+    // paddingTop: 7,
     width: 170,
-    height: 195,
+    paddingBottom: 7,
+    // height: 195,
   },
-  itemcountries_container: {width: '90%', height: 190, flex: 1},
+  // itemcountries_container: {width: '90%', height: 190},
   itempoopular_item: {
     paddingTop: 5,
     textAlign: 'center',
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   itempopular_country: {
-    width: 170,
+    // width: 170,
     paddingTop: 5,
     color: '#000000',
     textAlign: 'center',
