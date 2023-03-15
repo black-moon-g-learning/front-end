@@ -1,4 +1,7 @@
+import React, {useEffect} from 'react';
 import {
+  Animated,
+  Easing,
   Image,
   SafeAreaView,
   ScrollView,
@@ -6,14 +9,34 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
 export const ItemPopular = ({navigation, item}) => {
+  const rotateValue = new Animated.Value(0);
+  const RotateImage = rotateValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  useEffect(() => {
+    rotateValue.setValue(0);
+    Animated.loop(
+      Animated.timing(rotateValue, {
+        toValue: 1,
+        duration: 7000,
+        easing: Easing.linear(),
+        useNativeDriver: false,
+      }),
+    ).start();
+  });
   return (
     <ScrollView style={styles.itempopular_container}>
       <TouchableOpacity
         style={styles.itempoopular_item}
         onPress={() => navigation.navigate('TopicCountry', {item})}>
-        <Image style={styles.itempopular_image} source={{uri: item.image}} />
+        <Animated.Image
+          resizeMode="contain"
+          style={styles.itempopular_image}
+          source={{uri: item.image}}
+        />
         <Text style={styles.itempopular_country}>{item.name}</Text>
       </TouchableOpacity>
     </ScrollView>

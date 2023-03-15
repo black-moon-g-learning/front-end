@@ -1,13 +1,13 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
-  ScrollView,
 } from 'react-native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
