@@ -80,42 +80,45 @@ const Countries = () => {
                       {DataShow === null && (
                         <Text style={styles.title}>Popular</Text>
                       )}
-                      <FlatList
-                        showsHorizontalScrollIndicator={false}
-                        // data={DataShow || data.data.popular}
-                        data={DataShow ? [] : data.data.popular}
-                        horizontal={true}
-                        ListEmptyComponent={ErrorMessage}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => {
-                          return (
-                            <ItemPopular
-                              navigation={navigation}
-                              key={item.id}
-                              item={item}
-                            />
-                          );
-                        }}
-                      />
-
+                      <View style={styles.poplular}>
+                        <FlatList
+                          showsHorizontalScrollIndicator={false}
+                          // data={DataShow || data.data.popular}
+                          data={DataShow ? [] : data.data.popular}
+                          horizontal={true}
+                          ListEmptyComponent={ErrorMessage}
+                          keyExtractor={item => item.id}
+                          renderItem={({item}) => {
+                            return (
+                              <ItemPopular
+                                navigation={navigation}
+                                key={item.id}
+                                item={item}
+                              />
+                            );
+                          }}
+                        />
+                      </View>
                       {DataShow === null && (
-                        <Text style={styles.title}>Countries</Text>
+                        <Text style={styles.titletwo}>Countries</Text>
                       )}
-                      <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={DataShow || data.data.countries}
-                        numColumns={2}
-                        ListEmptyComponent={ErrorMessage}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => {
-                          return (
-                            <ItemCountries
-                              navigation={navigation}
-                              item={item}
-                            />
-                          );
-                        }}
-                      />
+                      <View>
+                        <FlatList
+                          showsVerticalScrollIndicator={false}
+                          data={DataShow || data.data.countries}
+                          numColumns={2}
+                          ListEmptyComponent={ErrorMessage}
+                          keyExtractor={item => item.id}
+                          renderItem={({item}) => {
+                            return (
+                              <ItemCountries
+                                navigation={navigation}
+                                item={item}
+                              />
+                            );
+                          }}
+                        />
+                      </View>
                     </>
                   </>
                 )}
@@ -150,6 +153,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 10,
     fontFamily: 'Poppins-Medium',
+    paddingBottom: 5,
+  },
+  titletwo: {
+    fontSize: 23,
+    color: '#323643',
+    // marginTop: 20,
+    paddingLeft: 10,
+    fontFamily: 'Poppins-Medium',
   },
   errorTitle: {
     paddingTop: 15,
@@ -158,5 +169,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     width: '100%',
     textAlign: 'center',
+  },
+  poplular: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
