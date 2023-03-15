@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {
   Animated,
   Easing,
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -10,22 +9,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 export const ItemPopular = ({navigation, item}) => {
-  const rotateValue = new Animated.Value(0);
-  const RotateImage = rotateValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+  let scaleValue = new Animated.Value(0);
+  scaleValue.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 1.1, 1.2],
   });
-
   useEffect(() => {
-    rotateValue.setValue(0);
-    Animated.loop(
-      Animated.timing(rotateValue, {
-        toValue: 1,
-        duration: 7000,
-        easing: Easing.linear(),
-        useNativeDriver: false,
-      }),
-    ).start();
+    scaleValue.setValue(0);
+    Animated.timing(scaleValue, {
+      toValue: 1,
+      duration: 1500,
+      easing: Easing.linear(),
+      useNativeDriver: false,
+    }).start();
   });
   return (
     <ScrollView style={styles.itempopular_container}>
@@ -34,7 +30,7 @@ export const ItemPopular = ({navigation, item}) => {
         onPress={() => navigation.navigate('TopicCountry', {item})}>
         <Animated.Image
           resizeMode="contain"
-          style={styles.itempopular_image}
+          style={[styles.itempopular_image, {transform: [{scale: scaleValue}]}]}
           source={{uri: item.image}}
         />
         <Text style={styles.itempopular_country}>{item.name}</Text>
@@ -44,19 +40,35 @@ export const ItemPopular = ({navigation, item}) => {
 };
 
 export const ItemCountries = ({navigation, item}) => {
+  let scaleValue = new Animated.Value(0);
+  const cardScale = scaleValue.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 1.1, 1.2],
+  });
+
+  useEffect(() => {
+    scaleValue.setValue(0);
+    Animated.timing(scaleValue, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.linear(),
+      useNativeDriver: false,
+    }).start();
+  });
   return (
     <SafeAreaView>
-      <ScrollView style={styles.itemcountries_container}>
-        <TouchableOpacity
-          style={styles.itemcountries_item}
-          onPress={() => navigation.navigate('TopicCountry', {item})}>
-          <Image
-            style={styles.itemcountries_image}
-            source={{uri: item.image}}
-          />
-          <Text style={styles.itemcountries_country}>{item.name}</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      <TouchableOpacity
+        style={styles.itemcountries_item}
+        onPress={() => navigation.navigate('TopicCountry', {item})}>
+        <Animated.Image
+          style={[
+            styles.itemcountries_image,
+            {transform: [{scale: scaleValue}]},
+          ]}
+          source={{uri: item.image}}
+        />
+        <Text style={styles.itemcountries_country}>{item.name}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
