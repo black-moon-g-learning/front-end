@@ -1,14 +1,32 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Animated, Easing, Image, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 const HeaderLogin = () => {
+  const rotateValue = new Animated.Value(0);
+  const RotateImage = rotateValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  useEffect(() => {
+    rotateValue.setValue(0);
+    Animated.loop(
+      Animated.timing(rotateValue, {
+        toValue: 1,
+        duration: 7000,
+        easing: Easing.linear(),
+        useNativeDriver: false,
+      }),
+    ).start();
+  });
+
   return (
     <View style={styles.container_header_login}>
       <View style={styles.logo_form}>
-        <Image
-          style={styles.image_login}
+        <Animated.Image
+          style={[styles.image_login, {transform: [{rotate: RotateImage}]}]}
           source={require('../../assets/images/img-signup.png')}
         />
       </View>
@@ -47,7 +65,7 @@ const HeaderRegister = () => {
   );
 };
 
-export {HeaderRegister, HeaderLogin};
+export {HeaderLogin, HeaderRegister};
 
 const styles = StyleSheet.create({
   container_header_login: {

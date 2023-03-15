@@ -1,7 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useState, useEffect} from 'react';
-import firebase from '@react-native-firebase/app';
+import React from 'react';
+import {ActivityIndicator, View} from 'react-native';
 import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -11,6 +13,8 @@ import LevelHeader from '../components/G-Game/LevelHeader';
 import HYHBHeader from '../components/HYHBpage/HYHBHeader';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
+import ModalAnswer from '../components/Review/ModalAnswer';
+import ModalNext from '../components/Review/ModalNextQuestion';
 import {
   TitleContries,
   TitleListVideos,
@@ -24,7 +28,6 @@ import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
-import ModalAnswer from '../components/Review/ModalAnswer';
 import HYHBDetail from '../screens/HYHBDetailPage';
 import News from '../screens/HYHBpage';
 import HistoryVideo from '../screens/History';
@@ -32,12 +35,10 @@ import Home from '../screens/Home';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Login/Register';
 import Payment from '../screens/Payment';
+import Review from '../screens/Review';
 import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
-import Review from '../screens/Review';
-import ModalNext from '../components/Review/ModalNextQuestion';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -167,34 +168,30 @@ function Bottomtab() {
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const getToken = async () => {
+    return await AsyncStorage.getItem('@Token');
+  };
 
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      setIsLoggedIn(user ? true : false);
-    });
+  const Loading = () => {
+    const navigation = useNavigation();
+    getToken().then(response => {
+      navigation.navigate(response ? 'Tab' : 'login');
+    }, []);
+    return (
+      <>
+        <View>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </View>
+      </>
+    );
+  };
 
-    return unsubscribe;
-  }, []);
   return (
     <Stack.Navigator
-      initialRouteName="login"
+      initialRouteName={'loading'}
       screenOptions={{
         animation: 'slide_from_bottom',
       }}>
-      {isLoggedIn ? (
-        <Stack.Screen
-          name="Tab"
-          component={Bottomtab}
-          options={{headerShown: false}}
-        />
-      ) : (
-        <Stack.Screen
-          name="login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-      )}
       <Stack.Screen
         name="Contribution"
         component={Contribution}
@@ -206,6 +203,17 @@ export default function Navigation() {
           headerShadowVisible: false,
         }}
       />
+      <Stack.Screen
+        name="Tab"
+        component={Bottomtab}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="login"
+        component={Login}
+        options={{headerShown: false}}
+      />
+
       <Stack.Screen
         name="News"
         component={HYHBDetail}
@@ -284,6 +292,11 @@ export default function Navigation() {
         }}
       />
       <HomeStack.Screen name="History" component={HistoryVideo} />
+      <HomeStack.Screen
+        name="loading"
+        options={{headerShown: false}}
+        component={Loading}
+      />
     </Stack.Navigator>
   );
 }

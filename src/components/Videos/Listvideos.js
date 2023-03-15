@@ -52,6 +52,15 @@ export const RecommendVideo = ({navigation, item, videos}) => {
           <Text style={styles.recommend_name}>{item.name}</Text>
         </View>
       </View>
+      {item.watched === 1 && (
+        <TouchableOpacity
+          style={styles.modal_video_watched_rec}
+          onPress={() =>
+            navigation.replace('playvideo', {item: item, videos: videos})
+          }>
+          <Text style={styles.text_video_watched_rec}>Watched</Text>
+        </TouchableOpacity>
+      )}
     </TouchableOpacity>
   );
 };
@@ -125,5 +134,20 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     alignSelf: 'center',
     marginRight: '50%',
+  },
+  modal_video_watched_rec: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '90%',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    height: '100%',
+    borderRadius: 10,
+  },
+  text_video_watched_rec: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
   },
 });

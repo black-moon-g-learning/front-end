@@ -11,12 +11,6 @@ import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import messaging from '@react-native-firebase/messaging';
 import {Image, TouchableOpacity} from 'react-native';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-  useQueryClient,
-} from 'react-query';
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -89,8 +83,7 @@ const LoginSocial = () => {
     const {idToken} = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    const user_sign_in = auth().signInWithCredential(googleCredential);
-    user_sign_in.then(user => {}).catch(error => {});
+    await auth().signInWithCredential(googleCredential);
     const tokenfcm = await requestUserPermission();
 
     await firebase.auth().onAuthStateChanged(user => {
@@ -101,6 +94,7 @@ const LoginSocial = () => {
             return data.token;
           })
           .then(data => {
+            console.log('cau xin m');
             return axios.post(`${Continents_URL}/login`, {
               token: data,
               device_token: tokenfcm,
@@ -109,7 +103,11 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            await AsyncStorage.getItem('@Token');
+            // navigation.navigate('Tab');
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Tab'}],
+            });
             // queryClient.setQueryData('todos', userInfo);
           });
         flag = false;
@@ -140,8 +138,7 @@ const LoginSocial = () => {
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
-    const user_sign_in = auth().signInWithCredential(facebookCredential);
-    user_sign_in.then(user => {}).catch(error => {});
+    await auth().signInWithCredential(facebookCredential);
     const tokenfcm = await requestUserPermission();
 
     await firebase.auth().onAuthStateChanged(user => {
@@ -160,7 +157,7 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            await AsyncStorage.getItem('@Token');
+            // await AsyncStorage.getItem('@Token');
           });
         flag = false;
       } else {
@@ -168,16 +165,14 @@ const LoginSocial = () => {
       }
     });
   };
-  ///View
 
+  ///View
   const Loginwithsocial = () => {
     return (
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.btn_social}
-          onPress={() =>
-            signInWithGoogleAsync().then(() => navigation.navigate('Tab'))
-          }>
+          onPress={() => signInWithGoogleAsync()}>
           <Image
             style={styles.image_btn_login_gg}
             source={require('../../assets/images/google.png')}
@@ -185,9 +180,7 @@ const LoginSocial = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btn_social}
-          onPress={() =>
-            onFacebookButtonPress().then(() => navigation.navigate('Tab'))
-          }>
+          onPress={() => onFacebookButtonPress()}>
           <Image
             style={styles.image_btn_login_fb}
             source={require('../../assets/images/facebook.png')}
