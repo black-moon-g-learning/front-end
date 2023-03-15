@@ -8,9 +8,9 @@ import IconQuestion from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/Ionicons';
 import ContributionHeader from '../components/Contribution/ContributionHeader';
-import MapViewCountry from '../components/DetailContryPage/MapView';
+import MapViewCountry from '../components/DetailContry/MapView';
 import LevelHeader from '../components/G-Game/LevelHeader';
-import HYHBHeader from '../components/HYHBpage/HYHBHeader';
+import HYHBHeader from '../components/HYHB/HYHBHeader';
 import {Loading} from '../components/Loading';
 import Logout from '../components/Logout';
 import ModalAnswer from '../components/Review/ModalAnswer';
@@ -21,15 +21,15 @@ import {
 } from '../components/TitleHeaderNavigate';
 import Contribution from '../screens/Contribution';
 import Countries from '../screens/Countries';
-import DetailCountryPage from '../screens/DetailCountryPage';
+import DetailCountryPage from '../screens/DetailCountry';
 import ChooseCountry from '../screens/G-Game/ChooseCountry';
 import DisplayQuestion from '../screens/G-Game/DisplayQuestion';
 import FailPage from '../screens/G-Game/FailPage';
 import GameLevels from '../screens/G-Game/GameLevels';
 import GoodPage from '../screens/G-Game/GoodPage';
 import GreatePage from '../screens/G-Game/GreatePage';
-import HYHBDetail from '../screens/HYHBDetailPage';
-import News from '../screens/HYHBpage';
+import HYHBDetail from '../screens/HYHBDetail';
+import News from '../screens/HYHB';
 import HistoryVideo from '../screens/History';
 import Home from '../screens/Home';
 import Login from '../screens/Login/Login';
@@ -172,23 +172,23 @@ export default function Navigation() {
     return await AsyncStorage.getItem('@Token');
   };
 
-  const Loading = () => {
-    const navigation = useNavigation();
-    getToken().then(response => {
-      navigation.navigate(response ? 'Tab' : 'login');
-    }, []);
-    return (
-      <>
-        <View>
-          <ActivityIndicator size="large" color="#00ff00" />
-        </View>
-      </>
-    );
-  };
+  // const Loading = () => {
+  //   const navigation = useNavigation();
+  //   getToken().then(response => {
+  //     navigation.navigate(response ? 'Tab' : 'login');
+  //   }, []);
+  //   return (
+  //     <>
+  //       <View>
+  //         <ActivityIndicator size="large" color="#00ff00" />
+  //       </View>
+  //     </>
+  //   );
+  // };
 
   return (
     <Stack.Navigator
-      initialRouteName={'loading'}
+      initialRouteName={'login'}
       screenOptions={{
         animation: 'slide_from_bottom',
       }}>
@@ -292,11 +292,11 @@ export default function Navigation() {
         }}
       />
       <HomeStack.Screen name="History" component={HistoryVideo} />
-      <HomeStack.Screen
+      {/* <HomeStack.Screen
         name="loading"
         options={{headerShown: false}}
         component={Loading}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

@@ -10,7 +10,7 @@ import {
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
-import Player from '../VideoCustom/videooooo';
+import Player from '../../components/VideoCustom/PlayVideoCustom';
 const windowHeight = Dimensions.get('window').width * (10 / 16);
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {

@@ -9,9 +9,9 @@ import {
   Text,
   View,
 } from 'react-native';
-import Map from '../../components/DetailContryPage/Map';
-import TopicCard from '../../components/DetailContryPage/TopicCard';
-import TopicTitle from '../../components/DetailContryPage/TopicTitle';
+import Map from '../../components/DetailContry/Map';
+import TopicCard from '../../components/DetailContry/TopicCard';
+import TopicTitle from '../../components/DetailContry/TopicTitle';
 import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
 

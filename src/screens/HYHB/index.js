@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
-import Searchbar from '../../components/DetailContryPage/Searchbar';
-import NewsCard from '../../components/HYHBpage/NewsCard';
+import Searchbar from '../../components/DetailContry/Searchbar';
+import NewsCard from '../../components/HYHB/NewsCard';
 import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
 
