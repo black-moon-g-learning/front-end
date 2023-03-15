@@ -2,6 +2,8 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {View, StyleSheet} from 'react-native';
 import React, {useRef, useState} from 'react';
+import {KeyMap} from '@env';
+
 const MapViewCountry = () => {
   const mapRef = useRef(null);
   const [markerPosition, setMarkerPosition] = useState({
@@ -33,7 +35,7 @@ const MapViewCountry = () => {
           styles={{textInput: styles.input}}
           placeholder="Search"
           query={{
-            key: 'AIzaSyCgA3HbskgAiZWoB-EOiqEwTi_iuxJfDoA',
+            key: KeyMap,
             language: 'en',
           }}
           fetchDetails={true}
