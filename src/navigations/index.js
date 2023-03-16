@@ -193,6 +193,16 @@ export default function Navigation() {
         animation: 'slide_from_bottom',
       }}>
       <Stack.Screen
+        name="Tab"
+        component={Bottomtab}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="login"
+        component={Login}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="Contribution"
         component={Contribution}
         options={{
@@ -203,17 +213,6 @@ export default function Navigation() {
           headerShadowVisible: false,
         }}
       />
-      <Stack.Screen
-        name="Tab"
-        component={Bottomtab}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="login"
-        component={Login}
-        options={{headerShown: false}}
-      />
-
       <Stack.Screen
         name="News"
         component={HYHBDetail}

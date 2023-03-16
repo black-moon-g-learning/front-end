@@ -4,13 +4,15 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 // import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import messaging from '@react-native-firebase/messaging';
 import {Image, TouchableOpacity} from 'react-native';
+const windowHeight = Dimensions.get('window').width * (23 / 100);
+const windowWidth = Dimensions.get('window').width;
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -103,12 +105,10 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
-            // navigation.navigate('Tab');
             navigation.reset({
               index: 0,
               routes: [{name: 'Tab'}],
             });
-            // queryClient.setQueryData('todos', userInfo);
           });
         flag = false;
       } else {
@@ -167,6 +167,7 @@ const LoginSocial = () => {
   };
 
   ///View
+
   const Loginwithsocial = () => {
     return (
       <View style={styles.container}>
@@ -175,7 +176,7 @@ const LoginSocial = () => {
           onPress={() => signInWithGoogleAsync()}>
           <Image
             style={styles.image_btn_login_gg}
-            source={require('../../assets/images/google.png')}
+            source={require('../../assets/images/gooale1.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -196,24 +197,25 @@ export default LoginSocial;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: windowWidth,
+    height: windowHeight,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
   },
   image_btn_login_gg: {
-    width: 37,
-    height: 37,
+    width: 45,
+    height: 45,
     borderRadius: 20,
   },
   image_btn_login_fb: {
-    width: 37,
-    height: 37,
+    width: 45,
+    height: 45,
     borderRadius: 20,
   },
   btn_social: {
     alignItems: 'center',
-    padding: 5,
+    padding: 10,
   },
   container_register: {
     justifyContent: 'center',

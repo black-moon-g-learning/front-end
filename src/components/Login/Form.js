@@ -5,8 +5,10 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
-
+const windowHeight = Dimensions.get('window').width * (10 / 11);
+const windowWidth = Dimensions.get('window').width;
 const LoginForm = () => {
   return (
     <TouchableOpacity style={styles.container_form}>
@@ -34,11 +36,16 @@ const LoginForm = () => {
 export default LoginForm;
 
 const styles = StyleSheet.create({
+  container_form: {
+    width: windowWidth,
+    height: windowHeight,
+  },
   textInput: {
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    marginTop: 30,
+    marginTop: '10%',
+    marginBottom: 10,
   },
   form: {
     height: 170,
@@ -57,7 +64,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     // fontWeight: '300',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 12,
   },
 
   logo_form: {
@@ -72,31 +80,32 @@ const styles = StyleSheet.create({
   button_login: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '40%',
-    height: 40,
+    marginTop: '2%',
+    width: '50%',
+    height: 45,
     borderRadius: 10,
     backgroundColor: '#5FAD41',
     padding: 5,
   },
   text_login: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 16,
     height: 30,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   text_forgot: {
-    paddingTop: 18,
-    fontSize: 14,
+    paddingTop: 25,
+    fontSize: 12,
     fontFamily: 'Poppins-MediumItalic',
   },
   chosemethod: {
-    paddingTop: 10,
-    fontSize: 18,
+    paddingTop: 15,
+    fontSize: 15,
     color: '#5FAD41',
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
   },
 });
