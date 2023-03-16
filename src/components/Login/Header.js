@@ -1,8 +1,17 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {Animated, Easing, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Animated,
+  Easing,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
+const windowHeight = Dimensions.get('window').width * (10 / 16);
+const windowWidth = Dimensions.get('window').width;
 const HeaderLogin = () => {
   const rotateValue = new Animated.Value(0);
   const RotateImage = rotateValue.interpolate({
@@ -69,37 +78,40 @@ export {HeaderLogin, HeaderRegister};
 
 const styles = StyleSheet.create({
   container_header_login: {
-    width: '100%',
+    width: windowWidth,
     backgroundColor: '#5FAD41',
-    height: 270,
+    height: windowHeight,
   },
   icon: {
     position: 'absolute',
     padding: 10,
   },
+
   logo_form: {
-    height: 150,
+    height: 120,
     alignItems: 'flex-end',
-    paddingTop: 30,
-    paddingRight: 40,
+    paddingTop: 20,
+    paddingRight: 20,
     paddingBottom: 0,
   },
   image_login: {
-    width: '40%',
-    height: 160,
+    width: '30%',
+    height: 110,
   },
   text_big: {
-    fontSize: 28,
+    fontSize: 27,
     color: '#FFFFFF',
     paddingLeft: 30,
-
+    marginTop: -15,
     fontFamily: 'Poppins-Medium',
   },
   text_title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '400',
     color: '#C1DFB5',
     paddingLeft: 30,
+    paddingBottom: 10,
+
     fontFamily: 'Poppins-Regular',
   },
 });

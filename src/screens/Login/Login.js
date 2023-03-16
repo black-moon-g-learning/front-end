@@ -1,11 +1,20 @@
 import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+} from 'react-native';
 import LoginForm from '../../components/Login/Form';
 import {HeaderLogin} from '../../components/Login/Header';
 import LoginSocial from '../../components/Login/LoginSocial';
-
+const windowHeight = Dimensions.get('window').width * (2 / 18);
+const windowWidth = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const Login = () => {
   const navigation = useNavigation();
   console.log('đang ở login');
@@ -38,6 +47,7 @@ export default Login;
 
 const styles = StyleSheet.create({
   containerLogin: {
+    width: width,
     backgroundColor: '#5FAD41',
   },
   container: {
@@ -52,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4F9',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingTop: 5,
+    // paddingTop: 5,
   },
   image_btn_login: {
     width: 50,
@@ -66,9 +76,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    // padding: 20,
     display: 'flex',
     flexDirection: 'row',
+    width: windowWidth,
+    height: windowHeight,
+    // borderWidth: 1,
   },
   text: {
     fontSize: 16,
