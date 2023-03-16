@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {
@@ -29,9 +30,11 @@ const App = () => {
   };
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer linking={linking}>
-        <Navigation />
-      </NavigationContainer>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <NavigationContainer linking={linking}>
+          <Navigation />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </QueryClientProvider>
   );
 };

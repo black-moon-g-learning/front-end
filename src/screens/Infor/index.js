@@ -12,15 +12,30 @@ import {
   View,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import TrackPlayer from 'react-native-track-player';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import axiosRequest from '../../axios';
 import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
 
+const tracks = {
+  id: 1,
+  title: 'music win',
+  url: require('../../assets/music/mixkit-video-game-win-2016.wav'),
+};
+
+TrackPlayer.updateOptions({
+  stopWithApp: false,
+  capabilities: [TrackPlayer.CAPABILITY_PLAY, TrackPlayer.CAPABILITY_PAUSE],
+  compactCapabilities: [
+    TrackPlayer.CAPABILITY_PLAY,
+    TrackPlayer.CAPABILITY_PAUSE,
+  ],
+});
+
 const Information = ({navigation}) => {
   const {data, isLoading, isSuccess, refetch} = useProfile([]);
-  console.log('information', data);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [isImage, setIsImage] = useState();
@@ -30,6 +45,16 @@ const Information = ({navigation}) => {
   const [Phone, setPhone] = useState();
   const [Gender, setGender] = useState();
   const [Time, setTime] = useState();
+
+  const setUpTrackPlayer = async () => {
+    try {
+      await TrackPlayer.setupPlayer();
+      await TrackPlayer.add(tracks);
+      console.log('Tracks added');
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const handelUpdate = () => {
     axiosRequest
@@ -123,6 +148,7 @@ const Information = ({navigation}) => {
   };
 
   useEffect(() => {
+    setUpTrackPlayer();
     if (data) {
       setName(data.firstName);
       setAge(data.age);
@@ -268,14 +294,17 @@ const Information = ({navigation}) => {
                 <View style={styles.btn_modal_update}>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}>
                     <Text style={styles.textStyle}>Cancel</Text>
                   </Pressable>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
-                    onPress={() =>
-                      handelUpdate(!data.id) || setModalVisible(!modalVisible)
-                    }>
+                    onPress={() => {
+                      TrackPlayer.play();
+                      handelUpdate(!data.id) || setModalVisible(!modalVisible);
+                    }}>
                     <Text style={styles.textStyle}>Save</Text>
                   </Pressable>
                 </View>
@@ -285,7 +314,9 @@ const Information = ({navigation}) => {
           <Pressable style={styles.btn_infor}>
             <TouchableOpacity
               style={styles.btn_click}
-              onPress={() => setModalVisible(true)}>
+              onPress={() => {
+                setModalVisible(true);
+              }}>
               <Text style={styles.text_btn}>EDIT</Text>
             </TouchableOpacity>
           </Pressable>
