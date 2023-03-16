@@ -7,7 +7,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
+
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const CountryCard = ({item}) => {
   const navigation = useNavigation();
   return (
@@ -52,12 +56,22 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   countryContainer: {
-    margin: 7,
-    width: '45%',
+    // margin: 7,
+    // width: '45%',
+    width: (width * 2.65) / 6,
+    textAlign: 'center',
+    alignContent: 'center',
+    paddingBottom: 5,
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    margin: 10,
+    // borderWidth: 1,
   },
   imgbgd: {
-    width: 197,
-    height: 211,
+    width: '105%',
+    height: 190,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -77,12 +91,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   btn: {
-    width: 65,
-    height: 30,
+    width: 70,
+    height: 35,
     backgroundColor: '#5FAD41',
     borderRadius: 10,
     marginBottom: 40,
-    marginLeft: 10,
+    marginLeft: '10%',
+    textAlign: 'center',
   },
   txtBtn: {
     color: '#FFFFFF',
@@ -91,7 +106,9 @@ const styles = StyleSheet.create({
     lineHeight: 15,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
-    padding: 7,
+    alignItems: 'center',
+    padding: 9,
+    height: 35,
   },
   percent: {
     width: 30,
@@ -101,7 +118,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: '#000000',
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: '400',
     lineHeight: 10,
     fontFamily: 'Poppins-Bold',

@@ -7,7 +7,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-const windowHeight = Dimensions.get('window').width * (10 / 11);
+const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const LoginForm = () => {
   return (
@@ -38,14 +38,14 @@ export default LoginForm;
 const styles = StyleSheet.create({
   container_form: {
     width: windowWidth,
-    height: windowHeight,
+    height: (windowHeight * 2.7) / 6,
+    // borderWidth: 1,
   },
   textInput: {
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
     marginTop: '10%',
-    marginBottom: 10,
   },
   form: {
     height: 170,
@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
   },
 
   text_forgot: {
-    paddingTop: 25,
+    paddingTop: 18,
     fontSize: 12,
     fontFamily: 'Poppins-MediumItalic',
   },
   chosemethod: {
-    paddingTop: 15,
+    paddingTop: 13,
     fontSize: 15,
     color: '#5FAD41',
     fontFamily: 'Poppins-Medium',

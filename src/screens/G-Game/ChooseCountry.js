@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Dimensions,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import BtnViewMore from '../../components/G-Game/btnViewMore';
@@ -15,6 +16,9 @@ import UseGetdata from '../../hooks/UseContinents';
 import Header from '../../components/Header';
 import useSearch from '../../hooks/useSearch';
 import ModalSearch from '../../components/ModalSearch';
+
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const ChooseCountry = () => {
   const [page, setPage] = useState(1);
   const [showPrevious, setShowPrevious] = useState(false);
@@ -63,11 +67,13 @@ const ChooseCountry = () => {
         {isSuccess && (
           <>
             <GameHeader />
-            <Header
-              value={searchValue}
-              onChangeText={handleSearch}
-              onPress={SearchOnpress}
-            />
+            <View style={{paddingTop: 20}}>
+              <Header
+                value={searchValue}
+                onChangeText={handleSearch}
+                onPress={SearchOnpress}
+              />
+            </View>
             <BtnViewMore
               handleViewMore={handleViewMore}
               handlePrevious={handlePreviousPage}
@@ -101,10 +107,9 @@ const ChooseCountry = () => {
                       }
                     />
                   ) : (
-                    <>
+                    <View style={styles.flatlist}>
                       <FlatList
                         showsVerticalScrollIndicator={false}
-                        style={styles.flatlist}
                         ListEmptyComponent={ErrorMessage}
                         keyExtractor={item => item.id}
                         data={DataShow || data.data}
@@ -113,7 +118,7 @@ const ChooseCountry = () => {
                         }}
                         numColumns={2}
                       />
-                    </>
+                    </View>
                   )}
                 </>
               )}
@@ -130,9 +135,18 @@ export default ChooseCountry;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: width,
+    height: height,
   },
   image: {
     flex: 1,
+  },
+  flatlist: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (width * 2.9) / 3,
+    height: (height * 3.8) / 6,
+    paddingBottom: 20,
   },
   btnContainer: {
     alignItems: 'flex-end',

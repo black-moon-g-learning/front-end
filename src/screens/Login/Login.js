@@ -11,8 +11,7 @@ import {
 import LoginForm from '../../components/Login/Form';
 import {HeaderLogin} from '../../components/Login/Header';
 import LoginSocial from '../../components/Login/LoginSocial';
-const windowHeight = Dimensions.get('window').width * (2 / 18);
-const windowWidth = Dimensions.get('window').width;
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const Login = () => {
@@ -33,7 +32,9 @@ const Login = () => {
 
   return (
     <View style={styles.containerLogin}>
-      <HeaderLogin />
+      <View style={styles.containerHeader}>
+        <HeaderLogin />
+      </View>
       <View style={styles.containerForm}>
         <LoginForm />
         <LoginSocial />
@@ -48,7 +49,11 @@ export default Login;
 const styles = StyleSheet.create({
   containerLogin: {
     width: width,
+    height: height,
     backgroundColor: '#5FAD41',
+  },
+  containerHeader: {
+    height: (height * 2) / 6,
   },
   container: {
     width: '100%',
@@ -58,11 +63,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   containerForm: {
-    width: '100%',
+    width: width,
     backgroundColor: '#F3F4F9',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    // paddingTop: 5,
+    height: (height * 4) / 6,
   },
   image_btn_login: {
     width: 50,
@@ -76,12 +81,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    // padding: 20,
     display: 'flex',
     flexDirection: 'row',
-    width: windowWidth,
-    height: windowHeight,
-    // borderWidth: 1,
+    width: width,
+    height: (height * 0.7) / 6,
   },
   text: {
     fontSize: 16,
@@ -90,11 +93,4 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text_color: {fontSize: 16, fontFamily: 'Poppins-Regular', color: '#5FAD41'},
-  // text_color: {
-  //   color: '#5FAD41',
-  //   justifyContent: 'center',
-  //   alignContent: 'center',
-  //   alignItems: 'center',
-  //   paddingLeft: 5,
-  // },
 });

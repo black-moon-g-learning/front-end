@@ -10,8 +10,9 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-const windowHeight = Dimensions.get('window').width * (10 / 16);
+const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+
 const HeaderLogin = () => {
   const rotateValue = new Animated.Value(0);
   const RotateImage = rotateValue.interpolate({
@@ -33,11 +34,14 @@ const HeaderLogin = () => {
 
   return (
     <View style={styles.container_header_login}>
-      <View style={styles.logo_form}>
-        <Animated.Image
-          style={[styles.image_login, {transform: [{rotate: RotateImage}]}]}
-          source={require('../../assets/images/img-signup.png')}
-        />
+      <View style={styles.logo_formContainer}>
+        <View style={styles.logo_form}>
+          <Animated.Image
+            style={[styles.image_login, {transform: [{rotate: RotateImage}]}]}
+            source={require('../../assets/images/img-signup.png')}
+            resizeMode="contain"
+          />
+        </View>
       </View>
       <View style={styles.text}>
         <Text style={styles.text_big}>Hi Student</Text>
@@ -86,17 +90,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     padding: 10,
   },
-
+  logo_formContainer: {
+    width: windowWidth,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginTop: '7%',
+  },
   logo_form: {
+    width: (windowWidth * 2.5) / 6,
     height: 120,
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
     paddingTop: 20,
     paddingRight: 20,
     paddingBottom: 0,
   },
   image_login: {
-    width: '30%',
-    height: 110,
+    width: '100%',
+    height: 130,
   },
   text_big: {
     fontSize: 27,

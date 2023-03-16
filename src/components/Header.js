@@ -5,9 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width * (13 / 18);
 
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width * (17 / 18);
 const Header = ({value, onChangeText, onPress}) => {
   return (
     <View style={styles.container_header}>
@@ -36,15 +41,16 @@ export default Header;
 
 const styles = StyleSheet.create({
   container_header: {
+    width: width,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   input: {
-    width: '70%',
+    width: '80%',
     height: 40,
     borderRadius: 10,
-    paddingLeft: 10,
+    // paddingLeft: 10,
   },
   searchBar: {
     display: 'flex',
@@ -56,9 +62,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000',
     borderRadius: 20,
+    width: windowWidth,
   },
   character: {
-    width: 40.38,
+    width: 30,
     height: 45,
   },
 });

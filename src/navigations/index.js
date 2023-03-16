@@ -116,6 +116,7 @@ function Bottomtab() {
         name="Homepage"
         component={HomeStackScreen}
         options={{
+          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon name="home" size={25} color={focused ? '#5FAD41' : 'black'} />
@@ -126,6 +127,7 @@ function Bottomtab() {
         name="Game"
         component={ChooseCountry}
         options={{
+          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icons
@@ -140,7 +142,7 @@ function Bottomtab() {
         name="HYHB"
         component={News}
         options={{
-          tabBarLabel: 'Management',
+          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <IconQuestion
@@ -155,6 +157,7 @@ function Bottomtab() {
         name="Information"
         component={Information}
         options={{
+          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon name="user" size={25} color={focused ? '#5FAD41' : 'black'} />

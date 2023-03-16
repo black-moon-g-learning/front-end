@@ -16,6 +16,8 @@ const Styles = StyleSheet.create({
   container: {
     alignContent: 'center',
     paddingLeft: 10,
+    paddingRight: 10,
+
     borderRadius: 10,
   },
   gif: {width: '100%', height: 190, borderRadius: 10, overlayColor: 'white'},
