@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     color: '#000000',
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 20,
     paddingTop: 20,
     fontFamily: 'Poppins-Bold',

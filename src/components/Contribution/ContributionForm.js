@@ -8,12 +8,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import UseGetdata from '../../hooks/UseContinents';
 import useCreateContribution from '../../hooks/useCreateContribution';
 import PickerSelect from '../PickerSelect';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const ContributionForm = () => {
   const API = `countries?attribute=name`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '400',
     fontFamily: 'Poppins-Bold',
-    padding: 20,
+    padding: 17,
     width: '80%',
   },
   btn: {
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     height: 44,
     backgroundColor: '#5FAD41',
     borderRadius: 20,
-    margin: 20,
+    margin: 25,
   },
   txtBtn: {
     color: '#FFFFFF',

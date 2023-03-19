@@ -139,7 +139,7 @@ export default Countries;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    // padding: 10,
     fontSize: 18,
     height: height,
     width: width,
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   Country: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: (width * 2.8) / 3,
-    paddingBottom: 20,
+    width: (width * 3) / 3,
+    paddingBottom: (height * 0.7) / 6,
   },
   name: {
     width: '100%',
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#323643',
     marginTop: 20,
-    paddingLeft: 10,
+    marginLeft: '5%',
     fontFamily: 'Poppins-Medium',
     paddingBottom: 5,
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#323643',
     // marginTop: 20,
-    paddingLeft: 10,
+    marginLeft: '6%',
     fontFamily: 'Poppins-Medium',
   },
   errorTitle: {
@@ -183,9 +183,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   poplular: {
+    paddingLeft: '2%',
     alignItems: 'center',
     justifyContent: 'center',
-    width: (width * 2.8) / 3,
+    width: (width * 3) / 3,
     height: (height * 0.6) / 3,
+    boderWidth: 1,
   },
 });

@@ -68,12 +68,14 @@ const styles = StyleSheet.create({
     height: height,
     paddingTop: 20,
     paddingRight: 10,
+    borderWidth: 1,
   },
   flatlist: {
-    height: (height * 3.2) / 6,
+    height: (height * 3.1) / 6,
     width: (width * 6) / 6,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: '2%',
   },
   titlePage: {
     fontSize: 23,

@@ -1,10 +1,17 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  View,
+  Dimensions,
+} from 'react-native';
 import Searchbar from '../../components/DetailContry/Searchbar';
 import NewsCard from '../../components/HYHB/NewsCard';
 import Emty from '../../components/Popup/Emty';
 import UseGetdata from '../../hooks/UseContinents';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const News = () => {
   const API = `information`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
@@ -53,5 +60,6 @@ const styles = StyleSheet.create({
   flatlist: {
     marginTop: 10,
     padding: 10,
+    marginBottom: (height * 0.6) / 6,
   },
 });

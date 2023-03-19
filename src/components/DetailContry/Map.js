@@ -1,6 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import Mapitem from './MapItem';
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const Map = () => {
   return (
     <View style={styles.maparea}>
@@ -33,11 +35,11 @@ const styles = StyleSheet.create({
   },
 
   mapView: {
-    width: '100%',
-    height: 300,
+    width: width,
+    height: (height * 3) / 6,
     marginTop: 20,
   },
   maparea: {
-    // paddingTop: 50,
+    paddingTop: 5,
   },
 });

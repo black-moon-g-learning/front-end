@@ -111,12 +111,24 @@ const Tab = createBottomTabNavigator();
 
 function Bottomtab() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 9,
+          left: 15,
+          right: 15,
+          // elevation: 0,
+          backgroundColor: '#FFFFFF',
+          borderRadius: 10,
+          height: 60,
+        },
+      }}>
       <Tab.Screen
         name="Homepage"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon name="home" size={25} color={focused ? '#5FAD41' : 'black'} />
@@ -127,7 +139,6 @@ function Bottomtab() {
         name="Game"
         component={ChooseCountry}
         options={{
-          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icons
@@ -142,7 +153,6 @@ function Bottomtab() {
         name="HYHB"
         component={News}
         options={{
-          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <IconQuestion
@@ -157,7 +167,6 @@ function Bottomtab() {
         name="Information"
         component={Information}
         options={{
-          tabBarLabel: '',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <Icon name="user" size={25} color={focused ? '#5FAD41' : 'black'} />

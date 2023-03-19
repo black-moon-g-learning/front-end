@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   flatlist: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: (width * 2.9) / 3,
+    // width: (width * 2.9) / 3,
     height: (height * 3.8) / 6,
     paddingBottom: 20,
   },

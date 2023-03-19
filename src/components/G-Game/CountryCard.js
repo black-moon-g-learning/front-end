@@ -18,7 +18,7 @@ const CountryCard = ({item}) => {
     <View style={styles.countryContainer}>
       <ImageBackground
         source={require('../../assets/images/bgdCountry.png')}
-        resizeMode="cover"
+        resizeMode="contain"
         style={styles.imgbgd}>
         <Text numberOfLines={1} style={styles.countryName}>
           {item.name}
@@ -56,9 +56,8 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   countryContainer: {
-    // margin: 7,
-    // width: '45%',
-    width: (width * 2.65) / 6,
+    width: (width * 2.68) / 6,
+    height: 215,
     textAlign: 'center',
     alignContent: 'center',
     paddingBottom: 5,
@@ -66,12 +65,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    margin: 10,
-    // borderWidth: 1,
+    margin: '3%',
   },
   imgbgd: {
-    width: '105%',
-    height: 190,
+    width: (width * 3) / 6,
+    height: 210,
     alignItems: 'center',
     justifyContent: 'space-around',
   },

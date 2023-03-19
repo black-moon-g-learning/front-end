@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import Header from '../../components/Header';
@@ -12,7 +13,8 @@ import ModalSearch from '../../components/ModalSearch';
 import {ListVideo} from '../../components/Videos/Listvideos';
 import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;
@@ -70,7 +72,7 @@ const Videos = ({navigation, route, props}) => {
                 }
               />
             ) : (
-              <>
+              <View style={{paddingBottom: (height * 1.01) / 6}}>
                 <FlatList
                   showsVerticalScrollIndicator={false}
                   data={DataShow || data.data}
@@ -86,7 +88,7 @@ const Videos = ({navigation, route, props}) => {
                     );
                   }}
                 />
-              </>
+              </View>
             )}
           </>
         )}
