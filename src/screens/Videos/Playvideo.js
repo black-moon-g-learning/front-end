@@ -11,7 +11,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import Player from '../../components/VideoCustom/PlayVideoCustom';
-const windowHeight = Dimensions.get('window').width * (10 / 16);
+const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
@@ -47,7 +47,7 @@ const PlayVideo = ({navigation, route}) => {
       <View>
         <Text style={styles.recommend}>Recommend videos</Text>
       </View>
-      <View>
+      <View style={styles.flatlistRCM}>
         <FlatList
           showsHorizontalScrollIndicator={false}
           data={videos}
@@ -104,6 +104,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     // borderWidth: 1,
+  },
+  flatlistRCM: {
+    // paddingLeft: '1%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (windowWidth * 3) / 3,
+    // height: (height * 0.6) / 3,
+    boderWidth: 1,
   },
   recommend: {
     paddingLeft: 10,

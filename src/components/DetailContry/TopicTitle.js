@@ -13,6 +13,11 @@ const TopicTitle = () => {
 export default TopicTitle;
 
 const styles = StyleSheet.create({
+  header: {
+    paddingLeft: 10,
+    paddingBottom: 10,
+    paddingTop: 5,
+  },
   title: {
     color: '#323643',
     fontFamily: 'Poppins-SemiBold',

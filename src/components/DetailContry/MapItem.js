@@ -2,7 +2,7 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {View, StyleSheet} from 'react-native';
 import {useRef, useState} from 'react';
-import {TouchableOpacity, TextInput} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 
@@ -36,7 +36,7 @@ const Mapitem = () => {
         <TouchableOpacity
           style={styles.searchBar}
           onPress={() => navigation.navigate('mapview')}>
-          <TextInput style={styles.input} placeholder="Search..." />
+          <Text style={styles.input}>Search</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -53,16 +53,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   searchContainer: {
-    top: -48,
+    top: -47,
     position: 'absolute',
     width: '95%',
   },
-  input: {
-    width: '16%',
-    height: 40,
-    borderRadius: 10,
-    paddingLeft: 10,
-  },
+
   searchBar: {
     display: 'flex',
     flexDirection: 'row',

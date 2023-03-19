@@ -11,7 +11,7 @@ import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import messaging from '@react-native-firebase/messaging';
 import {Image, TouchableOpacity} from 'react-native';
-const windowHeight = Dimensions.get('window').width * (23 / 100);
+// const windowHeight = Dimensions.get('window').width * (5 / 100);
 const windowWidth = Dimensions.get('window').width;
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
@@ -198,7 +198,7 @@ export default LoginSocial;
 const styles = StyleSheet.create({
   container: {
     width: windowWidth,
-    height: windowHeight,
+    // height: windowHeight,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',

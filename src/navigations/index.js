@@ -111,7 +111,20 @@ const Tab = createBottomTabNavigator();
 
 function Bottomtab() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 9,
+          left: 15,
+          right: 15,
+          // elevation: 0,
+          backgroundColor: '#FFFFFF',
+          borderRadius: 10,
+          height: 60,
+        },
+      }}>
       <Tab.Screen
         name="Homepage"
         component={HomeStackScreen}
@@ -140,7 +153,6 @@ function Bottomtab() {
         name="HYHB"
         component={News}
         options={{
-          tabBarLabel: 'Management',
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <IconQuestion

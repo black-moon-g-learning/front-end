@@ -1,6 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+} from 'react-native';
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const NewsCard = ({item}) => {
   const navigation = useNavigation();
   return (
@@ -39,7 +48,7 @@ export default NewsCard;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 198,
+    height: (height * 1.5) / 6,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -51,7 +60,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   infor: {
-    width: 190,
+    width: '57%',
     paddingLeft: 10,
     paddingRight: 10,
   },
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
   },
   img: {
-    width: 150,
+    width: '37%',
     height: 125,
     borderRadius: 10,
   },

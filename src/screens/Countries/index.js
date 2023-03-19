@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
 import {ItemCountries, ItemPopular} from '../../components/Countries/Coutries';
 import {ErrorMessage} from '../../components/ErrorMessage';
@@ -15,6 +16,9 @@ import Header from '../../components/Header';
 import ModalSearch from '../../components/ModalSearch';
 import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+// const width2 = Dimensions.get('window').width * (17 / 18);
 
 const Countries = () => {
   const route = useRoute();
@@ -102,7 +106,7 @@ const Countries = () => {
                       {DataShow === null && (
                         <Text style={styles.titletwo}>Countries</Text>
                       )}
-                      <View>
+                      <View style={styles.Country}>
                         <FlatList
                           showsVerticalScrollIndicator={false}
                           data={DataShow || data.data.countries}
@@ -135,8 +139,16 @@ export default Countries;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    // padding: 10,
     fontSize: 18,
+    height: height,
+    width: width,
+  },
+  Country: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (width * 3) / 3,
+    paddingBottom: (height * 0.7) / 6,
   },
   name: {
     width: '100%',
@@ -151,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#323643',
     marginTop: 20,
-    paddingLeft: 10,
+    marginLeft: '5%',
     fontFamily: 'Poppins-Medium',
     paddingBottom: 5,
   },
@@ -159,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#323643',
     // marginTop: 20,
-    paddingLeft: 10,
+    marginLeft: '6%',
     fontFamily: 'Poppins-Medium',
   },
   errorTitle: {
@@ -171,7 +183,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   poplular: {
+    paddingLeft: '2%',
     alignItems: 'center',
     justifyContent: 'center',
+    width: (width * 3) / 3,
+    height: (height * 0.6) / 3,
+    boderWidth: 1,
   },
 });

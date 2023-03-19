@@ -1,6 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  View,
+} from 'react-native';
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 export const ListContinents = ({item}) => {
   const navigation = useNavigation();
   const handlePress = () => {
@@ -24,17 +33,20 @@ export const ListContinents = ({item}) => {
 
 const styles = StyleSheet.create({
   flatItem: {
-    width: '100%',
+    width: (width * 5.6) / 6,
     display: 'flex',
     flexDirection: 'row',
-    height: 110,
+    height: 105,
     marginTop: 5,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#5FAD41',
+    // borderWidth: 1,
+    borderRadius: 15,
+    // borderColor: '#5FAD41',
+    elevation: 1,
+    backgroundColor: '#FEFEFE',
+    // padding: 10,
+
     marginBottom: 10,
     justifyContent: 'space-between',
-    backgroundColor: 'white',
     alignItems: 'center',
   },
   item: {

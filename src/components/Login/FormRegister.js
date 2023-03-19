@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderWidth: 1,
     borderRadius: 10,
-    // fontWeight: '300',
     fontFamily: 'Poppins-SemiBold',
   },
 

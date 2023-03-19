@@ -6,54 +6,76 @@ import {
   Text,
   View,
   SafeAreaView,
+  Dimensions,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
 import UseGetdata from '../../hooks/UseContinents';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const Home = ({navigation}) => {
   const API = `continents`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
   return (
-    <SafeAreaView style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator color="#00ff00" size="large" />
-      ) : (
-        <View>
-          {isSuccess && (
-            <>
-              <EarthGifImage />
-              <Text style={styles.titlePage}>Continents </Text>
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                style={styles.flatlist}
-                ListEmptyComponent={ErrorMessage}
-                keyExtractor={item => item.id}
-                data={data.data}
-                renderItem={({item}) => {
-                  return <ListContinents navigation={navigation} item={item} />;
-                }}
-              />
-            </>
-          )}
-        </View>
-      )}
+    <SafeAreaView style={styles.CotaninerView}>
+      <View style={styles.container}>
+        {isLoading ? (
+          <ActivityIndicator color="#00ff00" size="large" />
+        ) : (
+          <View>
+            {isSuccess && (
+              <>
+                <View
+                  style={{
+                    width: width,
+                    height: (height * 1.7) / 6,
+                  }}>
+                  <EarthGifImage />
+                </View>
+                <Text style={styles.titlePage}>Continents </Text>
+                <View style={styles.flatlist}>
+                  <FlatList
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    // style={styles.flatlist}
+                    ListEmptyComponent={ErrorMessage}
+                    keyExtractor={item => item.id}
+                    data={data.data}
+                    renderItem={({item}) => {
+                      return (
+                        <ListContinents navigation={navigation} item={item} />
+                      );
+                    }}
+                  />
+                </View>
+              </>
+            )}
+          </View>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
 
 export default Home;
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
-    paddingRight: 10,
-    width: '100%',
+  CotaninerView: {
     flex: 1,
   },
+  container: {
+    width: width,
+    height: height,
+    paddingTop: 20,
+    paddingRight: 10,
+    borderWidth: 1,
+  },
   flatlist: {
-    paddingLeft: 10,
+    height: (height * 3.1) / 6,
+    width: (width * 6) / 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: '2%',
   },
   titlePage: {
     fontSize: 23,

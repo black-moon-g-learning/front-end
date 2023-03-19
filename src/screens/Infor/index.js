@@ -10,6 +10,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,7 +18,8 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import axiosRequest from '../../axios';
 import Logout from '../../components/Logout';
 import useProfile from '../../hooks/usegetProfile';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const Information = ({navigation}) => {
   const {data, isLoading, isSuccess, refetch} = useProfile([]);
   console.log('information', data);
@@ -314,6 +316,11 @@ const Information = ({navigation}) => {
 export default Information;
 
 const styles = StyleSheet.create({
+  container: {
+    width: width,
+    height: height,
+    flex: 1,
+  },
   header_profile: {
     width: '96%',
     height: 100,
@@ -397,7 +404,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 40,
+    marginTop: 20,
   },
   title_package: {
     fontFamily: 'Poppins-Bold',
@@ -464,5 +471,10 @@ const styles = StyleSheet.create({
     width: 100,
     margin: 20,
   },
-  text_package: {fontFamily: 'Poppins-Bold', fontSize: 20, color: 'black'},
+
+  text_package: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 20,
+    color: 'black',
+  },
 });

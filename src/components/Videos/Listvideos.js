@@ -1,9 +1,17 @@
 import {Continents_URL} from '@env';
 import React from 'react';
 
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import axiosRequest from '../../axios';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
@@ -22,7 +30,7 @@ export const ListVideo = ({navigation, item, videos}) => {
         VideoWatched();
       }}>
       <Image source={{uri: item.image}} style={styles.img} />
-      <View>
+      <View style={styles.des}>
         <Text style={styles.ContinentsName}>{item.name}</Text>
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
         <Text style={styles.ContinentsDetail}>Publish: {item.publish}</Text>
@@ -80,16 +88,23 @@ export const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     height: 120,
-    marginTop: 15,
+    marginTop: 10,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
     marginBottom: 10,
     alignItems: 'center',
   },
+  des: {
+    width: '57%',
+    // borderWidth: 1,
+  },
   itemRecommend_container: {
-    width: 190,
+    // width: 190,
+    // height: 170,
+    width: (width * 3) / 6,
     height: 170,
   },
   item_RCMVideos: {
@@ -100,16 +115,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   recommend_image: {
-    width: 170,
+    width: '85%',
     height: 100,
     borderRadius: 10,
   },
   img: {
-    margin: 20,
-    width: 140,
+    // margin: 20,
+    width: '37%',
     height: 100,
     paddingRight: 10,
     borderRadius: 10,
+    marginLeft: '2%',
   },
   ContinentsName: {
     fontSize: 16,
@@ -133,8 +149,11 @@ export const styles = StyleSheet.create({
   modal_video_watched: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    width: '100%',
-    height: '100%',
+    width: '36%',
+    height: 100,
+    // margin: 20,
+    marginLeft: '2%',
+    borderRadius: 10,
     justifyContent: 'center',
   },
   text_video_watched: {
@@ -142,16 +161,16 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     alignSelf: 'center',
-    marginRight: '50%',
   },
   modal_video_watched_rec: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    width: '90%',
+    width: '85%',
     justifyContent: 'center',
     alignSelf: 'center',
-    height: '100%',
+    height: 100,
     borderRadius: 10,
+    marginTop: '2%',
   },
   text_video_watched_rec: {
     fontSize: 20,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const ListAnswer = props => {
   return (
@@ -7,9 +7,9 @@ const ListAnswer = props => {
       style={[styles.ans, props.getOptionStyle(props.answersOption)]}
       onPress={() => props.handleSelectOption(props.answersOption)}
       disabled={props.selectedAnswerIndex !== null}>
-      <Text style={[styles.option, props.getOptionStyle(props.answersOption)]}>
-        {props.option[props.index]}
-      </Text>
+      <View style={[styles.option, props.getOptionStyle(props.answersOption)]}>
+        <Text style={[styles.optionChoose]}>{props.option[props.index]}</Text>
+      </View>
       <Text numberOfLines={1} style={styles.answer}>
         {props.answersOption.content}
       </Text>
@@ -29,17 +29,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   option: {
-    color: '#000000',
-    fontSize: 18,
-    fontWeight: '400',
-    lineHeight: 20,
-    fontFamily: 'Poppins-Bold',
-    padding: 10,
+    // padding: 10,
     backgroundColor: '#EFD207',
     borderRadius: 100,
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionChoose: {
+    color: '#000000',
+    fontSize: 18,
+    // fontWeight: '400',
+    // lineHeight: 20,
+    fontFamily: 'Poppins-Bold',
   },
   answer: {
     color: '#323643',
