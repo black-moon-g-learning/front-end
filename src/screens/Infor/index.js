@@ -306,7 +306,7 @@ const Information = ({navigation}) => {
                 </Text>
               )}
             </TouchableOpacity>
-            {Time > 15 ? (
+            {Time > 200 ? (
               <Image source={require('../../assets/images/costume.png')} />
             ) : (
               <TouchableOpacity

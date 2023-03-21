@@ -13,11 +13,12 @@ const App = () => {
   const config = {
     screens: {
       Payment: 'payment',
+      HomeStackScreen: 'homepage',
     },
   };
 
   const linking = {
-    prefixes: ['g-learning://'],
+    prefixes: ['g-learning://open.app'],
     config,
   };
 
