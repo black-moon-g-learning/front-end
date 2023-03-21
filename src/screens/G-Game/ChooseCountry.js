@@ -1,27 +1,29 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   ActivityIndicator,
+  Dimensions,
   FlatList,
   ImageBackground,
+  RefreshControl,
   StyleSheet,
-  View,
   Text,
-  Dimensions,
+  View,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import BtnViewMore from '../../components/G-Game/btnViewMore';
 import CountryCard from '../../components/G-Game/CountryCard';
 import GameHeader from '../../components/G-Game/GameHeader';
-import UseGetdata from '../../hooks/UseContinents';
 import Header from '../../components/Header';
-import useSearch from '../../hooks/useSearch';
 import ModalSearch from '../../components/ModalSearch';
+import UseGetdata from '../../hooks/UseContinents';
+import useSearch from '../../hooks/useSearch';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const ChooseCountry = () => {
   const [page, setPage] = useState(1);
   const [showPrevious, setShowPrevious] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const APIenpoid = `countries`;
   const {
     searchValue,
@@ -47,7 +49,7 @@ const ChooseCountry = () => {
   };
 
   const API = `countries?page=${page}`;
-  const {data, isSuccess, isLoading} = UseGetdata(API);
+  const {data, isSuccess, isLoading, refetch} = UseGetdata(API);
   const handleResultPress = item => {
     setSearchResult(null);
     setDataShow(item ? [item] : data.data);
@@ -56,6 +58,11 @@ const ChooseCountry = () => {
     }
   };
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -117,6 +124,12 @@ const ChooseCountry = () => {
                           return <CountryCard item={item} />;
                         }}
                         numColumns={2}
+                        refreshControl={
+                          <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                          />
+                        }
                       />
                     </View>
                   )}
