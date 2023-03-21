@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: width,
-    height: (height * 0.7) / 6,
+    height: (height * 0.5) / 6,
   },
   text: {
     fontSize: 16,

@@ -38,12 +38,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 105,
     marginTop: 5,
-    // borderWidth: 1,
     borderRadius: 15,
-    // borderColor: '#5FAD41',
     elevation: 1,
     backgroundColor: '#FEFEFE',
-    // padding: 10,
 
     marginBottom: 10,
     justifyContent: 'space-between',

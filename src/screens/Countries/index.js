@@ -42,6 +42,11 @@ const Countries = () => {
       setDataShow(null);
     }
   };
+  const getOptionStyle = () => {
+    if (DataShow === null) {
+      return styles.result;
+    }
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView style={styles.container}>
@@ -106,10 +111,14 @@ const Countries = () => {
                       {DataShow === null && (
                         <Text style={styles.titletwo}>Countries</Text>
                       )}
-                      <View style={styles.Country}>
+                      <View
+                        style={
+                          DataShow === null ? styles.Country : styles.result
+                        }>
                         <FlatList
                           showsVerticalScrollIndicator={false}
                           data={DataShow || data.data.countries}
+                          getOptionStyle={getOptionStyle}
                           numColumns={2}
                           ListEmptyComponent={ErrorMessage}
                           keyExtractor={item => item.id}
@@ -139,10 +148,15 @@ export default Countries;
 
 const styles = StyleSheet.create({
   container: {
-    // padding: 10,
     fontSize: 18,
     height: height,
     width: width,
+  },
+  result: {
+    marginTop: '-25%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (width * 3) / 3,
   },
   Country: {
     alignItems: 'center',

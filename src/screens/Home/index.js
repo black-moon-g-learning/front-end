@@ -15,7 +15,7 @@ import UseGetdata from '../../hooks/UseContinents';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const Home = ({navigation}) => {
-  const API = `continents`;
+  const API = 'continents';
   const {data, isLoading, isSuccess} = UseGetdata(API);
   return (
     <SafeAreaView style={styles.CotaninerView}>
@@ -38,7 +38,6 @@ const Home = ({navigation}) => {
                   <FlatList
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
-                    // style={styles.flatlist}
                     ListEmptyComponent={ErrorMessage}
                     keyExtractor={item => item.id}
                     data={data.data}
@@ -68,7 +67,6 @@ const styles = StyleSheet.create({
     height: height,
     paddingTop: 20,
     paddingRight: 10,
-    borderWidth: 1,
   },
   flatlist: {
     height: (height * 3.1) / 6,

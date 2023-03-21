@@ -11,7 +11,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import Player from '../../components/VideoCustom/PlayVideoCustom';
-const windowHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').width * (10 / 18);
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
@@ -29,7 +29,7 @@ const PlayVideo = ({navigation, route}) => {
     <View style={styles.container}>
       <View style={styles.video}>
         {checkURL ? (
-          <YoutubePlayer play={true} videoId={splitUrl} height={230} />
+          <YoutubePlayer play={true} videoId={splitUrl} height={windowHeight} />
         ) : (
           <Player urlVideo={urlAPI} />
         )}
@@ -81,14 +81,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   name: {
-    marginTop: 10,
+    // marginTop: 10,
     width: '100%',
     fontSize: 20,
     color: '#323643',
     paddingBottom: 10,
     textAlign: 'center',
     fontFamily: 'Poppins-Medium',
-    // borderWidth: 1,
+    borderWidth: 1,
   },
   video: {
     marginTop: 20,
@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   review: {
-    // marginTop: 10,
+    marginTop: '-9%',
     display: 'flex',
     alignItems: 'center',
-    // borderWidth: 1,
+    borderWidth: 1,
   },
   flatlistRCM: {
     // paddingLeft: '1%',

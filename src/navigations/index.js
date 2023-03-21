@@ -58,7 +58,7 @@ function HomeStackScreen() {
             backgroundColor: '#F2F2F2',
           },
           headerShadowVisible: false,
-          headerTintColor: '#5FAD41',
+          headerTintColor: '#46732A',
         }}
       />
       <HomeStack.Screen
@@ -67,7 +67,7 @@ function HomeStackScreen() {
         options={{
           title: '',
           headerStyle: {
-            backgroundColor: '#5FAD41',
+            backgroundColor: '#558B31',
           },
           headerShadowVisible: false,
           headerTintColor: '#ffffff',
@@ -82,7 +82,7 @@ function HomeStackScreen() {
             backgroundColor: '#F2F2F2',
           },
           headerShadowVisible: false,
-          headerTintColor: '#5FAD41',
+          headerTintColor: '#46732A',
         }}
       />
       <HomeStack.Screen
@@ -100,7 +100,7 @@ function HomeStackScreen() {
           },
           headerShadowVisible: false,
 
-          headerTintColor: '#5FAD41',
+          headerTintColor: '#46732A',
         }}
       />
     </HomeStack.Navigator>
@@ -119,7 +119,6 @@ function Bottomtab() {
           bottom: 9,
           left: 15,
           right: 15,
-          // elevation: 0,
           backgroundColor: '#FFFFFF',
           borderRadius: 10,
           height: 60,
@@ -131,7 +130,7 @@ function Bottomtab() {
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="home" size={25} color={focused ? '#5FAD41' : 'black'} />
+            <Icon name="home" size={25} color={focused ? '#46732A' : 'black'} />
           ),
         }}
       />
@@ -144,7 +143,7 @@ function Bottomtab() {
             <Icons
               name="md-game-controller-outline"
               size={25}
-              color={focused ? '#5FAD41' : 'black'}
+              color={focused ? '#46732A' : 'black'}
             />
           ),
         }}
@@ -158,7 +157,7 @@ function Bottomtab() {
             <IconQuestion
               name="questioncircleo"
               size={25}
-              color={focused ? '#5FAD41' : 'black'}
+              color={focused ? '#46732A' : 'black'}
             />
           ),
         }}
@@ -169,7 +168,7 @@ function Bottomtab() {
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <Icon name="user" size={25} color={focused ? '#5FAD41' : 'black'} />
+            <Icon name="user" size={25} color={focused ? '#46732A' : 'black'} />
           ),
         }}
       />
@@ -291,7 +290,7 @@ export default function Navigation() {
         component={MapViewCountry}
         options={{
           title: 'G - MAP',
-          headerTintColor: '#5FAD41',
+          headerTintColor: '#46732A',
         }}
       />
       <HomeStack.Screen
@@ -299,7 +298,7 @@ export default function Navigation() {
         component={Review}
         options={{
           title: 'REVIEW',
-          headerTintColor: '#5FAD41',
+          headerTintColor: '#46732A',
         }}
       />
       <HomeStack.Screen name="History" component={HistoryVideo} />

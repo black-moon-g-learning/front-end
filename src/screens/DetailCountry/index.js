@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   topicsheader: {
     width: '100%',
     height: 70,
-    backgroundColor: '#5FAD41',
+    backgroundColor: '#558B31',
     paddingLeft: 10,
     paddingTop: -200,
   },

@@ -143,31 +143,40 @@ const Information = ({navigation}) => {
       {isSuccess && (
         <>
           <View style={styles.header_profile}>
-            <Image
-              style={styles.image_profile}
-              source={{
-                uri: isImage,
-              }}
-            />
-            <TouchableOpacity
-              style={styles.icon_view}
-              onPress={() =>
-                Alert.alert('Notification', 'Are you change avatar', [
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                  },
-                  {
-                    text: 'continute',
-                    onPress: () => handleImage(),
-                  },
-                ])
-              }>
-              <Icon style={styles.icon} name="pencil" size={20} />
-            </TouchableOpacity>
-
+            <View style={styles.boderProfile}>
+              <Image
+                style={styles.image_profile}
+                source={{
+                  uri: isImage,
+                }}
+              />
+              <TouchableOpacity
+                style={styles.icon_view}
+                onPress={() =>
+                  Alert.alert('Notification', 'Are you change avatar', [
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                    },
+                    {
+                      text: 'continute',
+                      onPress: () => handleImage(),
+                    },
+                  ])
+                }>
+                <Icon style={styles.icon} name="pencil" size={20} />
+              </TouchableOpacity>
+            </View>
             <Text style={styles.name_profile}>{Name}</Text>
           </View>
+          <View
+            style={{
+              height: 0.1,
+              width: '90%',
+              backgroundColor: '#CDCBC7',
+              marginLeft: '4%',
+            }}
+          />
           <View style={styles.form_profile}>
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Name :</Text>
@@ -175,12 +184,7 @@ const Information = ({navigation}) => {
                 <Text style={styles.information_profile}>{Name}</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Age :</Text>
-              <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{Age}</Text>
-              </TouchableOpacity>
-            </View>
+
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Email :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
@@ -189,25 +193,23 @@ const Information = ({navigation}) => {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Phone :</Text>
-              <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{Phone}</Text>
-              </TouchableOpacity>
-            </View>
+
             <View style={styles.row_form_profile}>
               <Text style={styles.title_form_profile}>Country :</Text>
               <TouchableOpacity style={styles.infor_form_profile}>
                 <Text style={styles.information_profile}>Viet Nam</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.row_form_profile}>
-              <Text style={styles.title_form_profile}>Gender :</Text>
-              <TouchableOpacity style={styles.infor_form_profile}>
-                <Text style={styles.information_profile}>{Gender}</Text>
-              </TouchableOpacity>
-            </View>
           </View>
+          <View
+            style={{
+              height: 0.5,
+              width: '90%',
+              backgroundColor: '#CDCBC7',
+              marginLeft: '4%',
+              marginBottom: 30,
+            }}
+          />
           <Modal
             animationType="slide"
             transparent={true}
@@ -284,12 +286,15 @@ const Information = ({navigation}) => {
               </View>
             </View>
           </Modal>
+
           <Pressable style={styles.btn_infor}>
+            <Icon name="edit" size={25} />
             <TouchableOpacity
               style={styles.btn_click}
               onPress={() => setModalVisible(true)}>
-              <Text style={styles.text_btn}>EDIT</Text>
+              <Text style={styles.text_btn}>Edit</Text>
             </TouchableOpacity>
+            <Icon name="angle-right" size={30} />
           </Pressable>
           <View style={styles.package}>
             <Text style={styles.title_package}>Package: </Text>
@@ -303,7 +308,7 @@ const Information = ({navigation}) => {
             <TouchableOpacity
               style={styles.btn_click_package}
               onPress={() => navigation.navigate('Payment')}>
-              <Text style={styles.text_btn}>Buy Now</Text>
+              <Icon name="angle-right" size={30} />
             </TouchableOpacity>
           </View>
           <Logout />
@@ -322,29 +327,38 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header_profile: {
-    width: '96%',
-    height: 100,
-    backgroundColor: '#5FAD41',
-    alignSelf: 'center',
-    flexDirection: 'row',
+    width: width,
+    height: 200,
+    // alignSelf: 'center',
+    flexDirection: 'column',
     borderRadius: 10,
     marginTop: '2%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  boderProfile: {
+    width: 93,
+    height: 93,
+    borderWidth: 1,
+    borderRadius: 50,
+    // marginLeft: 25,
   },
   image_profile: {
-    width: 70,
-    height: 70,
+    width: 90,
+    height: 90,
     borderRadius: 50,
     alignSelf: 'center',
-    marginLeft: 25,
+    // marginLeft: 25,
     borderColor: '#FFFFFF',
     borderWidth: 1,
   },
   name_profile: {
     fontSize: 21,
-    color: '#FFFFFF',
+    color: 'black',
     alignSelf: 'center',
-    marginLeft: 35,
+    // marginLeft: 35,
     fontFamily: 'Poppins-SemiBold',
+    paddingTop: 10,
   },
   form_profile: {
     padding: 10,
@@ -358,7 +372,7 @@ const styles = StyleSheet.create({
   },
   title_form_profile: {
     fontFamily: 'Poppins-SemiBold',
-    fontSize: 17,
+    fontSize: 15,
     width: '30%',
     alignSelf: 'center',
   },
@@ -369,7 +383,7 @@ const styles = StyleSheet.create({
   },
   information_profile: {
     paddingTop: '3%',
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: 'Poppins-Medium',
     marginRight: 10,
   },
@@ -383,42 +397,50 @@ const styles = StyleSheet.create({
   },
   btn_infor: {
     flexDirection: 'row',
-    alignSelf: 'center',
+    // alignSelf: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingLeft: '6%',
+    paddingRight: '6%',
   },
   btn_click: {
     width: 100,
-    height: 30,
+    height: 35,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5FAD41',
+    marginLeft: '5%',
+    // backgroundColor: '#5FAD41',
   },
   text_btn: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 15,
     marginTop: '3%',
-    color: '#FFFFFF',
+    color: 'black',
   },
   package: {
     flexDirection: 'row',
-    padding: 10,
+    width: '100%',
+    paddingLeft: '6%',
+    paddingRight: '6%',
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 20,
+    justifyContent: 'space-between',
+    // borderWidth: 1,
   },
   title_package: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 20,
-    marginRight: 10,
+    fontSize: 15,
+    // marginRight: 10,
   },
   btn_click_package: {
-    width: 100,
-    height: 40,
+    // width: 100,
+    // height: 40,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 30,
-    backgroundColor: '#5FAD41',
   },
   icon_view: {
     position: 'absolute',
@@ -474,7 +496,7 @@ const styles = StyleSheet.create({
 
   text_package: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 20,
+    fontSize: 15,
     color: 'black',
   },
 });

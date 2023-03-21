@@ -9,8 +9,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-
-const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 export const ItemPopular = ({navigation, item}) => {
   let scaleValue = new Animated.Value(0);
@@ -44,21 +42,6 @@ export const ItemPopular = ({navigation, item}) => {
 };
 
 export const ItemCountries = ({navigation, item}) => {
-  // let scaleValue = new Animated.Value(0);
-  // const cardScale = scaleValue.interpolate({
-  //   inputRange: [0, 0.5, 1],
-  //   outputRange: [1, 1.1, 1.2],
-  // });
-
-  // useEffect(() => {
-  //   scaleValue.setValue(0);
-  //   Animated.timing(scaleValue, {
-  //     toValue: 1,
-  //     duration: 2000,
-  //     easing: Easing.linear(),
-  //     useNativeDriver: false,
-  //   }).start();
-  // });
   return (
     <SafeAreaView>
       <TouchableOpacity
@@ -123,9 +106,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: '#93D94E',
+    // backgroundColor: '#72A536',
+    opacity: 0.9,
     borderRadius: 10,
     margin: 10,
+    // borderWidth: 6,
+    // borderColor: '#B6D2E9',
+    elevation: 10,
+    backgroundColor: '#FEFEFE',
   },
   itemcountries_image: {
     width: '85%',

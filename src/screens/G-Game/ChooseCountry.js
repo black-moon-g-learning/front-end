@@ -107,7 +107,10 @@ const ChooseCountry = () => {
                       }
                     />
                   ) : (
-                    <View style={styles.flatlist}>
+                    <View
+                      style={
+                        DataShow === null ? styles.flatlist : styles.result
+                      }>
                       <FlatList
                         showsVerticalScrollIndicator={false}
                         ListEmptyComponent={ErrorMessage}
@@ -147,6 +150,10 @@ const styles = StyleSheet.create({
     // width: (width * 2.9) / 3,
     height: (height * 3.8) / 6,
     paddingBottom: 20,
+  },
+  result: {
+    marginTop: '-5%',
+    width: (width * 3) / 3,
   },
   btnContainer: {
     alignItems: 'flex-end',

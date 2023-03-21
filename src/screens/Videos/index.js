@@ -107,6 +107,8 @@ const styles = StyleSheet.create({
   top: {
     paddingBottom: 20,
   },
+
+  flatlist: {paddingBottom: (height * 1.01) / 6},
   name: {
     width: '100%',
     fontSize: 23,

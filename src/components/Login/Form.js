@@ -38,8 +38,7 @@ export default LoginForm;
 const styles = StyleSheet.create({
   container_form: {
     width: windowWidth,
-    height: (windowHeight * 2.7) / 6,
-    // borderWidth: 1,
+    height: (windowHeight * 2.8) / 6,
   },
   textInput: {
     justifyContent: 'center',
