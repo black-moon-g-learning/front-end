@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Dimensions,
   Image,
   Modal,
   StyleSheet,
@@ -10,7 +11,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Dimensions,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -232,7 +232,7 @@ const Information = ({navigation}) => {
                   <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
                       style={styles.information_modal_profile}
-                      value={Age}
+                      value={String(Age)}
                       onChangeText={setAge}
                     />
                   </TouchableOpacity>
@@ -297,14 +297,24 @@ const Information = ({navigation}) => {
               {Time === null ? (
                 <Text style={styles.text_package}>Plus</Text>
               ) : (
-                <Text style={styles.text_package}>{Time} day</Text>
+                <Text style={styles.text_package}>
+                  {Time === -1 ? (
+                    <Text style={styles.text_package}>Expired</Text>
+                  ) : (
+                    <Text style={styles.text_package}>{Time} day</Text>
+                  )}
+                </Text>
               )}
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.btn_click_package}
-              onPress={() => navigation.navigate('Payment')}>
-              <Text style={styles.text_btn}>Buy Now</Text>
-            </TouchableOpacity>
+            {Time > 15 ? (
+              <Image source={require('../../assets/images/costume.png')} />
+            ) : (
+              <TouchableOpacity
+                style={styles.btn_click_package}
+                onPress={() => navigation.navigate('Payment')}>
+                <Text style={styles.text_btn}>Buy Now</Text>
+              </TouchableOpacity>
+            )}
           </View>
           <Logout />
         </>

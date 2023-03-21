@@ -33,9 +33,8 @@ axiosRequest.interceptors.response.use(
           {
             text: 'BUY NOW',
             onPress: () => {
-              Linking.openURL('g-learning://payment');
+              Linking.openURL('g-learning://open.app/payment');
             },
-            style: 'default',
           },
         ],
         {cancelable: false},

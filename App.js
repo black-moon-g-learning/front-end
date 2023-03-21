@@ -7,16 +7,9 @@ import {
   requestUserPermission,
 } from './src/components/Login/LoginSocial';
 import Navigation from './src/navigations';
-// import SplashScreen from 'react-native-splash-screen'
 
 const queryClient = new QueryClient();
 const App = () => {
-  useEffect(() => {
-    SplashScreen.hide();
-    NotificationListner();
-    requestUserPermission();
-  }, []);
-
   const config = {
     screens: {
       Payment: 'payment',
@@ -27,6 +20,13 @@ const App = () => {
     prefixes: ['g-learning://'],
     config,
   };
+
+  useEffect(() => {
+    SplashScreen.hide();
+    NotificationListner();
+    requestUserPermission();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer linking={linking}>
