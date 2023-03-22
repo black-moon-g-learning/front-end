@@ -12,8 +12,16 @@ const queryClient = new QueryClient();
 const App = () => {
   const config = {
     screens: {
+      Tab: {
+        screens: {
+          Homepage: {
+            screens: {
+              Home: 'homepage',
+            },
+          },
+        },
+      },
       Payment: 'payment',
-      HomeStackScreen: 'homepage',
     },
   };
 
