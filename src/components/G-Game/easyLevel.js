@@ -6,10 +6,12 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import GLevelDetail from './GLevelDetail';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const EasyLevel = ({level, item}) => {
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
@@ -48,15 +50,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     display: 'flex',
     justifyContent: 'space-around',
+    height: (height * 0.8) / 3,
   },
   easyContainer: {
     position: 'relative',
-    width: '60%',
-    backgroundColor: '#BFAE48',
+    width: '70%',
+    backgroundColor: '#E4D15F',
     borderRadius: 15,
     margin: 5,
     padding: 10,
-    left: 25,
+    // left: 20,
   },
   level: {
     color: '#FFFFFF',
@@ -65,21 +68,22 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: 'bold',
     fontFamily: 'Poppins-Bold',
-    paddingTop: 5,
+    padding: 10,
   },
   desc: {
+    width: '90%',
     color: '#000000',
     fontSize: 14,
-    fontFamily: 'Poppins-Bold',
-    //fontWeight: '400',
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',
-    padding: 20,
+    padding: 10,
+    left: '4%',
   },
   img: {
     position: 'absolute',
     alignItems: 'flex-start',
-    left: 20,
-    bottom: -15,
+    left: '4%',
+    bottom: -10,
   },
 });

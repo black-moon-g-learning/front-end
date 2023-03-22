@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
   topicsheader: {
     width: '100%',
     height: 70,
-    backgroundColor: '#5FAD41',
+    backgroundColor: '#558B31',
     paddingLeft: 10,
     paddingTop: -200,
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 23,
+    fontSize: 20,
     width: '100%',
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',

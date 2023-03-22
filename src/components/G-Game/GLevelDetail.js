@@ -14,7 +14,7 @@ const GLevelDetail = props => {
   return (
     <TouchableOpacity style={styles.container} disabled={true}>
       <View style={styles.modal}>
-        <View>
+        <View style={styles.detailmodal}>
           <Text style={styles.title}>{props.level.name} Level</Text>
           <Text style={styles.desc}>{props.level.description}</Text>
         </View>
@@ -45,13 +45,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
   },
+  detailmodal: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 20,
+    paddingTop: 20,
+  },
   title: {
     fontSize: 20,
     fontWeight: '700',
     lineHeight: 20,
     fontFamily: 'Poppins-Bold',
-    color: '#000000',
+    color: '#E4D15F',
     paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
   },
   desc: {

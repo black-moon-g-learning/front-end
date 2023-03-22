@@ -51,7 +51,7 @@ export const ReviewBtn = ({item, videos, onClose}) => {
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity
-        style={[styles.btnReview, {backgroundColor: '#FFC845'}]}
+        style={[styles.btnReview]}
         onPress={() => handlePress()}>
         <Text style={styles.btnTxt}>BACK</Text>
       </TouchableOpacity>
@@ -108,13 +108,12 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   btnReview: {
-    width: '90%',
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#5FAD41',
-    // paddingBottom: 20,
+    backgroundColor: '#5FAD41',
+    borderRadius: 30,
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
   },
   btnTxt: {
     fontFamily: 'Poppins-Bold',
@@ -143,5 +142,8 @@ const styles = StyleSheet.create({
   },
   finalResult: {
     flexDirection: 'row',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

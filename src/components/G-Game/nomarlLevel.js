@@ -6,10 +6,12 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import GLevelDetail from './GLevelDetail';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const NomarlLevel = ({level}) => {
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
@@ -44,15 +46,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     display: 'flex',
     justifyContent: 'space-around',
+    height: (height * 0.8) / 3,
   },
   easyContainer: {
     position: 'relative',
-    width: '60%',
-    backgroundColor: '#5FAD41',
+    width: '70%',
+    backgroundColor: '#79B669',
     borderRadius: 15,
     margin: 5,
     padding: 10,
-    left: 25,
+    // left: 20,
   },
   level: {
     color: '#FFFFFF',
@@ -64,17 +67,19 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   desc: {
+    width: '90%',
     color: '#000000',
     fontSize: 14,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',
     padding: 10,
+    left: '4%',
   },
   img: {
     position: 'absolute',
     alignItems: 'flex-start',
-    left: 10,
+    left: '1.5%',
     bottom: -10,
   },
 });

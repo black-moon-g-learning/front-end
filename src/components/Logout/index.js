@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icons from 'react-native-vector-icons/FontAwesome';
 
 const Logout = () => {
   const navigation = useNavigation();
@@ -29,17 +30,19 @@ const Logout = () => {
       <TouchableOpacity
         onPress={() => navigation.navigate('History')}
         style={styles.btn_logout}>
-        <Icon name="bell-ring-outline" size={30} style={styles.icon} />
+        <Icons name="history" size={25} style={styles.icon} />
         <Text style={styles.text_logout}>History</Text>
+        <Icons name="angle-right" size={30} />
       </TouchableOpacity>
       <TouchableOpacity onPress={signOutUser} style={styles.btn_logout}>
         <Icon
           name="logout"
-          size={30}
+          size={25}
           onPress={() => navigation.goBack('login')}
           style={styles.icon}
         />
         <Text style={styles.text_logout}>Logout</Text>
+        <Icons name="angle-right" size={30} />
       </TouchableOpacity>
     </View>
   );
@@ -55,16 +58,22 @@ const styles = StyleSheet.create({
   },
   btn_logout: {
     flexDirection: 'row',
-    width: '98%',
-    height: 50,
-    borderTopWidth: 0.5,
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    height: 35,
+    width: '100%',
+    paddingLeft: '3%',
+    paddingRight: '6%',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    alignSelf: 'center',
   },
   icon: {
     marginLeft: 20,
   },
   text_logout: {
-    paddingLeft: 30,
+    marginLeft: '10%',
+    fontFamily: 'Poppins-Medium',
+    fontSize: 15,
+    color: 'black',
   },
 });
