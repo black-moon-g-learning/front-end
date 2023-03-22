@@ -7,11 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import YoutubePlayer from 'react-native-youtube-iframe';
+import YouTube from 'react-native-youtube-iframe';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import Player from '../../components/VideoCustom/PlayVideoCustom';
 const windowHeight = Dimensions.get('window').width * (10 / 18);
+const windowHeight2 = Dimensions.get('window').width * (9.7 / 18);
+
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
@@ -21,13 +23,9 @@ const PlayVideo = ({navigation, route}) => {
   const checkURL = item.url.includes('youtube');
   const checkURL2 = item.url.includes('youtu.be');
 
-  console.log(urlAPI);
-  console.log(splitUrl);
-
   useEffect(() => {
     return () => {
-      // stop video when component unmounts
-      YoutubePlayer.stopVideo();
+      YouTube.stopVideo();
     };
   }, []);
 
@@ -35,18 +33,27 @@ const PlayVideo = ({navigation, route}) => {
     <View style={styles.container}>
       <View style={styles.video}>
         {checkURL ? (
-          <YoutubePlayer play={true} videoId={splitUrl} height={windowHeight} />
+          <YouTube
+            play={true}
+            videoId={splitUrl}
+            height={windowHeight}
+            width={windowWidth}
+          />
         ) : (
           <>
             {checkURL2 ? (
-              <YoutubePlayer play={true} videoId={splitUrl2} height={230} />
+              <YouTube
+                videoId={splitUrl2}
+                height={windowHeight}
+                width={windowWidth}
+              />
             ) : (
               <Player urlVideo={urlAPI} />
             )}
           </>
         )}
-        <Text style={styles.name}>{item.name}</Text>
       </View>
+      <Text style={styles.name}>{item.name}</Text>
       <View style={styles.review}>
         <TouchableOpacity
           style={styles.reviewbutton}
@@ -56,26 +63,28 @@ const PlayVideo = ({navigation, route}) => {
           <Text style={styles.text}>REVIEW HERE</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <Text style={styles.recommend}>Recommend videos</Text>
-      </View>
-      <View style={styles.flatlistRCM}>
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          data={videos}
-          horizontal={true}
-          ListEmptyComponent={ErrorMessage}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => {
-            return (
-              <RecommendVideo
-                navigation={navigation}
-                item={item}
-                videos={videos}
-              />
-            );
-          }}
-        />
+      <View style={styles.rcmvideos}>
+        <View>
+          <Text style={styles.recommend}>Recommend videos</Text>
+        </View>
+        <View style={styles.flatlistRCM}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            data={videos}
+            horizontal={true}
+            ListEmptyComponent={ErrorMessage}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => {
+              return (
+                <RecommendVideo
+                  navigation={navigation}
+                  item={item}
+                  videos={videos}
+                />
+              );
+            }}
+          />
+        </View>
       </View>
     </View>
   );
@@ -93,42 +102,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   name: {
-    // marginTop: 10,
     width: '100%',
     fontSize: 20,
     color: '#323643',
     paddingBottom: 10,
     textAlign: 'center',
     fontFamily: 'Poppins-Medium',
-    borderWidth: 1,
   },
   video: {
-    marginTop: 20,
+    marginTop: '1%',
     margin: 10,
-    height: 280,
+    height: windowHeight2,
     borderRadius: 10,
     borderWidth: 0.8,
     borderColor: '#F2F2F2',
     overflow: 'hidden',
   },
   review: {
-    marginTop: '-9%',
+    marginTop: '4%',
     display: 'flex',
     alignItems: 'center',
-    borderWidth: 1,
+    marginBottom: '2%',
   },
   flatlistRCM: {
-    // paddingLeft: '1%',
     alignItems: 'center',
     justifyContent: 'center',
     width: (windowWidth * 3) / 3,
-    // height: (height * 0.6) / 3,
-    boderWidth: 1,
   },
   recommend: {
     paddingLeft: 10,
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: '4%',
     fontSize: 21,
     color: '#323643',
     fontFamily: 'Poppins-Bold',

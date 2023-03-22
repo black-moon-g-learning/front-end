@@ -131,22 +131,6 @@ const DisplayQuestion = () => {
       });
     }
   };
-  //Save the Score to Async storage
-  // const saveScore = async finalScore => {
-  //   try {
-  //     await AsyncStorage.setItem('score', finalScore.toString());
-  //     console.log('Score saved successfully!');
-  //   } catch (error) {
-  //     console.log('loi', error);
-  //   }
-  // };
-  //
-  // useEffect(() => {
-  //   if (timeLeft === 0 && selectedAnswer === null) {
-  //     changeModalVisible(true);
-  //   }
-  // }, []);
-  //Handle the correct
   const handleSelectOption = answer => {
     setSelectedAnswer(answer.content);
     setSelectedAnswerIndex(answer.id);
@@ -155,10 +139,8 @@ const DisplayQuestion = () => {
       setCorrectAnswer(answer.id);
       setScore(score + 100);
       setTotalCorrectAns(totalCorrectAns + 1);
-      // saveScore(score);
     }
   };
-  //Change the style of selected answer
   const getOptionStyle = option => {
     if (option.content === selectedAnswer && option.id === correctAnswer) {
       return styles.correctAnswer;

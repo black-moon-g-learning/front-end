@@ -51,7 +51,7 @@ export const ReviewBtn = ({item, videos, onClose}) => {
   return (
     <View style={styles.btnGroup}>
       <TouchableOpacity
-        style={[styles.btnReview, {backgroundColor: '#FFC845'}]}
+        style={[styles.btnReview]}
         onPress={() => handlePress()}>
         <Text style={styles.btnTxt}>BACK</Text>
       </TouchableOpacity>
@@ -63,7 +63,7 @@ export const FinalResult = ({totalCorrectAns, totalQuestion}) => {
   return (
     <View style={styles.finalResult}>
       <Text style={styles.txtResult}>
-        Your answer: {totalCorrectAns}/{totalQuestion}
+        Your answer  :  {totalCorrectAns}/{totalQuestion}
       </Text>
     </View>
   );
@@ -106,13 +106,12 @@ const styles = StyleSheet.create({
     borderColor: '#5FAD41',
   },
   btnReview: {
-    width: '90%',
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#5FAD41',
-    // paddingBottom: 20,
+    backgroundColor: '#5FAD41',
+    borderRadius: 30,
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
   },
   btnTxt: {
     fontFamily: 'Poppins-Bold',
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
   },
   txtResult: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontSize: 18,
     textAlign: 'center',
     fontWeight: '500',
     lineHeight: 20,

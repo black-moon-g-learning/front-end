@@ -175,28 +175,23 @@ function Bottomtab() {
     </Tab.Navigator>
   );
 }
+const getToken = async () => {
+  return await AsyncStorage.getItem('@Token');
+};
 
+const Loadingg = () => {
+  const navigation = useNavigation();
+  getToken().then(response => {
+    const routeName = response ? 'Tab' : 'login';
+    navigation.reset({
+      index: 0,
+      routes: [{name: routeName}],
+    });
+  }, []);
+};
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const getToken = async () => {
-    return await AsyncStorage.getItem('@Token');
-  };
-
-  const Loading = () => {
-    const navigation = useNavigation();
-    getToken().then(response => {
-      navigation.navigate(response ? 'Tab' : 'login');
-    }, []);
-    return (
-      <>
-        <View>
-          <ActivityIndicator size="large" color="#00ff00" />
-        </View>
-      </>
-    );
-  };
-
   return (
     <Stack.Navigator
       initialRouteName={'loading'}
@@ -305,7 +300,7 @@ export default function Navigation() {
       <HomeStack.Screen
         name="loading"
         options={{headerShown: false}}
-        component={Loading}
+        component={Loadingg}
       />
     </Stack.Navigator>
   );

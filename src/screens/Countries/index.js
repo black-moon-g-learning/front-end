@@ -154,8 +154,8 @@ const styles = StyleSheet.create({
   },
   result: {
     marginTop: '-25%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     width: (width * 3) / 3,
   },
   Country: {

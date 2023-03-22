@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 23,
+    fontSize: 20,
     width: '100%',
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',

@@ -129,8 +129,6 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     borderRadius: 10,
     margin: 10,
-    // borderWidth: 6,
-    // borderColor: '#B6D2E9',
     elevation: 10,
     backgroundColor: '#FEFEFE',
   },

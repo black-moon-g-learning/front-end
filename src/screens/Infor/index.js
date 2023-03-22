@@ -279,16 +279,18 @@ const Information = ({navigation}) => {
             </View>
           </Modal>
 
-          <Pressable style={styles.btn_infor}>
+          <Pressable
+            style={styles.btn_infor}
+            onPress={() => setModalVisible(true)}>
             <Icon name="edit" size={25} />
-            <TouchableOpacity
-              style={styles.btn_click}
-              onPress={() => setModalVisible(true)}>
+            <TouchableOpacity style={styles.btn_click}>
               <Text style={styles.text_btn}>Edit</Text>
             </TouchableOpacity>
             <Icon name="angle-right" size={30} />
           </Pressable>
-          <View style={styles.package}>
+          <TouchableOpacity
+            style={styles.package}
+            onPress={() => navigation.navigate('Payment')}>
             <Text style={styles.title_package}>Package: </Text>
             <TouchableOpacity style={styles.infor_pakage}>
               {Time === null ? (
@@ -303,12 +305,17 @@ const Information = ({navigation}) => {
                 </Text>
               )}
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.btn_click_package}
-              onPress={() => navigation.navigate('Payment')}>
-              <Icon name="angle-right" size={30} />
-            </TouchableOpacity>
-          </View>
+
+            {Time > 200 ? (
+              <Image source={require('../../assets/images/costume.png')} />
+            ) : (
+              <TouchableOpacity
+                style={styles.btn_click_package}
+                onPress={() => navigation.navigate('Payment')}>
+                <Icon name="angle-right" size={30} />
+              </TouchableOpacity>
+            )}
+          </TouchableOpacity>
           <Logout />
         </>
       )}
@@ -334,7 +341,6 @@ const styles = StyleSheet.create({
   header_profile: {
     width: width,
     height: 200,
-    // alignSelf: 'center',
     flexDirection: 'column',
     borderRadius: 10,
     marginTop: '2%',
@@ -346,14 +352,12 @@ const styles = StyleSheet.create({
     height: 93,
     borderWidth: 1,
     borderRadius: 50,
-    // marginLeft: 25,
   },
   image_profile: {
     width: 90,
     height: 90,
     borderRadius: 50,
     alignSelf: 'center',
-    // marginLeft: 25,
     borderColor: '#FFFFFF',
     borderWidth: 1,
   },
@@ -361,7 +365,6 @@ const styles = StyleSheet.create({
     fontSize: 21,
     color: 'black',
     alignSelf: 'center',
-    // marginLeft: 35,
     fontFamily: 'Poppins-SemiBold',
     paddingTop: 10,
   },
@@ -402,7 +405,6 @@ const styles = StyleSheet.create({
   },
   btn_infor: {
     flexDirection: 'row',
-    // alignSelf: 'center',
     justifyContent: 'space-between',
     width: '100%',
     paddingLeft: '6%',
@@ -415,7 +417,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: '5%',
-    // backgroundColor: '#5FAD41',
   },
   text_btn: {
     fontFamily: 'Poppins-Medium',
@@ -432,16 +433,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
     justifyContent: 'space-between',
-    // borderWidth: 1,
   },
   title_package: {
     fontFamily: 'Poppins-Bold',
     fontSize: 15,
-    // marginRight: 10,
   },
   btn_click_package: {
-    // width: 100,
-    // height: 40,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',

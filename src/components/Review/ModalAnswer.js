@@ -12,21 +12,18 @@ const ModalAnswer = ({
   LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
   ]);
-  // const {item, totalQuestion, totalCorrectAns} = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.resultContainer}>
         <View style={styles.result}>
-          <Image
-            style={styles.failImg}
-            source={require('../../assets/images/nomarl.png')}
-          />
-          <Text style={styles.failTxt}>Good</Text>
+          <Text style={styles.failTxt}>congratulation</Text>
         </View>
         <View style={styles.failIconCon}>
           <Image
             style={styles.failIcon}
-            source={require('../../assets/images/good.png')}
+            source={{
+              uri: 'https://2.bp.blogspot.com/-126-SB_EZwQ/WDZvUU8HKDI/AAAAAAAELHE/gSZ66Ccbho8b0edAwL3QSPTrRe7XUSr-ACLcB/s1600/AS000576_03.gif',
+            }}
           />
         </View>
         <FinalResult
@@ -50,18 +47,31 @@ export default ModalAnswer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   resultContainer: {
-    backgroundColor: '#5FAD41',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: '#ffff',
     borderRadius: 20,
-    width: '100%',
+    width: '90%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+
+    elevation: 4,
+    paddingBottom: 10,
   },
   result: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
     alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
@@ -70,15 +80,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   failIcon: {
-    width: 122,
+    width: 200,
     height: 186,
   },
   failTxt: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '500',
     lineHeight: 20,
-    color: '#FFFFFF',
+    color: '#FFC845',
     paddingVertical: 40,
     paddingHorizontal: 20,
   },

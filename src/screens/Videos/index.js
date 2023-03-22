@@ -14,7 +14,6 @@ import {ListVideo} from '../../components/Videos/Listvideos';
 import UseGetdata from '../../hooks/UseContinents';
 import useSearch from '../../hooks/useSearch';
 const height = Dimensions.get('window').height;
-const width = Dimensions.get('window').width;
 const Videos = ({navigation, route, props}) => {
   const {item} = route.params;
   const API = `countries-topics/${item.id}/videos`;

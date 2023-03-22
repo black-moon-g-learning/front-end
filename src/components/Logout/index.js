@@ -58,13 +58,14 @@ const styles = StyleSheet.create({
   },
   btn_logout: {
     flexDirection: 'row',
-    // alignSelf: 'center',
     justifyContent: 'space-between',
-    width: '100%',
-    // paddingLeft: '6%',
-    paddingRight: '6%',
     marginBottom: 20,
     height: 35,
+    width: '100%',
+    paddingLeft: '3%',
+    paddingRight: '6%',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   icon: {
     marginLeft: 20,

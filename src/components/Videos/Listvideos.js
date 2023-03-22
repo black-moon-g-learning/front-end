@@ -12,6 +12,7 @@ import {
 import axiosRequest from '../../axios';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
+const MAX_LENGTH = (width * 0.6) / 6;
 export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
@@ -21,6 +22,10 @@ export const ListVideo = ({navigation, item, videos}) => {
       })
       .catch(error => console.log(error.response.data));
   };
+  const name =
+    item.name.length > MAX_LENGTH
+      ? `${item.name.slice(0, MAX_LENGTH)}...`
+      : item.name;
   return (
     <TouchableOpacity
       style={styles.item}
@@ -31,7 +36,7 @@ export const ListVideo = ({navigation, item, videos}) => {
       }}>
       <Image source={{uri: item.image}} style={styles.img} />
       <View style={styles.des}>
-        <Text style={styles.ContinentsName}>{item.name}</Text>
+        <Text style={styles.ContinentsName}>{name}</Text>
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
         <Text style={styles.ContinentsDetail}>Publish: {item.publish}</Text>
       </View>
@@ -84,7 +89,6 @@ export const RecommendVideo = ({navigation, item, videos}) => {
 
 export const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -94,16 +98,18 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
-    marginBottom: 10,
+    // marginBottom: 10,
     alignItems: 'center',
+    opacity: 0.9,
+    elevation: 10,
+    backgroundColor: '#FEFEFE',
+    marginBottom: '5%',
   },
   des: {
     width: '57%',
     // borderWidth: 1,
   },
   itemRecommend_container: {
-    // width: 190,
-    // height: 170,
     width: (width * 3) / 6,
     height: 170,
   },
@@ -120,7 +126,6 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   img: {
-    // margin: 20,
     width: '37%',
     height: 100,
     paddingRight: 10,
@@ -128,9 +133,9 @@ export const styles = StyleSheet.create({
     marginLeft: '2%',
   },
   ContinentsName: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#323643',
-    width: '100%',
+    width: '87%',
     fontFamily: 'Poppins-Bold',
   },
   recommend_name: {

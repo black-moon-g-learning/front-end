@@ -12,8 +12,11 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import EarthGifImage from '../../components/Home/Earthgif';
 import {ListContinents} from '../../components/Home/ListContinents';
 import UseGetdata from '../../hooks/UseContinents';
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').width * (9.65 / 18);
+
 const Home = ({navigation}) => {
   const API = 'continents';
   const {data, isLoading, isSuccess} = UseGetdata(API);
@@ -29,7 +32,7 @@ const Home = ({navigation}) => {
                 <View
                   style={{
                     width: width,
-                    height: (height * 1.7) / 6,
+                    height: windowHeight,
                   }}>
                   <EarthGifImage />
                 </View>
