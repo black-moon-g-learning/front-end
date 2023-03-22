@@ -14,7 +14,8 @@ import UseGetdata from '../../hooks/UseContinents';
 import {ErrorMessage} from './../../components/ErrorMessage';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
-const MAX_LENGTH = (width * 0.5) / 6;
+const MAX_LENGTH = (width * 0.6) / 6;
+const MAX_LENGTH2 = (width * 0.6) / 6;
 const HistoryVideo = () => {
   const navigation = useNavigation();
   const API = `watched-history`;
@@ -34,13 +35,7 @@ const HistoryVideo = () => {
         style={styles.item}
         key={item}
         onPress={() => navigation.navigate('playvideo', {item, videos})}>
-        <View style={styles.img}>
-          <Image
-            source={{uri: item.image}}
-            style={styles.images}
-            resizeMode="contain"
-          />
-        </View>
+        <Image source={{uri: item.image}} style={styles.img} />
 
         <View style={styles.des}>
           <Text style={styles.ContinentsName}>{name}</Text>
@@ -63,7 +58,7 @@ const HistoryVideo = () => {
   };
 
   return (
-    <>
+    <View style={styles.container}>
       {isLoading && <ActivityIndicator color="#00ff00" size="large" />}
 
       {isSuccess && (
@@ -77,30 +72,67 @@ const HistoryVideo = () => {
           }}
         />
       )}
-    </>
+    </View>
   );
 };
 
 export default HistoryVideo;
 
 export const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    fontSize: 18,
+    flex: 1,
+  },
   item: {
-    width: '96%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 120,
-    marginTop: '2%',
+    height: 130,
+    marginTop: 1,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
+    // marginBottom: 10,
     alignItems: 'center',
     opacity: 0.9,
     elevation: 10,
     backgroundColor: '#FEFEFE',
     marginBottom: '5%',
+  },
+  des: {
+    width: '57%',
+    // borderWidth: 1,
+  },
+  img: {
+    width: '37%',
+    height: 100,
+    paddingRight: 10,
+    borderRadius: 10,
     marginLeft: '2%',
-    marginRight: '2%',
+  },
+  ContinentsName: {
+    fontSize: 13,
+    color: '#323643',
+    width: '90%',
+    fontFamily: 'Poppins-Bold',
+  },
+  ContinentsDetail: {
+    fontSize: 12,
+    color: '#323643',
+    paddingTop: 5,
+    fontFamily: 'Poppins-Regular',
+  },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '36%',
+    height: 100,
+    // margin: 20,
+    marginLeft: '2%',
+    borderRadius: 10,
+    justifyContent: 'center',
   },
   itemRecommend_container: {
     width: 190,
@@ -125,14 +157,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginLeft: '2%',
   },
-  img: {
-    width: '37%',
-    height: '100%',
-    paddingRight: 10,
-    marginLeft: '2%',
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
+
   images: {
     width: '100%',
     height: '85%',
@@ -140,15 +165,7 @@ export const styles = StyleSheet.create({
 
     // borderWidth: 1,
   },
-  des: {
-    width: '57%',
-  },
-  ContinentsName: {
-    fontSize: 16,
-    color: '#323643',
-    width: '100%',
-    fontFamily: 'Poppins-Bold',
-  },
+
   recommend_name: {
     fontSize: 13,
     color: '#323643',
@@ -156,29 +173,14 @@ export const styles = StyleSheet.create({
     paddingTop: 15,
     fontFamily: 'Poppins-Bold',
   },
-  ContinentsDetail: {
-    fontSize: 13,
-    color: '#323643',
-    paddingTop: 5,
-    fontFamily: 'Poppins-Regular',
-  },
+
   time: {
     fontSize: 20,
     color: 'white',
     fontWeight: '700',
     alignSelf: 'center',
   },
-  modal_video_watched: {
-    position: 'absolute',
-    backgroundColor: '#00000959',
-    width: (width * 1.95) / 6,
 
-    height: (height * 0.37) / 3,
-
-    marginLeft: '2%',
-    borderRadius: 10,
-    justifyContent: 'center',
-  },
   modal_watched: {
     width: '100%',
     height: 70,

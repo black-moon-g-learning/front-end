@@ -228,6 +228,7 @@ export default function Navigation() {
             backgroundColor: '#F2F2F2',
           },
           headerShadowVisible: false,
+          headerTintColor: '#46732A',
         }}
       />
       <Stack.Screen

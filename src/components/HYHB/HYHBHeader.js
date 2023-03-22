@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
+const width = Dimensions.get('window').width;
 
 const HYHBHeader = () => {
   return (
@@ -13,8 +14,12 @@ export default HYHBHeader;
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: 'row',
     marginBottom: 5,
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: (width * 2.55) / 3,
+    marginLeft: '-7%',
   },
   title: {
     textAlign: 'center',
@@ -23,5 +28,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     paddingTop: 20,
     fontFamily: 'Poppins-Bold',
+    width: '100%',
   },
 });

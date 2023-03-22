@@ -1,14 +1,27 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  View,
+} from 'react-native';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 export const FailHeader = ({score}) => {
   return (
-    <View style={styles.header}>
-      <View style={styles.scorebgd}>
-        <Text style={styles.score}>{score}</Text>
+    <View style={styles.headercontainer}>
+      <View style={styles.header}>
+        <Image
+          style={styles.headerImg}
+          source={require('../../assets/images/G-GAME.png')}
+        />
+        <View style={styles.scorebgd}>
+          <Text style={styles.score}>{score}</Text>
+        </View>
       </View>
-      <Image source={require('../../assets/images/G-GAME.png')} />
     </View>
   );
 };
@@ -71,12 +84,15 @@ export const FinalResult = ({totalCorrectAns, totalQuestion}) => {
 };
 const styles = StyleSheet.create({
   scorebgd: {
-    marginLeft: '70%',
+    // marginLeft: '70%',
     backgroundColor: '#FFD500',
     borderRadius: 100,
     width: 60,
     height: 60,
     marginTop: 3,
+  },
+  headerImg: {
+    marginTop: '6%',
   },
   score: {
     textAlign: 'center',
@@ -87,9 +103,18 @@ const styles = StyleSheet.create({
     color: '#000000',
     paddingTop: 20,
   },
+  headercontainer: {
+    width: width,
+    paddingLeft: '4%',
+    paddingRight: '4%',
+  },
   header: {
-    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+    // alignItems: 'center',
     paddingVertical: 10,
+    justifyContent: 'space-between',
+    marginBottom: '8%',
   },
   btnGroup: {
     flexDirection: 'row',
