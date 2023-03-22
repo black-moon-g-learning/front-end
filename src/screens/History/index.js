@@ -34,9 +34,13 @@ const HistoryVideo = () => {
         style={styles.item}
         key={item}
         onPress={() => navigation.navigate('playvideo', {item, videos})}>
-        <TouchableOpacity style={styles.imggroup}>
-          <Image source={{uri: item.image}} style={styles.img} />
-        </TouchableOpacity>
+        <View style={styles.img}>
+          <Image
+            source={{uri: item.image}}
+            style={styles.images}
+            resizeMode="contain"
+          />
+        </View>
 
         <View style={styles.des}>
           <Text style={styles.ContinentsName}>{name}</Text>
@@ -122,9 +126,19 @@ export const styles = StyleSheet.create({
     marginLeft: '2%',
   },
   img: {
+    width: '37%',
+    height: '100%',
+    paddingRight: 10,
+    marginLeft: '2%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  images: {
     width: '100%',
-    height: 100,
+    height: '85%',
     borderRadius: 10,
+
+    // borderWidth: 1,
   },
   des: {
     width: '57%',
@@ -157,8 +171,10 @@ export const styles = StyleSheet.create({
   modal_video_watched: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    width: '35%',
-    height: 100,
+    width: (width * 1.95) / 6,
+
+    height: (height * 0.37) / 3,
+
     marginLeft: '2%',
     borderRadius: 10,
     justifyContent: 'center',

@@ -12,16 +12,14 @@ import {ErrorMessage} from '../../components/ErrorMessage';
 import {RecommendVideo} from '../../components/Videos/Listvideos';
 import Player from '../../components/VideoCustom/PlayVideoCustom';
 const windowHeight = Dimensions.get('window').width * (10 / 18);
-const windowHeight2 = Dimensions.get('window').width * (9.7 / 18);
+const windowHeight2 = Dimensions.get('window').width * (9.9 / 18);
 
 const windowWidth = Dimensions.get('window').width;
 const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
   const urlAPI = item.url;
-  const splitUrl = item.url.split(/[=,&]/).slice(1, 2);
-  const splitUrl2 = item.url.split('/').slice(3, 4);
-  const checkURL = item.url.includes('youtube');
-  const checkURL2 = item.url.includes('youtu.be');
+  console.log(urlAPI);
+  const checkURL = item.url.includes('g-learning');
 
   useEffect(() => {
     return () => {
@@ -33,33 +31,21 @@ const PlayVideo = ({navigation, route}) => {
     <View style={styles.container}>
       <View style={styles.video}>
         {checkURL ? (
+          <Player urlVideo={urlAPI} />
+        ) : (
           <YouTube
             play={true}
-            videoId={splitUrl}
+            videoId={urlAPI}
             height={windowHeight}
             width={windowWidth}
           />
-        ) : (
-          <>
-            {checkURL2 ? (
-              <YouTube
-                videoId={splitUrl2}
-                height={windowHeight}
-                width={windowWidth}
-              />
-            ) : (
-              <Player urlVideo={urlAPI} />
-            )}
-          </>
         )}
       </View>
       <Text style={styles.name}>{item.name}</Text>
       <View style={styles.review}>
         <TouchableOpacity
           style={styles.reviewbutton}
-          onPress={() =>
-            navigation.navigate('review', {item, splitUrl, videos})
-          }>
+          onPress={() => navigation.navigate('review', {item, urlAPI, videos})}>
           <Text style={styles.text}>REVIEW HERE</Text>
         </TouchableOpacity>
       </View>
@@ -119,10 +105,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   review: {
-    marginTop: '4%',
+    marginTop: '2%',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: '2%',
+    marginBottom: '1%',
   },
   flatlistRCM: {
     alignItems: 'center',
@@ -132,7 +118,7 @@ const styles = StyleSheet.create({
   recommend: {
     paddingLeft: 10,
     marginTop: 20,
-    marginBottom: '4%',
+    marginBottom: '2%',
     fontSize: 21,
     color: '#323643',
     fontFamily: 'Poppins-Bold',

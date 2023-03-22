@@ -142,5 +142,8 @@ const styles = StyleSheet.create({
   },
   finalResult: {
     flexDirection: 'row',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

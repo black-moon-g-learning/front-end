@@ -10,6 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import {useMutation} from 'react-query';
 import axiosRequest from '../../axios';
@@ -18,7 +19,8 @@ import ListAnswer from '../../components/G-Game/ListAnswer';
 import UseGetdata from '../../hooks/UseContinents';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import TimeupModal from './TimeupModal';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
 const DisplayQuestion = () => {
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   const navigation = useNavigation();
@@ -249,11 +251,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     flex: 1,
     alignItems: 'center',
+    width: width,
+    height: height,
   },
   questionContainer: {
     backgroundColor: '#5FAD41',
     borderRadius: 20,
     width: '90%',
+    height: (height * 1.93) / 3,
     marginTop: 50,
     alignItems: 'center',
     position: 'relative',
@@ -264,7 +269,8 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 40,
     borderRadius: 10,
-    marginTop: 60,
+    // marginTop: 60,
+    marginTop: '8%',
   },
   countTxt: {
     fontSize: 18,
@@ -304,17 +310,21 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   character: {
     width: 87,
     height: 112,
   },
   btn: {
-    width: 94,
-    height: 32,
+    width: 120,
+    height: 35,
     borderRadius: 10,
     backgroundColor: '#FFC845',
     margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   txtBtn: {
     fontSize: 16,
@@ -333,8 +343,11 @@ const styles = StyleSheet.create({
   },
   quesCon: {
     width: '90%',
+    height: 100,
     paddingVertical: 5,
     paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   question: {
     fontFamily: 'Poppins-Bold',
