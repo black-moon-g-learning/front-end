@@ -1,83 +1,110 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, LogBox} from 'react-native';
-import {
-  FailHeader,
-  FinalResult,
-  GroupBtn,
-} from '../../components/G-Game/FailHeader';
+import {Image, LogBox, Modal, StyleSheet, Text, View} from 'react-native';
+import {FinalResult, GroupBtn} from '../../components/G-Game/FailHeader';
 
-const GreatePage = ({route}) => {
+const GreatPage = ({route}) => {
   LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
   ]);
   const {item, score, totalQuestion, totalCorrectAns, restartQuiz} =
     route.params;
+  const [modalVisible, setModalVisible] = React.useState(true);
+
   return (
     <View style={styles.container}>
-      <FailHeader score={score} />
-      <View style={styles.resultContainer}>
-        <View style={styles.result}>
-          <Image
-            style={styles.failImg}
-            source={require('../../assets/images/nomarl.png')}
-          />
-          <Text style={styles.failTxt}>Good</Text>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modal}>
+          <View style={[styles.modalView, styles.shadowProp]}>
+            <View style={styles.row_formmodal_profile}>
+              <Image
+                style={styles.failIcon}
+                source={require('../../assets/images/image26.png')}
+              />
+            </View>
+            <Text style={styles.title}>EXCELLENT</Text>
+            <View style={styles.finalResult}>
+              <Text style={styles.txtResult}>Your score:</Text>
+              <Text style={styles.txtTitle}>{score}</Text>
+            </View>
+            <FinalResult
+              totalQuestion={totalQuestion}
+              totalCorrectAns={totalCorrectAns}
+            />
+            <View style={styles.btn_modal_update}>
+              <GroupBtn item={item} restartQuiz={restartQuiz} />
+            </View>
+          </View>
         </View>
-        <View style={styles.failIconCon}>
-          <Image
-            style={styles.failIcon}
-            source={require('../../assets/images/great.png')}
-          />
-        </View>
-        <FinalResult
-          totalQuestion={totalQuestion}
-          totalCorrectAns={totalCorrectAns}
-        />
-        <GroupBtn item={item} restartQuiz={restartQuiz} />
-      </View>
+      </Modal>
     </View>
   );
 };
 
-export default GreatePage;
+export default GreatPage;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 10,
-    justifyContent: 'center',
-  },
-  resultContainer: {
-    backgroundColor: '#5FAD41',
-    borderRadius: 20,
-    width: '100%',
-  },
-  result: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
   failIconCon: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   failIcon: {
-    width: 122,
-    height: 186,
+    width: 119,
+    height: 211,
   },
-  failTxt: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 40,
-    fontWeight: '500',
+  txtResult: {
+    fontFamily: 'Poppins-Mediium',
+    fontSize: 20,
+    textAlign: 'center',
     lineHeight: 20,
-    color: '#FFFFFF',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
+    color: '#000000',
+    padding: 10,
   },
-  failImg: {
-    width: 101,
-    height: 129,
+  txtTitle: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 20,
+    color: 'red',
+    padding: 10,
+  },
+  modalView: {
+    width: '90%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  modal: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  finalResult: {
+    flexDirection: 'row',
+  },
+  title: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 28,
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 20,
+    color: 'red',
+    paddingTop: 20,
+    paddingBottom: 10,
+  },
+  shadowProp: {
+    shadowOffset: {width: -2, height: 4},
+    shadowColor: 'red',
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });

@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 15,
     paddingTop: 10,
-    //width: '80%',
     textAlign: 'center',
   },
   imgContry: {

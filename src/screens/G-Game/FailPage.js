@@ -1,10 +1,6 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, LogBox} from 'react-native';
-import {
-  FailHeader,
-  FinalResult,
-  GroupBtn,
-} from '../../components/G-Game/FailHeader';
+import {Image, LogBox, Modal, StyleSheet, Text, View} from 'react-native';
+import {FinalResult, GroupBtn} from '../../components/G-Game/FailHeader';
 
 const FailPage = ({route}) => {
   LogBox.ignoreLogs([
@@ -12,10 +8,41 @@ const FailPage = ({route}) => {
   ]);
   const {item, score, totalQuestion, totalCorrectAns, restartQuiz} =
     route.params;
+  const [modalVisible, setModalVisible] = React.useState(true);
+
   return (
     <View style={styles.container}>
-      <FailHeader score={score} />
-      <View style={styles.resultContainer}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modal}>
+          <View style={[styles.modalView, styles.shadowProp]}>
+            <View style={styles.row_formmodal_profile}>
+              <Image
+                style={styles.failIcon}
+                source={require('../../assets/images/fail.png')}
+              />
+            </View>
+            <Text style={styles.title}>GAME OVER</Text>
+            <View style={styles.finalResult}>
+              <Text style={styles.txtResult}>Your score:</Text>
+              <Text style={styles.txtTitle}>{score}</Text>
+            </View>
+            <FinalResult
+              totalQuestion={totalQuestion}
+              totalCorrectAns={totalCorrectAns}
+            />
+            <View style={styles.btn_modal_update}>
+              <GroupBtn item={item} restartQuiz={restartQuiz} />
+            </View>
+          </View>
+        </View>
+      </Modal>
+      {/* <View style={styles.resultContainer}>
         <View style={styles.result}>
           <Image
             style={styles.failImg}
@@ -33,8 +60,15 @@ const FailPage = ({route}) => {
           totalQuestion={totalQuestion}
           totalCorrectAns={totalCorrectAns}
         />
+        <View>
+          <Text style={styles.txtResult}>YOUR COINS</Text>
+          <View style={styles.score}>
+            <Icon name="coins" size={48} color="yellow" />
+            <Text style={styles.txtTitle}>{score}</Text>
+          </View>
+        </View>
         <GroupBtn item={item} restartQuiz={restartQuiz} />
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -42,21 +76,6 @@ const FailPage = ({route}) => {
 export default FailPage;
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 15,
-  },
-  resultContainer: {
-    backgroundColor: '#5FAD41',
-    borderRadius: 20,
-    width: '100%',
-  },
-  result: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
   failIconCon: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -65,17 +84,52 @@ const styles = StyleSheet.create({
     width: 145,
     height: 145,
   },
-  failTxt: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 40,
-    fontWeight: '500',
+  txtResult: {
+    fontFamily: 'Poppins-Mediium',
+    fontSize: 20,
+    textAlign: 'center',
     lineHeight: 20,
-    color: '#FFFFFF',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
+    color: '#000000',
+    padding: 10,
   },
-  failImg: {
-    width: 101,
-    height: 129,
+  txtTitle: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 20,
+    color: 'red',
+    padding: 10,
+  },
+  modalView: {
+    width: '90%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modal: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  finalResult: {
+    flexDirection: 'row',
+  },
+  title: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 28,
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 20,
+    color: 'red',
+    padding: 10,
+  },
+  shadowProp: {
+    shadowOffset: {width: -2, height: 4},
+    shadowColor: 'red',
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });
