@@ -40,6 +40,7 @@ const Method = () => {
       id: '2',
       value: 'Visa card',
       color: 'green',
+      disabled: true,
       label: (
         <View style={styles.row_method}>
           <Text style={styles.text_row_method}>Visa card</Text>
