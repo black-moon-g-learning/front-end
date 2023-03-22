@@ -40,6 +40,7 @@ import Videos from '../screens/Videos';
 import PlayVideo from '../screens/Videos/Playvideo';
 import Information from './../screens/Infor/index';
 const HomeStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function HomeStackScreen() {
   return (
@@ -189,7 +190,6 @@ const Loadingg = () => {
     });
   }, []);
 };
-const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
   return (

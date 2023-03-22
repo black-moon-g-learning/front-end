@@ -203,13 +203,13 @@ const Information = ({navigation}) => {
           </View>
           <View style={styles.line} />
           <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
               setModalVisible(!modalVisible);
             }}>
-            <View style={{backgroundColor: '#00000099', flex: 1}}>
+            <View style={styles.modal}>
               <View style={styles.modalView}>
                 <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Name :</Text>
@@ -306,8 +306,11 @@ const Information = ({navigation}) => {
               )}
             </TouchableOpacity>
 
-            {Time > 200 ? (
-              <Image source={require('../../assets/images/costume.png')} />
+            {Time > 7 ? (
+              <Image
+                style={{height: 40, width: 40, marginLeft: 20}}
+                source={require('../../assets/images/easy.png')}
+              />
             ) : (
               <TouchableOpacity
                 style={styles.btn_click_package}
@@ -500,5 +503,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 15,
     color: 'black',
+  },
+  modal: {
+    backgroundColor: '#00000099',
+    flex: 1,
+    justifyContent: 'center',
   },
 });
