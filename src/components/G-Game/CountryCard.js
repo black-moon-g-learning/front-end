@@ -149,13 +149,14 @@ const styles = StyleSheet.create({
   modal_video_watched: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    width: (width * 2.3) / 6,
+    width: (width * 1.7) / 6,
     height: 175,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
-    marginRight: 20,
+    // marginRight: 20,
     justifyContent: 'center',
-    left: 8,
+    // left: 8,
+    right: '19.7%',
   },
   lock: {
     color: '#FFC845',

@@ -12,11 +12,15 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import {ErrorMessage} from '../../components/ErrorMessage';
 import ModalAnswer from '../../components/Review/ModalAnswer';
 import UseGetdata from '../../hooks/UseContinents';
 import ModalNext from '../../components/Review/ModalNextQuestion';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 const Review = () => {
   const route = useRoute();
   const navigation = useNavigation();
@@ -29,6 +33,8 @@ const Review = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [totalCorrectAns, setTotalCorrectAns] = useState(0);
   const [images, setImages] = useState('');
+  const [imagesmain, setImagesmain] = useState('');
+
   const [AnswerNotificatiion, setAnswerNotificatiion] = useState('');
 
   const answerOptions = ['A', 'B', 'C', 'D'];
@@ -48,12 +54,17 @@ const Review = () => {
       setTotalCorrectAns(totalCorrectAns + 1);
       setAnswerNotificatiion('You Correct');
       setImages('https://cdn-icons-png.flaticon.com/512/4436/4436481.png');
+      setImagesmain(
+        'https://123emoji.com/wp-content/uploads/2017/08/sticker-4-50.png',
+      );
       setShowModal(true);
     } else {
       setImages(
         'https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png',
       );
-
+      setImagesmain(
+        'https://stickershop.line-scdn.net/stickershop/v1/sticker/8277/android/sticker.png',
+      );
       setAnswerNotificatiion('Not Correct');
       setShowModal(true);
     }
@@ -98,7 +109,15 @@ const Review = () => {
   };
 
   const Item = ({item, answerOption, index}) => (
-    <ScrollView style={styles.item} key={index}>
+    <View
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingLeft: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: (width * 3) / 3,
+      }}
+      key={index}>
       <TouchableOpacity style={styles.answersItem}>
         <Image source={{uri: item.image}} style={styles.answersImage} />
         <TouchableOpacity style={[styles.buttonAnswers]}>
@@ -115,7 +134,7 @@ const Review = () => {
           <Text style={styles.textoption}>{answerOption}</Text>
         </TouchableOpacity>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
   return (
     <SafeAreaView style={styles.container}>
@@ -147,6 +166,7 @@ const Review = () => {
               <ModalNext
                 onClose={handleModalClose}
                 images={images}
+                imagesmain={imagesmain}
                 text={AnswerNotificatiion}
                 Result={Result}
               />
@@ -163,7 +183,7 @@ const Review = () => {
               />
             </Modal>
           )}
-          <>
+          <View style={styles.flatlist}>
             <FlatList
               showsVerticalScrollIndicator={false}
               data={question.answers}
@@ -182,7 +202,7 @@ const Review = () => {
                 );
               }}
             />
-          </>
+          </View>
           <View style={styles.nextButton}>
             <TouchableOpacity
               style={styles.btn}
@@ -201,12 +221,19 @@ export default Review;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    width: width,
+    height: height,
   },
   question: {
-    paddingTop: 15,
+    paddingTop: '3%',
     display: 'flex',
     flexDirection: 'row',
+  },
+  flatlist: {
+    width: (width * 3) / 3,
+    paddingBottom: (height * 0.7) / 6,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   character: {
     marginTop: '15%',
@@ -227,34 +254,31 @@ const styles = StyleSheet.create({
   },
   viewQuestion: {
     backgroundColor: '#FFC845',
-    width: '85%',
+    width: (width * 2.2) / 3,
+    paddingBottom: (height * 0.51) / 6,
     height: 60,
     borderRadius: 20,
     alignItems: 'center',
   },
   vector: {
-    marginTop: '13%',
-    marginRight: '-2.4%',
-  },
-
-  item: {
-    width: '90%',
-    height: 200,
-    display: 'flex',
-    marginTop: -5,
+    marginTop: '13.5%',
+    marginRight: '-2.68%',
   },
   answersItem: {
-    width: '90%',
-    height: 160,
+    width: (width * 2.65) / 6,
+    height: 170,
     textAlign: 'center',
     alignContent: 'center',
-    paddingLeft: 3,
-    paddingRight: 3,
+    paddingTop: 15,
+    paddingBottom: 18,
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: 20,
+    justifyContent: 'space-between',
+    borderRadius: 10,
     margin: 10,
+    elevation: 5,
+    backgroundColor: '#FEFEFE',
   },
   answersImage: {
     width: '90%',
@@ -308,6 +332,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     display: 'flex',
+    paddingTop: (height * 0.25) / 6,
   },
   btn: {
     marginTop: -80,

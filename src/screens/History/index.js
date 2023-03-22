@@ -8,38 +8,54 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import UseGetdata from '../../hooks/UseContinents';
 import {ErrorMessage} from './../../components/ErrorMessage';
-
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+const MAX_LENGTH = (width * 0.5) / 6;
 const HistoryVideo = () => {
   const navigation = useNavigation();
   const API = `watched-history`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
 
   const AllvideoWatched = ({item, videos}) => {
+    const name =
+      item.name.length > MAX_LENGTH
+        ? `${item.name.slice(0, MAX_LENGTH)}...`
+        : item.name;
+    const watched =
+      item.watched_at.length > MAX_LENGTH
+        ? `${item.watched_at.slice(0, MAX_LENGTH)}...`
+        : item.watched_at;
     return (
       <TouchableOpacity
         style={styles.item}
         key={item}
         onPress={() => navigation.navigate('playvideo', {item, videos})}>
-        <TouchableOpacity>
-          <Image source={{uri: item.image}} style={styles.img} />
-          <Text style={styles.time}>{item.time}</Text>
-        </TouchableOpacity>
-        <View>
-          <Text style={styles.ContinentsName}>{item.name}</Text>
+        <View style={styles.img}>
+          <Image
+            source={{uri: item.image}}
+            style={styles.images}
+            resizeMode="contain"
+          />
+        </View>
+
+        <View style={styles.des}>
+          <Text style={styles.ContinentsName}>{name}</Text>
           <Text style={styles.ContinentsDetail}>{item.author}</Text>
           <Text style={styles.ContinentsDetail}>Publish: {item.publish}</Text>
-          <Text style={styles.ContinentsDetail}>
-            Watched: {item.watched_at}
-          </Text>
+          <Text style={styles.ContinentsDetail}>Watched: {watched}</Text>
         </View>
         {item.watched === 1 && (
           <TouchableOpacity
             style={styles.modal_video_watched}
             onPress={() => navigation.navigate('playvideo', {item, videos})}>
-            <Text style={styles.text_video_watched}>Watched</Text>
+            <View style={styles.modal_watched}>
+              <Text style={styles.text_video_watched}>Watched</Text>
+              <Text style={styles.time}>{item.time}</Text>
+            </View>
           </TouchableOpacity>
         )}
       </TouchableOpacity>
@@ -69,17 +85,22 @@ export default HistoryVideo;
 
 export const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
-    width: '100%',
+    width: '96%',
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     height: 120,
-    marginTop: 15,
+    marginTop: '2%',
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#5FAD41',
-    marginBottom: 10,
     alignItems: 'center',
+    opacity: 0.9,
+    elevation: 10,
+    backgroundColor: '#FEFEFE',
+    marginBottom: '5%',
+    marginLeft: '2%',
+    marginRight: '2%',
   },
   itemRecommend_container: {
     width: 190,
@@ -97,12 +118,30 @@ export const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
   },
-  img: {
-    margin: 20,
-    width: 140,
+  imggroup: {
+    width: '39%',
     height: 100,
     paddingRight: 10,
     borderRadius: 10,
+    marginLeft: '2%',
+  },
+  img: {
+    width: '37%',
+    height: '100%',
+    paddingRight: 10,
+    marginLeft: '2%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  images: {
+    width: '100%',
+    height: '85%',
+    borderRadius: 10,
+
+    // borderWidth: 1,
+  },
+  des: {
+    width: '57%',
   },
   ContinentsName: {
     fontSize: 16,
@@ -124,26 +163,33 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
   },
   time: {
-    position: 'absolute',
-    alignSelf: 'flex-end',
-    marginTop: '53%',
-    marginRight: '53%',
-    color: 'black',
-    fontWeight: '500',
-    fontSize: 16,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
   },
   modal_video_watched: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    width: '100%',
-    height: '100%',
+    width: (width * 1.95) / 6,
+
+    height: (height * 0.37) / 3,
+
+    marginLeft: '2%',
+    borderRadius: 10,
     justifyContent: 'center',
+  },
+  modal_watched: {
+    width: '100%',
+    height: 70,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   text_video_watched: {
     fontSize: 20,
     color: 'white',
     fontWeight: '700',
     alignSelf: 'center',
-    marginRight: '50%',
   },
 });

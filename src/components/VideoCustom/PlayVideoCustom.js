@@ -6,12 +6,10 @@ import PlayerControls from './playerControls';
 import ProgressBar from './progressBar';
 
 import Orientation from 'react-native-orientation-locker';
+const height = Dimensions.get('window').height;
 
-const windowHeight = Dimensions.get('window').width * (10 / 18);
-const windowWidth = Dimensions.get('window').width;
-
-const height = Dimensions.get('window').width;
 const width = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').width * (9.65 / 18);
 
 const Player = ({urlVideo}) => {
   const videoRef = createRef();
@@ -153,7 +151,6 @@ const Player = ({urlVideo}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ebebeb',
-    marginBottom: 15,
   },
   fullscreenContainer: {
     flex: 1,
@@ -166,7 +163,6 @@ const styles = StyleSheet.create({
   },
   video: {
     height: windowHeight,
-    width: windowWidth,
     backgroundColor: 'black',
   },
   fullscreenVideo: {

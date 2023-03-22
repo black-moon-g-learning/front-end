@@ -125,9 +125,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: '#93D94E',
+    // backgroundColor: '#72A536',
+    opacity: 0.9,
     borderRadius: 10,
     margin: 10,
+    elevation: 10,
+    backgroundColor: '#FEFEFE',
   },
   itemcountries_image: {
     width: '85%',

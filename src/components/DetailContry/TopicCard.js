@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     textAlign: 'center',
     paddingBottom: 7,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
   imgBgd: {
     backgroundColor: '#FFFFFF',
