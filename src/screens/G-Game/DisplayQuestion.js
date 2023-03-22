@@ -69,10 +69,6 @@ const DisplayQuestion = () => {
   //Increase the index of the question
   const handleQuestion = (myScore, correctAns, totalQues) => {
     if (index === totalQuestion - 1) {
-      // let gameHistory = {
-      //   total_correct_answers: totalCorrectAns,
-      //   total_questions: totalQuestion,
-      // };
       handleGameHistory(correctAns, totalQues);
       finalScreen(myScore);
     } else {

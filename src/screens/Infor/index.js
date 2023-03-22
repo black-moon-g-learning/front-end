@@ -209,13 +209,13 @@ const Information = ({navigation}) => {
             </View>
           </View>
           <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
               setModalVisible(!modalVisible);
             }}>
-            <View style={{backgroundColor: '#00000099', flex: 1}}>
+            <View style={styles.modal}>
               <View style={styles.modalView}>
                 <View style={styles.row_formmodal_profile}>
                   <Text style={styles.title_form_profile}>Name :</Text>
@@ -486,5 +486,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 20,
     color: 'black',
+  },
+  modal: {
+    backgroundColor: '#00000099',
+    flex: 1,
+    justifyContent: 'center',
   },
 });

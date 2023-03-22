@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -17,7 +17,13 @@ const PlayVideo = ({navigation, route}) => {
   const {item, videos} = route.params;
   const urlAPI = item.url;
   const splitUrl = item.url.split(/[=,&]/).slice(1, 2);
+  const splitUrl2 = item.url.split('/').slice(3, 4);
   const checkURL = item.url.includes('youtube');
+  const checkURL2 = item.url.includes('youtu.be');
+
+  console.log(urlAPI);
+  console.log(splitUrl);
+
   useEffect(() => {
     return () => {
       // stop video when component unmounts
@@ -31,7 +37,13 @@ const PlayVideo = ({navigation, route}) => {
         {checkURL ? (
           <YoutubePlayer play={true} videoId={splitUrl} height={230} />
         ) : (
-          <Player urlVideo={urlAPI} />
+          <>
+            {checkURL2 ? (
+              <YoutubePlayer play={true} videoId={splitUrl2} height={230} />
+            ) : (
+              <Player urlVideo={urlAPI} />
+            )}
+          </>
         )}
         <Text style={styles.name}>{item.name}</Text>
       </View>

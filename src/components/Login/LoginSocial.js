@@ -156,6 +156,10 @@ const LoginSocial = () => {
           .then(async data => {
             const userInfo = data.data.data.access_token;
             await AsyncStorage.setItem('@Token', JSON.stringify(userInfo));
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Tab'}],
+            });
             // await AsyncStorage.getItem('@Token');
             navigation.reset({
               index: 0,

@@ -1,18 +1,22 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
+  Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Dimensions,
+  Modal,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import BlockModal from '../../screens/Countries/BlockModal';
 
-const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const CountryCard = ({item}) => {
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   const navigation = useNavigation();
   return (
     <View style={styles.countryContainer}>
@@ -31,11 +35,24 @@ const CountryCard = ({item}) => {
             <Text style={styles.txtBtn}>Play</Text>
           </TouchableOpacity>
           <View style={styles.percentDisplay}>
-            {/* <View style={styles.percent} /> */}
             <Text style={styles.txt}>{item.user_play}%</Text>
           </View>
         </View>
       </ImageBackground>
+      {item.is_blocked === 1 && (
+        <TouchableOpacity
+          style={styles.modal_video_watched}
+          onPress={() => changeModalVisible(true)}>
+          <Icon style={styles.lock} name="lock" size={48} color="#5FAD41" />
+        </TouchableOpacity>
+      )}
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <BlockModal changeModalVisible={changeModalVisible} />
+      </Modal>
     </View>
   );
 };
@@ -79,7 +96,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 15,
     paddingTop: 10,
-    //width: '80%',
     textAlign: 'center',
   },
   imgContry: {
@@ -129,5 +145,20 @@ const styles = StyleSheet.create({
   percentDisplay: {
     flexDirection: 'row',
     padding: 10,
+  },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: (width * 2.3) / 6,
+    height: 175,
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+    marginRight: 20,
+    justifyContent: 'center',
+    left: 8,
+  },
+  lock: {
+    color: '#FFC845',
+    alignSelf: 'center',
   },
 });

@@ -1,16 +1,19 @@
 import React, {useEffect} from 'react';
 import {
   Animated,
+  Dimensions,
   Easing,
+  Modal,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import UseLevelModal from '../../hooks/UseLevelModal';
+import BlockModal from '../../screens/Countries/BlockModal';
 
-const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 export const ItemPopular = ({navigation, item}) => {
   let scaleValue = new Animated.Value(0);
@@ -44,21 +47,7 @@ export const ItemPopular = ({navigation, item}) => {
 };
 
 export const ItemCountries = ({navigation, item}) => {
-  // let scaleValue = new Animated.Value(0);
-  // const cardScale = scaleValue.interpolate({
-  //   inputRange: [0, 0.5, 1],
-  //   outputRange: [1, 1.1, 1.2],
-  // });
-
-  // useEffect(() => {
-  //   scaleValue.setValue(0);
-  //   Animated.timing(scaleValue, {
-  //     toValue: 1,
-  //     duration: 2000,
-  //     easing: Easing.linear(),
-  //     useNativeDriver: false,
-  //   }).start();
-  // });
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
     <SafeAreaView>
       <TouchableOpacity
@@ -69,7 +58,21 @@ export const ItemCountries = ({navigation, item}) => {
           source={{uri: item.image}}
         />
         <Text style={styles.itemcountries_country}>{item.name}</Text>
+        {item.is_blocked === 1 && (
+          <TouchableOpacity
+            style={styles.modal_video_watched}
+            onPress={() => changeModalVisible(true)}>
+            <Icon style={styles.lock} name="lock" size={48} color="#5FAD41" />
+          </TouchableOpacity>
+        )}
       </TouchableOpacity>
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <BlockModal changeModalVisible={changeModalVisible} />
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -86,7 +89,6 @@ const styles = StyleSheet.create({
   itempopular_container: {
     paddingBottom: 7,
   },
-  // itemcountries_container: {width: '90%', height: 190},
   itempoopular_item: {
     width: (width * 2.88) / 6,
     height: 120,
@@ -136,5 +138,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#323643',
     fontFamily: 'Poppins-Regular',
+  },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: (width * 2.5) / 6,
+    height: 160,
+    marginLeft: '2%',
+    borderRadius: 10,
+    justifyContent: 'center',
+  },
+  lock: {
+    color: '#FFC845',
+    alignSelf: 'center',
   },
 });
