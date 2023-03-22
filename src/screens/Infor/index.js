@@ -306,8 +306,11 @@ const Information = ({navigation}) => {
                 </Text>
               )}
             </TouchableOpacity>
-            {Time > 200 ? (
-              <Image source={require('../../assets/images/costume.png')} />
+            {Time > 7 ? (
+              <Image
+                style={{height: 40, width: 40, marginLeft: 20}}
+                source={require('../../assets/images/easy.png')}
+              />
             ) : (
               <TouchableOpacity
                 style={styles.btn_click_package}
