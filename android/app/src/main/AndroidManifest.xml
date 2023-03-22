@@ -31,7 +31,7 @@
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="g-learning" android:host="open.app"/>
+            <data android:scheme="g-learning" android:host="open.app" android:pathPrefix="homepage"/>
         </intent-filter>
       </activity>
       <provider android:authorities="com.facebook.app.FacebookContentProvider729554048874014"

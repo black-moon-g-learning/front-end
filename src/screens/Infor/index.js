@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Dimensions,
   Image,
   Modal,
   StyleSheet,
@@ -10,7 +11,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Dimensions,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -201,15 +201,7 @@ const Information = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{
-              height: 0.5,
-              width: '90%',
-              backgroundColor: '#CDCBC7',
-              marginLeft: '4%',
-              marginBottom: 30,
-            }}
-          />
+          <View style={styles.line} />
           <Modal
             animationType="slide"
             transparent={true}
@@ -234,7 +226,7 @@ const Information = ({navigation}) => {
                   <TouchableOpacity style={styles.infor_formmodal_profile}>
                     <TextInput
                       style={styles.information_modal_profile}
-                      value={Age}
+                      value={String(Age)}
                       onChangeText={setAge}
                     />
                   </TouchableOpacity>
@@ -302,7 +294,13 @@ const Information = ({navigation}) => {
               {Time === null ? (
                 <Text style={styles.text_package}>Plus</Text>
               ) : (
-                <Text style={styles.text_package}>{Time} day</Text>
+                <Text style={styles.text_package}>
+                  {Time === -1 ? (
+                    <Text style={styles.text_package}>Expired</Text>
+                  ) : (
+                    <Text style={styles.text_package}>{Time} day</Text>
+                  )}
+                </Text>
               )}
             </TouchableOpacity>
             <TouchableOpacity
@@ -325,6 +323,13 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     flex: 1,
+  },
+  line: {
+    height: 0.5,
+    width: '90%',
+    backgroundColor: '#CDCBC7',
+    marginLeft: '4%',
+    marginBottom: 30,
   },
   header_profile: {
     width: width,

@@ -4,7 +4,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import React from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 // import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
@@ -96,7 +96,6 @@ const LoginSocial = () => {
             return data.token;
           })
           .then(data => {
-            console.log('cau xin m');
             return axios.post(`${Continents_URL}/login`, {
               token: data,
               device_token: tokenfcm,
@@ -162,6 +161,10 @@ const LoginSocial = () => {
               routes: [{name: 'Tab'}],
             });
             // await AsyncStorage.getItem('@Token');
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Tab'}],
+            });
           });
         flag = false;
       } else {

@@ -26,6 +26,7 @@ const Countries = () => {
   const {item} = route.params;
   const API = `continents/${item.id}`;
   const {data, isLoading, isSuccess} = UseGetdata(API);
+  // console.log(data);
   const {
     searchValue,
     searchResult,
@@ -92,7 +93,6 @@ const Countries = () => {
                       <View style={styles.poplular}>
                         <FlatList
                           showsHorizontalScrollIndicator={false}
-                          // data={DataShow || data.data.popular}
                           data={DataShow ? [] : data.data.popular}
                           horizontal={true}
                           ListEmptyComponent={ErrorMessage}

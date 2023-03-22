@@ -7,26 +7,27 @@ import {
   requestUserPermission,
 } from './src/components/Login/LoginSocial';
 import Navigation from './src/navigations';
-// import SplashScreen from 'react-native-splash-screen'
 
 const queryClient = new QueryClient();
 const App = () => {
+  const config = {
+    screens: {
+      Payment: 'payment',
+      HomeStackScreen: 'homepage',
+    },
+  };
+
+  const linking = {
+    prefixes: ['g-learning://open.app'],
+    config,
+  };
+
   useEffect(() => {
     SplashScreen.hide();
     NotificationListner();
     requestUserPermission();
   }, []);
 
-  const config = {
-    screens: {
-      Payment: 'payment',
-    },
-  };
-
-  const linking = {
-    prefixes: ['g-learning://'],
-    config,
-  };
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer linking={linking}>
