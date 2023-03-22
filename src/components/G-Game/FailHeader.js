@@ -23,7 +23,7 @@ export const GroupBtn = ({item, restartQuiz}) => {
     <View style={styles.btnGroup}>
       <TouchableOpacity style={styles.btn}>
         <Text
-          style={[styles.btnTxt, {color: '#008000'}]}
+          style={[styles.btnTxt, {color: '#000000'}]}
           onPress={() => handleRestart()}>
           Play Again
         </Text>
@@ -62,8 +62,9 @@ export const ReviewBtn = ({item, videos, onClose}) => {
 export const FinalResult = ({totalCorrectAns, totalQuestion}) => {
   return (
     <View style={styles.finalResult}>
-      <Text style={styles.txtResult}>
-        Your answer: {totalCorrectAns}/{totalQuestion}
+      <Text style={styles.txtResult}>Your answers:</Text>
+      <Text style={styles.txtTitle}>
+        {totalCorrectAns}/{totalQuestion}
       </Text>
     </View>
   );
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#5FAD41',
+    margin: 20,
   },
   btnReview: {
     width: '90%',
@@ -121,20 +123,25 @@ const styles = StyleSheet.create({
     color: '#000000',
     padding: 5,
   },
-  finalResult: {
-    width: '90%',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-    padding: 10,
-    marginHorizontal: '5%',
-    marginVertical: '8%',
-  },
   txtResult: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontFamily: 'Poppins-Mediium',
+    fontSize: 20,
     textAlign: 'center',
     fontWeight: '500',
     lineHeight: 20,
     color: '#000000',
+    padding: 5,
+  },
+  txtTitle: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 20,
+    color: 'red',
+    padding: 5,
+  },
+  finalResult: {
+    flexDirection: 'row',
   },
 });
