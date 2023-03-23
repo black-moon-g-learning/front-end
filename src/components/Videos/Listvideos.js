@@ -138,7 +138,7 @@ export const styles = StyleSheet.create({
     marginLeft: '2%',
   },
   ContinentsName: {
-    fontSize: 15,
+    fontSize: 13,
     color: '#323643',
     width: '87%',
     fontFamily: 'Poppins-Bold',
