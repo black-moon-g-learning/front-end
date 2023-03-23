@@ -23,7 +23,7 @@ const EasyLevel = ({level, item}) => {
           <View style={styles.image}>
             <Image
               style={styles.img}
-              source={require('../../assets/images/nomarl.png')}
+              source={require('../../assets/images/easy.png')}
             />
           </View>
           <Text numberOfLines={6} style={styles.desc}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   easyContainer: {
     flexDirection: 'row',
     display: 'flex',
-    width: '70%',
+    width: '75%',
     height: (height * 0.75) / 3,
 
     backgroundColor: '#E4D15F',
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     top: '-85%',
   },
   desc: {
-    width: '85%',
+    width: '95%',
     color: '#000000',
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     top: 20,
   },
   img: {
-    marginLeft: -80,
+    marginLeft: -65,
   },
   image: {
     width: '15%',

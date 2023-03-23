@@ -44,7 +44,7 @@ export const ItemPopular = ({navigation, item}) => {
         <Text style={styles.itempopular_country}>{item.name}</Text>
         {item.is_blocked === 1 && (
           <TouchableOpacity
-            style={styles.modal_video_watched}
+            style={styles.modal_video_watched_p}
             onPress={() => changeModalVisible(true)}>
             <Icon style={styles.lock} name="lock" size={48} color="#5FAD41" />
           </TouchableOpacity>
@@ -162,6 +162,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#00000959',
     width: (width * 2.5) / 6,
     height: 160,
+    marginLeft: '2%',
+    borderRadius: 10,
+    justifyContent: 'center',
+  },
+  modal_video_watched_p: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '85%',
+    height: 90,
+    // height: 160,
     marginLeft: '2%',
     borderRadius: 10,
     justifyContent: 'center',
