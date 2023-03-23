@@ -52,7 +52,7 @@ const Review = () => {
   const handleQuestion = (correctAns, totalQues) => {
     if (Nguyet === 1) {
       setTotalCorrectAns(totalCorrectAns + 1);
-      setAnswerNotificatiion('You Correct');
+      setAnswerNotificatiion('You are correct');
       setImages('https://cdn-icons-png.flaticon.com/512/4436/4436481.png');
       setImagesmain(
         'https://123emoji.com/wp-content/uploads/2017/08/sticker-4-50.png',

@@ -20,7 +20,7 @@ const Login = () => {
   const ChooseRegister = () => {
     return (
       <View style={styles.container_register}>
-        <Text style={styles.text}>Not a member ?</Text>
+        <Text style={styles.text}>Not a member?</Text>
         <TouchableOpacity
           style={styles.registernow}
           onPress={() => navigation.navigate('Register')}>

@@ -131,6 +131,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#5FAD41',
     margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnReview: {
     backgroundColor: '#5FAD41',
@@ -141,8 +143,8 @@ const styles = StyleSheet.create({
     paddingRight: 60,
   },
   btnTxt: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 12,
     textAlign: 'center',
     color: '#000000',
     padding: 5,

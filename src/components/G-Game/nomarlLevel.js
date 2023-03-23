@@ -10,14 +10,13 @@ import {
 } from 'react-native';
 import UseLevelModal from '../../hooks/UseLevelModal';
 import GLevelDetail from './GLevelDetail';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const NomarlLevel = ({level}) => {
   const {isModalVisible, changeModalVisible} = UseLevelModal();
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => changeModalVisible(true)}>
+    <TouchableOpacity disabled={false} style={styles.container}>
       <View style={styles.levelcontainer}>
         <View style={styles.easyContainer}>
           <View style={styles.image}>
@@ -33,14 +32,20 @@ const NomarlLevel = ({level}) => {
         </View>
         <Text style={styles.level}>{level.name}</Text>
 
-        <Modal
+        {/* <Modal
           transparent={true}
           animationType="fade"
           visible={isModalVisible}
           nRequestClose={() => changeModalVisible(false)}>
           <GLevelDetail changeModalVisible={changeModalVisible} level={level} />
-        </Modal>
+        </Modal> */}
       </View>
+      <TouchableOpacity
+        style={styles.modal_video_watched}
+        onPress={() => changeModalVisible(true)}
+        disabled={true}>
+        <Text style={styles.text_video_watched}>Comming soon</Text>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -51,6 +56,24 @@ const styles = StyleSheet.create({
   container: {
     width: (width * 3) / 3,
   },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '76%',
+    height: (height * 0.75) / 3,
+    borderRadius: 15,
+    padding: 10,
+    top: '-2%',
+    marginLeft: '13%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text_video_watched: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
+  },
   levelcontainer: {
     height: (height * 0.9) / 3,
     width: (width * 3.1) / 3,
@@ -60,9 +83,8 @@ const styles = StyleSheet.create({
   easyContainer: {
     flexDirection: 'row',
     display: 'flex',
-    width: '70%',
+    width: '75%',
     height: (height * 0.75) / 3,
-
     backgroundColor: '#79B669',
     borderRadius: 15,
     margin: 5,
@@ -79,9 +101,9 @@ const styles = StyleSheet.create({
     top: '-85%',
   },
   desc: {
-    width: '85%',
+    width: '95%',
     color: '#000000',
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: 'Poppins-Medium',
     lineHeight: 20,
     textAlign: 'justify',

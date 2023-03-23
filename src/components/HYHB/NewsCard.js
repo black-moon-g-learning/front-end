@@ -23,7 +23,7 @@ const NewsCard = ({item}) => {
             {item.author}
           </Text>
         </View>
-        <View>
+        <View style={styles.card}>
           <Text numberOfLines={2} style={styles.title}>
             {item.title}
           </Text>
@@ -48,23 +48,32 @@ export default NewsCard;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: (height * 1.5) / 6,
+    height: (height * 1.6) / 6,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     borderColor: '#5FAD41',
     borderRadius: 10,
     marginBottom: 10,
     paddingLeft: 5,
     borderWidth: 2,
+    paddingBottom: 10,
+    paddingTop: 10,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    // alignItems: 'center',
   },
   infor: {
-    width: '57%',
+    width: '60%',
     paddingLeft: 10,
     paddingRight: 10,
   },
   author: {
+    width: '60%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -79,21 +88,21 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000000',
-    fontSize: 14,
+    fontSize: 11,
     marginBottom: 5,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     lineHeight: 20,
   },
   txt: {
     color: '#000000',
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '500',
     lineHeight: 16,
     marginBottom: 5,
     fontFamily: 'Poppins-Regular',
   },
   btn: {
-    width: 100,
+    width: 120,
     height: 33,
     padding: 5,
     backgroundColor: '#FFC845',

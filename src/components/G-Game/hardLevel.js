@@ -23,7 +23,7 @@ const HardLevel = ({level}) => {
           <View style={styles.image}>
             <Image
               style={styles.img}
-              source={require('../../assets/images/nomarl.png')}
+              source={require('../../assets/images/hard.png')}
             />
           </View>
 
@@ -33,13 +33,19 @@ const HardLevel = ({level}) => {
         </View>
         <Text style={styles.level}>{level.name}</Text>
 
-        <Modal
+        {/* <Modal
           transparent={true}
           animationType="fade"
           visible={isModalVisible}
           nRequestClose={() => changeModalVisible(false)}>
           <GLevelDetail changeModalVisible={changeModalVisible} level={level} />
-        </Modal>
+        </Modal> */}
+        <TouchableOpacity
+          style={styles.modal_video_watched}
+          onPress={() => changeModalVisible(true)}
+          disabled={true}>
+          <Text style={styles.text_video_watched}>Comming soon</Text>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
@@ -57,10 +63,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  modal_video_watched: {
+    position: 'absolute',
+    backgroundColor: '#00000959',
+    width: '73%',
+    height: (height * 0.75) / 3,
+    borderRadius: 15,
+    // margin: 5,
+    padding: 10,
+    top: '-2%',
+    marginLeft: '13%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text_video_watched: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '700',
+    alignSelf: 'center',
+  },
   easyContainer: {
     flexDirection: 'row',
     display: 'flex',
-    width: '70%',
+    width: '75%',
     height: (height * 0.75) / 3,
     backgroundColor: '#00D6C5',
     borderRadius: 15,
@@ -78,7 +103,7 @@ const styles = StyleSheet.create({
     top: '-85%',
   },
   desc: {
-    width: '85%',
+    width: '95%',
     color: '#000000',
     fontSize: 13,
     fontFamily: 'Poppins-Medium',

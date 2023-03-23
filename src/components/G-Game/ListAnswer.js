@@ -22,21 +22,22 @@ export default ListAnswer;
 const styles = StyleSheet.create({
   ans: {
     width: '90%',
+    height: '10%',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     borderRadius: 100,
-    margin: 8,
+    margin: 6,
     backgroundColor: '#FFFFFF',
   },
   option: {
     // padding: 10,
     backgroundColor: '#EFD207',
     borderRadius: 100,
-    width: 45,
-    height: 45,
-    textAlign: 'center',
-    justifyContent: 'center',
+    width: '16%',
+    height: '100%',
+    display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   optionChoose: {
     color: '#000000',
@@ -48,9 +49,12 @@ const styles = StyleSheet.create({
   answer: {
     color: '#323643',
     fontSize: 14,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
     paddingVertical: 10,
     paddingLeft: '2%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   correctAnswer: {
     backgroundColor: 'yellow',
