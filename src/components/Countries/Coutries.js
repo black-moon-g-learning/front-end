@@ -16,6 +16,7 @@ import BlockModal from '../../screens/Countries/BlockModal';
 
 const width = Dimensions.get('window').width;
 export const ItemPopular = ({navigation, item}) => {
+  const {isModalVisible, changeModalVisible} = UseLevelModal();
   let scaleValue = new Animated.Value(0);
   scaleValue.interpolate({
     inputRange: [0, 0.5, 1],
@@ -41,7 +42,21 @@ export const ItemPopular = ({navigation, item}) => {
           source={{uri: item.image}}
         />
         <Text style={styles.itempopular_country}>{item.name}</Text>
+        {item.is_blocked === 1 && (
+          <TouchableOpacity
+            style={styles.modal_video_watched}
+            onPress={() => changeModalVisible(true)}>
+            <Icon style={styles.lock} name="lock" size={48} color="#5FAD41" />
+          </TouchableOpacity>
+        )}
       </TouchableOpacity>
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+        <BlockModal changeModalVisible={changeModalVisible} />
+      </Modal>
     </ScrollView>
   );
 };
@@ -154,5 +169,10 @@ const styles = StyleSheet.create({
   lock: {
     color: '#FFC845',
     alignSelf: 'center',
+    opacity: 0.9,
+    borderRadius: 10,
+    margin: 10,
+    elevation: 10,
+    // backgroundColor: '#FEFEFE',
   },
 });

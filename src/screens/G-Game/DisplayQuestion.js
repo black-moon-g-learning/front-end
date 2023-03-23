@@ -215,9 +215,7 @@ const DisplayQuestion = () => {
               </Text>
             </View>
             <View style={styles.quesCon} key={question.id}>
-              <Text style={styles.question} numberOfLines={2}>
-                {question.content}
-              </Text>
+              <Text style={styles.question}>{question.content}</Text>
             </View>
             {question.answers.map((answersOption, ind) => (
               <ListAnswer
@@ -253,17 +251,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     height: height,
+    paddingBottom: 20,
   },
   questionContainer: {
     backgroundColor: '#5FAD41',
     borderRadius: 20,
     width: '90%',
-    height: (height * 1.93) / 3,
+    height: (height * 2) / 3,
     marginTop: 50,
     alignItems: 'center',
     position: 'relative',
     paddingVertical: 10,
   },
+  // top: {
+  //   marginTop: -5,
+  //   height: (height * 0.2) / 3,
+  // },
   countQues: {
     backgroundColor: '#FFFFFF',
     width: '90%',
@@ -293,6 +296,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderBottomWidth: 1,
     paddingRight: 10,
+    marginTop: -20,
+    marginBottom: '8%',
   },
   countTime: {
     backgroundColor: '#FFFFFF',
@@ -343,7 +348,7 @@ const styles = StyleSheet.create({
   },
   quesCon: {
     width: '90%',
-    height: 100,
+    height: 90,
     paddingVertical: 5,
     paddingHorizontal: 10,
     justifyContent: 'center',

@@ -31,16 +31,17 @@ const styles = StyleSheet.create({
   title: {
     padding: 10,
     fontSize: 20,
-    lineHeight: 20,
-    color: '#000000',
-    fontFamily: 'Poppins-Medium',
+    // lineHeight: 20,
+    color: '#F47722',
+    fontFamily: 'Poppins-SemiBold',
     width: '100%',
-    textAlign: 'justify',
+    textAlign: 'center',
+    lineHeight: 32,
   },
   txt: {
     fontSize: 15,
     lineHeight: 20,
-    color: '#000000',
+    color: '#263237',
     fontFamily: 'Poppins-Italic',
   },
   desc: {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
     fontSize: 18,
-    lineHeight: 20,
+    lineHeight: 27,
     color: '#000000',
     textAlign: 'justify',
   },
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: 213,
+    borderRadius: 10,
   },
   imgContainer: {
     alignItems: 'center',

@@ -23,7 +23,7 @@ const CountryCard = ({item}) => {
       <ImageBackground
         source={require('../../assets/images/bgdCountry.png')}
         resizeMode="contain"
-        style={styles.imgbgd}>
+        style={item.is_blocked === 1 ? styles.imgbgd2 : styles.imgbgd}>
         <Text numberOfLines={1} style={styles.countryName}>
           {item.name}
         </Text>
@@ -43,7 +43,7 @@ const CountryCard = ({item}) => {
         <TouchableOpacity
           style={styles.modal_video_watched}
           onPress={() => changeModalVisible(true)}>
-          <Icon style={styles.lock} name="lock" size={48} color="#5FAD41" />
+          <Icon style={styles.lock} name="lock" size={48} color="black" />
         </TouchableOpacity>
       )}
       <Modal
@@ -89,6 +89,13 @@ const styles = StyleSheet.create({
     height: 210,
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  imgbgd2: {
+    width: (width * 3) / 6,
+    height: 210,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    opacity: 0.6,
   },
   countryName: {
     color: '#000000',
@@ -148,18 +155,19 @@ const styles = StyleSheet.create({
   },
   modal_video_watched: {
     position: 'absolute',
-    backgroundColor: '#00000959',
     width: (width * 1.7) / 6,
     height: 175,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
-    // marginRight: 20,
     justifyContent: 'center',
-    // left: 8,
     right: '19.7%',
   },
   lock: {
-    color: '#FFC845',
+    color: '#263337',
     alignSelf: 'center',
+    opacity: 0.9,
+    borderRadius: 10,
+    margin: 10,
+    elevation: 10,
   },
 });

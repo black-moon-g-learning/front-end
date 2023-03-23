@@ -51,7 +51,6 @@ const Countries = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView style={styles.container}>
-        <View style={styles.topicsheader}></View>
         {isSuccess && (
           <View style={styles.flatlist}>
             <Header

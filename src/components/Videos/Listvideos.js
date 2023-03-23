@@ -13,8 +13,7 @@ import axiosRequest from '../../axios';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const MAX_LENGTH = (width * 0.6) / 6;
-const MAX_LENGTH2 = (width * 0.1) / 6;
-
+const MAX_LENGTH2 = (width * 0.6) / 6;
 export const ListVideo = ({navigation, item, videos}) => {
   const VideoWatched = () => {
     axiosRequest
@@ -36,13 +35,7 @@ export const ListVideo = ({navigation, item, videos}) => {
         navigation.navigate('playvideo', {item, videos});
         VideoWatched();
       }}>
-      <View style={styles.img}>
-        <Image
-          source={{uri: item.image}}
-          style={styles.images}
-          resizeMode="contain"
-        />
-      </View>
+      <Image source={{uri: item.image}} style={styles.img} />
       <View style={styles.des}>
         <Text style={styles.ContinentsName}>{name}</Text>
         <Text style={styles.ContinentsDetail}>{item.author}</Text>
@@ -119,9 +112,6 @@ export const styles = StyleSheet.create({
   },
   des: {
     width: '57%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
     // borderWidth: 1,
   },
   itemRecommend_container: {
@@ -142,22 +132,13 @@ export const styles = StyleSheet.create({
   },
   img: {
     width: '37%',
-    height: '100%',
+    height: 100,
     paddingRight: 10,
-    marginLeft: '2%',
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  images: {
-    width: '100%',
-    height: '85%',
     borderRadius: 10,
-
-    // borderWidth: 1,
+    marginLeft: '2%',
   },
   ContinentsName: {
-    // height: '20%',
-    fontSize: 13,
+    fontSize: 15,
     color: '#323643',
     width: '87%',
     fontFamily: 'Poppins-Bold',
@@ -178,18 +159,11 @@ export const styles = StyleSheet.create({
   modal_video_watched: {
     position: 'absolute',
     backgroundColor: '#00000959',
-    height: (height * 0.37) / 3,
-    // width: '34%',
-    // height: 100,
-    // // margin: 20,
-    // marginLeft: '2%',
-    borderRadius: 10,
-    // justifyContent: 'center',
-    width: (width * 1.95) / 6,
-    // height: '100%',
-    paddingRight: 10,
+    width: '36%',
+    height: 100,
+    // margin: 20,
     marginLeft: '2%',
-    alignContent: 'center',
+    borderRadius: 10,
     justifyContent: 'center',
   },
   text_video_watched: {
